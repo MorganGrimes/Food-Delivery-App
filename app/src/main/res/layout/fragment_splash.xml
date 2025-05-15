@@ -7,7 +7,7 @@
     tools:context=".ui.splash.SplashFragment">
 
     <ImageView
-        android:id="@+id/ellipse_small"
+        android:id="@+id/ellipse_small_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ellipse_small"
@@ -16,7 +16,7 @@
         tools:ignore="ContentDescription" />
 
     <ImageView
-        android:id="@+id/splashicon"
+        android:id="@+id/splash_icon_iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
@@ -27,7 +27,7 @@
         tools:ignore="ContentDescription" />
 
     <ImageView
-        android:id="@+id/ellipse_large"
+        android:id="@+id/ellipse_large_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ellipse_large"
