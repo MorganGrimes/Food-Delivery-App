@@ -5,4 +5,13 @@
 you just place the order we do the rest</string>
     <string name="next">NEXT</string>
     <string name="skip">Skip</string>
+    <string name="login">Log In</string>
+    <string name="sign_in">Please sign in to your existing account</string>
+    <string name="email">EMAIL</string>
+    <string name="email_example">example@gmail.com</string>
+    <string name="password">PASSWORD</string>
+    <string name="password_example">* * * * * * * * * *</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_password">Forgot Password</string>
+
 </resources>
