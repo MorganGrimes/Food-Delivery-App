@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Food Delivery App</string>
+    <string name="onboarding_title">All your favorites</string>
+    <string name="onboarding_description">Get all your loved foods in one once place,
+you just place the order we do the rest</string>
+    <string name="next">NEXT</string>
+    <string name="skip">Skip</string>
 </resources>
