@@ -203,7 +203,7 @@
             app:layout_constraintTop_toBottomOf="@+id/login_btn" />
 
         <TextView
-            android:id="@+id/sign_up"
+            android:id="@+id/sign_up_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="11dp"
@@ -228,6 +228,40 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/no_account_tv" />
 
+        <LinearLayout
+            android:id="@+id/icons_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/or_tv">
+
+            <ImageView
+                android:id="@+id/facebook_icon_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/facebook"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/twitter_icon_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/twitter"
+                android:layout_marginHorizontal="30dp"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/apple_icon_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/apple"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
