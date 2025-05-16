@@ -16,5 +16,9 @@ you just place the order we do the rest</string>
     <string name="no_account">Don’t have an account?</string>
     <string name="sign_up">SIGN UP</string>
     <string name="or">Or</string>
+    <string name="Please_sign_in">Please sign in to your existing account</string>
+    <string name="send_code">SEND CODE</string>
+    <string name="code">CODE</string>
+    <string name="resend">Resend</string>
 
 </resources>
