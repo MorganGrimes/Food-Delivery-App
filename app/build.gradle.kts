@@ -1,9 +1,15 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id ("androidx.navigation.safeargs.kotlin")
 }
 
 android {
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     namespace = "com.example.fooddeliveryapp"
     compileSdk = 35
 
@@ -50,6 +56,8 @@ dependencies {
     implementation(libs.dotsindicator)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.constraintlayout)
+    implementation (libs.androidx.navigation.fragment.ktx.v235)
+    implementation (libs.androidx.navigation.ui.ktx.v235)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
