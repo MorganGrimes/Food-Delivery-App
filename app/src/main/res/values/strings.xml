@@ -24,5 +24,7 @@ you just place the order we do the rest</string>
     <string name="name">NAME</string>
     <string name="john_doe">john doe</string>
     <string name="retype_password">RE-TYPE PASSWORD</string>
+    <string name="access_location">ACCESS LOCATION</string>
+    <string name="food_access_location">FOOD DELIVERY WILL ACCESS YOUR LOCATION ONLY WHILE USING THE APP</string>
 
 </resources>

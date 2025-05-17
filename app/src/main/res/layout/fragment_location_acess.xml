@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:orientation="vertical"
+    tools:context=".ui.locationaccess.LocationAcessFragment">
+
+    <ImageView
+        android:id="@+id/oval_iv"
+        android:layout_width="206dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="176dp"
+        android:src="@drawable/oval"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="94dp"
+        android:backgroundTint="@color/orange"
+        android:fontFamily="@font/sen_bold"
+        android:paddingVertical="20dp"
+        android:text="@string/access_location"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:cornerRadius="12dp"
+        app:icon="@drawable/map_pin"
+        app:iconGravity="textEnd"
+        app:iconPadding="24dp" />
+
+    <TextView
+        android:id="@+id/login_email_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/food_access_location"
+        android:textAlignment="center"
+        android:textColor="@color/deep_grey"
+        android:textSize="16sp" />
+
+</LinearLayout>
