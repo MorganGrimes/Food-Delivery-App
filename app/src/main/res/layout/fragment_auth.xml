@@ -10,11 +10,12 @@
     <include layout="@layout/top_bar_login" />
 
     <ImageView
+        android:id="@+id/back_icon_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/back_icon"
-        android:layout_marginTop="50dp"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/back_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
@@ -40,7 +41,7 @@
         android:layout_marginTop="3dp"
         android:fontFamily="@font/sen_regular"
         android:gravity="center"
-        android:text="@string/Please_sign_in"
+        android:text="@string/please_sign_in"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -94,6 +95,7 @@
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/sen_regular"
                     android:text="@string/email"
+                    android:textColor="@color/black"
                     android:textSize="13sp" />
 
                 <TextView
@@ -104,6 +106,7 @@
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/sen_bold"
                     android:text="@string/resend"
+                    android:textColor="@color/black"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -113,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginHorizontal="16dp"
+                android:layout_marginHorizontal="24dp"
                 android:orientation="horizontal"
                 android:visibility="gone"
                 tools:visibility="visible">
@@ -177,7 +180,7 @@
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/email_input"
+                android:id="@+id/auth_email_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
@@ -190,19 +193,10 @@
                 android:paddingVertical="16dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:textColor="@color/black"
                 android:textColorHint="@color/grey_transparent"
                 android:textSize="16sp"
                 tools:ignore="TextContrastCheck" />
-
-            <TextView
-                android:id="@+id/code_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/sen_regular"
-                android:text="@string/code"
-                android:textSize="13sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/send_code_btn"
