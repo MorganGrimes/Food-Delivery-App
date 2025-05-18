@@ -26,5 +26,12 @@ you just place the order we do the rest</string>
     <string name="retype_password">RE-TYPE PASSWORD</string>
     <string name="access_location">ACCESS LOCATION</string>
     <string name="food_access_location">FOOD DELIVERY WILL ACCESS YOUR LOCATION ONLY WHILE USING THE APP</string>
+    <string name="deliver_to">DELIVER TO</string>
+    <string name="example_name">Example Name</string>
+    <string name="greeting">Hey Example, Good Afternoon!</string>
+    <string name="search">Search dishes, restaurants</string>
+    <string name="categories">All Categories</string>
+    <string name="see_all">See All</string>
+    <string name="all">See All</string>
 
 </resources>
