@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="top"
     android:orientation="vertical"
-    tools:context=".ui.locationaccess.LocationAcessFragment">
+    tools:context=".ui.locationaccess.LocationAccessFragment">
 
     <ImageView
         android:id="@+id/oval_iv"
@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="176dp"
         android:src="@drawable/oval"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_btn"

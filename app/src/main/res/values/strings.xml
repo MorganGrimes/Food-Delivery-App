@@ -33,5 +33,12 @@ you just place the order we do the rest</string>
     <string name="categories">All Categories</string>
     <string name="see_all">See All</string>
     <string name="all">See All</string>
+    <string name="restaurants">Open Restaurants</string>
+    <string name="restaurants_name_example">Restaurant Name Example</string>
+    <string name="food_example">Food Example - Burger - Wings</string>
+    <string name="rating">4.7</string>
+    <string name="delivery_type">Free</string>
+    <string name="delivery_time">20 min</string>
+    <string name="hot_dog">Hot Dog</string>
 
 </resources>

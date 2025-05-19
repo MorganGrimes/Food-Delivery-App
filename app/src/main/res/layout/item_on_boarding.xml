@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="114dp"
         android:src="@drawable/rectangle"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
         android:id="@+id/onboarding_title_tv"
@@ -34,6 +34,7 @@
         android:gravity="center"
         android:text="@string/onboarding_description"
         android:textColor="@color/grey"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:ignore="TextContrastCheck" />
 
 </LinearLayout>

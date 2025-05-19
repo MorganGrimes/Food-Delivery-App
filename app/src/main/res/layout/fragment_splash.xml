@@ -13,7 +13,7 @@
         android:src="@drawable/ellipse_small"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/splash_icon_iv"
@@ -24,7 +24,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/ellipse_large_iv"
@@ -33,6 +33,6 @@
         android:src="@drawable/ellipse_large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="ContentDescription"/>
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

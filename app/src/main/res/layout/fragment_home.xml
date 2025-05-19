@@ -19,7 +19,8 @@
             android:layout_marginTop="54dp"
             android:src="@drawable/menu"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/deliver_tv"
@@ -56,7 +57,8 @@
             android:layout_marginEnd="24dp"
             android:src="@drawable/cart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/remember_me_tv"
@@ -73,7 +75,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/search_bar"
-            android:layout_width="match_parent"
+            android:layout_width="365dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="24dp"
@@ -84,39 +86,108 @@
             android:hint="@string/search"
             android:paddingVertical="22dp"
             android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:textColorHint="@color/grey_transparent"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/remember_me_tv" />
 
-        <TextView
-            android:id="@+id/categories_tv"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/categories_ll"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/categories"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+            app:layout_constraintTop_toBottomOf="@+id/search_bar">
 
-        <TextView
-            android:id="@+id/see_all_tv"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/categories_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/sen_regular"
+                android:text="@string/categories"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/see_all_categories_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/sen_regular"
+                android:gravity="center_vertical"
+                android:text="@string/see_all"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:drawableEndCompat="@drawable/arrow_right"
+                app:drawableTint="@color/grey_transparent" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categories_recycler"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="24dp"
-            android:drawableEnd="@drawable/arrow_right"
-            android:drawableTint="@color/grey_transparent"
-            android:fontFamily="@font/sen_regular"
-            android:gravity="center_vertical"
-            android:text="@string/see_all"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="@+id/categories_ll"
+            tools:itemCount="4"
+            tools:listitem="@layout/recycler_categories_layout" />
+
+        <LinearLayout
+            android:id="@+id/restaurants_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/categories_recycler">
+
+            <TextView
+                android:id="@+id/restaurants_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/sen_regular"
+                android:text="@string/restaurants"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/see_all_restaurants_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/sen_regular"
+                android:gravity="center_vertical"
+                android:text="@string/see_all"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:drawableEndCompat="@drawable/arrow_right"
+                app:drawableTint="@color/grey_transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/see_all_categories_tv" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/restaurants_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="@id/restaurants_ll"
+            tools:itemCount="4"
+            tools:listitem="@layout/recycler_restaurants_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
