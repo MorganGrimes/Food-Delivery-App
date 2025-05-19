@@ -5,29 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/restaurants_iv"
-        android:layout_width="match_parent"
-        android:layout_height="137dp"
-        android:layout_marginHorizontal="24dp"
-        android:background="@color/grey"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/restaurants_cw"
+        android:layout_width="326dp"
+        android:layout_height="140dp"
+        app:cardCornerRadius="14dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription,ImageContrastCheck" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/restaurants_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/restaurants_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/sen_regular"
         android:text="@string/restaurants_name_example"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurants_iv" />
+        app:layout_constraintStart_toStartOf="@+id/restaurants_cw"
+        app:layout_constraintTop_toBottomOf="@+id/restaurants_cw" />
 
     <TextView
         android:id="@+id/food_tv"

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="50dp"
-            android:src="@drawable/back_icon"
+            android:src="@drawable/back_arrow_white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
@@ -159,7 +159,7 @@
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey_transparent"
                     android:textSize="16sp"
-                    tools:ignore="TextContrastCheck" />
+                    tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
                 <TextView
                     android:id="@+id/sign_up_retype_password_tv"
@@ -202,7 +202,8 @@
                     android:text="@string/sign_up"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    app:cornerRadius="12dp" />
+                    app:cornerRadius="12dp"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
 
             </LinearLayout>
 

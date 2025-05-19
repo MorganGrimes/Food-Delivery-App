@@ -75,7 +75,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/search_bar"
-            android:layout_width="365dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="24dp"
@@ -83,10 +83,11 @@
             android:drawableStart="@drawable/search"
             android:drawablePadding="12dp"
             android:drawableTint="@color/grey_transparent"
-            android:hint="@string/search"
+            android:hint="@string/search_example"
             android:paddingVertical="22dp"
             android:paddingStart="20dp"
             android:paddingEnd="0dp"
+            android:textColor="@color/black"
             android:textColorHint="@color/grey_transparent"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -133,11 +134,14 @@
             android:id="@+id/categories_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:overScrollMode="never"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/categories_ll"
-            tools:itemCount="4"
+            tools:itemCount="2"
             tools:listitem="@layout/recycler_categories_layout" />
 
         <LinearLayout
@@ -155,7 +159,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/sen_regular"
-                android:text="@string/restaurants"
+                android:text="@string/open_restaurants"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -182,11 +186,14 @@
             android:id="@+id/restaurants_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:overScrollMode="never"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/restaurants_ll"
-            tools:itemCount="4"
+            tools:itemCount="1"
             tools:listitem="@layout/recycler_restaurants_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
