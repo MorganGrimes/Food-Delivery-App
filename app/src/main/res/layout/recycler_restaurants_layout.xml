@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/restaurants_iv"
+        android:layout_width="match_parent"
+        android:layout_height="137dp"
+        android:layout_marginHorizontal="24dp"
+        android:background="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/restaurants_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/restaurants_name_example"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurants_iv" />
+
+    <TextView
+        android:id="@+id/food_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/food_example"
+        android:textColor="@color/grey_transparent"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/restaurants_name_tv"
+        app:layout_constraintTop_toBottomOf="@+id/restaurants_name_tv" />
+
+    <TextView
+        android:id="@+id/rating_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:drawablePadding="4dp"
+        android:fontFamily="@font/sen_bold"
+        android:gravity="bottom"
+        android:text="@string/rating"
+        android:textSize="16sp"
+        app:drawableStartCompat="@drawable/star"
+        app:drawableTint="@color/orange"
+        app:layout_constraintStart_toStartOf="@+id/food_tv"
+        app:layout_constraintTop_toBottomOf="@+id/food_tv" />
+
+    <TextView
+        android:id="@+id/delivery_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:drawablePadding="4dp"
+        android:fontFamily="@font/sen_regular"
+        android:gravity="bottom"
+        android:text="@string/delivery_type"
+        android:textSize="14sp"
+        app:drawableStartCompat="@drawable/delivery"
+        app:drawableTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="@+id/rating_tv"
+        app:layout_constraintStart_toEndOf="@+id/rating_tv" />
+
+    <TextView
+        android:id="@+id/delivery_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:drawablePadding="4dp"
+        android:fontFamily="@font/sen_regular"
+        android:gravity="bottom"
+        android:text="@string/delivery_time"
+        android:textSize="14sp"
+        app:drawableStartCompat="@drawable/clock"
+        app:drawableTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="@+id/delivery_tv"
+        app:layout_constraintStart_toEndOf="@+id/delivery_tv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
