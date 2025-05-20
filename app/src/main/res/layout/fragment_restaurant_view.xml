@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.restaurantview.RestaurantViewFragment">
+
+    <ImageView
+        android:id="@+id/back_icon_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/back_arrow_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/restaurant_view_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/restaurant_view"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/back_icon_iv"
+        app:layout_constraintStart_toEndOf="@+id/back_icon_iv"
+        app:layout_constraintTop_toTopOf="@+id/back_icon_iv" />
+
+    <ImageView
+        android:id="@+id/more_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/more"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/restaurants_cw"
+        android:layout_width="326dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back_icon_iv">
+
+        <ImageView
+            android:id="@+id/restaurants_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/restaurant_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/restaurants_name_example"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/restaurants_cw"
+        app:layout_constraintTop_toBottomOf="@+id/restaurants_cw" />
+
+    <TextView
+        android:id="@+id/restaurant_description_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/restaurant_description"
+        android:textColor="@color/grey"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_name_tv" />
+
+    <LinearLayout
+        android:id="@+id/rating_delivery_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_description_tv">
+
+        <TextView
+            android:id="@+id/rating_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/sen_bold"
+            android:gravity="bottom"
+            android:text="@string/rating"
+            android:textSize="16sp"
+            app:drawableStartCompat="@drawable/star"
+            app:drawableTint="@color/orange" />
+
+        <TextView
+            android:id="@+id/delivery_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/sen_regular"
+            android:gravity="bottom"
+            android:text="@string/delivery_type"
+            android:textSize="14sp"
+            app:drawableStartCompat="@drawable/delivery"
+            app:drawableTint="@color/orange" />
+
+        <TextView
+            android:id="@+id/delivery_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/sen_regular"
+            android:gravity="bottom"
+            android:text="@string/delivery_time"
+            android:textSize="14sp"
+            app:drawableStartCompat="@drawable/clock"
+            app:drawableTint="@color/orange" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="32dp"
+        android:id="@+id/recycler_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rating_delivery_ll"
+        tools:itemCount="2"
+        tools:listitem="@layout/recycler_food_layout" />
+
+    <TextView
+        android:id="@+id/food_name_and_number_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/burger_10"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_food" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_popular_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/food_name_and_number_tv"
+        tools:itemCount="2"
+        tools:listitem="@layout/recycler_popular_food_layout" />
+</androidx.constraintlayout.widget.ConstraintLayout>
