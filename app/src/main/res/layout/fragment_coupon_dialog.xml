@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.coupon.CouponDialogFragment">
+
+    <ImageView
+        android:id="@+id/close_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:src="@drawable/close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/coupon_cw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/orange"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/hurry_offers_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="82dp"
+                android:fontFamily="@font/sen_extrabold"
+                android:text="@string/hurry_offers"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/coupon_code_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/sen_bold"
+                android:text="@string/coupon_code"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/coupon_description_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/sen_bold"
+                android:text="@string/coupon_description"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/got_it_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="30dp"
+                android:backgroundTint="@color/orange"
+                android:fontFamily="@font/sen_bold"
+                android:paddingVertical="20dp"
+                android:text="@string/got_it"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:cornerRadius="10dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="1dp"
+                tools:ignore="TextContrastCheck" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
