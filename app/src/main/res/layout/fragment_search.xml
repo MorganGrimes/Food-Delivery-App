@@ -6,131 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".ui.search.SearchFragment">
 
-    <LinearLayout
-        android:id="@+id/search_ll"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/back_icon_iv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="50dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/back_arrow_grey"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/back_icon_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back_arrow_grey"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/sign_up_name_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="16dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/search"
-            android:textColor="@color/black"
-            android:textSize="13sp" />
-
-        <ImageView
-            android:id="@+id/cart_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/cart"
-            tools:ignore="ContentDescription" />
-
-    </LinearLayout>
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/search_bar"
-        android:layout_width="match_parent"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/popup_menu_btn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/code_insert_shape"
-        android:drawableStart="@drawable/search"
-        android:drawablePadding="12dp"
-        android:drawableTint="@color/grey_transparent"
-        android:hint="@string/pizza"
-        android:paddingVertical="22dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="0dp"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/white"
+        android:drawableEnd="@drawable/arrow_down"
+        android:drawableTint="@color/orange"
+        android:fontFamily="@font/sen_bold"
+        android:text="@string/burger"
         android:textColor="@color/black"
-        android:textColorHint="@color/grey_transparent"
-        android:textSize="14sp"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/back_icon_iv"
+        app:layout_constraintStart_toEndOf="@+id/back_icon_iv"
+        app:layout_constraintTop_toTopOf="@+id/back_icon_iv"
+        app:strokeColor="@color/grey"
+        app:strokeWidth="1dp" />
+
+    <ImageView
+        android:id="@+id/filter_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/filter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_ll" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/search_recent_keyword_tv"
+        android:id="@+id/popular_food_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/sen_regular"
-        android:text="@string/recent_keywords"
+        android:text="@string/popular_burgers"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/popup_menu_btn" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/history_recycler"
+        android:id="@+id/recycler_popular_food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_recent_keyword_tv"
+        app:layout_constraintTop_toBottomOf="@+id/popular_food_tv"
         tools:itemCount="2"
-        tools:listitem="@layout/recycler_history_layout" />
+        tools:listitem="@layout/recycler_popular_food" />
 
     <TextView
-        android:id="@+id/suggested_restaurant_tv"
+        android:id="@+id/open_restaurants"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/sen_regular"
-        android:text="@string/suggested_restaurants"
+        android:text="@string/open_restaurants"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/history_recycler" />
+        app:layout_constraintTop_toBottomOf="@+id/recycler_popular_food" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_suggested_restaurants"
+        android:id="@+id/restaurants_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
         android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/suggested_restaurant_tv"
+        app:layout_constraintTop_toBottomOf="@+id/open_restaurants"
         tools:itemCount="1"
-        tools:listitem="@layout/recycler_suggested_restaurants" />
-
-    <TextView
-        android:id="@+id/popular_fast_food_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/sen_regular"
-        android:text="@string/popular_fast_food"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_suggested_restaurants" />
+        tools:listitem="@layout/recycler_restaurants_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

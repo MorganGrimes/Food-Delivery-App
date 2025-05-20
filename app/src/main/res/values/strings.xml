@@ -46,5 +46,29 @@ you just place the order we do the rest</string>
     <string name="burger">Burger</string>
     <string name="suggested_restaurants">Suggested Restaurants</string>
     <string name="popular_fast_food">Popular Fast Food</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hurry_offers">Hurry Offers!</string>
+    <string name="coupon_code">#1243CD2</string>
+    <string name="coupon_description">Use the cupon get 25% discount</string>
+    <string name="got_it">GOT IT</string>
+    <string name="popular_burgers">Popular Burgers</string>
+    <string name="burger_bistro">Burger Bistro</string>
+    <string name="rose_garden">Rose Garden</string>
+    <string name="_40">$40</string>
+    <string name="smokin_burger">Smokin\' Burger</string>
+    <string name="cafenio_restaurant">Cafenio Restaurant</string>
+    <string name="_60">$60</string>
+    <string name="details">Details</string>
+    <string name="uttora_coffe_house">Uttora Coffe House</string>
+    <string name="pizza_calzone_european">Pizza Calzone European</string>
+    <string name="pizza_description">Prosciutto e funghi is a pizza variety that is topped with tomato sauce.</string>
+    <string name="size">SIZE :</string>
+    <string name="ten">10\'</string>
+    <string name="fourteen">14\'</string>
+    <string name="sixteen">16\'</string>
+    <string name="ingredients">INGREDIENTS</string>
+    <string name="_32">$32</string>
+
 
 </resources>

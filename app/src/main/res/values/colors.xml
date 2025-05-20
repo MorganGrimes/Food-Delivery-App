@@ -3,9 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#98A8B8</color>
-    <color name="orange">#DD2C00</color>
+    <color name="orange">#FF7622</color>
     <color name="white_transparent">#FFE1CE</color>
-    <color name="grey_transparent">#546E7A</color>
+    <color name="grey_transparent">#A0A5BA</color>
     <color name="deep_blue">#121223</color>
     <color name="deep_grey">#646982</color>
     <color name="edit_text_white">#F0F5FA</color>

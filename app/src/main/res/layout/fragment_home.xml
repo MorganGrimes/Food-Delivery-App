@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
     tools:context=".ui.home.HomeFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/menu_icon"
@@ -99,6 +95,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginHorizontal="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_bar">
 
@@ -106,7 +104,6 @@
                 android:id="@+id/categories_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/sen_regular"
@@ -119,7 +116,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
                 android:fontFamily="@font/sen_regular"
                 android:gravity="center_vertical"
                 android:text="@string/see_all"
@@ -134,7 +130,7 @@
             android:id="@+id/categories_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginHorizontal="24dp"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:overScrollMode="never"
@@ -148,6 +144,7 @@
             android:id="@+id/restaurants_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/categories_recycler">
 
@@ -155,7 +152,6 @@
                 android:id="@+id/restaurants_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/sen_regular"
@@ -169,7 +165,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
                 android:fontFamily="@font/sen_regular"
                 android:gravity="center_vertical"
                 android:text="@string/see_all"
@@ -186,7 +181,7 @@
             android:id="@+id/restaurants_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginHorizontal="24dp"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:overScrollMode="never"
@@ -196,6 +191,4 @@
             tools:itemCount="1"
             tools:listitem="@layout/recycler_restaurants_layout" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
