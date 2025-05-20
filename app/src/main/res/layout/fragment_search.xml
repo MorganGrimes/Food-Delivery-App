@@ -70,7 +70,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/popular_food_tv"
         tools:itemCount="2"
-        tools:listitem="@layout/recycler_popular_food" />
+        tools:listitem="@layout/recycler_popular_food_layout" />
 
     <TextView
         android:id="@+id/open_restaurants"

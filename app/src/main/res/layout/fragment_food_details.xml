@@ -51,10 +51,10 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/heart_outline"
             android:layout_gravity="bottom"
             android:layout_marginStart="275dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/heart_outline" />
 
     </androidx.cardview.widget.CardView>
 
@@ -88,12 +88,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/sen_bold"
         android:text="@string/pizza_calzone_european"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -103,11 +103,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/sen_regular"
         android:text="@string/pizza_description"
         android:textColor="@color/grey"
         android:textSize="14sp"
-        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/food_title_tv" />
 
@@ -115,9 +115,9 @@
         android:id="@+id/rating_delivery_ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="14dp"
         android:orientation="horizontal"
-        android:layout_marginHorizontal="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/food_description_tv">
 
@@ -165,59 +165,55 @@
         android:id="@+id/size_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
         android:layout_marginHorizontal="24dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rating_delivery_ll">
 
         <TextView
             android:id="@+id/size_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:fontFamily="@font/sen_regular"
             android:text="@string/size"
-            android:layout_gravity="center"
             android:textColor="@color/black"
-            android:textSize="13sp"
-            />
+            android:textSize="13sp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/first_size_btn"
             android:layout_width="64dp"
             android:layout_height="70dp"
             android:layout_marginStart="16dp"
-            android:text="@string/ten"
-            android:textSize="11sp"
-            android:textColor="@color/black"
             android:backgroundTint="@color/edit_text_white"
             android:fontFamily="@font/sen_regular"
-            />
+            android:text="@string/ten"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/second_size_btn"
             android:layout_width="64dp"
             android:layout_height="70dp"
             android:layout_marginStart="16dp"
-            android:text="@string/fourteen"
-            android:textSize="11sp"
-            android:textColor="@color/black"
             android:backgroundTint="@color/edit_text_white"
             android:fontFamily="@font/sen_regular"
-            />
+            android:text="@string/fourteen"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/third_size_btn"
             android:layout_width="64dp"
             android:layout_height="70dp"
             android:layout_marginStart="16dp"
-            android:text="@string/sixteen"
-            android:textSize="11sp"
-            android:textColor="@color/black"
             android:backgroundTint="@color/edit_text_white"
             android:fontFamily="@font/sen_regular"
-            />
+            android:text="@string/sixteen"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
 
     </LinearLayout>
 
@@ -226,14 +222,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/sen_regular"
         android:text="@string/ingredients"
         android:textColor="@color/black"
         android:textSize="13sp"
-        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/size_ll"
-        android:layout_marginHorizontal="24dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/size_ll" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -244,16 +240,78 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredients_tv">
 
-        <TextView
-            android:id="@+id/total_food_price_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="27dp"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/_32"
-            android:textColor="@color/black"
-            android:textSize="13sp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/total_food_price_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:fontFamily="@font/sen_regular"
+                android:text="@string/_32"
+                android:textColor="@color/black"
+                android:textSize="28sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_ll"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btn_ll" />
+
+            <LinearLayout
+                android:id="@+id/btn_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/rounded_corners"
+                android:backgroundTint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/minus_icon_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/minus"/>
+
+                <TextView
+                    android:id="@+id/number_selected_food_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sen_regular"
+                    android:text="@string/_2"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="20dp"
+                    android:textSize="16sp"/>
+
+                <ImageView
+                    android:id="@+id/plus_icon_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/plus"/>
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_to_cart_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/orange"
+                android:fontFamily="@font/sen_bold"
+                android:paddingVertical="20dp"
+                android:text="@string/add_to_cart"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_ll" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 

@@ -46,8 +46,6 @@ you just place the order we do the rest</string>
     <string name="burger">Burger</string>
     <string name="suggested_restaurants">Suggested Restaurants</string>
     <string name="popular_fast_food">Popular Fast Food</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hurry_offers">Hurry Offers!</string>
     <string name="coupon_code">#1243CD2</string>
     <string name="coupon_description">Use the cupon get 25% discount</string>
@@ -69,6 +67,26 @@ you just place the order we do the rest</string>
     <string name="sixteen">16\'</string>
     <string name="ingredients">INGREDIENTS</string>
     <string name="_32">$32</string>
-
+    <string name="_2">2</string>
+    <string name="add_to_cart">ADD TO CART</string>
+    <string name="restaurant_view">Restaurant View</string>
+    <string name="restaurant_description">Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</string>
+    <string name="burger_10">Burger(10)</string>
+    <string name="filter_your_search">Filter your search</string>
+    <string name="offers">OFFERS</string>
+    <string name="delivery">Delivery</string>
+    <string name="pick_up">Pick Up</string>
+    <string name="offer">Offer</string>
+    <string name="online_payment_available">Online payment available</string>
+    <string name="deliver_time">DELIVER TIME</string>
+    <string name="_10_15_min">10-15 min</string>
+    <string name="_20_min">20 min</string>
+    <string name="_30_min">30 min</string>
+    <string name="pricing">PRICING</string>
+    <string name="triple_dollar">$$$</string>
+    <string name="double_dollar">$$</string>
+    <string name="dollar">$</string>
+    <string name="Rating">RATING</string>
+    <string name="filter">FILTER</string>
 
 </resources>
