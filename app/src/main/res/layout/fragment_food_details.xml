@@ -85,7 +85,7 @@
 
     <TextView
         android:id="@+id/food_title_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginHorizontal="24dp"
@@ -108,6 +108,7 @@
         android:text="@string/pizza_description"
         android:textColor="@color/grey"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/food_title_tv" />
 
@@ -116,7 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/food_description_tv">
@@ -280,9 +281,9 @@
             android:layout_marginStart="19dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/sen_regular"
-            app:drawableTopCompat="@drawable/garlic"
             android:text="@string/garlic"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            app:drawableTopCompat="@drawable/garlic" />
 
         <TextView
             android:id="@+id/pappers_tv"
@@ -291,20 +292,20 @@
             android:layout_marginStart="19dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/sen_regular"
-            app:drawableTopCompat="@drawable/pappers"
             android:text="@string/pappers"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            app:drawableTopCompat="@drawable/pappers" />
 
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
+        style="@style/CustomCardViewStyle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:backgroundTint="@color/edit_text_white"
-        app:cardCornerRadius="42dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingredients_ll">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -366,6 +367,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginBottom="30dp"
                 android:backgroundTint="@color/orange"
                 android:fontFamily="@font/sen_bold"
                 android:paddingVertical="20dp"
@@ -373,12 +375,13 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:cornerRadius="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_ll" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

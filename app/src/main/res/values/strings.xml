@@ -93,5 +93,41 @@ you just place the order we do the rest</string>
     <string name="onion">Onion</string>
     <string name="garlic">Garlic</string>
     <string name="pappers">Pappers</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cart">Cart</string>
+    <string name="edit_items">EDIT ITEMS</string>
+    <string name="_64">$64</string>
+    <string name="_14">14\'</string>
+    <string name="_1">1</string>
+    <string name="edit">EDIT</string>
+    <string name="_2118_thornridge_cir_syracuse">2118 Thornridge Cir. Syracuse</string>
+    <string name="delivery_address">DELIVERY ADDRESS</string>
+    <string name="total">TOTAL</string>
+    <string name="_96">$96</string>
+    <string name="breakdown">Breakdown</string>
+    <string name="place_order">PLACE ORDER</string>
+    <string name="payment">Payment</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="successfull_payment_description">You successfully maked a payment, enjoy our service!</string>
+    <string name="back_to_home_page">BACK TO HOME PAGE</string>
+    <string name="cash">Cash</string>
+    <string name="no_master_card_added">No master card added</string>
+    <string name="you_can_add">You can add a mastercard and save it for later</string>
+    <string name="add_new">+ ADD NEW</string>
+    <string name="pay_confirm"><![CDATA[PAY & CONFIRM]]></string>
+    <string name="master_card">MASTER CARD</string>
+    <string name="pin_credit_card_obscured">* * * * * * * * * * * * *</string>
+    <string name="_436">436</string>
+    <string name="add_card">Add Card</string>
+    <string name="card_holder_name">CARD HOLDER NAME</string>
+    <string name="card_number">CARD NUMBER</string>
+    <string name="mm_yyyy">mm/yyyy</string>
+    <string name="cvc">CVC</string>
+    <string name="cvc_pin_obscured">***</string>
+    <string name="add_make_payment"><![CDATA[ADD & MAKE PAYMENT]]></string>
+    <string name="visa">Visa</string>
+    <string name="mastercard">Mastercard</string>
+    <string name="paypal">Paypal</string>
 
 </resources>

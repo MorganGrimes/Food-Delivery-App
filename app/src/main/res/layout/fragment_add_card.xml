@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.addcard.AddCardFragment">
+
+    <ImageView
+        android:id="@+id/add_card_close_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/back_arrow_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/add_card_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/add_card"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/add_card_close_iv"
+        app:layout_constraintStart_toEndOf="@+id/add_card_close_iv"
+        app:layout_constraintTop_toTopOf="@+id/add_card_close_iv" />
+
+    <TextView
+        android:id="@+id/card_holder_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/card_holder_name"
+        android:textColor="@color/grey_transparent"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_card_close_iv" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/card_holder_name_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints="false"
+        android:background="@drawable/edit_text_shape"
+        android:hint="@string/john_doe"
+        android:inputType="textEmailAddress"
+        android:paddingVertical="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey_transparent"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_holder_name_tv"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/add_card_card_number_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/card_number"
+        android:textColor="@color/grey_transparent"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_holder_name_et" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/add_card_card_number_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints="false"
+        android:background="@drawable/edit_text_shape"
+        android:hint="@string/pin_credit_card_obscured"
+        android:inputType="number"
+        android:paddingVertical="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey_transparent"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_card_card_number_tv"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <LinearLayout
+        android:id="@+id/card_date_cvc_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_card_card_number_et">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/expire_date_card_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sen_regular"
+                android:text="@string/card_number"
+                android:textColor="@color/grey_transparent"
+                android:textSize="14sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/expire_date_card_et"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_shape"
+                android:hint="@string/mm_yyyy"
+                android:inputType="date"
+                android:maxLength="6"
+                android:paddingVertical="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey_transparent"
+                android:textSize="16sp"
+                tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/cvc_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sen_regular"
+                android:text="@string/cvc"
+                android:textColor="@color/grey_transparent"
+                android:textSize="14sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cvc_et"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_shape"
+                android:hint="@string/cvc_pin_obscured"
+                android:inputType="number"
+                android:maxLength="3"
+                android:paddingVertical="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey_transparent"
+                android:textSize="16sp"
+                tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_payment_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:backgroundTint="@color/orange"
+        android:fontFamily="@font/sen_bold"
+        android:paddingVertical="20dp"
+        android:text="@string/add_make_payment"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

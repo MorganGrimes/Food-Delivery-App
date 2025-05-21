@@ -39,10 +39,10 @@
         android:id="@+id/food_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:text="@string/food_example"
         android:textColor="@color/grey_transparent"
         android:textSize="14sp"
-        android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="@+id/restaurants_name_tv"
         app:layout_constraintTop_toBottomOf="@+id/restaurants_name_tv" />
 
