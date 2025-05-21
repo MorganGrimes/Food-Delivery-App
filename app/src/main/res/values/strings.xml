@@ -88,5 +88,10 @@ you just place the order we do the rest</string>
     <string name="dollar">$</string>
     <string name="Rating">RATING</string>
     <string name="filter">FILTER</string>
+    <string name="salt">Salt</string>
+    <string name="chicken">Chicken</string>
+    <string name="onion">Onion</string>
+    <string name="garlic">Garlic</string>
+    <string name="pappers">Pappers</string>
 
 </resources>

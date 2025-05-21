@@ -231,6 +231,72 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/size_ll" />
 
+    <LinearLayout
+        android:id="@+id/ingredients_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ingredients_tv">
+
+        <TextView
+            android:id="@+id/salt_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sen_regular"
+            android:text="@string/salt"
+            android:textAlignment="center"
+            app:drawableTopCompat="@drawable/salt" />
+
+        <TextView
+            android:id="@+id/chicken_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sen_regular"
+            android:text="@string/chicken"
+            android:textAlignment="center"
+            app:drawableTopCompat="@drawable/chicken" />
+
+        <TextView
+            android:id="@+id/onion_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sen_regular"
+            android:text="@string/onion"
+            android:textAlignment="center"
+            app:drawableTopCompat="@drawable/onion" />
+
+        <TextView
+            android:id="@+id/garlic_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sen_regular"
+            app:drawableTopCompat="@drawable/garlic"
+            android:text="@string/garlic"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/pappers_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sen_regular"
+            app:drawableTopCompat="@drawable/pappers"
+            android:text="@string/pappers"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -238,7 +304,7 @@
         app:cardCornerRadius="42dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingredients_tv">
+        app:layout_constraintTop_toBottomOf="@+id/ingredients_ll">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -261,11 +327,11 @@
                 android:id="@+id/btn_ll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="27dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/rounded_corners"
                 android:backgroundTint="@color/black"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -273,24 +339,24 @@
                     android:id="@+id/minus_icon_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/minus"/>
+                    android:src="@drawable/minus" />
 
                 <TextView
                     android:id="@+id/number_selected_food_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="20dp"
                     android:fontFamily="@font/sen_regular"
                     android:text="@string/_2"
                     android:textColor="@color/white"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="20dp"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:id="@+id/plus_icon_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/plus"/>
+                    android:src="@drawable/plus" />
 
             </LinearLayout>
 
