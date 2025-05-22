@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.example.fooddeliveryapp.ui.onboarding.OnBoardingFragment"
+        android:name="com.example.fooddeliveryapp.ui.onboarding.OnboardingFragment"
         android:label="fragment_on_boarding"
         tools:layout="@layout/fragment_on_boarding" />
     <fragment

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.editprofile.EditProfileFragment">
+
+    <ImageView
+        android:id="@+id/edit_profile_back_icon_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/back_arrow_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/edit_profile_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/edit_profile"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_profile_back_icon_iv"
+        app:layout_constraintStart_toEndOf="@+id/edit_profile_back_icon_iv"
+        app:layout_constraintTop_toTopOf="@+id/edit_profile_back_icon_iv" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/personal_profiles_image_cw"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="25dp"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_back_icon_iv">
+
+        <ImageView
+            android:id="@+id/edit_profile_image_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey" />
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/edit_profile_edit_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_icon"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/personal_profiles_image_cw"
+        app:layout_constraintEnd_toEndOf="@id/personal_profiles_image_cw" />
+
+    <LinearLayout
+        android:id="@+id/edit_profile_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/personal_profiles_image_cw">
+
+        <TextView
+            android:id="@+id/edit_profile_full_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/sen_regular"
+            android:text="@string/full_name"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_profile_full_name_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints="false"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/vishal_khadok"
+            android:inputType="textEmailAddress"
+            android:paddingVertical="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/grey_transparent"
+            android:textSize="16sp"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/edit_profile_email_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/sen_regular"
+            android:text="@string/email"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_profile_email_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints="false"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/email_example"
+            android:inputType="textEmailAddress"
+            android:paddingVertical="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/grey_transparent"
+            android:textSize="16sp"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/edit_profile_phone_number_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/sen_regular"
+            android:text="@string/password"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_profile_phone_number_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            android:autofillHints="false"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/_408_841_0926"
+            android:inputType="phone"
+            android:paddingVertical="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/grey_transparent"
+            android:textSize="16sp"
+            tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+        <TextView
+            android:id="@+id/edit_profile_bio_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/sen_regular"
+            android:text="@string/bio"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_profile_bio_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            android:autofillHints="false"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/i_love_fast_food"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="64dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/grey_transparent"
+            android:textSize="16sp"
+            tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/edit_profile_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/orange"
+        android:fontFamily="@font/sen_bold"
+        android:paddingVertical="20dp"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <LinearLayout
+        android:id="@+id/profile_top_bar_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/profile_back_icon_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_arrow_grey"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/profile_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/sen_regular"
+            android:paddingStart="18dp"
+            android:text="@string/profile"
+            android:textColor="@color/black_light"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/profile_more_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/more"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profile_image_cw"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_top_bar_ll">
+
+        <ImageView
+            android:id="@+id/profile_image_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/profile_name_tv"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/sen_bold"
+        android:text="@string/vishal_khadok"
+        android:textColor="@color/black_light"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/profile_image_cw"
+        app:layout_constraintTop_toTopOf="@+id/profile_image_cw" />
+
+    <TextView
+        android:id="@+id/profile_bio_tv"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/i_love_fast_food"
+        android:textColor="@color/grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/profile_name_tv"
+        app:layout_constraintStart_toStartOf="@+id/profile_name_tv"
+        app:layout_constraintTop_toBottomOf="@+id/profile_name_tv" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/info_address_cw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/white_grey"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintTop_toBottomOf="@id/profile_image_cw">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/profile" />
+
+                <TextView
+                    android:id="@+id/profile_personal_info_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sen_regular"
+                    android:paddingStart="14dp"
+                    android:text="@string/personal_info"
+                    android:textColor="@color/black_light"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/profile_personal_info_arrow_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/arrow_right"
+                    android:backgroundTint="@color/grey" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/address" />
+
+                <TextView
+                    android:id="@+id/profile_addresses_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sen_regular"
+                    android:paddingStart="14dp"
+                    android:text="@string/addresses"
+                    android:textColor="@color/black_light"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/profile_address_arrow_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/arrow_right"
+                    android:backgroundTint="@color/grey" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cart_payment_cw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white_grey"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintTop_toBottomOf="@id/info_address_cw">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/profile_cart" />
+
+                <TextView
+                    android:id="@+id/profile_cart_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sen_regular"
+                    android:paddingStart="14dp"
+                    android:text="@string/cart"
+                    android:textColor="@color/black_light"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/profile_cart_arrow_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/arrow_right"
+                    android:backgroundTint="@color/grey" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/card" />
+
+                <TextView
+                    android:id="@+id/profile_payment_method_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sen_regular"
+                    android:paddingStart="14dp"
+                    android:text="@string/payment_method"
+                    android:textColor="@color/black_light"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/profile_payment_method_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/arrow_right"
+                    android:backgroundTint="@color/grey" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/logout_cw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white_grey"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintTop_toBottomOf="@id/cart_payment_cw">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logout" />
+
+                <TextView
+                    android:id="@+id/profile_logout_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sen_regular"
+                    android:paddingStart="14dp"
+                    android:text="@string/log_out"
+                    android:textColor="@color/black_light"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/profile_logout_arrow_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/arrow_right"
+                    android:backgroundTint="@color/grey" />
+
+            </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

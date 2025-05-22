@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="24dp">
+
+    <TextView
+        android:id="@+id/recycler_food_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/food"
+        android:textColor="@color/black_light"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/recycler_order_status_order_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="28dp"
+        android:fontFamily="@font/sen_bold"
+        android:text="@string/completed"
+        android:textColor="@color/green"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/recycler_food_tv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/line_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recycler_food_tv" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/recycler_order_cw"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_view">
+
+        <ImageView
+            android:id="@+id/recycler_order_food_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/recycler_order_seller_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sen_bold"
+        android:text="@string/mcdonald"
+        android:textColor="@color/black_light"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/recycler_order_cw"
+        app:layout_constraintTop_toTopOf="@+id/recycler_order_cw" />
+
+    <TextView
+        android:id="@+id/recycler_order_price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/sen_bold"
+        android:text="@string/_35_25"
+        android:textColor="@color/black_light"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/recycler_order_seller_name_tv"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_order_seller_name_tv" />
+
+    <View
+        android:id="@+id/view_separator"
+        android:layout_width="1dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="14dp"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toBottomOf="@+id/recycler_order_price_tv"
+        app:layout_constraintStart_toEndOf="@+id/recycler_order_price_tv"
+        app:layout_constraintTop_toTopOf="@+id/recycler_order_price_tv" />
+
+    <TextView
+        android:id="@+id/recycler_order_date_order_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="14dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/_30_jan_12_30"
+        android:textColor="@color/grey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_separator"
+        app:layout_constraintStart_toEndOf="@+id/view_separator"
+        app:layout_constraintTop_toTopOf="@+id/view_separator" />
+
+    <ImageView
+        android:id="@+id/view_circle"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/rounded_corners"
+        android:backgroundTint="@color/grey"
+        app:layout_constraintBottom_toBottomOf="@+id/recycler_order_date_order_tv"
+        app:layout_constraintStart_toEndOf="@+id/recycler_order_date_order_tv"
+        app:layout_constraintTop_toTopOf="@+id/recycler_order_date_order_tv"/>
+
+    <TextView
+        android:id="@+id/recycler_order_item_number_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/_01_items"
+        android:textColor="@color/grey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_circle"
+        app:layout_constraintStart_toEndOf="@+id/view_circle"
+        app:layout_constraintTop_toTopOf="@+id/view_circle" />
+
+    <TextView
+        android:id="@+id/recycler_order_id_order_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/_162432"
+        android:textColor="@color/grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_view" />
+
+    <LinearLayout
+        android:id="@+id/btn_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_order_cw">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/sen_bold"
+            android:paddingVertical="20dp"
+            android:text="@string/rate"
+            android:textColor="@color/orange"
+            android:textSize="14sp"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/orange"
+            app:strokeWidth="1dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/track_order_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/orange"
+            android:fontFamily="@font/sen_bold"
+            android:paddingVertical="20dp"
+            android:text="@string/re_order"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:cornerRadius="12dp" />
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
