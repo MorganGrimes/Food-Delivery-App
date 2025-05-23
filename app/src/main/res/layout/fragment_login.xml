@@ -129,7 +129,7 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.checkbox.MaterialCheckBox
-                        android:id="@+id/remember_checkbox"
+                        android:id="@+id/login_remember_checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -204,7 +204,7 @@
                         tools:ignore="TextContrastCheck" />
 
                     <TextView
-                        android:id="@+id/sign_up_tv"
+                        android:id="@+id/login_sign_up_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="11dp"

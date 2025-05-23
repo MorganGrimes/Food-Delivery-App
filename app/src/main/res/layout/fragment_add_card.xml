@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/add_card_back_iv" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/card_holder_name_et"
+        android:id="@+id/add_card_card_holder_name_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
@@ -78,7 +78,7 @@
         android:textColor="@color/grey_transparent"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_holder_name_et" />
+        app:layout_constraintTop_toBottomOf="@+id/add_card_card_holder_name_et" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/add_card_card_number_et"
@@ -128,7 +128,7 @@
                 android:textSize="14sp" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/expire_date_card_et"
+                android:id="@+id/add_card_expire_date_card_et"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -163,7 +163,7 @@
                 android:textSize="14sp" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/cvc_et"
+                android:id="@+id/add_card_cvc_et"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -185,7 +185,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/add_payment_btn"
+        android:id="@+id/add_e_make_payment_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"

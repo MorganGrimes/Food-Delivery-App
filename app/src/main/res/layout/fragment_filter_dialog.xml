@@ -16,12 +16,12 @@
         android:text="@string/filter_your_search"
         android:textColor="@color/black"
         android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="@+id/close_iv"
+        app:layout_constraintBottom_toBottomOf="@+id/filter_close_iv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/close_iv" />
+        app:layout_constraintTop_toTopOf="@+id/filter_close_iv" />
 
     <ImageView
-        android:id="@+id/close_iv"
+        android:id="@+id/filter_close_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/filter_search_tv" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/delivery_btn"
+        android:id="@+id/filter_delivery_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -61,7 +61,7 @@
         app:strokeWidth="1dp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/pick_up_btn"
+        android:id="@+id/filter_pick_up_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -70,14 +70,14 @@
         android:text="@string/pick_up"
         android:textColor="@color/black"
         app:cornerRadius="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/delivery_btn"
-        app:layout_constraintStart_toEndOf="@+id/delivery_btn"
-        app:layout_constraintTop_toTopOf="@+id/delivery_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/filter_delivery_btn"
+        app:layout_constraintStart_toEndOf="@+id/filter_delivery_btn"
+        app:layout_constraintTop_toTopOf="@+id/filter_delivery_btn"
         app:strokeColor="@color/grey_transparent"
         app:strokeWidth="1dp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/offer_btn"
+        android:id="@+id/filter_offer_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -86,14 +86,14 @@
         android:text="@string/offer"
         android:textColor="@color/black"
         app:cornerRadius="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/pick_up_btn"
-        app:layout_constraintStart_toEndOf="@+id/pick_up_btn"
-        app:layout_constraintTop_toTopOf="@+id/pick_up_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/filter_pick_up_btn"
+        app:layout_constraintStart_toEndOf="@+id/filter_pick_up_btn"
+        app:layout_constraintTop_toTopOf="@+id/filter_pick_up_btn"
         app:strokeColor="@color/grey_transparent"
         app:strokeWidth="1dp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/online_payment_btn"
+        android:id="@+id/filter_online_payment_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -104,7 +104,7 @@
         android:textColor="@color/black"
         app:cornerRadius="50dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delivery_btn"
+        app:layout_constraintTop_toBottomOf="@+id/filter_delivery_btn"
         app:strokeColor="@color/grey_transparent"
         app:strokeWidth="1dp" />
 
@@ -120,7 +120,7 @@
         android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/online_payment_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/filter_online_payment_btn" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/ten_fifteen_min_btn"
@@ -185,7 +185,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ten_fifteen_min_btn" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/first_pricing_btn"
+        android:id="@+id/filter_first_pricing_btn"
         android:layout_width="68dp"
         android:layout_height="75dp"
         android:layout_marginStart="20dp"
@@ -199,7 +199,7 @@
         app:layout_constraintTop_toBottomOf="@+id/pricing_tv" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/second_pricing_btn"
+        android:id="@+id/filter_second_pricing_btn"
         android:layout_width="68dp"
         android:layout_height="75dp"
         android:layout_marginStart="11dp"
@@ -208,12 +208,12 @@
         android:text="@string/double_dollar"
         android:textColor="@color/black"
         android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="@+id/first_pricing_btn"
-        app:layout_constraintStart_toEndOf="@id/first_pricing_btn"
-        app:layout_constraintTop_toTopOf="@+id/first_pricing_btn" />
+        app:layout_constraintBottom_toBottomOf="@+id/filter_first_pricing_btn"
+        app:layout_constraintStart_toEndOf="@id/filter_first_pricing_btn"
+        app:layout_constraintTop_toTopOf="@+id/filter_first_pricing_btn" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/third_pricing_btn"
+        android:id="@+id/filter_third_pricing_btn"
         android:layout_width="68dp"
         android:layout_height="75dp"
         android:layout_marginStart="11dp"
@@ -222,12 +222,12 @@
         android:text="@string/triple_dollar"
         android:textColor="@color/black"
         android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="@+id/second_pricing_btn"
-        app:layout_constraintStart_toEndOf="@id/second_pricing_btn"
-        app:layout_constraintTop_toTopOf="@+id/second_pricing_btn" />
+        app:layout_constraintBottom_toBottomOf="@+id/filter_second_pricing_btn"
+        app:layout_constraintStart_toEndOf="@id/filter_second_pricing_btn"
+        app:layout_constraintTop_toTopOf="@+id/filter_second_pricing_btn" />
 
     <TextView
-        android:id="@+id/rating_tv"
+        android:id="@+id/filter_rating_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -238,57 +238,57 @@
         android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_pricing_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/filter_first_pricing_btn" />
 
     <ImageView
-        android:id="@+id/first_star_rating_iv"
+        android:id="@+id/filter_first_star_rating_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:src="@drawable/rating_star"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rating_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/filter_rating_tv" />
 
     <ImageView
-        android:id="@+id/second_star_rating_iv"
+        android:id="@+id/filter_second_star_rating_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:src="@drawable/rating_star"
-        app:layout_constraintBottom_toBottomOf="@+id/first_star_rating_iv"
-        app:layout_constraintStart_toEndOf="@+id/first_star_rating_iv"
-        app:layout_constraintTop_toTopOf="@+id/first_star_rating_iv" />
+        app:layout_constraintBottom_toBottomOf="@+id/filter_first_star_rating_iv"
+        app:layout_constraintStart_toEndOf="@+id/filter_first_star_rating_iv"
+        app:layout_constraintTop_toTopOf="@+id/filter_first_star_rating_iv" />
 
     <ImageView
-        android:id="@+id/third_star_rating_iv"
+        android:id="@+id/filter_third_star_rating_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:src="@drawable/rating_star"
-        app:layout_constraintBottom_toBottomOf="@+id/second_star_rating_iv"
-        app:layout_constraintStart_toEndOf="@+id/second_star_rating_iv"
-        app:layout_constraintTop_toTopOf="@+id/second_star_rating_iv" />
+        app:layout_constraintBottom_toBottomOf="@+id/filter_second_star_rating_iv"
+        app:layout_constraintStart_toEndOf="@+id/filter_second_star_rating_iv"
+        app:layout_constraintTop_toTopOf="@+id/filter_second_star_rating_iv" />
 
     <ImageView
-        android:id="@+id/fourth_star_rating_iv"
+        android:id="@+id/filter_fourth_star_rating_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:src="@drawable/rating_star"
-        app:layout_constraintBottom_toBottomOf="@+id/third_star_rating_iv"
-        app:layout_constraintStart_toEndOf="@+id/third_star_rating_iv"
-        app:layout_constraintTop_toTopOf="@+id/third_star_rating_iv" />
+        app:layout_constraintBottom_toBottomOf="@+id/filter_third_star_rating_iv"
+        app:layout_constraintStart_toEndOf="@+id/filter_third_star_rating_iv"
+        app:layout_constraintTop_toTopOf="@+id/filter_third_star_rating_iv" />
 
     <ImageView
-        android:id="@+id/fifth_star_rating_iv"
+        android:id="@+id/filter_fifth_star_rating_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:src="@drawable/rating_star"
-        app:layout_constraintBottom_toBottomOf="@+id/fourth_star_rating_iv"
-        app:layout_constraintStart_toEndOf="@+id/fourth_star_rating_iv"
-        app:layout_constraintTop_toTopOf="@+id/fourth_star_rating_iv" />
+        app:layout_constraintBottom_toBottomOf="@+id/filter_fourth_star_rating_iv"
+        app:layout_constraintStart_toEndOf="@+id/filter_fourth_star_rating_iv"
+        app:layout_constraintTop_toTopOf="@+id/filter_fourth_star_rating_iv" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/filter_btn"
@@ -305,6 +305,6 @@
         app:cornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_star_rating_iv" />
+        app:layout_constraintTop_toBottomOf="@+id/filter_first_star_rating_iv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="@+id/edit_profile_back_icon_iv" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/personal_profiles_image_cw"
+        android:id="@+id/edit_profile_image_cw"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="25dp"
@@ -55,8 +55,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/edit_icon"
         android:elevation="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/personal_profiles_image_cw"
-        app:layout_constraintEnd_toEndOf="@id/personal_profiles_image_cw" />
+        app:layout_constraintBottom_toBottomOf="@id/edit_profile_image_cw"
+        app:layout_constraintEnd_toEndOf="@id/edit_profile_image_cw" />
 
     <LinearLayout
         android:id="@+id/edit_profile_ll"
@@ -65,7 +65,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/personal_profiles_image_cw">
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_image_cw">
 
         <TextView
             android:id="@+id/edit_profile_full_name_tv"
@@ -188,7 +188,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/edit_profile_save_btn"
+        android:id="@+id/save_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"

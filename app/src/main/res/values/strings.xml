@@ -110,7 +110,7 @@ you just place the order we do the rest</string>
     <string name="payment">Payment</string>
     <string name="congratulations">Congratulations!</string>
     <string name="successfull_payment_description">You successfully maked a payment, enjoy our service!</string>
-    <string name="back_to_home_page">BACK TO HOME PAGE</string>
+    <string name="your_order">YOUR ORDER</string>
     <string name="cash">Cash</string>
     <string name="no_master_card_added">No master card added</string>
     <string name="you_can_add">You can add a mastercard and save it for later</string>

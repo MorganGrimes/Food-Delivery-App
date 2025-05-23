@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.search.SearchFragment">
+    tools:context=".ui.food.FoodFragment">
 
     <ImageView
-        android:id="@+id/back_icon_iv"
+        android:id="@+id/food_back_icon_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -18,7 +18,7 @@
         tools:ignore="ContentDescription" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/popup_menu_btn"
+        android:id="@+id/food_popup_menu_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -29,14 +29,14 @@
         android:text="@string/burger"
         android:textColor="@color/black"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/back_icon_iv"
-        app:layout_constraintStart_toEndOf="@+id/back_icon_iv"
-        app:layout_constraintTop_toTopOf="@+id/back_icon_iv"
+        app:layout_constraintBottom_toBottomOf="@+id/food_back_icon_iv"
+        app:layout_constraintStart_toEndOf="@+id/food_back_icon_iv"
+        app:layout_constraintTop_toTopOf="@+id/food_back_icon_iv"
         app:strokeColor="@color/grey"
         app:strokeWidth="1dp" />
 
     <ImageView
-        android:id="@+id/filter_icon"
+        android:id="@+id/food_filter_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -59,7 +59,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/popup_menu_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/food_back_icon_iv" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_popular_food"
@@ -73,7 +73,7 @@
         tools:listitem="@layout/recycler_popular_food_layout" />
 
     <TextView
-        android:id="@+id/open_restaurants"
+        android:id="@+id/open_restaurants_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -96,7 +96,7 @@
         android:overScrollMode="never"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/open_restaurants"
+        app:layout_constraintTop_toBottomOf="@+id/open_restaurants_tv"
         tools:itemCount="1"
         tools:listitem="@layout/recycler_restaurants_layout" />
 

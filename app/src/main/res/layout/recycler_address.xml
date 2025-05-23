@@ -19,12 +19,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginBottom="25dp"
+            android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/recycler_address_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/recycler_label_tv"
+                android:id="@+id/recycler_address_label_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -43,25 +43,25 @@
                 android:text="@string/home"
                 android:textColor="@color/black_light"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="@+id/imageView" />
+                app:layout_constraintStart_toEndOf="@+id/recycler_address_iv"
+                app:layout_constraintTop_toTopOf="@+id/recycler_address_iv" />
 
             <TextView
-                android:id="@+id/recycler_address_tv"
+                android:id="@+id/recycler_address_address_tv"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="9dp"
                 android:fontFamily="@font/sen_regular"
                 android:paddingStart="14dp"
-                android:layout_marginTop="9dp"
                 android:text="@string/_2464_royal_ln_mesa_new_jersey_45463"
                 android:textColor="@color/grey"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/recycler_label_tv"
-                app:layout_constraintTop_toBottomOf="@+id/recycler_label_tv" />
+                app:layout_constraintStart_toStartOf="@+id/recycler_address_label_tv"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_address_label_tv" />
 
             <ImageView
-                android:id="@+id/recycler_delete_iv"
+                android:id="@+id/recycler_address_delete_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -72,15 +72,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/recycler_edit_iv"
+                android:id="@+id/recycler_address_edit_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/address_edit_icon"
-                app:layout_constraintBottom_toBottomOf="@+id/recycler_delete_iv"
-                app:layout_constraintEnd_toStartOf="@+id/recycler_delete_iv"
-                app:layout_constraintTop_toTopOf="@+id/recycler_delete_iv" />
+                app:layout_constraintBottom_toBottomOf="@+id/recycler_address_delete_iv"
+                app:layout_constraintEnd_toStartOf="@+id/recycler_address_delete_iv"
+                app:layout_constraintTop_toTopOf="@+id/recycler_address_delete_iv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

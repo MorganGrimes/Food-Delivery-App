@@ -81,7 +81,7 @@
         app:layout_constraintTop_toTopOf="@+id/personal_profiles_image_cw" />
 
     <TextView
-        android:id="@+id/profile_bio_tv"
+        android:id="@+id/personal_profiles_bio_tv"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

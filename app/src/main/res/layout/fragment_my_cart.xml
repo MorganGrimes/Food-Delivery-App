@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/back_icon_iv"
+            android:id="@+id/my_cart_back_icon_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/back_arrow_black"
@@ -38,7 +38,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/edit_items_tv"
+            android:id="@+id/my_cart_edit_items_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -88,7 +88,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/edit_address_tv"
+                android:id="@+id/my_cart_edit_address_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -101,7 +101,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/address_et"
+                android:id="@+id/my_cart_address_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
@@ -132,10 +132,10 @@
                 android:textColor="@color/grey_transparent"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/address_et" />
+                app:layout_constraintTop_toBottomOf="@id/my_cart_address_et" />
 
             <TextView
-                android:id="@+id/cart_total_price_tv"
+                android:id="@+id/my_cart_cart_total_price_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -149,7 +149,7 @@
                 app:layout_constraintTop_toTopOf="@+id/cart_total_tv" />
 
             <TextView
-                android:id="@+id/breakdown_tv"
+                android:id="@+id/my_cart_breakdown_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
@@ -159,9 +159,9 @@
                 android:textColor="@color/orange"
                 android:textSize="14sp"
                 app:drawableEndCompat="@drawable/arrow_right"
-                app:layout_constraintBottom_toBottomOf="@+id/cart_total_price_tv"
+                app:layout_constraintBottom_toBottomOf="@+id/my_cart_cart_total_price_tv"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/cart_total_price_tv" />
+                app:layout_constraintTop_toTopOf="@+id/my_cart_cart_total_price_tv" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/place_order_btn"
@@ -180,7 +180,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cart_total_price_tv" />
+                app:layout_constraintTop_toBottomOf="@id/my_cart_cart_total_price_tv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

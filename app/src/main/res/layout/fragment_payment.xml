@@ -7,7 +7,7 @@
     tools:context=".ui.payment.PaymentFragment">
 
     <ImageView
-        android:id="@+id/back_icon_iv"
+        android:id="@+id/payment_back_icon_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -27,9 +27,9 @@
         android:text="@string/payment"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/back_icon_iv"
-        app:layout_constraintStart_toEndOf="@+id/back_icon_iv"
-        app:layout_constraintTop_toTopOf="@+id/back_icon_iv" />
+        app:layout_constraintBottom_toBottomOf="@+id/payment_back_icon_iv"
+        app:layout_constraintStart_toEndOf="@+id/payment_back_icon_iv"
+        app:layout_constraintTop_toTopOf="@+id/payment_back_icon_iv" />
 
     <LinearLayout
         android:id="@+id/payments_ll"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@id/payment_tv">
 
         <TextView
-            android:id="@+id/cash_tv"
+            android:id="@+id/payment_cash_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -54,7 +54,7 @@
             app:drawableTopCompat="@drawable/cash" />
 
         <TextView
-            android:id="@+id/visa_tv"
+            android:id="@+id/payment_visa_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -65,7 +65,7 @@
             app:drawableTopCompat="@drawable/visa" />
 
         <TextView
-            android:id="@+id/mastercard_tv"
+            android:id="@+id/payment_mastercard_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -76,7 +76,7 @@
             app:drawableTopCompat="@drawable/mastercard" />
 
         <TextView
-            android:id="@+id/paypal_tv"
+            android:id="@+id/payment_paypal_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -101,7 +101,7 @@
         tools:listitem="@layout/recycler_credit_card_layout" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/no_credit_card_cw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
@@ -161,7 +161,7 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/add_new_btn"
+        android:id="@+id/payment_add_new_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
@@ -174,7 +174,7 @@
         app:cornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/no_credit_card_cw"
         app:strokeColor="@color/edit_text_white"
         app:strokeWidth="1dp" />
 
@@ -189,7 +189,7 @@
         android:textColor="@color/grey_transparent"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/add_new_btn" />
+        app:layout_constraintTop_toBottomOf="@id/payment_add_new_btn" />
 
     <TextView
         android:id="@+id/payment_total_price_tv"

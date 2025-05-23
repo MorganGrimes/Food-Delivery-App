@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/rectangle_iv"
+        android:id="@+id/onboarding_image_iv"
         android:layout_width="240dp"
         android:layout_height="292dp"
         android:layout_gravity="center"

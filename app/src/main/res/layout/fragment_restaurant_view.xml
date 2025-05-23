@@ -10,44 +10,44 @@
         android:id="@+id/restaurant_view_top_bar_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="50dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/back_icon_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/back_arrow_grey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        <ImageView
+            android:id="@+id/restaurant_view_back_icon_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_arrow_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/restaurant_view_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:paddingStart="16dp"
-        android:fontFamily="@font/sen_regular"
-        android:text="@string/restaurant_view"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/back_icon_iv"
-        app:layout_constraintStart_toEndOf="@+id/back_icon_iv"
-        app:layout_constraintTop_toTopOf="@+id/back_icon_iv" />
+        <TextView
+            android:id="@+id/restaurant_view_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/sen_regular"
+            android:paddingStart="16dp"
+            android:text="@string/restaurant_view"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/restaurant_view_back_icon_iv"
+            app:layout_constraintStart_toEndOf="@+id/restaurant_view_back_icon_iv"
+            app:layout_constraintTop_toTopOf="@+id/restaurant_view_back_icon_iv" />
 
-    <ImageView
-        android:id="@+id/restaurant_view_more_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/more"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/restaurant_view_more_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/more"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
 
@@ -71,7 +71,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/restaurant_name_tv"
+        android:id="@+id/restaurant_view_restaurant_name_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
@@ -85,7 +85,7 @@
         app:layout_constraintTop_toBottomOf="@+id/restaurants_cw" />
 
     <TextView
-        android:id="@+id/restaurant_description_tv"
+        android:id="@+id/restaurant_view_restaurant_description_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -95,8 +95,9 @@
         android:text="@string/restaurant_description"
         android:textColor="@color/grey"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_name_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_view_restaurant_name_tv" />
 
     <LinearLayout
         android:id="@+id/rating_delivery_ll"
@@ -106,10 +107,10 @@
         android:layout_marginTop="14dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/restaurant_description_tv">
+        app:layout_constraintTop_toBottomOf="@id/restaurant_view_restaurant_description_tv">
 
         <TextView
-            android:id="@+id/rating_tv"
+            android:id="@+id/restaurant_view_rating_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="4dp"
@@ -121,7 +122,7 @@
             app:drawableTint="@color/orange" />
 
         <TextView
-            android:id="@+id/delivery_tv"
+            android:id="@+id/restaurant_view_delivery_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -134,7 +135,7 @@
             app:drawableTint="@color/orange" />
 
         <TextView
-            android:id="@+id/delivery_time_tv"
+            android:id="@+id/restaurant_view_delivery_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -161,7 +162,7 @@
         tools:listitem="@layout/recycler_food_layout" />
 
     <TextView
-        android:id="@+id/food_name_and_number_tv"
+        android:id="@+id/restaurant_view_food_name_and_number_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
@@ -181,7 +182,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/food_name_and_number_tv"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_view_food_name_and_number_tv"
         tools:itemCount="2"
         tools:listitem="@layout/recycler_popular_food_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

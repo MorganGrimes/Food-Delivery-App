@@ -117,7 +117,7 @@
         android:backgroundTint="@color/grey"
         app:layout_constraintBottom_toBottomOf="@+id/recycler_order_date_order_tv"
         app:layout_constraintStart_toEndOf="@+id/recycler_order_date_order_tv"
-        app:layout_constraintTop_toTopOf="@+id/recycler_order_date_order_tv"/>
+        app:layout_constraintTop_toTopOf="@+id/recycler_order_date_order_tv" />
 
     <TextView
         android:id="@+id/recycler_order_item_number_tv"
@@ -158,7 +158,7 @@
         app:layout_constraintTop_toBottomOf="@+id/recycler_order_cw">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/cancel_btn"
+            android:id="@+id/track_order_rate_or_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="25dp"
@@ -174,7 +174,7 @@
             app:strokeWidth="1dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/track_order_btn"
+            android:id="@+id/cancel_or_re_order_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -186,7 +186,6 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             app:cornerRadius="12dp" />
-
 
 
     </LinearLayout>

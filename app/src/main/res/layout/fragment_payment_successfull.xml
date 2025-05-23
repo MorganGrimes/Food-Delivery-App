@@ -47,7 +47,7 @@
         tools:ignore="TextContrastCheck" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/add_to_cart_btn"
+        android:id="@+id/your_orders_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
@@ -55,7 +55,7 @@
         android:backgroundTint="@color/orange"
         android:fontFamily="@font/sen_bold"
         android:paddingVertical="20dp"
-        android:text="@string/back_to_home_page"
+        android:text="@string/your_order"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:cornerRadius="12dp"

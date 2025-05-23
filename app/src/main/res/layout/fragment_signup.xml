@@ -15,7 +15,7 @@
         <include layout="@layout/top_bar_login" />
 
         <ImageView
-            android:id="@+id/back_icon_iv"
+            android:id="@+id/sign_up_back_icon_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@id/sign_up_title_tv" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/auth_cl"
+            android:id="@+id/sign_up_cw"
             style="@style/CustomCardViewStyle"
             android:layout_width="match_parent"
             android:layout_height="0dp"
