@@ -133,7 +133,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:buttonTint="@color/grey_transparent"
+                        android:buttonTint="@color/orange"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -151,7 +151,7 @@
                         app:layout_constraintTop_toTopOf="@id/remember_checkbox" />
 
                     <TextView
-                        android:id="@+id/forgot_password_tv"
+                        android:id="@+id/login_forgot_password_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="96dp"

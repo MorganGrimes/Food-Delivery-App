@@ -11,8 +11,6 @@ import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.model.OnboardingItemModel
 import com.example.fooddeliveryapp.databinding.FragmentOnBoardingBinding
 import com.example.fooddeliveryapp.ui.adapters.OnboardingAdapter
-import com.example.fooddeliveryapp.utils.ALL_YOUR_FAVORITES
-import com.example.fooddeliveryapp.utils.ONBOARDING_DESCRIPTION
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
 
 class OnboardingFragment : Fragment() {
@@ -20,8 +18,8 @@ class OnboardingFragment : Fragment() {
     private var _binding: FragmentOnBoardingBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var onboardingItemList :List<OnboardingItemModel>
-    private lateinit var onboardingAdapter : OnboardingAdapter
+    private lateinit var onboardingItemList: List<OnboardingItemModel>
+    private lateinit var onboardingAdapter: OnboardingAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +31,7 @@ class OnboardingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initRecyclerView()
         setupListener()
         onSelectedPage()
@@ -41,10 +40,26 @@ class OnboardingFragment : Fragment() {
     private fun initRecyclerView() {
         binding.apply {
             onboardingItemList = listOf(
-                OnboardingItemModel(R.drawable.ic_launcher_background, ALL_YOUR_FAVORITES, ONBOARDING_DESCRIPTION),
-                OnboardingItemModel(R.drawable.ic_launcher_background, ALL_YOUR_FAVORITES, ONBOARDING_DESCRIPTION),
-                OnboardingItemModel(R.drawable.ic_launcher_background, "Order from choosen chef", ONBOARDING_DESCRIPTION),
-                OnboardingItemModel(R.drawable.ic_launcher_background, "Free delivery offers", ONBOARDING_DESCRIPTION)
+                OnboardingItemModel(
+                    R.drawable.ic_launcher_background,
+                    getString(R.string.onboarding_title),
+                    getString(R.string.onboarding_description)
+                ),
+                OnboardingItemModel(
+                    R.drawable.ic_launcher_background,
+                    getString(R.string.onboarding_title),
+                    getString(R.string.onboarding_description)
+                ),
+                OnboardingItemModel(
+                    R.drawable.ic_launcher_background,
+                    getString(R.string.onboarding_second_title),
+                    getString(R.string.onboarding_description)
+                ),
+                OnboardingItemModel(
+                    R.drawable.ic_launcher_background,
+                    getString(R.string.onboarding_third_title),
+                    getString(R.string.onboarding_description)
+                )
             )
             onboardingAdapter = OnboardingAdapter(onboardingItemList)
             onboardingVp.adapter = onboardingAdapter
@@ -52,44 +67,49 @@ class OnboardingFragment : Fragment() {
         }
     }
 
-    private fun setupListener(){
+    private fun setupListener() {
         binding.apply {
-        onboardingNextBtn.setOnClickListener {
-            val current = onboardingVp.currentItem
-            if (current < onboardingItemList.size - 1) {
-                onboardingVp.currentItem = current + 1
-            } else {
+            onboardingNextBtn.setOnClickListener {
+                val current = onboardingVp.currentItem
+                if (current < onboardingItemList.size - 1) {
+                    onboardingVp.currentItem = current + 1
+                } else {
+                    completeOnboarding()
+                    it.findNavController().navigate(R.id.action_onBoardingFragment_to_loginFragment)
+                }
+            }
+
+            onboardingSkipTv.setOnClickListener {
                 completeOnboarding()
                 it.findNavController().navigate(R.id.action_onBoardingFragment_to_loginFragment)
             }
         }
-
-        onboardingSkipTv.setOnClickListener {
-            completeOnboarding()
-            it.findNavController().navigate(R.id.action_onBoardingFragment_to_loginFragment)
-        }
-        }
     }
 
-    private fun onSelectedPage(){
+    private fun onSelectedPage() {
         binding.apply {
-        onboardingVp.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                if (position == onboardingItemList.size - 1) {
-                    onboardingNextBtn.text = getString(R.string.get_started)
-                    onboardingSkipTv.visibility = View.INVISIBLE
-                } else {
-                    onboardingNextBtn.text = getString(R.string.next)
-                    onboardingSkipTv.visibility = View.VISIBLE
+            onboardingVp.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    if (position == onboardingItemList.size - 1) {
+                        onboardingNextBtn.text = getString(R.string.get_started)
+                        onboardingSkipTv.visibility = View.INVISIBLE
+                    } else {
+                        onboardingNextBtn.text = getString(R.string.next)
+                        onboardingSkipTv.visibility = View.VISIBLE
+                    }
                 }
-            }
-        })
+            })
         }
     }
 
     private fun completeOnboarding() {
         ProfileSharedPreferences.setOnboardingCompleted(requireContext(), true)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
