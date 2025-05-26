@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
+import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -24,9 +25,13 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            val navController = findNavController()
             delay(2000)
-            navController.navigate(SplashFragmentDirections.actionSplashFragmentToLoginFragment())
+            val navController = findNavController()
+            if (ProfileSharedPreferences.isOnboardingCompleted(requireContext())) {
+                navController.navigate(R.id.action_splashFragment_to_loginFragment)
+            } else {
+                navController.navigate(R.id.action_splashFragment_to_onBoardingFragment)
+            }
         }
     }
 }
