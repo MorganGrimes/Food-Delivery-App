@@ -175,5 +175,6 @@ you just place the order we do the rest</string>
     <string name="get_started">GET STARTED</string>
     <string name="onboarding_second_title">Order from choosen chef"</string>
     <string name="onboarding_third_title">Free delivery offers"</string>
+    <string name="verify">VERIFY"</string>
 
 </resources>

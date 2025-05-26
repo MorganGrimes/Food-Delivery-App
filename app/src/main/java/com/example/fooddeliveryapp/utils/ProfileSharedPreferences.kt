@@ -10,6 +10,7 @@ object ProfileSharedPreferences {
     private const val KEY_NAME = "user_name"
     private const val KEY_EMAIL = "user_email"
     private const val KEY_PASSWORD = "user_password"
+    private const val KEY_OTP = "user_otp"
 
     private fun getPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -36,4 +37,12 @@ object ProfileSharedPreferences {
     fun getUserEmail(context: Context): String? = getPreferences(context).getString(KEY_EMAIL, null)
     fun getUserPassword(context: Context): String? =
         getPreferences(context).getString(KEY_PASSWORD, null)
+
+    fun saveOTP(context: Context, otp: String) {
+        getPreferences(context).edit().putString(KEY_OTP, otp).apply()
+    }
+
+    fun getSavedOTP(context: Context): String? {
+        return getPreferences(context).getString(KEY_OTP, null)
+    }
 }

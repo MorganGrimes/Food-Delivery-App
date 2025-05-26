@@ -6,46 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".ui.food.FoodFragment">
 
-    <ImageView
-        android:id="@+id/food_back_icon_iv"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/food_top_bar_ll"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/back_arrow_grey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/food_popup_menu_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:backgroundTint="@color/white"
-        android:drawableEnd="@drawable/arrow_down"
-        android:drawableTint="@color/orange"
-        android:fontFamily="@font/sen_bold"
-        android:text="@string/burger"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/food_back_icon_iv"
-        app:layout_constraintStart_toEndOf="@+id/food_back_icon_iv"
-        app:layout_constraintTop_toTopOf="@+id/food_back_icon_iv"
-        app:strokeColor="@color/grey"
-        app:strokeWidth="1dp" />
-
-    <ImageView
-        android:id="@+id/food_filter_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/filter"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/food_back_icon_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_arrow_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/food_popup_menu_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:backgroundTint="@color/white"
+            android:drawableEnd="@drawable/arrow_down"
+            android:drawableTint="@color/orange"
+            android:fontFamily="@font/sen_bold"
+            android:text="@string/burger"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/food_back_icon_iv"
+            app:layout_constraintStart_toEndOf="@+id/food_back_icon_iv"
+            app:layout_constraintTop_toTopOf="@+id/food_back_icon_iv"
+            app:strokeColor="@color/grey"
+            app:strokeWidth="1dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/food_filter_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/filter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/popular_food_tv"
@@ -59,7 +72,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/food_back_icon_iv" />
+        app:layout_constraintTop_toBottomOf="@+id/food_top_bar_ll" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_popular_food"

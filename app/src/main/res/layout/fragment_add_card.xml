@@ -6,30 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".ui.addcard.AddCardFragment">
 
-    <ImageView
-        android:id="@+id/add_card_back_iv"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/add_card_top_bar_ll"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/back_arrow_grey"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/add_card_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/sen_regular"
-        android:text="@string/add_card"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/add_card_back_iv"
-        app:layout_constraintStart_toEndOf="@+id/add_card_back_iv"
-        app:layout_constraintTop_toTopOf="@+id/add_card_back_iv" />
+        <ImageView
+            android:id="@+id/add_card_back_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_arrow_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/add_card_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/sen_regular"
+            android:text="@string/add_card"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/add_card_back_iv"
+            app:layout_constraintStart_toEndOf="@+id/add_card_back_iv"
+            app:layout_constraintTop_toTopOf="@+id/add_card_back_iv" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/card_holder_name_tv"
@@ -43,7 +55,7 @@
         android:textColor="@color/grey_transparent"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_card_back_iv" />
+        app:layout_constraintTop_toBottomOf="@+id/add_card_top_bar_ll" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/add_card_card_holder_name_et"

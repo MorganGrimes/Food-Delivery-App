@@ -6,30 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".ui.editprofile.EditProfileFragment">
 
-    <ImageView
-        android:id="@+id/edit_profile_back_icon_iv"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/edit_profile_top_bar_ll"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/back_arrow_grey"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/edit_profile_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/sen_regular"
-        android:text="@string/edit_profile"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/edit_profile_back_icon_iv"
-        app:layout_constraintStart_toEndOf="@+id/edit_profile_back_icon_iv"
-        app:layout_constraintTop_toTopOf="@+id/edit_profile_back_icon_iv" />
+        <ImageView
+            android:id="@+id/edit_profile_back_icon_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_arrow_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/edit_profile_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/sen_regular"
+            android:text="@string/edit_profile"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_profile_back_icon_iv"
+            app:layout_constraintStart_toEndOf="@+id/edit_profile_back_icon_iv"
+            app:layout_constraintTop_toTopOf="@+id/edit_profile_back_icon_iv" />
+
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/edit_profile_image_cw"
@@ -39,7 +51,7 @@
         app:cardCornerRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_back_icon_iv">
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_top_bar_ll">
 
         <ImageView
             android:id="@+id/edit_profile_image_iv"
