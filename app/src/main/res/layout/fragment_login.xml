@@ -124,6 +124,8 @@
                     android:id="@+id/remember_forgot_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="14dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="24dp"
                     android:orientation="horizontal">
@@ -132,7 +134,6 @@
                         android:id="@+id/login_remember_checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
                         android:buttonTint="@color/orange"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -141,9 +142,9 @@
                         android:id="@+id/remember_me_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
                         android:fontFamily="@font/sen_regular"
                         android:text="@string/remember_me"
+                        android:layout_weight="1"
                         android:textColor="@color/grey_transparent"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="@+id/remember_checkbox"

@@ -187,7 +187,6 @@
             android:textSize="14sp"
             app:cornerRadius="12dp" />
 
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

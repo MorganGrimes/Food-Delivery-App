@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="326dp"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="28dp"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/restaurants_cw"
-        android:layout_width="326dp"
+        android:layout_width="327dp"
         android:layout_height="140dp"
         app:cardCornerRadius="14dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/restaurants_iv"
+            android:id="@+id/recycler_restaurants_restaurant_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/grey"
@@ -25,7 +27,7 @@
 
     <TextView
         android:id="@+id/recycler_restaurants_restaurants_name_tv"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/sen_regular"
@@ -62,6 +64,7 @@
             android:fontFamily="@font/sen_bold"
             android:gravity="bottom"
             android:text="@string/rating"
+            android:textColor="@color/black_light"
             android:textSize="16sp"
             app:drawableStartCompat="@drawable/star"
             app:drawableTint="@color/orange" />
@@ -75,6 +78,7 @@
             android:fontFamily="@font/sen_regular"
             android:gravity="bottom"
             android:text="@string/delivery_type"
+            android:textColor="@color/black_light"
             android:textSize="14sp"
             app:drawableStartCompat="@drawable/delivery"
             app:drawableTint="@color/orange" />
@@ -88,10 +92,11 @@
             android:fontFamily="@font/sen_regular"
             android:gravity="bottom"
             android:text="@string/delivery_time"
+            android:textColor="@color/black_light"
             android:textSize="14sp"
             app:drawableStartCompat="@drawable/clock"
             app:drawableTint="@color/orange" />
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

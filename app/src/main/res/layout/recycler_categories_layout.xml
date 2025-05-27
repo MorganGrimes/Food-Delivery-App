@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginEnd="7dp"
     android:background="@drawable/rounded_background"
     android:orientation="horizontal">
 
@@ -28,6 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="@font/sen_regular"
+        android:textColor="@color/black_light"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:text="@string/hot_dog" />
