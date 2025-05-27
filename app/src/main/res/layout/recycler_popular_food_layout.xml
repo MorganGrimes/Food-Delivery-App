@@ -33,7 +33,7 @@
                 app:cardCornerRadius="14dp">
 
                 <ImageView
-                    android:id="@+id/recycler_popular_food_restaurants_iv"
+                    android:id="@+id/recycler_popular_food_iv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey"
@@ -47,12 +47,13 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/recycler_popular_food_food_name_tv"
+                    android:id="@+id/recycler_popular_food_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/sen_bold"
                     android:text="@string/burger_bistro"
+                    android:textColor="@color/black_light"
                     android:textSize="15sp" />
 
                 <TextView
@@ -72,12 +73,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/recycler_popular_food_food_price_tv"
+                        android:id="@+id/recycler_popular_food_price_tv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/sen_bold"
                         android:text="@string/_40"
+                        android:textColor="@color/black_light"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -112,7 +114,7 @@
                 app:cardCornerRadius="14dp">
 
                 <ImageView
-                    android:id="@+id/recycler_popular_food_second_restaurants_iv"
+                    android:id="@+id/recycler_popular_food_second_iv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey"
@@ -126,12 +128,13 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/recycler_popular_food_second_food_name_tv"
+                    android:id="@+id/recycler_popular_food_second_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/sen_bold"
                     android:text="@string/smokin_burger"
+                    android:textColor="@color/black_light"
                     android:textSize="15sp" />
 
                 <TextView
@@ -151,12 +154,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/recycler_popular_food_second_food_price_tv"
+                        android:id="@+id/recycler_popular_food_second_price_tv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/sen_bold"
                         android:text="@string/_60"
+                        android:textColor="@color/black_light"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 

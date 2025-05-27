@@ -6,300 +6,329 @@
     android:layout_height="match_parent"
     tools:context=".ui.fooddetails.FoodDetailsFragment">
 
-    <ImageView
-        android:id="@+id/food_details_back_icon_iv"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/food_details_top_bar_ll"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/back_arrow_grey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
-
-    <TextView
-        android:id="@+id/details_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/sen_regular"
-        android:text="@string/details"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/food_details_back_icon_iv"
-        app:layout_constraintStart_toEndOf="@+id/food_details_back_icon_iv"
-        app:layout_constraintTop_toTopOf="@+id/food_details_back_icon_iv" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/restaurants_cw"
-        android:layout_width="326dp"
-        android:layout_height="184dp"
-        android:layout_marginTop="44dp"
-        app:cardCornerRadius="14dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/details_tv">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/food_details_restaurants_iv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/grey"
-            tools:ignore="ContentDescription,ImageContrastCheck" />
-
-        <ImageView
-            android:id="@+id/food_details_favorite_iv"
+            android:id="@+id/food_details_back_icon_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="275dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/heart_outline" />
-
-    </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/rounded_corners"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurants_cw">
-
-        <TextView
-            android:id="@+id/food_details_restaurant_name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="12dp"
-            android:fontFamily="@font/sen_regular"
-            android:gravity="center"
-            android:text="@string/uttora_coffe_house"
-            android:textSize="14sp"
-            app:drawableStartCompat="@drawable/house"
+            android:src="@drawable/back_arrow_grey"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurants_cw" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/food_details_title_tv"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/sen_bold"
-        android:text="@string/pizza_calzone_european"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <TextView
-        android:id="@+id/food_details_description_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/sen_regular"
-        android:text="@string/pizza_description"
-        android:textColor="@color/grey"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/food_details_title_tv" />
-
-    <LinearLayout
-        android:id="@+id/food_details_rating_delivery_ll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/food_details_description_tv">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/food_details_rating_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="4dp"
-            android:fontFamily="@font/sen_bold"
-            android:gravity="bottom"
-            android:text="@string/rating"
-            android:textSize="16sp"
-            app:drawableStartCompat="@drawable/star"
-            app:drawableTint="@color/orange" />
-
-        <TextView
-            android:id="@+id/food_details_delivery_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:drawablePadding="4dp"
-            android:fontFamily="@font/sen_regular"
-            android:gravity="bottom"
-            android:text="@string/delivery_type"
-            android:textSize="14sp"
-            app:drawableStartCompat="@drawable/delivery"
-            app:drawableTint="@color/orange" />
-
-        <TextView
-            android:id="@+id/food_details_delivery_time_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:drawablePadding="4dp"
-            android:fontFamily="@font/sen_regular"
-            android:gravity="bottom"
-            android:text="@string/delivery_time"
-            android:textSize="14sp"
-            app:drawableStartCompat="@drawable/clock"
-            app:drawableTint="@color/orange" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/size_ll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/food_details_rating_delivery_ll">
-
-        <TextView
-            android:id="@+id/size_tv"
+            android:id="@+id/details_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/size"
-            android:textColor="@color/black"
-            android:textSize="13sp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/food_details_first_size_btn"
-            android:layout_width="64dp"
-            android:layout_height="70dp"
             android:layout_marginStart="16dp"
-            android:backgroundTint="@color/edit_text_white"
             android:fontFamily="@font/sen_regular"
-            android:text="@string/ten"
+            android:text="@string/details"
             android:textColor="@color/black"
-            android:textSize="11sp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/food_details_second_size_btn"
-            android:layout_width="64dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="16dp"
-            android:backgroundTint="@color/edit_text_white"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/fourteen"
-            android:textColor="@color/black"
-            android:textSize="11sp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/food_details_third_size_btn"
-            android:layout_width="64dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="16dp"
-            android:backgroundTint="@color/edit_text_white"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/sixteen"
-            android:textColor="@color/black"
-            android:textSize="11sp" />
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/food_details_back_icon_iv"
+            app:layout_constraintStart_toEndOf="@+id/food_details_back_icon_iv"
+            app:layout_constraintTop_toTopOf="@+id/food_details_back_icon_iv" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/ingredients_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/sen_regular"
-        android:text="@string/ingredients"
-        android:textColor="@color/black"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/size_ll" />
-
-    <LinearLayout
-        android:id="@+id/ingredients_ll"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ingredients_tv">
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/food_details_bottom_cw"
+        app:layout_constraintTop_toBottomOf="@id/food_details_top_bar_ll">
 
-        <TextView
-            android:id="@+id/salt_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/salt"
-            android:textAlignment="center"
-            app:drawableTopCompat="@drawable/salt" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="44dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/chicken_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/chicken"
-            android:textAlignment="center"
-            app:drawableTopCompat="@drawable/chicken" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/restaurants_cw"
+                android:layout_width="326dp"
+                android:layout_height="184dp"
+                app:cardCornerRadius="14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/onion_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/onion"
-            android:textAlignment="center"
-            app:drawableTopCompat="@drawable/onion" />
+                <ImageView
+                    android:id="@+id/food_details_restaurants_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey"
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
 
-        <TextView
-            android:id="@+id/garlic_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/garlic"
-            android:textAlignment="center"
-            app:drawableTopCompat="@drawable/garlic" />
+                <ImageView
+                    android:id="@+id/food_details_favorite_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="275dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/heart_outline" />
 
-        <TextView
-            android:id="@+id/pappers_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/pappers"
-            android:textAlignment="center"
-            app:drawableTopCompat="@drawable/pappers" />
+            </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/rounded_corners"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/restaurants_cw">
+
+                <TextView
+                    android:id="@+id/food_details_restaurant_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="12dp"
+                    android:fontFamily="@font/sen_regular"
+                    android:gravity="center"
+                    android:text="@string/uttora_coffe_house"
+                    android:textSize="14sp"
+                    app:drawableStartCompat="@drawable/house"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/restaurants_cw" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/food_details_title_tv"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/sen_bold"
+                android:text="@string/pizza_calzone_european"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+            <TextView
+                android:id="@+id/food_details_description_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/sen_regular"
+                android:text="@string/pizza_description"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/food_details_title_tv" />
+
+            <LinearLayout
+                android:id="@+id/food_details_rating_delivery_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/food_details_description_tv">
+
+                <TextView
+                    android:id="@+id/food_details_rating_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="4dp"
+                    android:fontFamily="@font/sen_bold"
+                    android:gravity="bottom"
+                    android:text="@string/rating"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/star"
+                    app:drawableTint="@color/orange" />
+
+                <TextView
+                    android:id="@+id/food_details_delivery_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:drawablePadding="4dp"
+                    android:fontFamily="@font/sen_regular"
+                    android:gravity="bottom"
+                    android:text="@string/delivery_type"
+                    android:textSize="14sp"
+                    app:drawableStartCompat="@drawable/delivery"
+                    app:drawableTint="@color/orange" />
+
+                <TextView
+                    android:id="@+id/food_details_delivery_time_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:drawablePadding="4dp"
+                    android:fontFamily="@font/sen_regular"
+                    android:gravity="bottom"
+                    android:text="@string/delivery_time"
+                    android:textSize="14sp"
+                    app:drawableStartCompat="@drawable/clock"
+                    app:drawableTint="@color/orange" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/size_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/food_details_rating_delivery_ll">
+
+                <TextView
+                    android:id="@+id/size_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/sen_regular"
+                    android:text="@string/size"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/food_details_first_size_btn"
+                    android:layout_width="64dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="16dp"
+                    android:backgroundTint="@color/edit_text_white"
+                    android:fontFamily="@font/sen_regular"
+                    android:text="@string/ten"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/food_details_second_size_btn"
+                    android:layout_width="64dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="16dp"
+                    android:backgroundTint="@color/edit_text_white"
+                    android:fontFamily="@font/sen_regular"
+                    android:text="@string/fourteen"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/food_details_third_size_btn"
+                    android:layout_width="64dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="16dp"
+                    android:backgroundTint="@color/edit_text_white"
+                    android:fontFamily="@font/sen_regular"
+                    android:text="@string/sixteen"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ingredients_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/sen_regular"
+                android:text="@string/ingredients"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/size_ll" />
+
+            <LinearLayout
+                android:id="@+id/ingredients_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ingredients_tv">
+
+                <TextView
+                    android:id="@+id/salt_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/sen_regular"
+                    android:text="@string/salt"
+                    android:textAlignment="center"
+                    app:drawableTopCompat="@drawable/salt" />
+
+                <TextView
+                    android:id="@+id/chicken_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/sen_regular"
+                    android:text="@string/chicken"
+                    android:textAlignment="center"
+                    app:drawableTopCompat="@drawable/chicken" />
+
+                <TextView
+                    android:id="@+id/onion_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/sen_regular"
+                    android:text="@string/onion"
+                    android:textAlignment="center"
+                    app:drawableTopCompat="@drawable/onion" />
+
+                <TextView
+                    android:id="@+id/garlic_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/sen_regular"
+                    android:text="@string/garlic"
+                    android:textAlignment="center"
+                    app:drawableTopCompat="@drawable/garlic" />
+
+                <TextView
+                    android:id="@+id/pappers_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/sen_regular"
+                    android:text="@string/pappers"
+                    android:textAlignment="center"
+                    app:drawableTopCompat="@drawable/pappers" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/food_details_bottom_cw"
         style="@style/CustomCardViewStyle"
         android:layout_width="match_parent"
         android:layout_height="0dp"

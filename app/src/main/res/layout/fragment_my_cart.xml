@@ -49,6 +49,14 @@
 
     </LinearLayout>
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/my_cart_bottom_cw"
+        app:layout_constraintTop_toBottomOf="@id/my_cart_top_bar_ll">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_cart_item"
         android:layout_width="match_parent"
@@ -61,7 +69,10 @@
         tools:itemCount="2"
         tools:listitem="@layout/recycler_cart_item_layout" />
 
+    </androidx.core.widget.NestedScrollView>
+
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/my_cart_bottom_cw"
         style="@style/CustomCardViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,7 +98,7 @@
 
                 <TextView
                     android:id="@+id/delivery_address_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/sen_regular"
@@ -152,7 +163,7 @@
 
                 <TextView
                     android:id="@+id/my_cart_cart_total_price_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_weight="1"

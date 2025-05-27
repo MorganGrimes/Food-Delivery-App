@@ -75,6 +75,20 @@ class HomeFragment : Fragment() {
                     getString(R.string.rating),
                     getString(R.string.free),
                     getString(R.string._20_min)
+                ), RestaurantsItemModel(
+                    R.drawable.ic_launcher_background,
+                    getString(R.string.rose_garden),
+                    getString(R.string.food_example),
+                    getString(R.string.rating),
+                    getString(R.string.free),
+                    getString(R.string._20_min)
+                ), RestaurantsItemModel(
+                    R.drawable.ic_launcher_background,
+                    getString(R.string.rose_garden),
+                    getString(R.string.food_example),
+                    getString(R.string.rating),
+                    getString(R.string.free),
+                    getString(R.string._20_min)
                 )
             )
 
@@ -96,6 +110,8 @@ class HomeFragment : Fragment() {
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 adapter = openRestaurantsRecyclerAdapter
             }
+
+            restaurantsRecycler.isNestedScrollingEnabled = false
         }
     }
 }

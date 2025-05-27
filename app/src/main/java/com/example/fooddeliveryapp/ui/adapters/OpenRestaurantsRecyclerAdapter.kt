@@ -3,7 +3,6 @@ package com.example.fooddeliveryapp.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fooddeliveryapp.data.model.CategoriesItemModel
 import com.example.fooddeliveryapp.data.model.RestaurantsItemModel
 import com.example.fooddeliveryapp.databinding.RecyclerRestaurantsLayoutBinding
 

@@ -105,6 +105,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/profile_personal_info_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -139,6 +140,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/profile_address_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -192,6 +194,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/profile_cart_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -226,6 +229,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/profile_payment_method_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -274,6 +278,7 @@
         app:layout_constraintTop_toBottomOf="@id/cart_payment_cw">
 
         <LinearLayout
+            android:id="@+id/profile_logout_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"

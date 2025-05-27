@@ -1,18 +1,80 @@
 package com.example.fooddeliveryapp.ui.mycart
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
+import com.example.fooddeliveryapp.data.model.CartItemModel
+import com.example.fooddeliveryapp.databinding.FragmentMyCartBinding
+import com.example.fooddeliveryapp.ui.adapters.CartItemRecyclerAdapter
 
 class MyCartFragment : Fragment() {
+
+    private lateinit var cartItemRecyclerAdapter: CartItemRecyclerAdapter
+
+    private var _binding: FragmentMyCartBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_my_cart, container, false)
+    ): View {
+        _binding = FragmentMyCartBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupRecyclerView()
+    }
+
+    private fun setupRecyclerView() {
+        binding.apply {
+            val cart = listOf(
+                CartItemModel(
+                    R.drawable.ic_launcher_background,
+                    getString(R.string.pizza_calzone_european),
+                    getString(R.string._64),
+                    getString(R.string._14)
+                ),
+                CartItemModel(
+                    R.drawable.ic_launcher_background,
+                    getString(R.string.pizza_calzone_european),
+                    getString(R.string._64),
+                    getString(R.string._14)
+                ),
+                CartItemModel(
+                    R.drawable.ic_launcher_background,
+                    getString(R.string.pizza_calzone_european),
+                    getString(R.string._64),
+                    getString(R.string._14)
+                ),
+                CartItemModel(
+                    R.drawable.ic_launcher_background,
+                    getString(R.string.pizza_calzone_european),
+                    getString(R.string._64),
+                    getString(R.string._14)
+                ),
+                CartItemModel(
+                    R.drawable.ic_launcher_background,
+                    getString(R.string.pizza_calzone_european),
+                    getString(R.string._64),
+                    getString(R.string._14)
+                )
+            )
+
+            cartItemRecyclerAdapter = CartItemRecyclerAdapter(cart)
+
+            recyclerCartItem.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                adapter = cartItemRecyclerAdapter
+            }
+
+        }
     }
 }

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     tools:context=".ui.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -128,55 +127,70 @@
         tools:itemCount="2"
         tools:listitem="@layout/recycler_categories_layout" />
 
-    <LinearLayout
-        android:id="@+id/restaurants_ll"
+            <LinearLayout
+                android:id="@+id/restaurants_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/categories_recycler">
+
+                <TextView
+                    android:id="@+id/restaurants_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sen_regular"
+                    android:text="@string/open_restaurants"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/home_see_all_restaurants_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sen_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/see_all"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:drawableEndCompat="@drawable/arrow_right"
+                    app:drawableTint="@color/grey_transparent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/see_all_categories_tv" />
+
+            </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/categories_recycler">
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurants_ll">
 
-        <TextView
-            android:id="@+id/restaurants_tv"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/open_restaurants"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/home_see_all_restaurants_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/sen_regular"
-            android:gravity="center_vertical"
-            android:text="@string/see_all"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:drawableEndCompat="@drawable/arrow_right"
-            app:drawableTint="@color/grey_transparent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/see_all_categories_tv" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/restaurants_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/restaurants_ll"
+                tools:itemCount="1"
+                tools:listitem="@layout/recycler_restaurants_layout" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/restaurants_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:overScrollMode="never"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/restaurants_ll"
-        tools:itemCount="1"
-        tools:listitem="@layout/recycler_restaurants_layout" />
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

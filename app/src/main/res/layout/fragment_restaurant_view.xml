@@ -53,8 +53,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/restaurants_cw"
-        android:layout_width="326dp"
+        android:layout_width="match_parent"
         android:layout_height="140dp"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="24dp"
         app:cardCornerRadius="14dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -175,14 +176,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recycler_food" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_popular_food"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_view_food_name_and_number_tv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_view_food_name_and_number_tv">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_restaurant_food_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
         tools:itemCount="2"
         tools:listitem="@layout/recycler_popular_food_layout" />
+
+    </androidx.core.widget.NestedScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

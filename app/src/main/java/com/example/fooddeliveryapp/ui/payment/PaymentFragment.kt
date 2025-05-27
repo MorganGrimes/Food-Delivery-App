@@ -5,14 +5,58 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
+import com.example.fooddeliveryapp.data.model.CreditCardItemModel
+import com.example.fooddeliveryapp.data.model.PopularFoodItemModel
+import com.example.fooddeliveryapp.databinding.FragmentFoodBinding
+import com.example.fooddeliveryapp.databinding.FragmentPaymentBinding
+import com.example.fooddeliveryapp.ui.adapters.CreditCardRecyclerAdapter
+import com.example.fooddeliveryapp.ui.adapters.OpenRestaurantsRecyclerAdapter
+import com.example.fooddeliveryapp.ui.adapters.PopularFoodRecyclerAdapter
 
 class PaymentFragment : Fragment() {
+
+    private lateinit var creditCardRecyclerAdapter: CreditCardRecyclerAdapter
+
+    private var _binding: FragmentPaymentBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_payment, container, false)
+    ): View {
+        _binding = FragmentPaymentBinding.inflate(inflater, container, false)
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
+    }
+
+    private fun setupRecyclerView() {
+        binding.apply {
+            val creditCard = listOf(
+                CreditCardItemModel(
+                    getString(R.string.master_card),
+                    R.drawable.mastercard,
+                    getString(R.string._345)
+                ), CreditCardItemModel(
+                    getString(R.string.visa),
+                    R.drawable.visa,
+                    getString(R.string._345)
+                )
+            )
+
+            creditCardRecyclerAdapter = CreditCardRecyclerAdapter(creditCard)
+
+            recyclerCreditCard.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                adapter = creditCardRecyclerAdapter
+            }
+        }
+    }
+
 }
