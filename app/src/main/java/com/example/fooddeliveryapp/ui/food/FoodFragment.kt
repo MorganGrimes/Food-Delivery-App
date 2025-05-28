@@ -13,6 +13,7 @@ import com.example.fooddeliveryapp.data.model.RestaurantsItemModel
 import com.example.fooddeliveryapp.databinding.FragmentFoodBinding
 import com.example.fooddeliveryapp.ui.adapters.OpenRestaurantsRecyclerAdapter
 import com.example.fooddeliveryapp.ui.adapters.PopularFoodRecyclerAdapter
+import com.example.fooddeliveryapp.ui.filter.FilterDialogFragment
 
 class FoodFragment : Fragment() {
 
@@ -33,7 +34,14 @@ class FoodFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        setupDialog()
 
+    }
+
+    private fun setupDialog() {
+        binding.foodFilterIv.setOnClickListener {
+            FilterDialogFragment().show(parentFragmentManager, "FilterDialog")
+        }
     }
 
     private fun setupRecyclerView() {
@@ -68,14 +76,14 @@ class FoodFragment : Fragment() {
                     getString(R.string.rating),
                     getString(R.string.free),
                     getString(R.string._20_min)
-                ),RestaurantsItemModel(
+                ), RestaurantsItemModel(
                     R.drawable.ic_launcher_background,
                     getString(R.string.rose_garden),
                     getString(R.string.food_example),
                     getString(R.string.rating),
                     getString(R.string.free),
                     getString(R.string._20_min)
-                ),RestaurantsItemModel(
+                ), RestaurantsItemModel(
                     R.drawable.ic_launcher_background,
                     getString(R.string.rose_garden),
                     getString(R.string.food_example),
@@ -90,7 +98,7 @@ class FoodFragment : Fragment() {
             }
 
             openRestaurantsRecyclerAdapter = OpenRestaurantsRecyclerAdapter(restaurant) {
-                findNavController().navigate(R.id.action_homeFragment_to_restaurantViewFragment)
+                findNavController().navigate(R.id.action_foodFragment_to_restaurantViewFragment)
             }
 
             recyclerPopularFood.apply {

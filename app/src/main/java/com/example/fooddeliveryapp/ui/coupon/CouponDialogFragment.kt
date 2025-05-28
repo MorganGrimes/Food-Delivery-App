@@ -21,7 +21,6 @@ class CouponDialogFragment : DialogFragment() {
 
     override fun onStart() {
         super.onStart()
-
         dialog?.window?.setDimAmount(0.1F)
         dialog?.window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,

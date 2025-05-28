@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+ <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
@@ -94,27 +94,37 @@
         <action
             android:id="@+id/action_foodFragment_to_restaurantViewFragment"
             app:destination="@id/restaurantViewFragment" />
+        <action
+            android:id="@+id/action_foodFragment_to_filterDialogFragment"
+            app:destination="@id/filterDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/foodDetailsFragment"
         android:name="com.example.fooddeliveryapp.ui.fooddetails.FoodDetailsFragment"
         android:label="fragment_food_details"
         tools:layout="@layout/fragment_food_details" >
+        <action
+            android:id="@+id/action_foodDetailsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
-    <fragment
+     <fragment
         android:id="@+id/restaurantViewFragment"
         android:name="com.example.fooddeliveryapp.ui.restaurantview.RestaurantViewFragment"
         android:label="fragment_restaurant_view"
         tools:layout="@layout/fragment_restaurant_view" >
         <action
-            android:id="@+id/action_restaurantViewFragment_to_filterDialogFragment"
-            app:destination="@id/filterDialogFragment" />
+            android:id="@+id/action_restaurantViewFragment_to_foodDetailsFragment"
+            app:destination="@id/foodDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterDialogFragment"
         android:name="com.example.fooddeliveryapp.ui.filter.FilterDialogFragment"
         android:label="fragment_filter_dialog"
-        tools:layout="@layout/fragment_filter_dialog" />
+        tools:layout="@layout/fragment_filter_dialog" >
+        <action
+            android:id="@+id/action_filterDialogFragment_to_foodFragment"
+            app:destination="@id/foodFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myCartFragment"
         android:name="com.example.fooddeliveryapp.ui.mycart.MyCartFragment"
@@ -136,14 +146,18 @@
             android:id="@+id/action_paymentFragment_to_addCardFragment"
             app:destination="@id/addCardFragment" />
         <action
-            android:id="@+id/action_paymentFragment_to_ongoingFragment"
-            app:destination="@id/ongoingFragment" />
+            android:id="@+id/action_paymentFragment_to_paymentSuccessfullFragment"
+            app:destination="@id/paymentSuccessfullFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCardFragment"
         android:name="com.example.fooddeliveryapp.ui.addcard.AddCardFragment"
         android:label="fragment_add_card"
-        tools:layout="@layout/fragment_add_card" />
+        tools:layout="@layout/fragment_add_card" >
+        <action
+            android:id="@+id/action_addCardFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addressFragment"
         android:name="com.example.fooddeliveryapp.ui.address.AddressFragment"
@@ -157,12 +171,11 @@
         android:id="@+id/addNewAddressFragment"
         android:name="com.example.fooddeliveryapp.ui.addnewaddress.AddNewAddressFragment"
         android:label="fragment_add_new_address"
-        tools:layout="@layout/fragment_add_new_address" />
-    <fragment
-        android:id="@+id/ongoingFragment"
-        android:name="com.example.fooddeliveryapp.ui.ongoing.OngoingFragment"
-        android:label="fragment_ongoing"
-        tools:layout="@layout/fragment_ongoing" />
+        tools:layout="@layout/fragment_add_new_address" >
+        <action
+            android:id="@+id/action_addNewAddressFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.fooddeliveryapp.ui.profile.ProfileFragment"
@@ -172,9 +185,6 @@
             android:id="@+id/action_profileFragment_to_personalProfilesFragment"
             app:destination="@id/personalProfilesFragment" />
         <action
-            android:id="@+id/action_profileFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
-        <action
             android:id="@+id/action_profileFragment_to_addressFragment"
             app:destination="@id/addressFragment" />
         <action
@@ -183,15 +193,56 @@
         <action
             android:id="@+id/action_profileFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myOrdersTabsFragment"
+            app:destination="@id/myOrdersTabsFragment" />
     </fragment>
     <fragment
         android:id="@+id/personalProfilesFragment"
         android:name="com.example.fooddeliveryapp.ui.personalprofiles.PersonalProfilesFragment"
         android:label="fragment_personal_profiles"
-        tools:layout="@layout/fragment_personal_profiles" />
+        tools:layout="@layout/fragment_personal_profiles" >
+        <action
+            android:id="@+id/action_personalProfilesFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.fooddeliveryapp.ui.editprofile.EditProfileFragment"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_personalProfilesFragment"
+            app:destination="@id/personalProfilesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentSuccessfullFragment"
+        android:name="com.example.fooddeliveryapp.ui.paymentsuccessfull.PaymentSuccessfullFragment"
+        android:label="PaymentSuccessfullFragment" >
+        <action
+            android:id="@+id/action_paymentSuccessfullFragment_to_myOrdersTabsFragment"
+            app:destination="@id/myOrdersTabsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myOrdersTabsFragment"
+        android:name="com.example.fooddeliveryapp.ui.myorderstabs.MyOrdersTabsFragment"
+        android:label="fragment_my_orders_tabs"
+        tools:layout="@layout/fragment_my_orders_tabs" >
+        <action
+            android:id="@+id/action_myOrdersTabsFragment_to_ongoingFragment"
+            app:destination="@id/ongoingFragment" />
+        <action
+            android:id="@+id/action_myOrdersTabsFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ongoingFragment"
+        android:name="com.example.fooddeliveryapp.ui.ongoing.OngoingFragment"
+        android:label="fragment_ongoing"
+        tools:layout="@layout/fragment_ongoing" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.fooddeliveryapp.ui.history.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
 </navigation>

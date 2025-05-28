@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.model.CreditCardItemModel
@@ -32,7 +33,19 @@ class PaymentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupListener()
         setupRecyclerView()
+    }
+
+    private fun setupListener() {
+        binding.apply {
+            paymentAddNewBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_paymentFragment_to_addCardFragment)
+            }
+            placeOrderBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_paymentFragment_to_paymentSuccessfullFragment)
+            }
+        }
     }
 
     private fun setupRecyclerView() {

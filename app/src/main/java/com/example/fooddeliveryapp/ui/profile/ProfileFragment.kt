@@ -17,7 +17,7 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -27,13 +27,11 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun setupListener(){
+    private fun setupListener() {
         binding.apply {
-
             profilePersonalInfoLl.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_personalProfilesFragment)
             }
-
             profileAddressLl.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_addressFragment)
             }
@@ -43,11 +41,14 @@ class ProfileFragment : Fragment() {
             profilePaymentMethodLl.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_paymentFragment)
             }
-
+            profileMyOrdersLl.setOnClickListener {
+                findNavController().navigate(R.id.action_profileFragment_to_myOrdersTabsFragment)
+            }
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        _binding = null
     }
 }

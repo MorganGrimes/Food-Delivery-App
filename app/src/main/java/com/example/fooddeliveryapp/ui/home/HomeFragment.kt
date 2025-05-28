@@ -34,8 +34,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val couponDialog = CouponDialogFragment()
-        couponDialog.show(parentFragmentManager, "CouponDialog")
+        CouponDialogFragment().show(parentFragmentManager, "CouponDialog")
 
         setupListener()
         setupRecyclerView()
