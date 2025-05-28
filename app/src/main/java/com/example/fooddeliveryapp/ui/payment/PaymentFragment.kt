@@ -1,20 +1,16 @@
 package com.example.fooddeliveryapp.ui.payment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.model.CreditCardItemModel
-import com.example.fooddeliveryapp.data.model.PopularFoodItemModel
-import com.example.fooddeliveryapp.databinding.FragmentFoodBinding
 import com.example.fooddeliveryapp.databinding.FragmentPaymentBinding
 import com.example.fooddeliveryapp.ui.adapters.CreditCardRecyclerAdapter
-import com.example.fooddeliveryapp.ui.adapters.OpenRestaurantsRecyclerAdapter
-import com.example.fooddeliveryapp.ui.adapters.PopularFoodRecyclerAdapter
 
 class PaymentFragment : Fragment() {
 
@@ -72,4 +68,8 @@ class PaymentFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

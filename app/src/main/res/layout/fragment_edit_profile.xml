@@ -158,7 +158,7 @@
             android:layout_marginTop="8dp"
             android:autofillHints="false"
             android:background="@drawable/edit_text_shape"
-            android:hint="@string/_408_841_0926"
+            android:hint="@string/password_example"
             android:inputType="phone"
             android:paddingVertical="16dp"
             android:paddingStart="16dp"

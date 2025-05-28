@@ -10,7 +10,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentFilterDialogBinding
-import com.example.fooddeliveryapp.ui.coupon.CouponDialogFragment
+import com.example.fooddeliveryapp.utils.onBackPressed
+import com.example.fooddeliveryapp.utils.setupDialogMargins
 
 class FilterDialogFragment : DialogFragment() {
 
@@ -28,6 +29,8 @@ class FilterDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupListener()
+        onBackPressed()
+        setupDialogMargins(view)
 
     }
 
@@ -44,7 +47,7 @@ class FilterDialogFragment : DialogFragment() {
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        dialog?.window?.decorView?.setBackgroundColor(Color.WHITE)
+        dialog?.window?.decorView?.setBackgroundColor(Color.TRANSPARENT)
     }
 
     override fun onDestroyView() {

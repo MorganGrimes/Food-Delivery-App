@@ -27,7 +27,7 @@ class AddNewAddressFragment : Fragment() {
         setupListener()
     }
 
-    private fun setupListener(){
+    private fun setupListener() {
         findNavController().navigate(R.id.action_addNewAddressFragment_to_addressFragment)
     }
 

@@ -94,7 +94,7 @@ class HomeFragment : Fragment() {
             categoriesRecyclerAdapter = CategoriesRecyclerAdapter(categories) {
                 findNavController().navigate(R.id.action_homeFragment_to_foodFragment)
             }
-            openRestaurantsRecyclerAdapter = OpenRestaurantsRecyclerAdapter(restaurant){
+            openRestaurantsRecyclerAdapter = OpenRestaurantsRecyclerAdapter(restaurant) {
                 findNavController().navigate(R.id.action_homeFragment_to_restaurantViewFragment)
             }
 
@@ -112,5 +112,10 @@ class HomeFragment : Fragment() {
 
             restaurantsRecycler.isNestedScrollingEnabled = false
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

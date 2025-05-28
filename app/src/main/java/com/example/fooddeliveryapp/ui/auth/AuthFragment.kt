@@ -109,5 +109,8 @@ class AuthFragment : Fragment() {
         binding.authBtn.text = getString(R.string.verify)
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

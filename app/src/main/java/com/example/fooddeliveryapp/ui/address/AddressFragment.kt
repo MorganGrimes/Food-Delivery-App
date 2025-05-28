@@ -27,7 +27,7 @@ class AddressFragment : Fragment() {
         setupListener()
     }
 
-    private fun setupListener(){
+    private fun setupListener() {
         binding.addressAddNewAddressBtn.setOnClickListener {
             findNavController().navigate(R.id.action_addressFragment_to_addNewAddressFragment)
         }
