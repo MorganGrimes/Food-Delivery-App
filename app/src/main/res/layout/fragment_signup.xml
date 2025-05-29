@@ -143,23 +143,32 @@
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/sign_up_password_et"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="8dp"
-                    android:autofillHints="false"
-                    android:background="@drawable/edit_text_shape"
-                    android:hint="@string/password_example"
-                    android:inputType="textPassword"
-                    android:paddingVertical="16dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey_transparent"
-                    android:textSize="16sp"
-                    tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+                    app:boxBackgroundMode="none"
+                    app:endIconMode="password_toggle"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/sign_up_password_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="false"
+                        android:background="@drawable/edit_text_shape"
+                        android:hint="@string/password_example"
+                        android:inputType="textPassword"
+                        android:paddingVertical="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_transparent"
+                        android:textSize="16sp"
+                        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/sign_up_retype_password_tv"
@@ -172,24 +181,33 @@
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/sign_up_retype_password_et"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="8dp"
-                    android:autofillHints="false"
-                    android:background="@drawable/edit_text_shape"
-                    android:hint="@string/password_example"
-                    android:inputType="textPassword"
-                    android:paddingVertical="16dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey_transparent"
-                    android:textSize="16sp"
+                    app:boxBackgroundMode="none"
                     app:endIconMode="password_toggle"
-                    tools:ignore="TextContrastCheck" />
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/sign_up_retype_password_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="false"
+                        android:background="@drawable/edit_text_shape"
+                        android:hint="@string/password_example"
+                        android:inputType="textPassword"
+                        android:paddingVertical="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_transparent"
+                        android:textSize="16sp"
+                        app:endIconMode="password_toggle"
+                        tools:ignore="TextContrastCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/sign_up_btn"
