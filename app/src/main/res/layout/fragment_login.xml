@@ -110,15 +110,17 @@
                     app:hintEnabled="false"
                     android:background="@drawable/edit_text_shape"
                     app:boxStrokeWidth="0dp"
+                    app:cursorColor="@color/grey_transparent"
+                    app:boxStrokeColor="@color/edit_text_white"
                     app:endIconMode="password_toggle">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/login_password_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/password_example"
                         android:importantForAutofill="no"
                         android:inputType="textPassword"
+                        android:background="@drawable/edit_text_shape"
                         android:paddingVertical="16dp"
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"

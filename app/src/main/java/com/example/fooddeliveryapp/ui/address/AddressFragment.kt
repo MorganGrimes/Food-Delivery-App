@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.model.AddressItemModel
-import com.example.fooddeliveryapp.data.model.PopularFoodItemModel
 import com.example.fooddeliveryapp.databinding.FragmentAddressBinding
 import com.example.fooddeliveryapp.ui.adapters.AddressRecyclerAdapter
 

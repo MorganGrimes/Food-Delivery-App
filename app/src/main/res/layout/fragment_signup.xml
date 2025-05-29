@@ -148,17 +148,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="8dp"
-                    app:boxBackgroundMode="none"
-                    app:endIconMode="password_toggle"
-                    app:hintEnabled="false">
+                    app:hintEnabled="false"
+                    android:background="@drawable/edit_text_shape"
+                    app:boxStrokeWidth="0dp"
+                    app:cursorColor="@color/grey_transparent"
+                    app:boxStrokeColor="@color/edit_text_white"
+                    app:endIconMode="password_toggle">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/sign_up_password_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:autofillHints="false"
+                        android:importantForAutofill="no"
                         android:background="@drawable/edit_text_shape"
-                        android:hint="@string/password_example"
                         android:inputType="textPassword"
                         android:paddingVertical="16dp"
                         android:paddingStart="16dp"
@@ -186,17 +188,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="8dp"
-                    app:boxBackgroundMode="none"
-                    app:endIconMode="password_toggle"
-                    app:hintEnabled="false">
+                    app:hintEnabled="false"
+                    android:background="@drawable/edit_text_shape"
+                    app:boxStrokeWidth="0dp"
+                    app:cursorColor="@color/grey_transparent"
+                    app:boxStrokeColor="@color/edit_text_white"
+                    app:endIconMode="password_toggle">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/sign_up_retype_password_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:autofillHints="false"
+                        android:importantForAutofill="no"
                         android:background="@drawable/edit_text_shape"
-                        android:hint="@string/password_example"
                         android:inputType="textPassword"
                         android:paddingVertical="16dp"
                         android:paddingStart="16dp"

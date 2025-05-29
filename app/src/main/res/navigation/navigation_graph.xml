@@ -168,15 +168,6 @@
             app:destination="@id/addNewAddressFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addNewAddressFragment"
-        android:name="com.example.fooddeliveryapp.ui.addnewaddress.AddNewAddressFragment"
-        android:label="fragment_add_new_address"
-        tools:layout="@layout/fragment_add_new_address" >
-        <action
-            android:id="@+id/action_addNewAddressFragment_to_addressFragment"
-            app:destination="@id/addressFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.fooddeliveryapp.ui.profile.ProfileFragment"
         android:label="fragment_profile"
@@ -245,4 +236,13 @@
         android:name="com.example.fooddeliveryapp.ui.history.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/addNewAddressFragment"
+        android:name="com.example.fooddeliveryapp.ui.addnewaddress.AddNewAddressFragment"
+        android:label="fragment_add_new_address"
+        tools:layout="@layout/fragment_add_new_address" >
+        <action
+            android:id="@+id/action_addNewAddressFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+    </fragment>
 </navigation>

@@ -28,7 +28,9 @@ class AddNewAddressFragment : Fragment() {
     }
 
     private fun setupListener() {
+        binding.saveLocationBtn.setOnClickListener {
         findNavController().navigate(R.id.action_addNewAddressFragment_to_addressFragment)
+        }
     }
 
     override fun onDestroyView() {
