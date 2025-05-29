@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentSignupBinding
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
+import com.example.fooddeliveryapp.utils.UiUtils
 
 class SignupFragment : Fragment() {
 
@@ -26,12 +27,18 @@ class SignupFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupListener()
+        setupInputValidation()
     }
 
     private fun setupListener() {
         binding.apply {
+
+            signUpBtn.apply {
+                isEnabled = false
+                setBackgroundColor(UiUtils.brownColor)
+            }
+
             signUpBtn.setOnClickListener {
                 val name = signUpNameEt.text.toString().trim()
                 val email = signUpEmailEt.text.toString().trim()
@@ -64,6 +71,51 @@ class SignupFragment : Fragment() {
             }
         }
     }
+
+    private fun setupInputValidation() {
+        binding.apply {
+            val nameField = signUpNameEt
+            val emailField = signUpEmailEt
+            val passwordField = signUpPasswordEt
+            val retypePasswordField = signUpRetypePasswordEt
+            val signUpButton = signUpBtn
+
+            val textWatcher = object : android.text.TextWatcher {
+                override fun afterTextChanged(s: android.text.Editable?) {
+                    val name = nameField.text.toString().trim()
+                    val email = emailField.text.toString().trim()
+                    val password = passwordField.text.toString()
+                    val retypePassword = retypePasswordField.text.toString()
+
+                    val isFormFilled = name.isNotEmpty() &&
+                            email.isNotEmpty() &&
+                            password.isNotEmpty() &&
+                            retypePassword.isNotEmpty()
+
+                    signUpButton.isEnabled = isFormFilled
+                    signUpButton.setBackgroundColor(
+                        if (isFormFilled) requireContext().getColor(R.color.orange) else UiUtils.brownColor
+                    )
+                }
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            }
+
+            nameField.addTextChangedListener(textWatcher)
+            emailField.addTextChangedListener(textWatcher)
+            passwordField.addTextChangedListener(textWatcher)
+            retypePasswordField.addTextChangedListener(textWatcher)
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

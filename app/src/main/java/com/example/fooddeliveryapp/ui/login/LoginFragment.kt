@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentLoginBinding
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
+import com.example.fooddeliveryapp.utils.UiUtils
 
 class LoginFragment : Fragment() {
 
@@ -27,6 +28,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupInputValidation()
         setupListener()
         checkRememberMe()
     }
@@ -34,6 +36,12 @@ class LoginFragment : Fragment() {
     private fun setupListener() {
         val navController = findNavController()
         binding.apply {
+
+            loginBtn.apply {
+                isEnabled = false
+                setBackgroundColor(UiUtils.brownColor)
+            }
+
             loginForgotPasswordTv.setOnClickListener {
                 navController.navigate(R.id.action_loginFragment_to_authFragment)
             }
@@ -88,6 +96,31 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setupInputValidation() {
+        val emailField = binding.loginEmailEt
+        val passwordField = binding.loginPasswordEt
+        val loginButton = binding.loginBtn
+
+        val textWatcher = object : android.text.TextWatcher {
+            override fun afterTextChanged(s: android.text.Editable?) {
+                val email = emailField.text.toString().trim()
+                val password = passwordField.text.toString()
+                val isFormFilled = email.isNotEmpty() && password.isNotEmpty()
+
+                loginButton.isEnabled = isFormFilled
+                loginButton.setBackgroundColor(
+                    if (isFormFilled) requireContext().getColor(R.color.orange) else UiUtils.brownColor
+                )
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        }
+
+        emailField.addTextChangedListener(textWatcher)
+        passwordField.addTextChangedListener(textWatcher)
     }
 
     private fun checkRememberMe() {

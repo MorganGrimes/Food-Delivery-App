@@ -177,5 +177,6 @@ you just place the order we do the rest</string>
     <string name="onboarding_third_title">Free delivery offers"</string>
     <string name="verify">VERIFY"</string>
     <string name="free">Free"</string>
+    <string name="resend_in">Resend in %d sec"</string>
 
 </resources>
