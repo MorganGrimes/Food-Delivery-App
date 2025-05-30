@@ -22,6 +22,17 @@ class CouponDialogFragment : DialogFragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupListener()
+    }
+
+    private fun setupListener(){
+        binding.closeIcon.setOnClickListener {
+            dismiss()
+        }
+    }
+
     override fun onStart() {
         super.onStart()
         dialog?.window?.setDimAmount(0.1F)

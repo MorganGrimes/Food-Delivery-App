@@ -11,6 +11,7 @@ object ProfileSharedPreferences {
     private const val KEY_EMAIL = "user_email"
     private const val KEY_PASSWORD = "user_password"
     private const val KEY_OTP = "user_otp"
+    private const val KEY_LAUNCH_COUNT = "launch_count"
 
     private fun getPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -44,5 +45,16 @@ object ProfileSharedPreferences {
 
     fun getSavedOTP(context: Context): String? {
         return getPreferences(context).getString(KEY_OTP, null)
+    }
+
+    fun incrementAppLaunchCount(context: Context) {
+        val prefs = getPreferences(context)
+        val launchCount = prefs.getInt(KEY_LAUNCH_COUNT, 0) + 1
+        prefs.edit().putInt(KEY_LAUNCH_COUNT, launchCount).apply()
+    }
+
+    fun shouldShowCouponDialog(context: Context): Boolean {
+        val launchCount = getPreferences(context).getInt(KEY_LAUNCH_COUNT, 0)
+        return (launchCount - 1) % 6 == 0
     }
 }

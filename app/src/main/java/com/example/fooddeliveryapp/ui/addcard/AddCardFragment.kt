@@ -29,6 +29,9 @@ class AddCardFragment : Fragment() {
 
     private fun setupListener() {
         binding.apply {
+            addCardBackIv.setOnClickListener {
+                findNavController().popBackStack()
+            }
             addEMakePaymentBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_addCardFragment_to_paymentFragment)
             }

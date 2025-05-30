@@ -1,12 +1,15 @@
 package com.example.fooddeliveryapp.ui.signup
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentSignupBinding
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
@@ -33,6 +36,9 @@ class SignupFragment : Fragment() {
 
     private fun setupListener() {
         binding.apply {
+            signUpBackIconIv.setOnClickListener {
+                findNavController().popBackStack()
+            }
 
             signUpBtn.apply {
                 isEnabled = false
@@ -74,48 +80,31 @@ class SignupFragment : Fragment() {
 
     private fun setupInputValidation() {
         binding.apply {
-            val nameField = signUpNameEt
-            val emailField = signUpEmailEt
-            val passwordField = signUpPasswordEt
-            val retypePasswordField = signUpRetypePasswordEt
-            val signUpButton = signUpBtn
+            val fields = listOf(
+                signUpNameEt,
+                signUpEmailEt,
+                signUpPasswordEt,
+                signUpRetypePasswordEt
+            )
 
-            val textWatcher = object : android.text.TextWatcher {
-                override fun afterTextChanged(s: android.text.Editable?) {
-                    val name = nameField.text.toString().trim()
-                    val email = emailField.text.toString().trim()
-                    val password = passwordField.text.toString()
-                    val retypePassword = retypePasswordField.text.toString()
+            val textWatcher = object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                    val allFieldsFilled = fields.all { it.text?.isNotBlank() == true }
 
-                    val isFormFilled = name.isNotEmpty() &&
-                            email.isNotEmpty() &&
-                            password.isNotEmpty() &&
-                            retypePassword.isNotEmpty()
-
-                    signUpButton.isEnabled = isFormFilled
-                    signUpButton.setBackgroundColor(
-                        if (isFormFilled) requireContext().getColor(R.color.orange) else UiUtils.brownColor
+                    signUpBtn.isEnabled = allFieldsFilled
+                    signUpBtn.setBackgroundColor(
+                        if (allFieldsFilled) requireContext().getColor(R.color.orange)
+                        else UiUtils.brownColor
                     )
                 }
 
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
-
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             }
 
-            nameField.addTextChangedListener(textWatcher)
-            emailField.addTextChangedListener(textWatcher)
-            passwordField.addTextChangedListener(textWatcher)
-            retypePasswordField.addTextChangedListener(textWatcher)
+            fields.forEach { it.addTextChangedListener(textWatcher) }
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

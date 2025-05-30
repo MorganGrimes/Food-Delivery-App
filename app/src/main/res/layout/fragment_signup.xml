@@ -166,7 +166,6 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/grey_transparent"
                         android:textSize="16sp"
                         tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
@@ -206,7 +205,6 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/grey_transparent"
                         android:textSize="16sp"
                         app:endIconMode="password_toggle"
                         tools:ignore="TextContrastCheck" />

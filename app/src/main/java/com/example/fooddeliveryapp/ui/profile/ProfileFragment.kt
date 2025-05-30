@@ -29,6 +29,9 @@ class ProfileFragment : Fragment() {
 
     private fun setupListener() {
         binding.apply {
+            profileBackIconIv.setOnClickListener {
+                findNavController().popBackStack()
+            }
             profilePersonalInfoLl.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_personalProfilesFragment)
             }

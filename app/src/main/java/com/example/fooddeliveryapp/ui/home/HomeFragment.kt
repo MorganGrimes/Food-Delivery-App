@@ -14,6 +14,7 @@ import com.example.fooddeliveryapp.databinding.FragmentHomeBinding
 import com.example.fooddeliveryapp.ui.adapters.CategoriesRecyclerAdapter
 import com.example.fooddeliveryapp.ui.adapters.OpenRestaurantsRecyclerAdapter
 import com.example.fooddeliveryapp.ui.coupon.CouponDialogFragment
+import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
 
 class HomeFragment : Fragment() {
 
@@ -34,10 +35,16 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        CouponDialogFragment().show(parentFragmentManager, "CouponDialog")
-
+        checkAndShowCouponDialog()
         setupListener()
         setupRecyclerView()
+    }
+
+    private fun checkAndShowCouponDialog() {
+        ProfileSharedPreferences.incrementAppLaunchCount(requireContext())
+        if (ProfileSharedPreferences.shouldShowCouponDialog(requireContext())) {
+            CouponDialogFragment().show(parentFragmentManager, "CouponDialog")
+        }
     }
 
     private fun setupListener() {

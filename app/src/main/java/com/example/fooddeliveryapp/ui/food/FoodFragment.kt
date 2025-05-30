@@ -39,8 +39,13 @@ class FoodFragment : Fragment() {
     }
 
     private fun setupDialog() {
-        binding.foodFilterIv.setOnClickListener {
-            FilterDialogFragment().show(parentFragmentManager, "FilterDialog")
+        binding.apply {
+            foodBackIconIv.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            foodFilterIv.setOnClickListener {
+                FilterDialogFragment().show(parentFragmentManager, "FilterDialog")
+            }
         }
     }
 

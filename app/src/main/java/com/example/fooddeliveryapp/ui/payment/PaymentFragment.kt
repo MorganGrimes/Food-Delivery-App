@@ -35,6 +35,9 @@ class PaymentFragment : Fragment() {
 
     private fun setupListener() {
         binding.apply {
+            paymentBackIconIv.setOnClickListener {
+                findNavController().popBackStack()
+            }
             paymentAddNewBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_paymentFragment_to_addCardFragment)
             }

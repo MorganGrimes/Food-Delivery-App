@@ -31,9 +31,17 @@ class RestaurantViewFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupRecyclerView()
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
+        setupListener()
+    }
 
+    private fun setupListener() {
+        binding.apply {
+            restaurantViewBackIconIv.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun setupRecyclerView() {

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentAuthBinding
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
@@ -35,16 +36,25 @@ class AuthFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.linearLyCodeBox.visibility = View.GONE
-        binding.resendTv.visibility = View.GONE
-        binding.authExampleEmailTv.visibility = View.GONE
-
-        setupListener()
         super.onViewCreated(view, savedInstanceState)
+        startingVisibility()
+        setupListener()
+
+    }
+
+    private fun startingVisibility() {
+        binding.apply {
+            linearLyCodeBox.visibility = View.GONE
+            resendTv.visibility = View.GONE
+            authExampleEmailTv.visibility = View.GONE
+        }
     }
 
     private fun setupListener() {
         binding.apply {
+            authBackIconIv.setOnClickListener {
+                findNavController().popBackStack()
+            }
 
             authBtn.apply {
                 isEnabled = false
@@ -206,23 +216,25 @@ class AuthFragment : Fragment() {
     }
 
     private fun startResendTimer() {
-        binding.resendTv.isEnabled = false
-        countDownTimer = viewLifecycleOwner.lifecycleScope.launch {
-            val totalTime = 59000L
-            val interval = 1000L
-            var remainingTime = totalTime / 1000
+        binding.apply {
+            resendTv.isEnabled = false
+            countDownTimer = viewLifecycleOwner.lifecycleScope.launch {
+                val totalTime = 59000L
+                val interval = 1000L
+                var remainingTime = totalTime / 1000
 
-            while (remainingTime > 0) {
-                if (_binding != null) {
-                    binding.resendTv.text = getString(R.string.resend_in, remainingTime)
+                while (remainingTime > 0) {
+                    if (_binding != null) {
+                        resendTv.text = getString(R.string.resend_in, remainingTime)
+                    }
+                    delay(interval)
+                    remainingTime--
                 }
-                delay(interval)
-                remainingTime--
-            }
 
-            if (_binding != null) {
-                binding.resendTv.text = getString(R.string.resend)
-                binding.resendTv.isEnabled = true
+                if (_binding != null) {
+                    resendTv.text = getString(R.string.resend)
+                    resendTv.isEnabled = true
+                }
             }
         }
     }

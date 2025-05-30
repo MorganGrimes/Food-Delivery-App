@@ -28,8 +28,13 @@ class AddNewAddressFragment : Fragment() {
     }
 
     private fun setupListener() {
-        binding.saveLocationBtn.setOnClickListener {
-        findNavController().navigate(R.id.action_addNewAddressFragment_to_addressFragment)
+        binding.apply {
+            saveLocationBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_addNewAddressFragment_to_addressFragment)
+            }
+            addNewAddressBackIv.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 

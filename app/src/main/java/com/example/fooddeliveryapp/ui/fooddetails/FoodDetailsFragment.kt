@@ -27,7 +27,14 @@ class FoodDetailsFragment : Fragment() {
         setupListener()
     }
 
-    private fun setupListener(){
-        findNavController().navigate(R.id.action_foodDetailsFragment_to_homeFragment)
+    private fun setupListener() {
+        binding.apply {
+            addToCartBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_foodDetailsFragment_to_homeFragment)
+            }
+            foodDetailsBackIconIv.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
     }
 }

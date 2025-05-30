@@ -35,6 +35,9 @@ class MyCartFragment : Fragment() {
 
     private fun setupListener() {
         binding.apply {
+            myCartBackIconIv.setOnClickListener {
+                findNavController().popBackStack()
+            }
             placeOrderBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_myCartFragment_to_paymentFragment)
             }

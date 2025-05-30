@@ -28,8 +28,13 @@ class PersonalProfilesFragment : Fragment() {
     }
 
     private fun setupListener(){
-        binding.personalProfilesEditTv.setOnClickListener {
-            findNavController().navigate(R.id.action_personalProfilesFragment_to_editProfileFragment)
+        binding.apply {
+            personalProfilesEditTv.setOnClickListener {
+                findNavController().navigate(R.id.action_personalProfilesFragment_to_editProfileFragment)
+            }
+            personalProfilesBackIconIv.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 
