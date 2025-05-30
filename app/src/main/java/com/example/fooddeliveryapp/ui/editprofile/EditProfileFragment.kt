@@ -1,11 +1,15 @@
 package com.example.fooddeliveryapp.ui.editprofile
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
@@ -18,6 +22,8 @@ class EditProfileFragment : Fragment() {
     private var _binding: FragmentEditProfileBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var pickImageLauncher: ActivityResultLauncher<Intent>
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,21 +35,18 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadUserData()
+        imageLauncher()
         setupListener()
         setupTextWatchers()
     }
 
     private fun setupListener() {
         binding.apply {
-            saveBtn.apply {
-                isEnabled = false
-                setBackgroundColor(UiUtils.brownColor)
-            }
             saveBtn.setOnClickListener {
-                val name = binding.editProfileFullNameEt.text.toString()
-                val email = binding.editProfileEmailEt.text.toString()
-                val phone = binding.editProfilePhoneNumberEt.text.toString()
-                val bio = binding.editProfileBioEt.text.toString()
+                val name = editProfileFullNameEt.text.toString()
+                val email = editProfileEmailEt.text.toString()
+                val phone = editProfilePhoneNumberEt.text.toString()
+                val bio = editProfileBioEt.text.toString()
 
                 ProfileSharedPreferences.saveUserProfile(requireContext(), name, email, phone, bio)
 
@@ -51,6 +54,20 @@ class EditProfileFragment : Fragment() {
             }
             editProfileBackIconIv.setOnClickListener {
                 findNavController().popBackStack()
+            }
+            editProfileEditIv.setOnClickListener {
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/*"
+                pickImageLauncher.launch(intent)
+            }
+        }
+    }
+
+    private fun imageLauncher(){
+        pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                val imageUri = result.data?.data
+                binding.editProfileImageIv.setImageURI(imageUri)
             }
         }
     }
@@ -61,7 +78,6 @@ class EditProfileFragment : Fragment() {
                 editProfileFullNameEt,
                 editProfileEmailEt,
                 editProfilePhoneNumberEt,
-                editProfileBioEt
             )
 
             val watcher = object : TextWatcher {
@@ -97,7 +113,6 @@ class EditProfileFragment : Fragment() {
             editProfileBioEt.setText(ProfileSharedPreferences.getUserBio(context))
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

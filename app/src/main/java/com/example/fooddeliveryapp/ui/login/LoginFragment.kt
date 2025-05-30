@@ -37,11 +37,6 @@ class LoginFragment : Fragment() {
         val navController = findNavController()
         binding.apply {
 
-            loginBtn.apply {
-                isEnabled = false
-                setBackgroundColor(UiUtils.brownColor)
-            }
-
             loginForgotPasswordTv.setOnClickListener {
                 navController.navigate(R.id.action_loginFragment_to_authFragment)
             }
@@ -99,9 +94,10 @@ class LoginFragment : Fragment() {
     }
 
     private fun setupInputValidation() {
-        val emailField = binding.loginEmailEt
-        val passwordField = binding.loginPasswordEt
-        val loginButton = binding.loginBtn
+        binding.apply {
+        val emailField = loginEmailEt
+        val passwordField = loginPasswordEt
+        val loginButton = loginBtn
 
         val textWatcher = object : android.text.TextWatcher {
             override fun afterTextChanged(s: android.text.Editable?) {
@@ -121,16 +117,19 @@ class LoginFragment : Fragment() {
 
         emailField.addTextChangedListener(textWatcher)
         passwordField.addTextChangedListener(textWatcher)
+        }
     }
 
     private fun checkRememberMe() {
+        binding.apply {
         val sharedPref = requireActivity().getSharedPreferences("food_prefs", Context.MODE_PRIVATE)
         val remember = sharedPref.getBoolean("rememberMe", false)
 
         if (remember) {
-            binding.loginEmailEt.setText(ProfileSharedPreferences.getUserEmail(requireContext()))
-            binding.loginPasswordEt.setText(ProfileSharedPreferences.getUserPassword(requireContext()))
-            binding.loginRememberCheckbox.isChecked = true
+            loginEmailEt.setText(ProfileSharedPreferences.getUserEmail(requireContext()))
+            loginPasswordEt.setText(ProfileSharedPreferences.getUserPassword(requireContext()))
+            loginRememberCheckbox.isChecked = true
+        }
         }
     }
 

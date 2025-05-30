@@ -35,9 +35,20 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loadUserProfile()
         checkAndShowCouponDialog()
         setupListener()
         setupRecyclerView()
+    }
+
+    private fun loadUserProfile() {
+        val context = requireContext()
+        binding.apply {
+            val name = ProfileSharedPreferences.getUserName(context)
+
+            homeNameTv.text = name ?: ""
+            homeGreetingTv.text = context.getString(R.string.greeting, name)
+        }
     }
 
     private fun checkAndShowCouponDialog() {
