@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/add_card_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
@@ -119,6 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="24dp"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sen_regular"
-                android:text="@string/card_number"
+                android:text="@string/expire_date"
                 android:textColor="@color/grey_transparent"
                 android:textSize="14sp" />
 
@@ -147,8 +148,8 @@
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_shape"
                 android:hint="@string/mm_yyyy"
-                android:inputType="date"
-                android:maxLength="6"
+                android:inputType="text"
+                android:maxLength="7"
                 android:paddingVertical="16dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"

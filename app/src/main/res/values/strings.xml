@@ -166,7 +166,7 @@ you just place the order we do the rest</string>
     <string name="post_code">POST CODE</string>
     <string name="hason_nagar">hason nagar</string>
     <string name="_34567">34567</string>
-    <string name="appartment">APPARTMENT</string>
+    <string name="apartment">APARTMENT</string>
     <string name="_345">345</string>
     <string name="label_as">LABEL AS</string>
     <string name="home_camelcase">Home</string>
@@ -178,5 +178,6 @@ you just place the order we do the rest</string>
     <string name="verify">VERIFY"</string>
     <string name="free">Free"</string>
     <string name="resend_in">Resend in %d sec"</string>
+    <string name="expire_date">EXPIRE DATE</string>
 
 </resources>

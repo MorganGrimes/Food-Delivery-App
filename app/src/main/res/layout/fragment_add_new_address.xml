@@ -92,7 +92,6 @@
                     android:background="@drawable/edit_text_shape"
                     android:hint="@string/hason_nagar"
                     android:inputType="text"
-                    android:maxLength="6"
                     android:paddingVertical="16dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
@@ -127,7 +126,6 @@
                     android:background="@drawable/edit_text_shape"
                     android:hint="@string/_34567"
                     android:inputType="number"
-                    android:maxLength="3"
                     android:paddingVertical="16dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
@@ -141,18 +139,18 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/appartment_tv"
+            android:id="@+id/apartment_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/sen_regular"
-            android:text="@string/appartment"
+            android:text="@string/apartment"
             android:textColor="@color/black_light"
             android:textSize="13sp" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/add_new_address_appartment_et"
+            android:id="@+id/add_new_address_apartment_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
