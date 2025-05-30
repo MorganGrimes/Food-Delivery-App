@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentEditProfileBinding
+import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
 import com.example.fooddeliveryapp.utils.UiUtils
 
 class EditProfileFragment : Fragment() {
@@ -27,6 +28,7 @@ class EditProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loadUserData()
         setupListener()
         setupTextWatchers()
     }
@@ -37,8 +39,14 @@ class EditProfileFragment : Fragment() {
                 isEnabled = false
                 setBackgroundColor(UiUtils.brownColor)
             }
-
             saveBtn.setOnClickListener {
+                val name = binding.editProfileFullNameEt.text.toString()
+                val email = binding.editProfileEmailEt.text.toString()
+                val phone = binding.editProfilePhoneNumberEt.text.toString()
+                val bio = binding.editProfileBioEt.text.toString()
+
+                ProfileSharedPreferences.saveUserProfile(requireContext(), name, email, phone, bio)
+
                 findNavController().navigate(R.id.action_editProfileFragment_to_personalProfilesFragment)
             }
             editProfileBackIconIv.setOnClickListener {
@@ -79,6 +87,17 @@ class EditProfileFragment : Fragment() {
             editTexts.forEach { it.addTextChangedListener(watcher) }
         }
     }
+
+    private fun loadUserData() {
+        val context = requireContext()
+        binding.apply {
+            editProfileFullNameEt.setText(ProfileSharedPreferences.getUserName(context))
+            editProfileEmailEt.setText(ProfileSharedPreferences.getUserEmail(context))
+            editProfilePhoneNumberEt.setText(ProfileSharedPreferences.getUserPhone(context))
+            editProfileBioEt.setText(ProfileSharedPreferences.getUserBio(context))
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

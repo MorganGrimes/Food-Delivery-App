@@ -9,6 +9,8 @@ object ProfileSharedPreferences {
     private const val KEY_ONBOARDING_COMPLETED = "completed"
     private const val KEY_NAME = "user_name"
     private const val KEY_EMAIL = "user_email"
+    private const val KEY_PHONE = "user_phone"
+    private const val KEY_BIO = "user_bio"
     private const val KEY_PASSWORD = "user_password"
     private const val KEY_OTP = "user_otp"
     private const val KEY_LAUNCH_COUNT = "launch_count"
@@ -34,10 +36,21 @@ object ProfileSharedPreferences {
         }
     }
 
+    fun saveUserProfile(context: Context, name: String, email: String, phone: String, bio: String) {
+        getPreferences(context).edit().apply {
+            putString(KEY_NAME, name)
+            putString(KEY_EMAIL, email)
+            putString(KEY_PHONE, phone)
+            putString(KEY_BIO, bio)
+            apply()
+        }
+    }
+
     fun getUserName(context: Context): String? = getPreferences(context).getString(KEY_NAME, null)
     fun getUserEmail(context: Context): String? = getPreferences(context).getString(KEY_EMAIL, null)
-    fun getUserPassword(context: Context): String? =
-        getPreferences(context).getString(KEY_PASSWORD, null)
+    fun getUserPassword(context: Context): String? = getPreferences(context).getString(KEY_PASSWORD, null)
+    fun getUserPhone(context: Context): String? = getPreferences(context).getString(KEY_PHONE, null)
+    fun getUserBio(context: Context): String? = getPreferences(context).getString(KEY_BIO, null)
 
     fun saveOTP(context: Context, otp: String) {
         getPreferences(context).edit().putString(KEY_OTP, otp).apply()

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentProfileBinding
+import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
 
 class ProfileFragment : Fragment() {
 
@@ -23,8 +24,9 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupListener()
         super.onViewCreated(view, savedInstanceState)
+        loadUserProfile()
+        setupListener()
     }
 
     private fun setupListener() {
@@ -47,6 +49,17 @@ class ProfileFragment : Fragment() {
             profileMyOrdersLl.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_myOrdersTabsFragment)
             }
+        }
+    }
+
+    private fun loadUserProfile() {
+        val context = requireContext()
+        binding.apply {
+            val name = ProfileSharedPreferences.getUserName(context)
+            val bio = ProfileSharedPreferences.getUserBio(context)
+
+            profileNameTv.text = name ?: ""
+            profileBioTv.text = bio ?: ""
         }
     }
 

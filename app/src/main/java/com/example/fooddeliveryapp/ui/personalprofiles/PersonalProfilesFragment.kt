@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentPersonalProfilesBinding
+import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
 
 class PersonalProfilesFragment : Fragment() {
 
@@ -24,6 +25,7 @@ class PersonalProfilesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loadUserProfile()
         setupListener()
     }
 
@@ -35,6 +37,22 @@ class PersonalProfilesFragment : Fragment() {
             personalProfilesBackIconIv.setOnClickListener {
                 findNavController().popBackStack()
             }
+        }
+    }
+
+    private fun loadUserProfile() {
+        val context = requireContext()
+        binding.apply {
+            val name = ProfileSharedPreferences.getUserName(context)
+            val email = ProfileSharedPreferences.getUserEmail(context)
+            val phone = ProfileSharedPreferences.getUserPhone(context)
+            val bio = ProfileSharedPreferences.getUserBio(context)
+
+            personalProfilesNameTv.text = name ?: ""
+            personalProfilesProfileNameTv.text = name ?: ""
+            personalProfilesProfileEmailTv.text = email ?: ""
+            personalProfilesProfilePhoneNumberTv.text = phone ?: ""
+            personalProfilesBioTv.text = bio ?: ""
         }
     }
 
