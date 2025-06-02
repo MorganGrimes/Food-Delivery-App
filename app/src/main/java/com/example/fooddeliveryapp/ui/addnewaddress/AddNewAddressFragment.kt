@@ -100,7 +100,8 @@ class AddNewAddressFragment : Fragment() {
             val isApartmentFilled = addNewAddressApartmentEt.text?.isNotBlank() == true
             val isLabelSelected = selectedLabel != null
 
-            val isFormValid = isAddressFilled && isStreetFilled && isPostCodeFilled && isApartmentFilled && isLabelSelected
+            val isFormValid =
+                isAddressFilled && isStreetFilled && isPostCodeFilled && isApartmentFilled && isLabelSelected
 
             saveLocationBtn.isEnabled = isFormValid
             saveLocationBtn.setBackgroundColor(
