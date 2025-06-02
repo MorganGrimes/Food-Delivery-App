@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
+import com.example.fooddeliveryapp.data.local.address.AddressEntity
 import com.example.fooddeliveryapp.databinding.FragmentAddNewAddressBinding
+import com.example.fooddeliveryapp.ui.address.AddressViewModel
 import com.example.fooddeliveryapp.utils.UiUtils
 
 class AddNewAddressFragment : Fragment() {
@@ -16,6 +20,8 @@ class AddNewAddressFragment : Fragment() {
     private var _binding: FragmentAddNewAddressBinding? = null
     private val binding get() = _binding!!
 
+    private val viewModel: AddressViewModel by activityViewModels()
+    private var currentAddressId: Int = -1
     private var selectedLabel: String? = null
 
     override fun onCreateView(
@@ -28,7 +34,29 @@ class AddNewAddressFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupAddresses()
         setupListener()
+    }
+
+    private fun setupAddresses() {
+        val addressId = arguments?.getInt("addressId", -1) ?: -1
+        currentAddressId = addressId
+        if (currentAddressId != -1) {
+            viewModel.allAddresses.observe(viewLifecycleOwner) { addresses ->
+                val address = addresses.find { it.id == currentAddressId }
+                address?.let { populateFields(it) }
+            }
+        }
+    }
+
+    private fun populateFields(address: AddressEntity) {
+        binding.apply {
+            addNewAddressAddressEt.setText(address.addressName)
+            addNewAddressStreetEt.setText(address.addressStreet)
+            addNewAddressPostCodeEt.setText(address.addressPostCode)
+            addNewAddressApartmentEt.setText(address.addressApartment)
+            selectLabelButton(address.addressLabel)
+        }
     }
 
     private fun setupListener() {
@@ -40,32 +68,53 @@ class AddNewAddressFragment : Fragment() {
                 addNewAddressApartmentEt
             )
 
-            inputs.forEach { editText ->
-                editText.addTextChangedListener {
-                    checkFormValidity()
-                }
-            }
+            inputs.forEach { it.addTextChangedListener { checkFormValidity() } }
 
-            addNewAddressHomeBtn.setOnClickListener {
-                selectLabelButton("home")
-            }
-
-            addNewAddressWorkBtn.setOnClickListener {
-                selectLabelButton("work")
-            }
-
-            addNewAddressOtherBtn.setOnClickListener {
-                selectLabelButton("other")
-            }
+            addNewAddressHomeBtn.setOnClickListener { selectLabelButton("home") }
+            addNewAddressWorkBtn.setOnClickListener { selectLabelButton("work") }
+            addNewAddressOtherBtn.setOnClickListener { selectLabelButton("other") }
 
             saveLocationBtn.isEnabled = false
             saveLocationBtn.setBackgroundColor(UiUtils.brownColor)
-            saveLocationBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_addNewAddressFragment_to_addressFragment)
-            }
 
-            addNewAddressBackIv.setOnClickListener {
-                findNavController().popBackStack()
+            saveLocationBtn.setOnClickListener {
+                val label = selectedLabel
+                if (label.isNullOrBlank()) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Seleziona un'etichetta (Home, Work, Other)",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@setOnClickListener
+                }
+
+                val name = binding.addNewAddressAddressEt.text.toString().trim()
+                val street = binding.addNewAddressStreetEt.text.toString().trim()
+                val postCode = binding.addNewAddressPostCodeEt.text.toString().trim()
+                val apartment = binding.addNewAddressApartmentEt.text.toString().trim()
+
+                if (name.isEmpty() || street.isEmpty() || postCode.isEmpty() || apartment.isEmpty()) {
+                    Toast.makeText(requireContext(), "Completa tutti i campi", Toast.LENGTH_SHORT)
+                        .show()
+                    return@setOnClickListener
+                }
+
+                val address = AddressEntity(
+                    id = if (currentAddressId != -1) currentAddressId else 0,
+                    addressLabel = label,
+                    addressName = name,
+                    addressStreet = street,
+                    addressPostCode = postCode,
+                    addressApartment = apartment
+                )
+
+                if (currentAddressId != -1) {
+                    viewModel.update(address)
+                } else {
+                    viewModel.insert(address)
+                }
+
+                findNavController().navigate(R.id.action_addNewAddressFragment_to_addressFragment)
             }
         }
     }
@@ -73,20 +122,19 @@ class AddNewAddressFragment : Fragment() {
     private fun selectLabelButton(label: String) {
         binding.apply {
             selectedLabel = label
+            val defaultBg = resources.getColor(R.color.edit_text_white, null)
+            val selectedBg = resources.getColor(R.color.orange, null)
+            val defaultText = resources.getColor(R.color.black, null)
+            val selectedText = resources.getColor(R.color.white, null)
 
-            val defaultBgColor = resources.getColor(R.color.edit_text_white, null)
-            val selectedBgColor = resources.getColor(R.color.orange, null)
-            val defaultTextColor = resources.getColor(R.color.black, null)
-            val selectedTextColor = resources.getColor(R.color.white, null)
+            addNewAddressHomeBtn.setBackgroundColor(if (label == "home") selectedBg else defaultBg)
+            addNewAddressHomeBtn.setTextColor(if (label == "home") selectedText else defaultText)
 
-            addNewAddressHomeBtn.setBackgroundColor(if (label == "home") selectedBgColor else defaultBgColor)
-            addNewAddressHomeBtn.setTextColor(if (label == "home") selectedTextColor else defaultTextColor)
+            addNewAddressWorkBtn.setBackgroundColor(if (label == "work") selectedBg else defaultBg)
+            addNewAddressWorkBtn.setTextColor(if (label == "work") selectedText else defaultText)
 
-            addNewAddressWorkBtn.setBackgroundColor(if (label == "work") selectedBgColor else defaultBgColor)
-            addNewAddressWorkBtn.setTextColor(if (label == "work") selectedTextColor else defaultTextColor)
-
-            addNewAddressOtherBtn.setBackgroundColor(if (label == "other") selectedBgColor else defaultBgColor)
-            addNewAddressOtherBtn.setTextColor(if (label == "other") selectedTextColor else defaultTextColor)
+            addNewAddressOtherBtn.setBackgroundColor(if (label == "other") selectedBg else defaultBg)
+            addNewAddressOtherBtn.setTextColor(if (label == "other") selectedText else defaultText)
 
             checkFormValidity()
         }
@@ -94,19 +142,15 @@ class AddNewAddressFragment : Fragment() {
 
     private fun checkFormValidity() {
         binding.apply {
-            val isAddressFilled = addNewAddressAddressEt.text?.isNotBlank() == true
-            val isStreetFilled = addNewAddressStreetEt.text?.isNotBlank() == true
-            val isPostCodeFilled = addNewAddressPostCodeEt.text?.isNotBlank() == true
-            val isApartmentFilled = addNewAddressApartmentEt.text?.isNotBlank() == true
-            val isLabelSelected = selectedLabel != null
+            val valid = addNewAddressAddressEt.text?.isNotBlank() == true &&
+                    addNewAddressStreetEt.text?.isNotBlank() == true &&
+                    addNewAddressPostCodeEt.text?.isNotBlank() == true &&
+                    addNewAddressApartmentEt.text?.isNotBlank() == true &&
+                    selectedLabel != null
 
-            val isFormValid =
-                isAddressFilled && isStreetFilled && isPostCodeFilled && isApartmentFilled && isLabelSelected
-
-            saveLocationBtn.isEnabled = isFormValid
+            saveLocationBtn.isEnabled = valid
             saveLocationBtn.setBackgroundColor(
-                if (isFormValid) resources.getColor(R.color.orange, null)
-                else UiUtils.brownColor
+                if (valid) resources.getColor(R.color.orange, null) else UiUtils.brownColor
             )
         }
     }

@@ -241,8 +241,9 @@
         android:name="com.example.fooddeliveryapp.ui.addnewaddress.AddNewAddressFragment"
         android:label="fragment_add_new_address"
         tools:layout="@layout/fragment_add_new_address" >
-        <action
+                <action
             android:id="@+id/action_addNewAddressFragment_to_addressFragment"
-            app:destination="@id/addressFragment" />
+            app:destination="@id/addressFragment">
+        </action>
     </fragment>
 </navigation>
