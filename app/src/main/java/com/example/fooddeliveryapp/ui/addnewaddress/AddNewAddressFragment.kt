@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
-import com.example.fooddeliveryapp.data.local.address.AddressEntity
+import com.example.fooddeliveryapp.data.local.entity.AddressEntity
 import com.example.fooddeliveryapp.databinding.FragmentAddNewAddressBinding
 import com.example.fooddeliveryapp.ui.address.AddressViewModel
 import com.example.fooddeliveryapp.utils.ADDRESS_ID

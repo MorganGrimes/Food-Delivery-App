@@ -1,9 +1,11 @@
-package com.example.fooddeliveryapp.data.local.address
+package com.example.fooddeliveryapp.data.local.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.fooddeliveryapp.data.local.dao.AddressDao
+import com.example.fooddeliveryapp.data.local.entity.AddressEntity
 import com.example.fooddeliveryapp.utils.FOOD_DELIVERY_DB
 
 @Database(entities = [AddressEntity::class], version = 1, exportSchema = false)

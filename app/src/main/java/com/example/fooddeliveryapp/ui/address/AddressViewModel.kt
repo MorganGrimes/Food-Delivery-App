@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.fooddeliveryapp.data.local.address.AddressEntity
-import com.example.fooddeliveryapp.data.local.address.AppDatabase
+import com.example.fooddeliveryapp.data.local.entity.AddressEntity
+import com.example.fooddeliveryapp.data.local.database.AppDatabase
 import com.example.fooddeliveryapp.data.repository.AppRepository
 import kotlinx.coroutines.launch
 

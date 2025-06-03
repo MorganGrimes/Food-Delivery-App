@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fooddeliveryapp.R
-import com.example.fooddeliveryapp.data.local.address.AddressEntity
+import com.example.fooddeliveryapp.data.local.entity.AddressEntity
 import com.example.fooddeliveryapp.databinding.RecyclerAddressLayoutBinding
 import com.example.fooddeliveryapp.utils.HOME
 import com.example.fooddeliveryapp.utils.OTHER

@@ -1,5 +1,6 @@
 package com.example.fooddeliveryapp.ui.profile
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentProfileBinding
+import com.example.fooddeliveryapp.utils.FOOD_PREFS
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
+import com.example.fooddeliveryapp.utils.REMEMBER_ME
+import com.example.fooddeliveryapp.utils.SAVED_EMAIL
+import com.example.fooddeliveryapp.utils.SAVED_PSW
 
 class ProfileFragment : Fragment() {
 
@@ -48,6 +53,21 @@ class ProfileFragment : Fragment() {
             }
             profileMyOrdersLl.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_myOrdersTabsFragment)
+            }
+
+            profileLogoutLl.setOnClickListener {
+                ProfileSharedPreferences.clearUserData(requireContext())
+
+                val sharedPref =
+                    requireActivity().getSharedPreferences(FOOD_PREFS, Context.MODE_PRIVATE)
+                with(sharedPref.edit()) {
+                    putBoolean(REMEMBER_ME, false)
+                    remove(SAVED_EMAIL)
+                    remove(SAVED_PSW)
+                    apply()
+                }
+
+                findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
             }
         }
     }

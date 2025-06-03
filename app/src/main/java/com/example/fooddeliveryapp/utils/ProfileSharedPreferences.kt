@@ -46,6 +46,14 @@ object ProfileSharedPreferences {
         }
     }
 
+    fun clearUserData(context: Context) {
+        val prefs = context.getSharedPreferences(FOOD_PREFS, Context.MODE_PRIVATE)
+        with(prefs.edit()) {
+            clear()
+            apply()
+        }
+    }
+
     fun getUserName(context: Context): String? = getPreferences(context).getString(KEY_NAME, null)
     fun getUserEmail(context: Context): String? = getPreferences(context).getString(KEY_EMAIL, null)
     fun getUserPassword(context: Context): String? = getPreferences(context).getString(KEY_PASSWORD, null)

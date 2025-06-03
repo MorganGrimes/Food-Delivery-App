@@ -1,7 +1,8 @@
-package com.example.fooddeliveryapp.data.local.address
+package com.example.fooddeliveryapp.data.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.fooddeliveryapp.data.local.entity.AddressEntity
 
 @Dao
 interface AddressDao {
