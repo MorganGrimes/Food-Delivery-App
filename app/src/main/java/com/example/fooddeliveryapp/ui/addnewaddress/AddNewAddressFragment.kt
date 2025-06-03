@@ -13,7 +13,13 @@ import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.local.address.AddressEntity
 import com.example.fooddeliveryapp.databinding.FragmentAddNewAddressBinding
 import com.example.fooddeliveryapp.ui.address.AddressViewModel
+import com.example.fooddeliveryapp.utils.ADDRESS_ID
+import com.example.fooddeliveryapp.utils.FILL_FIELDS
+import com.example.fooddeliveryapp.utils.HOME
+import com.example.fooddeliveryapp.utils.OTHER
+import com.example.fooddeliveryapp.utils.SELECT_LABEL
 import com.example.fooddeliveryapp.utils.UiUtils
+import com.example.fooddeliveryapp.utils.WORK
 
 class AddNewAddressFragment : Fragment() {
 
@@ -39,7 +45,7 @@ class AddNewAddressFragment : Fragment() {
     }
 
     private fun setupAddresses() {
-        val addressId = arguments?.getInt("addressId", -1) ?: -1
+        val addressId = arguments?.getInt(ADDRESS_ID, -1) ?: -1
         currentAddressId = addressId
         if (currentAddressId != -1) {
             viewModel.allAddresses.observe(viewLifecycleOwner) { addresses ->
@@ -70,9 +76,9 @@ class AddNewAddressFragment : Fragment() {
 
             inputs.forEach { it.addTextChangedListener { checkFormValidity() } }
 
-            addNewAddressHomeBtn.setOnClickListener { selectLabelButton("home") }
-            addNewAddressWorkBtn.setOnClickListener { selectLabelButton("work") }
-            addNewAddressOtherBtn.setOnClickListener { selectLabelButton("other") }
+            addNewAddressHomeBtn.setOnClickListener { selectLabelButton(HOME) }
+            addNewAddressWorkBtn.setOnClickListener { selectLabelButton(WORK) }
+            addNewAddressOtherBtn.setOnClickListener { selectLabelButton(OTHER) }
 
             saveLocationBtn.isEnabled = false
             saveLocationBtn.setBackgroundColor(UiUtils.brownColor)
@@ -82,7 +88,7 @@ class AddNewAddressFragment : Fragment() {
                 if (label.isNullOrBlank()) {
                     Toast.makeText(
                         requireContext(),
-                        "Seleziona un'etichetta (Home, Work, Other)",
+                        SELECT_LABEL,
                         Toast.LENGTH_SHORT
                     ).show()
                     return@setOnClickListener
@@ -94,7 +100,7 @@ class AddNewAddressFragment : Fragment() {
                 val apartment = binding.addNewAddressApartmentEt.text.toString().trim()
 
                 if (name.isEmpty() || street.isEmpty() || postCode.isEmpty() || apartment.isEmpty()) {
-                    Toast.makeText(requireContext(), "Completa tutti i campi", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), FILL_FIELDS, Toast.LENGTH_SHORT)
                         .show()
                     return@setOnClickListener
                 }
@@ -127,14 +133,14 @@ class AddNewAddressFragment : Fragment() {
             val defaultText = resources.getColor(R.color.black, null)
             val selectedText = resources.getColor(R.color.white, null)
 
-            addNewAddressHomeBtn.setBackgroundColor(if (label == "home") selectedBg else defaultBg)
-            addNewAddressHomeBtn.setTextColor(if (label == "home") selectedText else defaultText)
+            addNewAddressHomeBtn.setBackgroundColor(if (label == HOME) selectedBg else defaultBg)
+            addNewAddressHomeBtn.setTextColor(if (label == HOME) selectedText else defaultText)
 
-            addNewAddressWorkBtn.setBackgroundColor(if (label == "work") selectedBg else defaultBg)
-            addNewAddressWorkBtn.setTextColor(if (label == "work") selectedText else defaultText)
+            addNewAddressWorkBtn.setBackgroundColor(if (label == WORK) selectedBg else defaultBg)
+            addNewAddressWorkBtn.setTextColor(if (label == WORK) selectedText else defaultText)
 
-            addNewAddressOtherBtn.setBackgroundColor(if (label == "other") selectedBg else defaultBg)
-            addNewAddressOtherBtn.setTextColor(if (label == "other") selectedText else defaultText)
+            addNewAddressOtherBtn.setBackgroundColor(if (label == OTHER) selectedBg else defaultBg)
+            addNewAddressOtherBtn.setTextColor(if (label == OTHER) selectedText else defaultText)
 
             checkFormValidity()
         }

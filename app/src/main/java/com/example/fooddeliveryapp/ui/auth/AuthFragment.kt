@@ -14,8 +14,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentAuthBinding
+import com.example.fooddeliveryapp.utils.CODE_SENT_TO
+import com.example.fooddeliveryapp.utils.CORRECT_CODE
+import com.example.fooddeliveryapp.utils.ENTER_A_VALID_EMAIL
+import com.example.fooddeliveryapp.utils.NEW_CODE_SENT_TO
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
 import com.example.fooddeliveryapp.utils.UiUtils
+import com.example.fooddeliveryapp.utils.WRONG_CODE
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -97,14 +102,14 @@ class AuthFragment : Fragment() {
                         setupPinInputListeners()
                         Toast.makeText(
                             requireContext(),
-                            "Code sent to $inputEmail",
+                            "$CODE_SENT_TO $inputEmail",
                             Toast.LENGTH_SHORT
                         )
                             .show()
                     } else {
                         Toast.makeText(
                             requireContext(),
-                            "Enter a valid Email",
+                            ENTER_A_VALID_EMAIL,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -114,10 +119,10 @@ class AuthFragment : Fragment() {
                     val savedCode = ProfileSharedPreferences.getSavedOTP(requireContext())
 
                     if (inputCode == savedCode) {
-                        Toast.makeText(requireContext(), "Correct Code!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), CORRECT_CODE, Toast.LENGTH_SHORT).show()
                         it.findNavController().navigate(R.id.action_authFragment_to_homeFragment)
                     } else {
-                        Toast.makeText(requireContext(), "Wrong Code", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), WRONG_CODE, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -130,8 +135,7 @@ class AuthFragment : Fragment() {
                 val otp = generateOTP()
                 ProfileSharedPreferences.saveOTP(requireContext(), otp)
 
-                Log.d("AuthFragment", "New OTP: $otp")
-                Toast.makeText(requireContext(), "New code sent to $email", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), "$NEW_CODE_SENT_TO $email", Toast.LENGTH_SHORT)
                     .show()
             }
         }

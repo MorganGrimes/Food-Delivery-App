@@ -2,8 +2,9 @@ package com.example.fooddeliveryapp.data.local.address
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.fooddeliveryapp.utils.ADDRESSES
 
-@Entity(tableName = "addresses")
+@Entity(tableName = ADDRESSES)
 data class AddressEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,

@@ -10,6 +10,8 @@ import com.example.fooddeliveryapp.databinding.FragmentMyOrdersTabsBinding
 import com.example.fooddeliveryapp.ui.adapters.MyPagerAdapter
 import com.example.fooddeliveryapp.ui.history.HistoryFragment
 import com.example.fooddeliveryapp.ui.ongoing.OngoingFragment
+import com.example.fooddeliveryapp.utils.HISTORY
+import com.example.fooddeliveryapp.utils.ONGOING
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MyOrdersTabsFragment : Fragment() {
@@ -18,7 +20,7 @@ class MyOrdersTabsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var myAdapter: MyPagerAdapter
-    private var tabsArray = arrayOf("Ongoing", "History")
+    private var tabsArray = arrayOf(ONGOING, HISTORY)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -14,6 +14,7 @@ import com.example.fooddeliveryapp.databinding.FragmentFoodBinding
 import com.example.fooddeliveryapp.ui.adapters.OpenRestaurantsRecyclerAdapter
 import com.example.fooddeliveryapp.ui.adapters.PopularFoodRecyclerAdapter
 import com.example.fooddeliveryapp.ui.filter.FilterDialogFragment
+import com.example.fooddeliveryapp.utils.FILTER_DIALOG
 
 class FoodFragment : Fragment() {
 
@@ -44,7 +45,7 @@ class FoodFragment : Fragment() {
                 findNavController().popBackStack()
             }
             foodFilterIv.setOnClickListener {
-                FilterDialogFragment().show(parentFragmentManager, "FilterDialog")
+                FilterDialogFragment().show(parentFragmentManager, FILTER_DIALOG)
             }
         }
     }

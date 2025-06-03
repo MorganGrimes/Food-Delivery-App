@@ -1,1 +1,33 @@
 package com.example.fooddeliveryapp.utils
+
+const val ADDRESS_ID = "addressId"
+const val HOME = "Home"
+const val WORK = "Work"
+const val OTHER = "Other"
+const val SELECT_LABEL = "Select Label (Home, Work, Other)"
+const val FILL_FIELDS = "Fill All Fields"
+const val ENTER_A_VALID_EMAIL = "Enter a valid Email"
+const val CORRECT_CODE = "Correct Code!"
+const val WRONG_CODE = "Wrong Code"
+const val CODE_SENT_TO = "Code sent to"
+const val NEW_CODE_SENT_TO = "New code sent to"
+const val REGISTRATION_COMPLETE = "Registration Complete!"
+const val THE_PASSWORD_DO_NOT_MATCHES = "The passwords do not matches"
+const val PLEASE_FILL = "Please fill in all registration fields"
+const val ONGOING = "Ongoing"
+const val HISTORY = "History"
+const val FOOD_PREFS = "Food_prefs"
+const val REMEMBER_ME = "rememberME"
+const val WRONG_EMAIL_PSW = "Wrong Email o Password"
+const val LOGIN = "Login"
+const val SAVED_EMAIL = "savedEmail"
+const val SAVED_PSW = "savedPassword"
+const val ENTER_YOUR_PSW = "Enter your Password"
+const val ENTER_YOUR_EMAIL = "Enter your Email"
+const val COUPON_DIALOG = "CouponDialog"
+const val FILTER_DIALOG = "FilterDialog"
+const val ADDRESSES = "addresses"
+const val FOOD_DELIVERY_DB = "food_delivery_db"
+
+
+

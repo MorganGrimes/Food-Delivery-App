@@ -14,6 +14,7 @@ import com.example.fooddeliveryapp.databinding.FragmentHomeBinding
 import com.example.fooddeliveryapp.ui.adapters.CategoriesRecyclerAdapter
 import com.example.fooddeliveryapp.ui.adapters.OpenRestaurantsRecyclerAdapter
 import com.example.fooddeliveryapp.ui.coupon.CouponDialogFragment
+import com.example.fooddeliveryapp.utils.COUPON_DIALOG
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
 
 class HomeFragment : Fragment() {
@@ -54,7 +55,7 @@ class HomeFragment : Fragment() {
     private fun checkAndShowCouponDialog() {
         ProfileSharedPreferences.incrementAppLaunchCount(requireContext())
         if (ProfileSharedPreferences.shouldShowCouponDialog(requireContext())) {
-            CouponDialogFragment().show(parentFragmentManager, "CouponDialog")
+            CouponDialogFragment().show(parentFragmentManager, COUPON_DIALOG)
         }
     }
 
@@ -73,8 +74,8 @@ class HomeFragment : Fragment() {
         binding.apply {
             val categories = listOf(
                 CategoriesItemModel(R.drawable.menu, getString(R.string.hot_dog)),
-                CategoriesItemModel(R.drawable.menu, "Pizza"),
-                CategoriesItemModel(R.drawable.menu, "Sushi")
+                CategoriesItemModel(R.drawable.menu, getString(R.string.pizza)),
+                CategoriesItemModel(R.drawable.menu, getString(R.string.sushi))
             )
 
             val restaurant = listOf(

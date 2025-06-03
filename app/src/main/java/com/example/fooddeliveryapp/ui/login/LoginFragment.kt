@@ -10,8 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentLoginBinding
+import com.example.fooddeliveryapp.utils.ENTER_YOUR_EMAIL
+import com.example.fooddeliveryapp.utils.ENTER_YOUR_PSW
+import com.example.fooddeliveryapp.utils.FOOD_PREFS
+import com.example.fooddeliveryapp.utils.LOGIN
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
+import com.example.fooddeliveryapp.utils.REMEMBER_ME
+import com.example.fooddeliveryapp.utils.SAVED_EMAIL
+import com.example.fooddeliveryapp.utils.SAVED_PSW
 import com.example.fooddeliveryapp.utils.UiUtils
+import com.example.fooddeliveryapp.utils.WRONG_EMAIL_PSW
 
 class LoginFragment : Fragment() {
 
@@ -50,17 +58,17 @@ class LoginFragment : Fragment() {
                 val passwordInput = loginPasswordEt.text.toString()
 
                 if (emailInput.isEmpty()) {
-                    loginEmailEt.error = "Enter your Email"
+                    loginEmailEt.error = ENTER_YOUR_EMAIL
                     return@setOnClickListener
                 }
 
                 if (passwordInput.isEmpty()) {
-                    loginPasswordEt.error = "Enter your Password"
+                    loginPasswordEt.error = ENTER_YOUR_PSW
                     return@setOnClickListener
                 }
 
                 val sharedPref =
-                    requireActivity().getSharedPreferences("food_prefs", Context.MODE_PRIVATE)
+                    requireActivity().getSharedPreferences(FOOD_PREFS, Context.MODE_PRIVATE)
                 val savedEmail = ProfileSharedPreferences.getUserEmail(requireContext())
                 val savedPassword = ProfileSharedPreferences.getUserPassword(requireContext())
 
@@ -69,24 +77,24 @@ class LoginFragment : Fragment() {
                     if (loginRememberCheckbox.isChecked) {
                         loginRememberCheckbox
                         with(sharedPref.edit()) {
-                            putBoolean("rememberMe", true)
-                            putString("savedEmail", emailInput)
-                            putString("savedPassword", passwordInput)
+                            putBoolean(REMEMBER_ME, true)
+                            putString(SAVED_EMAIL, emailInput)
+                            putString(SAVED_PSW, passwordInput)
                             apply()
                         }
                     } else {
                         with(sharedPref.edit()) {
-                            putBoolean("rememberMe", false)
-                            remove("savedEmail")
-                            remove("savedPassword")
+                            putBoolean(REMEMBER_ME, false)
+                            remove(SAVED_EMAIL)
+                            remove(SAVED_PSW)
                             apply()
                         }
                     }
 
-                    Toast.makeText(requireContext(), "Login!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), LOGIN, Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 } else {
-                    Toast.makeText(requireContext(), "Wrong Email o Password", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), WRONG_EMAIL_PSW, Toast.LENGTH_SHORT)
                         .show()
                 }
             }
@@ -95,41 +103,49 @@ class LoginFragment : Fragment() {
 
     private fun setupInputValidation() {
         binding.apply {
-        val emailField = loginEmailEt
-        val passwordField = loginPasswordEt
-        val loginButton = loginBtn
+            val emailField = loginEmailEt
+            val passwordField = loginPasswordEt
+            val loginButton = loginBtn
 
-        val textWatcher = object : android.text.TextWatcher {
-            override fun afterTextChanged(s: android.text.Editable?) {
-                val email = emailField.text.toString().trim()
-                val password = passwordField.text.toString()
-                val isFormFilled = email.isNotEmpty() && password.isNotEmpty()
+            val textWatcher = object : android.text.TextWatcher {
+                override fun afterTextChanged(s: android.text.Editable?) {
+                    val email = emailField.text.toString().trim()
+                    val password = passwordField.text.toString()
+                    val isFormFilled = email.isNotEmpty() && password.isNotEmpty()
 
-                loginButton.isEnabled = isFormFilled
-                loginButton.setBackgroundColor(
-                    if (isFormFilled) requireContext().getColor(R.color.orange) else UiUtils.brownColor
-                )
+                    loginButton.isEnabled = isFormFilled
+                    loginButton.setBackgroundColor(
+                        if (isFormFilled) requireContext().getColor(R.color.orange) else UiUtils.brownColor
+                    )
+                }
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        }
-
-        emailField.addTextChangedListener(textWatcher)
-        passwordField.addTextChangedListener(textWatcher)
+            emailField.addTextChangedListener(textWatcher)
+            passwordField.addTextChangedListener(textWatcher)
         }
     }
 
     private fun checkRememberMe() {
         binding.apply {
-        val sharedPref = requireActivity().getSharedPreferences("food_prefs", Context.MODE_PRIVATE)
-        val remember = sharedPref.getBoolean("rememberMe", false)
+            val sharedPref =
+                requireActivity().getSharedPreferences(FOOD_PREFS, Context.MODE_PRIVATE)
+            val remember = sharedPref.getBoolean(REMEMBER_ME, false)
 
-        if (remember) {
-            loginEmailEt.setText(ProfileSharedPreferences.getUserEmail(requireContext()))
-            loginPasswordEt.setText(ProfileSharedPreferences.getUserPassword(requireContext()))
-            loginRememberCheckbox.isChecked = true
-        }
+            if (remember) {
+                loginEmailEt.setText(ProfileSharedPreferences.getUserEmail(requireContext()))
+                loginPasswordEt.setText(ProfileSharedPreferences.getUserPassword(requireContext()))
+                loginRememberCheckbox.isChecked = true
+            }
         }
     }
 

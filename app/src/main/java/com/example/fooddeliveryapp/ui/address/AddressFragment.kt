@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentAddressBinding
 import com.example.fooddeliveryapp.ui.adapters.AddressRecyclerAdapter
+import com.example.fooddeliveryapp.utils.ADDRESS_ID
 
 class AddressFragment : Fragment() {
 
@@ -53,7 +54,7 @@ class AddressFragment : Fragment() {
             items = emptyList(),
             onEditClicked = { address ->
                 val bundle = Bundle().apply {
-                    putInt("addressId", address.id)
+                    putInt(ADDRESS_ID, address.id)
                 }
                 findNavController().navigate(R.id.action_addressFragment_to_addNewAddressFragment, bundle)
             },

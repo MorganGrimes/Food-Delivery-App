@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.local.address.AddressEntity
 import com.example.fooddeliveryapp.databinding.RecyclerAddressLayoutBinding
+import com.example.fooddeliveryapp.utils.HOME
+import com.example.fooddeliveryapp.utils.OTHER
+import com.example.fooddeliveryapp.utils.WORK
 import java.util.Locale
 
 class AddressRecyclerAdapter(
@@ -45,10 +48,12 @@ class AddressRecyclerAdapter(
                 }
                 recyclerAddressAddressTv.text = item.addressName
 
-                val iconRes = when (item.addressLabel.lowercase()) {
-                    "home" -> R.drawable.home
-                    "work" -> R.drawable.work
-                    "other" -> R.drawable.other
+                val label = item.addressLabel.lowercase()
+
+                val iconRes = when {
+                    label.equals(HOME, ignoreCase = true) -> R.drawable.home
+                    label.equals(WORK, ignoreCase = true) -> R.drawable.work
+                    label.equals(OTHER, ignoreCase = true) -> R.drawable.other
                     else -> R.drawable.other
                 }
                 recyclerAddressIv.setImageResource(iconRes)

@@ -35,8 +35,13 @@ class FilterDialogFragment : DialogFragment() {
     }
 
     private fun setupListener() {
-        binding.filterBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_filterDialogFragment_to_foodFragment)
+        binding.apply {
+            filterBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_filterDialogFragment_to_foodFragment)
+            }
+            filterCloseIv.setOnClickListener {
+                dismiss()
+            }
         }
     }
 

@@ -12,7 +12,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentSignupBinding
+import com.example.fooddeliveryapp.utils.PLEASE_FILL
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
+import com.example.fooddeliveryapp.utils.REGISTRATION_COMPLETE
+import com.example.fooddeliveryapp.utils.THE_PASSWORD_DO_NOT_MATCHES
 import com.example.fooddeliveryapp.utils.UiUtils
 
 class SignupFragment : Fragment() {
@@ -54,7 +57,7 @@ class SignupFragment : Fragment() {
                 if (name.isEmpty() || email.isEmpty() || password.isEmpty() || retypePassword.isEmpty()) {
                     Toast.makeText(
                         requireContext(),
-                        "Please fill in all registration fields",
+                        PLEASE_FILL,
                         Toast.LENGTH_SHORT
                     )
                         .show()
@@ -64,14 +67,14 @@ class SignupFragment : Fragment() {
                 if (password != retypePassword) {
                     Toast.makeText(
                         requireContext(),
-                        "The passwords do not matches",
+                        THE_PASSWORD_DO_NOT_MATCHES,
                         Toast.LENGTH_SHORT
                     ).show()
                     return@setOnClickListener
                 }
 
                 ProfileSharedPreferences.saveUserData(requireContext(), name, email, password)
-                Toast.makeText(requireContext(), "Registration Complete!", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), REGISTRATION_COMPLETE, Toast.LENGTH_SHORT)
                     .show()
                 it.findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
             }
