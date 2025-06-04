@@ -47,23 +47,7 @@ class PaymentFragment : Fragment() {
             placeOrderBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_paymentFragment_to_paymentSuccessfullFragment)
             }
-            paymentVisaTv.setOnClickListener {
-                navigateToAddCardWithName("visa")
-            }
-            paymentMastercardTv.setOnClickListener {
-                navigateToAddCardWithName("mastercard")
-            }
-            paymentPaypalTv.setOnClickListener {
-                navigateToAddCardWithName("paypal")
-            }
         }
-    }
-
-    private fun navigateToAddCardWithName(cardName: String) {
-        val bundle = Bundle().apply {
-            putString("creditCardName", cardName)
-        }
-        findNavController().navigate(R.id.action_paymentFragment_to_addCardFragment, bundle)
     }
 
     private fun setupRecyclerView() {

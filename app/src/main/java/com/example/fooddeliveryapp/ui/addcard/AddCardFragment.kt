@@ -1,8 +1,6 @@
 package com.example.fooddeliveryapp.ui.addcard
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +15,9 @@ import com.example.fooddeliveryapp.databinding.FragmentAddCardBinding
 import com.example.fooddeliveryapp.ui.payment.PaymentViewModel
 import com.example.fooddeliveryapp.utils.CREDIT_CARD_ID
 import com.example.fooddeliveryapp.utils.FILL_FIELDS
+import com.example.fooddeliveryapp.utils.MASTERCARD
 import com.example.fooddeliveryapp.utils.UiUtils
+import com.example.fooddeliveryapp.utils.VISA
 
 class AddCardFragment : Fragment() {
 
@@ -39,7 +39,6 @@ class AddCardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getArgs()
         setupCard()
         setupListeners()
     }
@@ -77,6 +76,16 @@ class AddCardFragment : Fragment() {
 
             inputs.forEach {
                 it.addTextChangedListener { checkFormValidity() }
+            }
+
+            addCardCardNumberEt.addTextChangedListener {
+                val number = it.toString()
+                if (number.isNotEmpty()) {
+                    when (number.first()) {
+                        '4' -> selectedCardName = VISA
+                        '5' -> selectedCardName = MASTERCARD
+                    }
+                }
             }
 
             addEMakePaymentBtn.isEnabled = false
@@ -134,16 +143,9 @@ class AddCardFragment : Fragment() {
 
     private fun getCardImageResByName(cardName: String): Int {
         return when (cardName.lowercase()) {
-            "mastercard" -> R.drawable.mastercard
-            "visa" -> R.drawable.visa
-            "paypal" -> R.drawable.paypal
+            MASTERCARD -> R.drawable.mastercard
+            VISA -> R.drawable.visa
             else -> R.drawable.mastercard
-        }
-    }
-
-    private fun getArgs() {
-        arguments?.getString("creditCardName")?.let {
-            selectedCardName = it
         }
     }
 

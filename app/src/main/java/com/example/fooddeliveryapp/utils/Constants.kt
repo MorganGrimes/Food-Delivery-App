@@ -31,6 +31,11 @@ const val ADDRESSES = "addresses"
 const val CREDIT_CARDS = "credit_cards"
 const val FOOD_DELIVERY_DB = "food_delivery_db"
 const val NO_ADDRESS_INSERTED = "No address inserted"
+const val VISA = "VISA"
+const val MASTERCARD = "MASTERCARD"
+const val FOUR = "4"
+const val FIVE = "5"
+
 
 
 
