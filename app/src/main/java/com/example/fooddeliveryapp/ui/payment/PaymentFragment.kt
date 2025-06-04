@@ -5,16 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
-import com.example.fooddeliveryapp.data.model.CreditCardItemModel
 import com.example.fooddeliveryapp.databinding.FragmentPaymentBinding
 import com.example.fooddeliveryapp.ui.adapters.CreditCardRecyclerAdapter
+import com.example.fooddeliveryapp.utils.CREDIT_CARD_ID
 
 class PaymentFragment : Fragment() {
 
     private lateinit var creditCardRecyclerAdapter: CreditCardRecyclerAdapter
+    private val viewModel: PaymentViewModel by activityViewModels()
 
     private var _binding: FragmentPaymentBinding? = null
     private val binding get() = _binding!!
@@ -31,6 +33,7 @@ class PaymentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupListener()
         setupRecyclerView()
+        observeCreditCards()
     }
 
     private fun setupListener() {
@@ -44,36 +47,55 @@ class PaymentFragment : Fragment() {
             placeOrderBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_paymentFragment_to_paymentSuccessfullFragment)
             }
+            paymentVisaTv.setOnClickListener {
+                navigateToAddCardWithName("visa")
+            }
+            paymentMastercardTv.setOnClickListener {
+                navigateToAddCardWithName("mastercard")
+            }
+            paymentPaypalTv.setOnClickListener {
+                navigateToAddCardWithName("paypal")
+            }
         }
+    }
+
+    private fun navigateToAddCardWithName(cardName: String) {
+        val bundle = Bundle().apply {
+            putString("creditCardName", cardName)
+        }
+        findNavController().navigate(R.id.action_paymentFragment_to_addCardFragment, bundle)
     }
 
     private fun setupRecyclerView() {
         binding.apply {
-            val creditCard = listOf(
-                CreditCardItemModel(
-                    getString(R.string.master_card),
-                    R.drawable.mastercard,
-                    getString(R.string._345),
-                    getString(R.string.vishal_khadok),
-                    getString(R.string.mm_yyyy),
-                    getString(R.string.cvc)
-                ), CreditCardItemModel(
-                    getString(R.string.visa),
-                    R.drawable.visa,
-                    getString(R.string._345),
-                    getString(R.string.vishal_khadok),
-                    getString(R.string.mm_yyyy),
-                    getString(R.string.cvc)
-                )
-            )
 
-            creditCardRecyclerAdapter = CreditCardRecyclerAdapter(creditCard)
+            creditCardRecyclerAdapter = CreditCardRecyclerAdapter(
+                items = emptyList(),
+                onEditClicked = { card ->
+                    val bundle = Bundle().apply {
+                        putInt(CREDIT_CARD_ID, card.id)
+                    }
+                    findNavController().navigate(
+                        R.id.action_paymentFragment_to_addCardFragment,
+                        bundle
+                    )
+                },
+                onDeleteClicked = { card ->
+                    viewModel.delete(card)
+                }
+            )
 
             recyclerCreditCard.apply {
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 adapter = creditCardRecyclerAdapter
             }
+        }
+    }
+
+    private fun observeCreditCards() {
+        viewModel.allCreditCards.observe(viewLifecycleOwner) { cards ->
+            creditCardRecyclerAdapter.updateData(cards)
         }
     }
 

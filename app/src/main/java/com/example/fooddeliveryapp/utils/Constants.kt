@@ -1,6 +1,7 @@
 package com.example.fooddeliveryapp.utils
 
 const val ADDRESS_ID = "addressId"
+const val CREDIT_CARD_ID = "creditCardId"
 const val HOME = "Home"
 const val WORK = "Work"
 const val OTHER = "Other"
@@ -27,6 +28,7 @@ const val ENTER_YOUR_EMAIL = "Enter your Email"
 const val COUPON_DIALOG = "CouponDialog"
 const val FILTER_DIALOG = "FilterDialog"
 const val ADDRESSES = "addresses"
+const val CREDIT_CARDS = "credit_cards"
 const val FOOD_DELIVERY_DB = "food_delivery_db"
 const val NO_ADDRESS_INSERTED = "No address inserted"
 

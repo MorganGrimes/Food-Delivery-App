@@ -5,16 +5,24 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.fooddeliveryapp.data.local.dao.AddressDao
+import com.example.fooddeliveryapp.data.local.dao.CreditCardDao
 import com.example.fooddeliveryapp.data.local.entity.AddressEntity
+import com.example.fooddeliveryapp.data.local.entity.CreditCardEntity
 import com.example.fooddeliveryapp.utils.FOOD_DELIVERY_DB
 
-@Database(entities = [AddressEntity::class], version = 1, exportSchema = false)
+@Database(
+    entities = [AddressEntity::class, CreditCardEntity::class],
+    version = 2,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun addressDao(): AddressDao
+    abstract fun creditCardDao(): CreditCardDao
 
     companion object {
-        @Volatile private var INSTANCE: AppDatabase? = null
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
 
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
@@ -22,7 +30,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     FOOD_DELIVERY_DB
-                ).build()
+                )
+                    .fallbackToDestructiveMigration(false)
+                    .build()
                 INSTANCE = instance
                 instance
             }

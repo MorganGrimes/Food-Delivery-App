@@ -6,18 +6,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.fooddeliveryapp.data.local.entity.AddressEntity
 import com.example.fooddeliveryapp.data.local.database.AppDatabase
-import com.example.fooddeliveryapp.data.repository.AppRepository
+import com.example.fooddeliveryapp.data.repository.AddressRepository
 import kotlinx.coroutines.launch
 
 class AddressViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: AppRepository
+    private val repository: AddressRepository
 
     val allAddresses: LiveData<List<AddressEntity>>
 
     init {
         val dao = AppDatabase.getDatabase(application).addressDao()
-        repository = AppRepository(dao)
+        repository = AddressRepository(dao)
         allAddresses = repository.allAddresses
     }
 

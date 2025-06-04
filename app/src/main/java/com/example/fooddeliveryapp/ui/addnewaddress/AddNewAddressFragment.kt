@@ -94,10 +94,10 @@ class AddNewAddressFragment : Fragment() {
                     return@setOnClickListener
                 }
 
-                val name = binding.addNewAddressAddressEt.text.toString().trim()
-                val street = binding.addNewAddressStreetEt.text.toString().trim()
-                val postCode = binding.addNewAddressPostCodeEt.text.toString().trim()
-                val apartment = binding.addNewAddressApartmentEt.text.toString().trim()
+                val name = addNewAddressAddressEt.text.toString().trim()
+                val street = addNewAddressStreetEt.text.toString().trim()
+                val postCode = addNewAddressPostCodeEt.text.toString().trim()
+                val apartment = addNewAddressApartmentEt.text.toString().trim()
 
                 if (name.isEmpty() || street.isEmpty() || postCode.isEmpty() || apartment.isEmpty()) {
                     Toast.makeText(requireContext(), FILL_FIELDS, Toast.LENGTH_SHORT)

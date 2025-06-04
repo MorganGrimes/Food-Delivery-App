@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/recycler_credit_card_holder_name_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:fontFamily="@font/sen_regular"
@@ -110,6 +110,30 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/recycler_credit_card_delete_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/delete_icon"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/recycler_credit_card_edit_arrow"
+            app:layout_constraintStart_toStartOf="@+id/recycler_credit_card_edit_arrow"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/recycler_credit_card_edit_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/address_edit_icon"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_credit_card_delete_iv"
+            app:layout_constraintEnd_toStartOf="@+id/recycler_credit_card_delete_iv"
+            app:layout_constraintTop_toTopOf="@+id/recycler_credit_card_delete_iv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
