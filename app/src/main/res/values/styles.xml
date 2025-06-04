@@ -12,4 +12,9 @@
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
     </style>
+
+    <style name="WhitePopupMenu" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:popupBackground">#FFFFFF</item>
+        <item name="android:textColor">@color/black_light</item>
+    </style>
 </resources>

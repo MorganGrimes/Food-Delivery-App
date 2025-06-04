@@ -1,6 +1,7 @@
 package com.example.fooddeliveryapp.ui.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fooddeliveryapp.data.model.CreditCardItemModel
@@ -17,6 +18,24 @@ class CreditCardRecyclerAdapter(
                 recyclerCreditCardNameTv.text = item.creditCardName
                 recyclerCreditCardIconIv.setImageResource(item.creditCardImage)
                 recyclerCreditCardLastThreeNumberPinTv.text = item.creditCardLastNumbers
+                recyclerCreditCardHolderNameTv.text = item.creditCardHolderName
+                recyclerCreditCardExpireDateTv.text = item.creditCardExpireDate
+                recyclerCreditCardCvcTv.text = item.creditCardCvc
+
+                recyclerCreditCardHolderNameTv.visibility =
+                    if (item.isExpanded) View.VISIBLE else View.GONE
+                recyclerCreditCardExpireDateTv.visibility =
+                    if (item.isExpanded) View.VISIBLE else View.GONE
+                recyclerCreditCardCvcTv.visibility =
+                    if (item.isExpanded) View.VISIBLE else View.GONE
+
+                recyclerCreditCardEditArrow.setOnClickListener {
+                    item.isExpanded = !item.isExpanded
+                    val position = bindingAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        notifyItemChanged(position)
+                    }
+                }
             }
         }
     }

@@ -36,6 +36,20 @@
             app:layout_constraintTop_toBottomOf="@id/recycler_credit_card_name_tv" />
 
         <TextView
+            android:id="@+id/recycler_credit_card_holder_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/sen_regular"
+            android:text="@string/vishal_khadok"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_credit_card_name_tv"
+            app:layout_constraintStart_toEndOf="@+id/recycler_credit_card_name_tv"
+            app:layout_constraintTop_toTopOf="@+id/recycler_credit_card_name_tv" />
+
+        <TextView
             android:id="@+id/recycler_credit_card_pin_credit_card_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,11 +69,37 @@
             android:layout_marginStart="7dp"
             android:fontFamily="@font/sen_regular"
             android:text="@string/_436"
-            android:textColor="@color/grey"
+            android:textColor="@color/black_light"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/recycler_credit_card_pin_credit_card_tv"
             app:layout_constraintStart_toEndOf="@+id/recycler_credit_card_pin_credit_card_tv"
             app:layout_constraintTop_toTopOf="@+id/recycler_credit_card_pin_credit_card_tv" />
+
+        <TextView
+            android:id="@+id/recycler_credit_card_expire_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/sen_regular"
+            android:text="@string/mm_yyyy"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/recycler_credit_card_pin_credit_card_tv"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_credit_card_pin_credit_card_tv" />
+
+        <TextView
+            android:id="@+id/recycler_credit_card_cvc_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/sen_regular"
+            android:text="@string/cvc"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/recycler_credit_card_last_three_number_pin_tv"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_credit_card_last_three_number_pin_tv" />
 
         <ImageView
             android:id="@+id/recycler_credit_card_edit_arrow"

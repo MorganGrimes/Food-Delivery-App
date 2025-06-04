@@ -82,6 +82,12 @@ class MyCartFragment : Fragment() {
                 )
             )
 
+            /*if (cart.isEmpty()) {
+                myCartBottomCw.visibility = View.GONE
+            } else {
+                myCartBottomCw.visibility = View.VISIBLE
+            }*/
+
             cartItemRecyclerAdapter = CartItemRecyclerAdapter(cart)
 
             recyclerCartItem.apply {

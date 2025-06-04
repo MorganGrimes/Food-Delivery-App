@@ -173,16 +173,6 @@
                     android:textColor="@color/black"
                     android:textSize="30sp" />
 
-                <TextView
-                    android:id="@+id/my_cart_breakdown_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sen_regular"
-                    android:text="@string/breakdown"
-                    android:textColor="@color/orange"
-                    android:textSize="14sp"
-                    app:drawableEndCompat="@drawable/arrow_right" />
-
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton

@@ -44,13 +44,6 @@
                 android:textColor="@color/black_light"
                 android:textSize="20sp" />
 
-            <ImageView
-                android:id="@+id/my_orders_more_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/more"
-                tools:ignore="ContentDescription" />
-
         </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout

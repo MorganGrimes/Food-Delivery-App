@@ -28,6 +28,7 @@ const val COUPON_DIALOG = "CouponDialog"
 const val FILTER_DIALOG = "FilterDialog"
 const val ADDRESSES = "addresses"
 const val FOOD_DELIVERY_DB = "food_delivery_db"
+const val NO_ADDRESS_INSERTED = "No address inserted"
 
 
 

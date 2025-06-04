@@ -53,11 +53,17 @@ class PaymentFragment : Fragment() {
                 CreditCardItemModel(
                     getString(R.string.master_card),
                     R.drawable.mastercard,
-                    getString(R.string._345)
+                    getString(R.string._345),
+                    getString(R.string.vishal_khadok),
+                    getString(R.string.mm_yyyy),
+                    getString(R.string.cvc)
                 ), CreditCardItemModel(
                     getString(R.string.visa),
                     R.drawable.visa,
-                    getString(R.string._345)
+                    getString(R.string._345),
+                    getString(R.string.vishal_khadok),
+                    getString(R.string.mm_yyyy),
+                    getString(R.string.cvc)
                 )
             )
 
