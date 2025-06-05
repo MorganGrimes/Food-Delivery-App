@@ -33,8 +33,8 @@ const val FOOD_DELIVERY_DB = "food_delivery_db"
 const val NO_ADDRESS_INSERTED = "No address inserted"
 const val VISA = "VISA"
 const val MASTERCARD = "MASTERCARD"
-const val FOUR = "4"
-const val FIVE = "5"
+const val VISA_CAMELCASE = "Visa"
+const val MASTERCARD_CAMELCASE = "Mastercard"
 
 
 

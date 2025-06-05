@@ -15,21 +15,23 @@ class CreditCardRecyclerAdapter(
 ) : RecyclerView.Adapter<CreditCardRecyclerAdapter.CreditCardViewHolder>() {
 
     fun updateData(newItems: List<CreditCardEntity>) {
+        val resetItems = newItems.map { it.copy(isExpanded = false) }
+
         val diffCallback = object : DiffUtil.Callback() {
             override fun getOldListSize() = items.size
-            override fun getNewListSize() = newItems.size
+            override fun getNewListSize() = resetItems.size
 
             override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return items[oldItemPosition].id == newItems[newItemPosition].id
+                return items[oldItemPosition].id == resetItems[newItemPosition].id
             }
 
             override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return items[oldItemPosition] == newItems[newItemPosition]
+                return items[oldItemPosition] == resetItems[newItemPosition]
             }
         }
         val diffResult = DiffUtil.calculateDiff(diffCallback)
 
-        items = newItems
+        items = resetItems
         diffResult.dispatchUpdatesTo(this)
     }
 

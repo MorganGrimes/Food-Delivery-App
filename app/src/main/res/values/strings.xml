@@ -180,5 +180,8 @@ you just place the order we do the rest</string>
     <string name="resend_in">Resend in %d sec"</string>
     <string name="expire_date">EXPIRE DATE</string>
     <string name="sushi">Sushi</string>
+    <string name="month_not_valid">Month not valid!</string>
+    <string name="year_not_valid">Year not valid!</string>
+    <string name="number_must_be_16">The number must be 16 digits</string>
 
 </resources>

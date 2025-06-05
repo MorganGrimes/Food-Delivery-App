@@ -12,6 +12,8 @@ import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentPaymentBinding
 import com.example.fooddeliveryapp.ui.adapters.CreditCardRecyclerAdapter
 import com.example.fooddeliveryapp.utils.CREDIT_CARD_ID
+import com.example.fooddeliveryapp.utils.MASTERCARD_CAMELCASE
+import com.example.fooddeliveryapp.utils.VISA_CAMELCASE
 
 class PaymentFragment : Fragment() {
 
@@ -47,6 +49,18 @@ class PaymentFragment : Fragment() {
             placeOrderBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_paymentFragment_to_paymentSuccessfullFragment)
             }
+
+            paymentVisaTv.setOnClickListener {
+                filterCardsByType(VISA_CAMELCASE)
+                binding.paymentVisaTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.visa_selected, 0, 0)
+                binding.paymentMastercardTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.mastercard, 0, 0)
+            }
+
+            paymentMastercardTv.setOnClickListener {
+                filterCardsByType(MASTERCARD_CAMELCASE)
+                paymentMastercardTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.mastercard_selected, 0, 0)
+                binding.paymentVisaTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.visa, 0, 0)
+            }
         }
     }
 
@@ -80,6 +94,13 @@ class PaymentFragment : Fragment() {
     private fun observeCreditCards() {
         viewModel.allCreditCards.observe(viewLifecycleOwner) { cards ->
             creditCardRecyclerAdapter.updateData(cards)
+        }
+    }
+
+    private fun filterCardsByType(type: String) {
+        viewModel.allCreditCards.value?.let { cards ->
+            val filtered = cards.filter { it.creditCardName.equals(type, ignoreCase = true) }
+            creditCardRecyclerAdapter.updateData(filtered)
         }
     }
 

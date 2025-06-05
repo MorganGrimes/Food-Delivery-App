@@ -1,6 +1,8 @@
 package com.example.fooddeliveryapp.ui.addcard
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -79,15 +81,19 @@ class AddCardFragment : Fragment() {
             }
 
             addCardCardNumberEt.addTextChangedListener {
-                val number = it.toString()
-                if (number.isNotEmpty()) {
-                    when (number.first()) {
-                        '4' -> selectedCardName = VISA
-                        '5' -> selectedCardName = MASTERCARD
-                    }
+                val number = it.toString().trim()
+                selectedCardName = when {
+                    number.startsWith("4") -> VISA
+                    number.startsWith("5") -> MASTERCARD
+                    else -> getString(R.string.master_card)
+                }
+                if (number.length in 1..15) {
+                    binding.addCardCardNumberEt.error = getString(R.string.number_must_be_16)
+                } else {
+                    binding.addCardCardNumberEt.error = null
                 }
             }
-
+            creditCardExpireDateValidation()
             addEMakePaymentBtn.isEnabled = false
             addEMakePaymentBtn.setBackgroundColor(UiUtils.brownColor)
 
@@ -96,7 +102,6 @@ class AddCardFragment : Fragment() {
                 val cardNumber = addCardCardNumberEt.text.toString().trim()
                 val expireDate = addCardExpireDateCardEt.text.toString().trim()
                 val cvc = addCardCvcEt.text.toString().trim()
-
                 if (holderName.isEmpty() || cardNumber.isEmpty() || expireDate.isEmpty() || cvc.isEmpty()) {
                     Toast.makeText(requireContext(), FILL_FIELDS, Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
@@ -128,8 +133,10 @@ class AddCardFragment : Fragment() {
 
     private fun checkFormValidity() {
         binding.apply {
+            val cardNumber = addCardCardNumberEt.text?.toString()?.filter { it.isDigit() } ?: ""
+
             val valid = addCardCardHolderNameEt.text?.isNotBlank() == true &&
-                    addCardCardNumberEt.text?.isNotBlank() == true &&
+                    cardNumber.length == 16 &&
                     addCardExpireDateCardEt.text?.isNotBlank() == true &&
                     addCardCvcEt.text?.isNotBlank() == true
 
@@ -142,10 +149,69 @@ class AddCardFragment : Fragment() {
     }
 
     private fun getCardImageResByName(cardName: String): Int {
-        return when (cardName.lowercase()) {
+        return when (cardName) {
             MASTERCARD -> R.drawable.mastercard
             VISA -> R.drawable.visa
-            else -> R.drawable.mastercard
+            else -> R.drawable.ic_launcher_background
+        }
+    }
+
+    private fun creditCardExpireDateValidation() {
+        binding.apply {
+            addCardExpireDateCardEt.addTextChangedListener(object : TextWatcher {
+                private var previousText = ""
+                private var isFormatting = false
+
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                    previousText = s?.toString() ?: ""
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+                override fun afterTextChanged(s: Editable?) {
+                    if (isFormatting) return
+                    isFormatting = true
+
+                    val raw = s.toString().replace("/", "")
+                    val formatted = StringBuilder()
+
+                    for (i in raw.indices) {
+                        if (i == 2) formatted.append("/")
+                        formatted.append(raw[i])
+                    }
+
+                    val current = addCardExpireDateCardEt.text.toString()
+                    if (formatted.toString() != current) {
+                        addCardExpireDateCardEt.removeTextChangedListener(this)
+                        s?.replace(0, s.length, formatted.toString())
+                        addCardExpireDateCardEt.addTextChangedListener(this)
+                    }
+
+                    if (raw.length >= 4) {
+                        val mm = raw.substring(0, 2).toIntOrNull()
+                        val yyyy = raw.substring(2).toIntOrNull()
+
+                        val now = java.util.Calendar.getInstance()
+                        val currentMonth = now.get(java.util.Calendar.MONTH) + 1
+                        val currentYear = now.get(java.util.Calendar.YEAR)
+
+                        val validMonth = mm != null && mm in 1..12
+                        val validDate = yyyy != null &&
+                                (yyyy > currentYear || (yyyy == currentYear && mm!! >= currentMonth))
+
+                        when {
+                            !validMonth -> addCardExpireDateCardEt.error = getString(R.string.month_not_valid)
+                            !validDate -> addCardExpireDateCardEt.error = getString(R.string.year_not_valid)
+                            else -> addCardExpireDateCardEt.error = null
+                        }
+                    } else {
+                        addCardExpireDateCardEt.error = null
+                    }
+
+                    isFormatting = false
+                }
+            })
+
         }
     }
 
