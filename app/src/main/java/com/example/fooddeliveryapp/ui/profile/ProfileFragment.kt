@@ -12,8 +12,6 @@ import com.example.fooddeliveryapp.databinding.FragmentProfileBinding
 import com.example.fooddeliveryapp.utils.FOOD_PREFS
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
 import com.example.fooddeliveryapp.utils.REMEMBER_ME
-import com.example.fooddeliveryapp.utils.SAVED_EMAIL
-import com.example.fooddeliveryapp.utils.SAVED_PSW
 
 class ProfileFragment : Fragment() {
 

@@ -13,6 +13,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentLoginBinding
+import com.example.fooddeliveryapp.utils.EMAIL
+import com.example.fooddeliveryapp.utils.ERROR_FACEBOOK
+import com.example.fooddeliveryapp.utils.FB_LOGIN
+import com.example.fooddeliveryapp.utils.LOGIN_CANCELED
+import com.example.fooddeliveryapp.utils.LOGIN_ERROR
+import com.example.fooddeliveryapp.utils.LOGIN_SUCCESS
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences.getIsLoggedIn
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences.saveEmail
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences.setLoggedIn
@@ -134,21 +140,17 @@ class LoginFragment : Fragment() {
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(result: LoginResult) {
-                    Log.i("FBLogin", "Login success: ${result.accessToken.token}")
-
+                    Log.i(FB_LOGIN,LOGIN_SUCCESS + {result.accessToken.token})
                     val request = GraphRequest.newMeRequest(result.accessToken) { obj, _ ->
                         try {
-                            val email = obj?.getString("email")
-                            val name = obj?.getString("name")
-                            Log.i("FBLogin", "Email: $email, Name: $name")
-
+                            val email = obj?.getString(EMAIL)
                             val context = requireContext()
                             email?.let { saveEmail(context, it) }
                             setLoggedIn(context, true)
 
                             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                         } catch (e: JSONException) {
-                            Log.e("FBLogin", "Error parsing Facebook user data", e)
+                            Log.e(FB_LOGIN, ERROR_FACEBOOK, e)
                         }
                     }
 
@@ -159,11 +161,11 @@ class LoginFragment : Fragment() {
                 }
 
                 override fun onCancel() {
-                    Log.i("FBLogin", "Login canceled")
+                    Log.i(FB_LOGIN, LOGIN_CANCELED)
                 }
 
                 override fun onError(error: FacebookException) {
-                    Log.i("FBLogin", "Login error: ${error.message}", error)
+                    Log.i(FB_LOGIN, LOGIN_ERROR + {error.message}, error)
                 }
             })
 
@@ -175,7 +177,6 @@ class LoginFragment : Fragment() {
         }
     }
 
-    @Suppress("DEPRECATION")
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
