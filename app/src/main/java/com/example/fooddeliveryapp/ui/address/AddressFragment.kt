@@ -33,6 +33,7 @@ class AddressFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupListener()
         setupRecyclerView()
+
         viewModel.allAddresses.observe(viewLifecycleOwner) { addresses ->
             addressRecyclerAdapter.updateData(addresses)
         }

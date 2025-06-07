@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.dotsindicator)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.constraintlayout)
+    implementation (libs.facebook.login)
     implementation (libs.androidx.navigation.fragment.ktx.v235)
     implementation (libs.androidx.navigation.ui.ktx.v235)
     implementation (libs.androidx.room.runtime)

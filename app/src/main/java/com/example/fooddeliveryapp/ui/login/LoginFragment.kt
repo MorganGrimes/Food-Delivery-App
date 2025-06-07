@@ -1,7 +1,9 @@
 package com.example.fooddeliveryapp.ui.login
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,11 +22,18 @@ import com.example.fooddeliveryapp.utils.SAVED_EMAIL
 import com.example.fooddeliveryapp.utils.SAVED_PSW
 import com.example.fooddeliveryapp.utils.UiUtils
 import com.example.fooddeliveryapp.utils.WRONG_EMAIL_PSW
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var callbackManager: CallbackManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,11 +48,14 @@ class LoginFragment : Fragment() {
         setupInputValidation()
         setupListener()
         checkRememberMe()
+        facebookLogin()
     }
 
     private fun setupListener() {
+        callbackManager = CallbackManager.Factory.create()
         val navController = findNavController()
         binding.apply {
+            listOf("email")
 
             loginForgotPasswordTv.setOnClickListener {
                 navController.navigate(R.id.action_loginFragment_to_authFragment)
@@ -51,7 +63,6 @@ class LoginFragment : Fragment() {
             loginSignUpTv.setOnClickListener {
                 navController.navigate(R.id.action_loginFragment_to_signupFragment)
             }
-
 
             loginBtn.setOnClickListener {
                 val emailInput = loginEmailEt.text.toString().trim()
@@ -147,6 +158,40 @@ class LoginFragment : Fragment() {
                 loginRememberCheckbox.isChecked = true
             }
         }
+    }
+
+    private fun facebookLogin() {
+
+        callbackManager = CallbackManager.Factory.create()
+
+        LoginManager.getInstance().registerCallback(callbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult) {
+                    Log.i("FBLogin", "Login success: ${result.accessToken.token}")
+                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                }
+
+                override fun onCancel() {
+                    Log.i("FBLogin", "Login canceled")
+                }
+
+                override fun onError(error: FacebookException) {
+                    Log.i("FBLogin", "Login error: ${error.message}", error)
+                }
+            })
+
+        binding.facebookIconIv.setOnClickListener {
+            LoginManager.getInstance().logInWithReadPermissions(
+                this@LoginFragment,
+                listOf("email", "public_profile")
+            )
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        callbackManager.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onDestroyView() {
