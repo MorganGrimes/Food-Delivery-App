@@ -27,9 +27,14 @@ class CouponDialogFragment : DialogFragment() {
         setupListener()
     }
 
-    private fun setupListener(){
-        binding.closeIcon.setOnClickListener {
-            dismiss()
+    private fun setupListener() {
+        binding.apply {
+            closeIcon.setOnClickListener {
+                dismiss()
+            }
+            gotItBtn.setOnClickListener {
+                dismiss()
+            }
         }
     }
 
