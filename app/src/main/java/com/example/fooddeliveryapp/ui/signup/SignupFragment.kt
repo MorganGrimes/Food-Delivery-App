@@ -3,22 +3,24 @@ package com.example.fooddeliveryapp.ui.signup
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
+import com.example.fooddeliveryapp.data.model.SignupData
 import com.example.fooddeliveryapp.databinding.FragmentSignupBinding
 import com.example.fooddeliveryapp.utils.PLEASE_FILL
-import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
 import com.example.fooddeliveryapp.utils.REGISTRATION_COMPLETE
 import com.example.fooddeliveryapp.utils.THE_PASSWORD_DO_NOT_MATCHES
 import com.example.fooddeliveryapp.utils.UiUtils
 
 class SignupFragment : Fragment() {
+
+    private var signupData: SignupData? = null
 
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
@@ -73,10 +75,15 @@ class SignupFragment : Fragment() {
                     return@setOnClickListener
                 }
 
-                ProfileSharedPreferences.saveUserData(requireContext(), name, email, password)
                 Toast.makeText(requireContext(), REGISTRATION_COMPLETE, Toast.LENGTH_SHORT)
                     .show()
                 it.findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
+
+                signupData = SignupData(name, email, password)
+
+                Toast.makeText(requireContext(), REGISTRATION_COMPLETE, Toast.LENGTH_SHORT).show()
+                it.findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
+
             }
         }
     }

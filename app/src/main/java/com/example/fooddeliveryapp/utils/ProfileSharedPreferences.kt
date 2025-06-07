@@ -11,9 +11,9 @@ object ProfileSharedPreferences {
     private const val KEY_EMAIL = "user_email"
     private const val KEY_PHONE = "user_phone"
     private const val KEY_BIO = "user_bio"
-    private const val KEY_PASSWORD = "user_password"
     private const val KEY_OTP = "user_otp"
     private const val KEY_LAUNCH_COUNT = "launch_count"
+    private const val KEY_IS_LOGGED_IN = "is_logged_in"
 
     private fun getPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -27,13 +27,16 @@ object ProfileSharedPreferences {
         getPreferences(context).edit().putBoolean(KEY_ONBOARDING_COMPLETED, completed).apply()
     }
 
-    fun saveUserData(context: Context, name: String, email: String, password: String) {
-        getPreferences(context).edit().apply {
-            putString(KEY_NAME, name)
-            putString(KEY_EMAIL, email)
-            putString(KEY_PASSWORD, password)
-            apply()
-        }
+    fun setLoggedIn(context: Context, isLoggedIn: Boolean) {
+        getPreferences(context).edit().putBoolean(KEY_IS_LOGGED_IN, isLoggedIn).apply()
+    }
+
+    fun getIsLoggedIn(context: Context): Boolean {
+        return getPreferences(context).getBoolean(KEY_IS_LOGGED_IN, false)
+    }
+
+    fun saveEmail(context: Context, email: String) {
+        getPreferences(context).edit().putString(KEY_EMAIL, email).apply()
     }
 
     fun saveUserProfile(context: Context, name: String, email: String, phone: String, bio: String) {
@@ -47,8 +50,7 @@ object ProfileSharedPreferences {
     }
 
     fun clearUserData(context: Context) {
-        val prefs = context.getSharedPreferences(FOOD_PREFS, Context.MODE_PRIVATE)
-        with(prefs.edit()) {
+        with(getPreferences(context).edit()) {
             clear()
             apply()
         }
@@ -56,7 +58,6 @@ object ProfileSharedPreferences {
 
     fun getUserName(context: Context): String? = getPreferences(context).getString(KEY_NAME, null)
     fun getUserEmail(context: Context): String? = getPreferences(context).getString(KEY_EMAIL, null)
-    fun getUserPassword(context: Context): String? = getPreferences(context).getString(KEY_PASSWORD, null)
     fun getUserPhone(context: Context): String? = getPreferences(context).getString(KEY_PHONE, null)
     fun getUserBio(context: Context): String? = getPreferences(context).getString(KEY_BIO, null)
 

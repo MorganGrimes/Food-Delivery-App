@@ -62,11 +62,9 @@ class ProfileFragment : Fragment() {
                     requireActivity().getSharedPreferences(FOOD_PREFS, Context.MODE_PRIVATE)
                 with(sharedPref.edit()) {
                     putBoolean(REMEMBER_ME, false)
-                    remove(SAVED_EMAIL)
-                    remove(SAVED_PSW)
                     apply()
                 }
-
+                com.facebook.login.LoginManager.getInstance().logOut()
                 findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
             }
         }
