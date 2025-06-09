@@ -36,6 +36,8 @@ const val LOGIN_CANCELED = "Login canceled:"
 const val LOGIN_ERROR = "Login error:"
 const val EMAIL = "email"
 const val ERROR_FACEBOOK = "Error parsing Facebook user data"
+const val ERROR_TWITTER = "Error parsing Twitter user data"
+const val NO_EMAIL = "No email available"
 
 
 

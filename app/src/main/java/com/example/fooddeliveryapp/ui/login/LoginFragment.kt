@@ -15,10 +15,12 @@ import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentLoginBinding
 import com.example.fooddeliveryapp.utils.EMAIL
 import com.example.fooddeliveryapp.utils.ERROR_FACEBOOK
+import com.example.fooddeliveryapp.utils.ERROR_TWITTER
 import com.example.fooddeliveryapp.utils.FB_LOGIN
 import com.example.fooddeliveryapp.utils.LOGIN_CANCELED
 import com.example.fooddeliveryapp.utils.LOGIN_ERROR
 import com.example.fooddeliveryapp.utils.LOGIN_SUCCESS
+import com.example.fooddeliveryapp.utils.NO_EMAIL
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences.getIsLoggedIn
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences.saveEmail
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences.setLoggedIn
@@ -188,13 +190,12 @@ class LoginFragment : Fragment() {
 
             val pendingResultTask = firebaseAuth.pendingAuthResult
             if (pendingResultTask != null) {
-                // C'è un login in sospeso
                 pendingResultTask
                     .addOnSuccessListener { authResult ->
                         onTwitterLoginSuccess(authResult)
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(context, "Errore Twitter: ${e.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, ERROR_TWITTER + {e.message}, Toast.LENGTH_SHORT).show()
                     }
             } else {
                 firebaseAuth
@@ -203,14 +204,14 @@ class LoginFragment : Fragment() {
                         onTwitterLoginSuccess(authResult)
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(context, "Login fallito: ${e.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, LOGIN_ERROR + {e.message}, Toast.LENGTH_SHORT).show()
                     }
             }
         }
     }
 
     private fun onTwitterLoginSuccess(authResult: AuthResult) {
-        val email = authResult.user?.email ?: "no_email_available"
+        val email = authResult.user?.email ?: NO_EMAIL
         val context = requireContext()
 
         saveEmail(context, email)
