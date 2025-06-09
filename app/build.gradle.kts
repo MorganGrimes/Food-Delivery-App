@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
     id ("androidx.navigation.safeargs.kotlin")
     id("com.google.devtools.ksp")
 }
@@ -62,6 +63,8 @@ dependencies {
     implementation (libs.androidx.navigation.ui.ktx.v235)
     implementation (libs.androidx.room.runtime)
     implementation (libs.androidx.room.ktx)
+    implementation (libs.firebase.auth)
+    implementation (platform(libs.firebase.bom))
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -183,8 +183,10 @@ you just place the order we do the rest</string>
     <string name="month_not_valid">Month not valid!</string>
     <string name="year_not_valid">Year not valid!</string>
     <string name="number_must_be_16">The number must be 16 digits</string>
-    <string name="facebook_app_id">2147900189019737</string>
-    <string name="fb_login_protocol_scheme">fb2147900189019737</string>
-    <string name="facebook_client_token">d15eef77aedb171133149b5d5c8adea5</string>
+    <string name="facebook_app_id">2005793646847216</string>
+    <string name="fb_login_protocol_scheme">fb2005793646847216</string>
+    <string name="facebook_client_token">8cc05fcf9fa84233ec511856270beff9</string>
+    <string name="twitter_consumer_key">D8RLo8Kf5OgUrzozVoK9y6hXf</string>
+    <string name="twitter_consumer_secret">qSUCY9ffGMsJaiiwOp5MO8ytEMy5UmPIy7AaNOS90iNihoeluq</string>
 
 </resources>

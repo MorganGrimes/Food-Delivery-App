@@ -30,6 +30,9 @@ import com.facebook.FacebookException
 import com.facebook.GraphRequest
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.OAuthProvider
 import org.json.JSONException
 
 class LoginFragment : Fragment() {
@@ -54,6 +57,7 @@ class LoginFragment : Fragment() {
         setupListener()
         checkRememberMe()
         facebookLogin()
+        twitterLogin()
     }
 
     private fun setupListener() {
@@ -175,6 +179,45 @@ class LoginFragment : Fragment() {
                 listOf("email", "public_profile")
             )
         }
+    }
+
+    private fun twitterLogin(){
+        binding.twitterIconIv.setOnClickListener {
+            val provider = OAuthProvider.newBuilder("twitter.com")
+            val firebaseAuth = FirebaseAuth.getInstance()
+
+            val pendingResultTask = firebaseAuth.pendingAuthResult
+            if (pendingResultTask != null) {
+                // C'è un login in sospeso
+                pendingResultTask
+                    .addOnSuccessListener { authResult ->
+                        onTwitterLoginSuccess(authResult)
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(context, "Errore Twitter: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+            } else {
+                firebaseAuth
+                    .startActivityForSignInWithProvider(requireActivity(), provider.build())
+                    .addOnSuccessListener { authResult ->
+                        onTwitterLoginSuccess(authResult)
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(context, "Login fallito: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+            }
+        }
+    }
+
+    private fun onTwitterLoginSuccess(authResult: AuthResult) {
+        val email = authResult.user?.email ?: "no_email_available"
+        val context = requireContext()
+
+        saveEmail(context, email)
+        setLoggedIn(context, true)
+
+
+        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
     }
 
     @Deprecated("Deprecated in Java")
