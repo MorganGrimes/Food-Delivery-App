@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentPaymentSuccessfullBinding
@@ -25,14 +27,35 @@ class PaymentSuccessfullFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupListener()
+        onCustomBackPressed()
     }
 
     private fun setupListener() {
         binding.apply {
             yourOrdersBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_paymentSuccessfullFragment_to_myOrdersTabsFragment)
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(R.id.homeFragment, false)
+                    .setLaunchSingleTop(true)
+                    .build()
+
+                findNavController().navigate(R.id.myOrdersTabsFragment, null, navOptions)
             }
         }
+    }
+
+    private fun onCustomBackPressed() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    val navOptions = NavOptions.Builder()
+                        .setPopUpTo(R.id.homeFragment, false)
+                        .setLaunchSingleTop(true)
+                        .build()
+                    findNavController().navigate(R.id.homeFragment, null, navOptions)
+                }
+            }
+        )
     }
 
     override fun onDestroyView() {

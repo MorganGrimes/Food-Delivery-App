@@ -20,6 +20,7 @@ import com.example.fooddeliveryapp.utils.OTHER
 import com.example.fooddeliveryapp.utils.SELECT_LABEL
 import com.example.fooddeliveryapp.utils.UiUtils
 import com.example.fooddeliveryapp.utils.WORK
+import androidx.navigation.NavOptions
 
 class AddNewAddressFragment : Fragment() {
 
@@ -83,6 +84,9 @@ class AddNewAddressFragment : Fragment() {
             saveLocationBtn.isEnabled = false
             saveLocationBtn.setBackgroundColor(UiUtils.brownColor)
 
+            addNewAddressBackIv.setOnClickListener {
+                findNavController().popBackStack()
+            }
             saveLocationBtn.setOnClickListener {
                 val label = selectedLabel
                 if (label.isNullOrBlank()) {
@@ -120,7 +124,11 @@ class AddNewAddressFragment : Fragment() {
                     viewModel.insert(address)
                 }
 
-                findNavController().navigate(R.id.action_addNewAddressFragment_to_addressFragment)
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(R.id.addNewAddressFragment, true)
+                    .build()
+
+                findNavController().navigate(R.id.addressFragment, null, navOptions)
             }
         }
     }

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.local.entity.CreditCardEntity
@@ -126,7 +127,11 @@ class AddCardFragment : Fragment() {
                     viewModel.insert(card)
                 }
 
-                findNavController().navigate(R.id.action_addCardFragment_to_paymentFragment)
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(R.id.addCardFragment, true)
+                    .build()
+
+                findNavController().navigate(R.id.paymentFragment, null, navOptions)
             }
         }
     }

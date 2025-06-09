@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
@@ -47,7 +48,11 @@ class PaymentFragment : Fragment() {
                 findNavController().navigate(R.id.action_paymentFragment_to_addCardFragment)
             }
             placeOrderBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_paymentFragment_to_paymentSuccessfullFragment)
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(R.id.paymentFragment, true)
+                    .build()
+
+                findNavController().navigate(R.id.paymentSuccessfullFragment, null, navOptions)
             }
 
             paymentVisaTv.setOnClickListener {

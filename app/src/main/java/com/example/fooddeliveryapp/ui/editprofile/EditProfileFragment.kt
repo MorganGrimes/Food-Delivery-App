@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentEditProfileBinding
@@ -50,7 +51,11 @@ class EditProfileFragment : Fragment() {
 
                 ProfileSharedPreferences.saveUserProfile(requireContext(), name, email, phone, bio)
 
-                findNavController().navigate(R.id.action_editProfileFragment_to_personalProfilesFragment)
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(R.id.editProfileFragment, true)
+                    .build()
+
+                findNavController().navigate(R.id.personalProfilesFragment, null, navOptions)
             }
             editProfileBackIconIv.setOnClickListener {
                 findNavController().popBackStack()

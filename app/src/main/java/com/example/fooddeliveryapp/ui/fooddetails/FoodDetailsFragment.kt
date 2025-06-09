@@ -30,7 +30,7 @@ class FoodDetailsFragment : Fragment() {
     private fun setupListener() {
         binding.apply {
             addToCartBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_foodDetailsFragment_to_homeFragment)
+                findNavController().navigate(R.id.action_foodDetailsFragment_to_homeFragment) //CHANGE AFTER ADDING API
             }
             foodDetailsBackIconIv.setOnClickListener {
                 findNavController().popBackStack()
