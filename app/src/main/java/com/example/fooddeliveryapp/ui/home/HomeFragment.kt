@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
@@ -22,12 +23,17 @@ import com.example.fooddeliveryapp.ui.coupon.CouponDialogFragment
 import com.example.fooddeliveryapp.utils.COUPON_DIALOG
 import com.example.fooddeliveryapp.utils.NO_ADDRESS_INSERTED
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+
 
 class HomeFragment : Fragment() {
 
     private lateinit var categoriesRecyclerAdapter: CategoriesRecyclerAdapter
     private lateinit var openRestaurantsRecyclerAdapter: OpenRestaurantsRecyclerAdapter
     private val addressViewModel: AddressViewModel by activityViewModels()
+    private val homeViewModel: HomeViewModel by viewModels()
+
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -90,7 +96,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
     private fun checkAndShowCouponDialog() {
         ProfileSharedPreferences.incrementAppLaunchCount(requireContext())
         if (ProfileSharedPreferences.shouldShowCouponDialog(requireContext())) {
@@ -111,11 +116,26 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.apply {
-            val categories = listOf(
-                CategoriesItemModel(R.drawable.menu, getString(R.string.hot_dog)),
-                CategoriesItemModel(R.drawable.menu, getString(R.string.pizza)),
-                CategoriesItemModel(R.drawable.menu, getString(R.string.sushi))
-            )
+            categoriesRecyclerAdapter = CategoriesRecyclerAdapter(emptyList()) {
+                findNavController().navigate(R.id.action_homeFragment_to_foodFragment)
+            }
+
+            categoriesRecycler.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                adapter = categoriesRecyclerAdapter
+            }
+
+            lifecycleScope.launch {
+                homeViewModel.fetchCategories()
+            }
+
+            homeViewModel.categories.observe(viewLifecycleOwner) { categories ->
+                val formatted = categories.map {
+                    CategoriesItemModel(R.drawable.menu, it)
+                }
+                categoriesRecyclerAdapter.updateList(formatted)
+            }
 
             val restaurant = listOf(
                 RestaurantsItemModel(
@@ -149,9 +169,6 @@ class HomeFragment : Fragment() {
                 )
             )
 
-            categoriesRecyclerAdapter = CategoriesRecyclerAdapter(categories) {
-                findNavController().navigate(R.id.action_homeFragment_to_foodFragment)
-            }
             openRestaurantsRecyclerAdapter = OpenRestaurantsRecyclerAdapter(restaurant) {
                 findNavController().navigate(R.id.action_homeFragment_to_restaurantViewFragment)
             }
