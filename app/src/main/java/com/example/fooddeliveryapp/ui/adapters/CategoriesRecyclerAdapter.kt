@@ -56,7 +56,6 @@ class CategoriesRecyclerAdapter(
         override fun getNewListSize() = newList.size
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            // Unique identifier for an item; here we use name assuming it's unique
             return oldList[oldItemPosition].foodName == newList[newItemPosition].foodName
         }
 

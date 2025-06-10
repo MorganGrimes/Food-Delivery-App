@@ -173,12 +173,6 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_restaurantViewFragment)
             }
 
-            categoriesRecycler.apply {
-                layoutManager =
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                adapter = categoriesRecyclerAdapter
-            }
-
             restaurantsRecycler.apply {
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

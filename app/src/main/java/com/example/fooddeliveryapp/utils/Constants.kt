@@ -39,7 +39,8 @@ const val ERROR_FACEBOOK = "Error parsing Facebook user data"
 const val ERROR_TWITTER = "Error parsing Twitter user data"
 const val NO_EMAIL = "No email available"
 const val PAYMENT_FAILED = "Payment failed try again!"
-
+const val ERROR = "Error"
+const val TRY_AGAIN = "Try Again"
 
 
 
