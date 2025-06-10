@@ -65,6 +65,7 @@ dependencies {
     implementation (libs.androidx.room.ktx)
     implementation (libs.firebase.auth)
     implementation (platform(libs.firebase.bom))
+    implementation(libs.androidx.activity)
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

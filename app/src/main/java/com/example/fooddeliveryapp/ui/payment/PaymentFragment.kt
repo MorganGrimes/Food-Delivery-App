@@ -1,9 +1,11 @@
 package com.example.fooddeliveryapp.ui.payment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavOptions
@@ -11,9 +13,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentPaymentBinding
+import com.example.fooddeliveryapp.ui.PaypalWebViewActivity
 import com.example.fooddeliveryapp.ui.adapters.CreditCardRecyclerAdapter
 import com.example.fooddeliveryapp.utils.CREDIT_CARD_ID
 import com.example.fooddeliveryapp.utils.MASTERCARD_CAMELCASE
+import com.example.fooddeliveryapp.utils.PAYMENT_FAILED
 import com.example.fooddeliveryapp.utils.VISA_CAMELCASE
 
 class PaymentFragment : Fragment() {
@@ -56,16 +60,57 @@ class PaymentFragment : Fragment() {
             }
 
             paymentVisaTv.setOnClickListener {
+                recyclerCreditCard.visibility = View.VISIBLE
                 filterCardsByType(VISA_CAMELCASE)
-                binding.paymentVisaTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.visa_selected, 0, 0)
-                binding.paymentMastercardTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.mastercard, 0, 0)
+                paymentVisaTv.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    R.drawable.visa_selected,
+                    0,
+                    0
+                )
+                paymentMastercardTv.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    R.drawable.mastercard,
+                    0,
+                    0
+                )
+                paymentCashTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.cash, 0, 0)
+                paymentPaypalTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.paypal, 0, 0)
             }
 
             paymentMastercardTv.setOnClickListener {
+                recyclerCreditCard.visibility = View.VISIBLE
                 filterCardsByType(MASTERCARD_CAMELCASE)
-                paymentMastercardTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.mastercard_selected, 0, 0)
-                binding.paymentVisaTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.visa, 0, 0)
+                paymentMastercardTv.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    R.drawable.mastercard_selected,
+                    0,
+                    0
+                )
+                paymentVisaTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.visa, 0, 0)
+                paymentCashTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.cash, 0, 0)
+                paymentPaypalTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.paypal, 0, 0)
             }
+
+            paymentCashTv.setOnClickListener {
+                recyclerCreditCard.visibility = View.GONE
+                paymentMastercardTv.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    R.drawable.mastercard,
+                    0,
+                    0
+                )
+                paymentVisaTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.visa, 0, 0)
+                paymentCashTv.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    R.drawable.cash_selected,
+                    0,
+                    0
+                )
+                paymentPaypalTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.paypal, 0, 0)
+            }
+
+            paypalPayment()
         }
     }
 
@@ -96,6 +141,46 @@ class PaymentFragment : Fragment() {
         }
     }
 
+    private fun paypalPayment() {
+        binding.apply {
+            paymentPaypalTv.setOnClickListener {
+                recyclerCreditCard.visibility = View.GONE
+                paymentMastercardTv.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    R.drawable.mastercard,
+                    0,
+                    0
+                )
+                paymentVisaTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.visa, 0, 0)
+                paymentCashTv.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    R.drawable.cash,
+                    0,
+                    0
+                )
+                paymentPaypalTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.paypal_selected, 0, 0)
+                val paypalPaymentUrl =
+                    "https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=YOUR_TOKEN_HERE"
+
+                val intent = Intent(requireContext(), PaypalWebViewActivity::class.java)
+                intent.putExtra("url", paypalPaymentUrl)
+                startActivityForResult(intent, PAYPAL_REQUEST_CODE)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PAYPAL_REQUEST_CODE) {
+            val paymentSuccess = data?.getBooleanExtra("paymentSuccess", false) ?: false
+            if (paymentSuccess) {
+                findNavController().navigate(R.id.paymentSuccessfullFragment)
+            } else {
+                Toast.makeText(requireContext(), PAYMENT_FAILED, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun observeCreditCards() {
         viewModel.allCreditCards.observe(viewLifecycleOwner) { cards ->
             creditCardRecyclerAdapter.updateData(cards)
@@ -112,5 +197,9 @@ class PaymentFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val PAYPAL_REQUEST_CODE = 1001
     }
 }

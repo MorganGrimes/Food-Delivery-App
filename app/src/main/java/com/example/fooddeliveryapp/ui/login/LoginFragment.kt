@@ -146,7 +146,7 @@ class LoginFragment : Fragment() {
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(result: LoginResult) {
-                    Log.i(FB_LOGIN,LOGIN_SUCCESS + {result.accessToken.token})
+                    Log.i(FB_LOGIN, LOGIN_SUCCESS + { result.accessToken.token })
                     val request = GraphRequest.newMeRequest(result.accessToken) { obj, _ ->
                         try {
                             val email = obj?.getString(EMAIL)
@@ -171,7 +171,7 @@ class LoginFragment : Fragment() {
                 }
 
                 override fun onError(error: FacebookException) {
-                    Log.i(FB_LOGIN, LOGIN_ERROR + {error.message}, error)
+                    Log.i(FB_LOGIN, LOGIN_ERROR + { error.message }, error)
                 }
             })
 
@@ -183,7 +183,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun twitterLogin(){
+    private fun twitterLogin() {
         binding.twitterIconIv.setOnClickListener {
             val provider = OAuthProvider.newBuilder("twitter.com")
             val firebaseAuth = FirebaseAuth.getInstance()
@@ -195,7 +195,8 @@ class LoginFragment : Fragment() {
                         onTwitterLoginSuccess(authResult)
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(context, ERROR_TWITTER + {e.message}, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, ERROR_TWITTER + { e.message }, Toast.LENGTH_SHORT)
+                            .show()
                     }
             } else {
                 firebaseAuth
@@ -204,7 +205,8 @@ class LoginFragment : Fragment() {
                         onTwitterLoginSuccess(authResult)
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(context, LOGIN_ERROR + {e.message}, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, LOGIN_ERROR + { e.message }, Toast.LENGTH_SHORT)
+                            .show()
                     }
             }
         }
