@@ -1,6 +1,6 @@
 package com.example.fooddeliveryapp.data.remote
 
-import com.example.fooddeliveryapp.data.model.CategoriesResponse
+import com.example.fooddeliveryapp.data.remote.response.CategoriesResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
