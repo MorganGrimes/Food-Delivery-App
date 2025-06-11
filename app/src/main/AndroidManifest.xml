@@ -19,7 +19,7 @@
         android:theme="@style/Theme.FoodDeliveryApp"
         tools:targetApi="31">
         <activity
-            android:name=".ui.PaypalWebViewActivity"
+            android:name=".PaypalWebViewActivity"
             android:exported="false" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

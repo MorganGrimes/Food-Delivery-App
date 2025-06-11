@@ -1,4 +1,4 @@
-package com.example.fooddeliveryapp.ui
+package com.example.fooddeliveryapp
 
 import android.app.Activity
 import android.content.Intent
@@ -9,6 +9,7 @@ import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fooddeliveryapp.utils.PAYMENT_CANCEL
 import com.example.fooddeliveryapp.utils.PAYMENT_SUCCESS
+import com.example.fooddeliveryapp.utils.URL
 
 class PaypalWebViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,19 +17,19 @@ class PaypalWebViewActivity : AppCompatActivity() {
         val webView = WebView(this)
         setContentView(webView)
 
-        val url = intent.getStringExtra("url") ?: ""
+        val url = intent.getStringExtra(URL) ?: ""
 
         webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                val url = request?.url.toString()
+                val requestUrl = request?.url.toString()
 
-                if (url.contains(PAYMENT_SUCCESS)) {
+                if (requestUrl.contains(PAYMENT_SUCCESS)) {
                     val resultIntent = Intent()
                     resultIntent.putExtra(PAYMENT_SUCCESS, true)
                     setResult(Activity.RESULT_OK, resultIntent)
                     finish()
                     return true
-                } else if (url.contains(PAYMENT_CANCEL)) {
+                } else if (requestUrl.contains(PAYMENT_CANCEL)) {
                     val resultIntent = Intent()
                     resultIntent.putExtra(PAYMENT_SUCCESS, false)
                     setResult(Activity.RESULT_OK, resultIntent)
