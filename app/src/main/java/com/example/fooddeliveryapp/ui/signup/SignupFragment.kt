@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentSignupBinding
 import com.example.fooddeliveryapp.utils.PLEASE_FILL
+import com.example.fooddeliveryapp.utils.REGISTER_FAILED
 import com.example.fooddeliveryapp.utils.REGISTRATION_COMPLETE
 import com.example.fooddeliveryapp.utils.THE_PASSWORD_DO_NOT_MATCHES
 import com.example.fooddeliveryapp.utils.UiUtils
@@ -52,7 +53,7 @@ class SignupFragment : Fragment() {
                             Toast.makeText(requireContext(), REGISTRATION_COMPLETE, Toast.LENGTH_SHORT).show()
                             findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
                         } else {
-                            Toast.makeText(requireContext(), "Register failed: ${it.message()}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(requireContext(), REGISTER_FAILED + {it.message()}, Toast.LENGTH_LONG).show()
                         }
                     }
                 }

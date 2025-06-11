@@ -21,10 +21,6 @@
         <activity
             android:name=".ui.PaypalWebViewActivity"
             android:exported="false" />
-        <activity
-            android:name=".PayPalWebViewActivity"
-            android:exported="false" />
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

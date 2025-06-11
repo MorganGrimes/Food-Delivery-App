@@ -18,6 +18,8 @@ import com.example.fooddeliveryapp.ui.adapters.CreditCardRecyclerAdapter
 import com.example.fooddeliveryapp.utils.CREDIT_CARD_ID
 import com.example.fooddeliveryapp.utils.MASTERCARD_CAMELCASE
 import com.example.fooddeliveryapp.utils.PAYMENT_FAILED
+import com.example.fooddeliveryapp.utils.PAYMENT_SUCCESS
+import com.example.fooddeliveryapp.utils.URL
 import com.example.fooddeliveryapp.utils.VISA_CAMELCASE
 
 class PaymentFragment : Fragment() {
@@ -163,7 +165,7 @@ class PaymentFragment : Fragment() {
                     "https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=YOUR_TOKEN_HERE"
 
                 val intent = Intent(requireContext(), PaypalWebViewActivity::class.java)
-                intent.putExtra("url", paypalPaymentUrl)
+                intent.putExtra(URL, paypalPaymentUrl)
                 startActivityForResult(intent, PAYPAL_REQUEST_CODE)
             }
         }
@@ -172,7 +174,7 @@ class PaymentFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PAYPAL_REQUEST_CODE) {
-            val paymentSuccess = data?.getBooleanExtra("paymentSuccess", false) ?: false
+            val paymentSuccess = data?.getBooleanExtra(PAYMENT_SUCCESS, false) ?: false
             if (paymentSuccess) {
                 findNavController().navigate(R.id.paymentSuccessfullFragment)
             } else {

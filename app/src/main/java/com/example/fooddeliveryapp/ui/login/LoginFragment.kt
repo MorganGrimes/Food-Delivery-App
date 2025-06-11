@@ -22,13 +22,17 @@ import com.example.fooddeliveryapp.utils.EMAIL
 import com.example.fooddeliveryapp.utils.ERROR_FACEBOOK
 import com.example.fooddeliveryapp.utils.ERROR_TWITTER
 import com.example.fooddeliveryapp.utils.FB_LOGIN
+import com.example.fooddeliveryapp.utils.FIELDS
+import com.example.fooddeliveryapp.utils.ID_NAME_EMAIL
 import com.example.fooddeliveryapp.utils.LOGIN_CANCELED
 import com.example.fooddeliveryapp.utils.LOGIN_ERROR
 import com.example.fooddeliveryapp.utils.LOGIN_SUCCESS
 import com.example.fooddeliveryapp.utils.NO_EMAIL
+import com.example.fooddeliveryapp.utils.PUBLIC_PROFILE
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences.getIsLoggedIn
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences.saveEmail
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences.setLoggedIn
+import com.example.fooddeliveryapp.utils.TWITTER_COM
 import com.example.fooddeliveryapp.utils.UiUtils
 import com.example.fooddeliveryapp.utils.WRONG_EMAIL_PSW
 import com.facebook.CallbackManager
@@ -190,7 +194,7 @@ class LoginFragment : Fragment() {
                     }
 
                     val parameters = Bundle()
-                    parameters.putString("fields", "id,name,email")
+                    parameters.putString(FIELDS, ID_NAME_EMAIL)
                     request.parameters = parameters
                     request.executeAsync()
                 }
@@ -207,14 +211,14 @@ class LoginFragment : Fragment() {
         binding.facebookIconIv.setOnClickListener {
             LoginManager.getInstance().logInWithReadPermissions(
                 this@LoginFragment,
-                listOf("email", "public_profile")
+                listOf(EMAIL, PUBLIC_PROFILE)
             )
         }
     }
 
     private fun twitterLogin() {
         binding.twitterIconIv.setOnClickListener {
-            val provider = OAuthProvider.newBuilder("twitter.com")
+            val provider = OAuthProvider.newBuilder(TWITTER_COM)
             val firebaseAuth = FirebaseAuth.getInstance()
 
             val pendingResultTask = firebaseAuth.pendingAuthResult

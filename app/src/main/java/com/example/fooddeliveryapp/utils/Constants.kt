@@ -41,6 +41,15 @@ const val NO_EMAIL = "No email available"
 const val PAYMENT_FAILED = "Payment failed try again!"
 const val ERROR = "Error"
 const val TRY_AGAIN = "Try Again"
+const val FIELDS = "fields"
+const val ID_NAME_EMAIL = "id,name,email"
+const val PUBLIC_PROFILE = "public_profile"
+const val REGISTER_FAILED = "Register failed:"
+const val PAYMENT_SUCCESS = "payment_success"
+const val PAYMENT_CANCEL = "payment_cancel"
+const val TWITTER_COM = "twitter.com"
+const val URL = "url"
+
 
 
 
