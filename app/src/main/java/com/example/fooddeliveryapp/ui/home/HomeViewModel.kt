@@ -14,7 +14,7 @@ class HomeViewModel : ViewModel() {
 
     suspend fun fetchCategories() {
         try {
-            val response = RetrofitInstance.api.getCategories()
+            val response = RetrofitInstance.foodApi.getCategories()
             _categories.value = response.categories
         } catch (e: Exception) {
             _categories.value = listOf(ERROR, TRY_AGAIN)

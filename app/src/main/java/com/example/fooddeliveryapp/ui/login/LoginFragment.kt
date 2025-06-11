@@ -10,6 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentLoginBinding
@@ -35,6 +40,8 @@ import com.facebook.login.LoginResult
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.OAuthProvider
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import org.json.JSONException
 
 class LoginFragment : Fragment() {
@@ -42,6 +49,7 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var loginViewModel: LoginViewModel
     private lateinit var callbackManager: CallbackManager
 
     override fun onCreateView(
@@ -55,11 +63,14 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+
         setupLoginButtonState()
         setupListener()
         checkRememberMe()
         facebookLogin()
         twitterLogin()
+        loginResponse()
     }
 
     private fun setupListener() {
@@ -75,10 +86,20 @@ class LoginFragment : Fragment() {
             loginBtn.setOnClickListener {
                 val email = loginEmailEt.text.toString().trim()
                 val password = loginPasswordEt.text.toString().trim()
-                val context = requireContext()
 
-                if (email == "admin@gmail.com" && password == "admin") {
-                    if (loginRememberCheckbox.isChecked) {
+                loginViewModel.login(email, password)
+            }
+        }
+    }
+
+    private fun loginResponse() {
+        loginViewModel.loginResult.collectInLifecycle(viewLifecycleOwner) { response ->
+            if (response != null) {
+                if (response.isSuccessful && response.body() != null) {
+                    val context = requireContext()
+                    val email = binding.loginEmailEt.text.toString().trim()
+
+                    if (binding.loginRememberCheckbox.isChecked) {
                         saveEmail(context, email)
                         setLoggedIn(context, true)
                     } else {
@@ -87,8 +108,16 @@ class LoginFragment : Fragment() {
 
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 } else {
-                    Toast.makeText(context, WRONG_EMAIL_PSW, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), WRONG_EMAIL_PSW, Toast.LENGTH_SHORT).show()
                 }
+            }
+        }
+    }
+
+    private fun <T> StateFlow<T>.collectInLifecycle(lifecycleOwner: LifecycleOwner, collector: suspend (T) -> Unit) {
+        lifecycleOwner.lifecycleScope.launch {
+            lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                collect { collector(it) }
             }
         }
     }

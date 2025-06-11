@@ -13,7 +13,12 @@ object RetrofitInstance {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-    val api: FoodApi by lazy {
+
+    val authApi: AuthApi by lazy {
+        retrofit.create(AuthApi::class.java)
+    }
+
+    val foodApi: FoodApi by lazy {
         retrofit.create(FoodApi::class.java)
     }
 }

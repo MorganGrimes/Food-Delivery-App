@@ -8,19 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
-import com.example.fooddeliveryapp.data.model.SignupData
 import com.example.fooddeliveryapp.databinding.FragmentSignupBinding
 import com.example.fooddeliveryapp.utils.PLEASE_FILL
 import com.example.fooddeliveryapp.utils.REGISTRATION_COMPLETE
 import com.example.fooddeliveryapp.utils.THE_PASSWORD_DO_NOT_MATCHES
 import com.example.fooddeliveryapp.utils.UiUtils
+import kotlinx.coroutines.launch
 
 class SignupFragment : Fragment() {
 
-    private var signupData: SignupData? = null
+    private lateinit var viewModel: SignupViewModel
 
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
@@ -37,6 +39,25 @@ class SignupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupListener()
         setupInputValidation()
+        viewModel = SignupViewModel()
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.signupResult.collect { response ->
+                    response?.let {
+                        if (it.isSuccessful) {
+                            Toast.makeText(requireContext(), REGISTRATION_COMPLETE, Toast.LENGTH_SHORT).show()
+                            findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
+                        } else {
+                            Toast.makeText(requireContext(), "Register failed: ${it.message()}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun setupListener() {
@@ -74,16 +95,7 @@ class SignupFragment : Fragment() {
                     ).show()
                     return@setOnClickListener
                 }
-
-                Toast.makeText(requireContext(), REGISTRATION_COMPLETE, Toast.LENGTH_SHORT)
-                    .show()
-                it.findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
-
-                signupData = SignupData(name, email, password)
-
-                Toast.makeText(requireContext(), REGISTRATION_COMPLETE, Toast.LENGTH_SHORT).show()
-                it.findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
-
+                viewModel.register(name, email, password)
             }
         }
     }
