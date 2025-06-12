@@ -24,13 +24,13 @@ import com.example.fooddeliveryapp.utils.VISA
 
 class AddCardFragment : Fragment() {
 
-    private var _binding: FragmentAddCardBinding? = null
-    private val binding get() = _binding!!
-
     private val viewModel: PaymentViewModel by activityViewModels()
     private var currentCardId: Int = -1
     private var selectedCardName: String = ""
     private var fullCardNumber: String = ""
+
+    private var _binding: FragmentAddCardBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -216,7 +216,6 @@ class AddCardFragment : Fragment() {
                     isFormatting = false
                 }
             })
-
         }
     }
 

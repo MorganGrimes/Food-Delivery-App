@@ -24,12 +24,12 @@ import androidx.navigation.NavOptions
 
 class AddNewAddressFragment : Fragment() {
 
-    private var _binding: FragmentAddNewAddressBinding? = null
-    private val binding get() = _binding!!
-
     private val viewModel: AddressViewModel by activityViewModels()
     private var currentAddressId: Int = -1
     private var selectedLabel: String? = null
+
+    private var _binding: FragmentAddNewAddressBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

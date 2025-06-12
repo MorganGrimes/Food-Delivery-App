@@ -17,11 +17,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class MyOrdersTabsFragment : Fragment() {
 
-    private var _binding: FragmentMyOrdersTabsBinding? = null
-    private val binding get() = _binding!!
-
     private lateinit var myAdapter: MyPagerAdapter
     private var tabsArray = arrayOf(ONGOING, HISTORY)
+
+    private var _binding: FragmentMyOrdersTabsBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

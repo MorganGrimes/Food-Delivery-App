@@ -15,11 +15,11 @@ import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
 
 class OnboardingFragment : Fragment() {
 
-    private var _binding: FragmentOnBoardingBinding? = null
-    private val binding get() = _binding!!
-
     private lateinit var onboardingItemList: List<OnboardingItemModel>
     private lateinit var onboardingAdapter: OnboardingAdapter
+
+    private var _binding: FragmentOnBoardingBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

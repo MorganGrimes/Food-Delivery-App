@@ -26,10 +26,10 @@ import kotlinx.coroutines.launch
 
 class AuthFragment : Fragment() {
 
+    private var countDownTimer: Job? = null
+
     private var _binding: FragmentAuthBinding? = null
     private val binding get() = _binding!!
-
-    private var countDownTimer: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

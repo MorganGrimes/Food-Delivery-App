@@ -20,10 +20,10 @@ import com.example.fooddeliveryapp.utils.UiUtils
 
 class EditProfileFragment : Fragment() {
 
+    private lateinit var pickImageLauncher: ActivityResultLauncher<Intent>
+
     private var _binding: FragmentEditProfileBinding? = null
     private val binding get() = _binding!!
-
-    private lateinit var pickImageLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
