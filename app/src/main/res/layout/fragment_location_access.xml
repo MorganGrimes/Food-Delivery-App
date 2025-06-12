@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.locationaccess.LocationAccessFragment">
+
+    <ImageView
+        android:id="@+id/rectangle_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/oval"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/your_orders_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="94dp"
+        android:backgroundTint="@color/orange"
+        android:drawableEnd="@drawable/map_pin"
+        android:fontFamily="@font/sen_bold"
+        android:paddingVertical="15dp"
+        android:text="@string/access_location"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:cornerRadius="12dp"/>
+
+    <TextView
+        android:id="@+id/onboarding_description_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/sen_regular"
+        android:text="@string/food_access_location"
+        android:textColor="@color/deep_grey"
+        android:textSize="16sp"/>
+
+</LinearLayout>
