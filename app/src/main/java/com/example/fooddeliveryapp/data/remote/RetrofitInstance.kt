@@ -18,7 +18,12 @@ object RetrofitInstance {
         retrofit.create(AuthApi::class.java)
     }
 
-    val foodApi: FoodApi by lazy {
-        retrofit.create(FoodApi::class.java)
+    val categoryApi: CategoryApi by lazy {
+        retrofit.create(CategoryApi::class.java)
     }
+
+    val restaurantApi: RestaurantApi by lazy {
+        retrofit.create(RestaurantApi::class.java)
+    }
+
 }

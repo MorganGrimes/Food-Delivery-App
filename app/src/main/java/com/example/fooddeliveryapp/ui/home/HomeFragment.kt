@@ -24,8 +24,8 @@ import com.example.fooddeliveryapp.utils.COUPON_DIALOG
 import com.example.fooddeliveryapp.utils.NO_ADDRESS_INSERTED
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
 import androidx.lifecycle.lifecycleScope
+import com.example.fooddeliveryapp.data.remote.dto.RestaurantResponse
 import kotlinx.coroutines.launch
-
 
 class HomeFragment : Fragment() {
 
@@ -33,7 +33,6 @@ class HomeFragment : Fragment() {
     private lateinit var openRestaurantsRecyclerAdapter: OpenRestaurantsRecyclerAdapter
     private val addressViewModel: AddressViewModel by activityViewModels()
     private val homeViewModel: HomeViewModel by viewModels()
-
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -52,9 +51,8 @@ class HomeFragment : Fragment() {
         checkAndShowCouponDialog()
         setupListener()
         setupRecyclerView()
-        addressViewModel.allAddresses.observe(viewLifecycleOwner) { addresses ->
-            setupHomeNameClick(addresses)
-        }
+        setupObservers()
+        fetchData()
     }
 
     private fun setupHomeNameClick(addresses: List<AddressEntity>) {
@@ -115,72 +113,64 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        binding.apply {
-            categoriesRecyclerAdapter = CategoriesRecyclerAdapter(emptyList()) {
-                findNavController().navigate(R.id.action_homeFragment_to_foodFragment)
-            }
 
+        categoriesRecyclerAdapter = CategoriesRecyclerAdapter(emptyList()) {
+            findNavController().navigate(R.id.action_homeFragment_to_foodFragment)
+        }
+
+        openRestaurantsRecyclerAdapter = OpenRestaurantsRecyclerAdapter(emptyList()) {
+            findNavController().navigate(R.id.action_homeFragment_to_restaurantViewFragment)
+        }
+
+        binding.apply {
             categoriesRecycler.apply {
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 adapter = categoriesRecyclerAdapter
             }
 
-            lifecycleScope.launch {
-                homeViewModel.fetchCategories()
-            }
-
-            homeViewModel.categories.observe(viewLifecycleOwner) { categories ->
-                val formatted = categories.map {
-                    CategoriesItemModel(R.drawable.menu, it)
-                }
-                categoriesRecyclerAdapter.updateList(formatted)
-            }
-
-            val restaurant = listOf(
-                RestaurantsItemModel(
-                    R.drawable.ic_launcher_background,
-                    getString(R.string.rose_garden),
-                    getString(R.string.food_example),
-                    getString(R.string.rating),
-                    getString(R.string.free),
-                    getString(R.string._20_min)
-                ), RestaurantsItemModel(
-                    R.drawable.ic_launcher_background,
-                    getString(R.string.rose_garden),
-                    getString(R.string.food_example),
-                    getString(R.string.rating),
-                    getString(R.string.free),
-                    getString(R.string._20_min)
-                ), RestaurantsItemModel(
-                    R.drawable.ic_launcher_background,
-                    getString(R.string.rose_garden),
-                    getString(R.string.food_example),
-                    getString(R.string.rating),
-                    getString(R.string.free),
-                    getString(R.string._20_min)
-                ), RestaurantsItemModel(
-                    R.drawable.ic_launcher_background,
-                    getString(R.string.rose_garden),
-                    getString(R.string.food_example),
-                    getString(R.string.rating),
-                    getString(R.string.free),
-                    getString(R.string._20_min)
-                )
-            )
-
-            openRestaurantsRecyclerAdapter = OpenRestaurantsRecyclerAdapter(restaurant) {
-                findNavController().navigate(R.id.action_homeFragment_to_restaurantViewFragment)
-            }
 
             restaurantsRecycler.apply {
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 adapter = openRestaurantsRecyclerAdapter
+                isNestedScrollingEnabled = false
             }
-
-            restaurantsRecycler.isNestedScrollingEnabled = false
         }
+    }
+
+    private fun setupObservers() {
+        addressViewModel.allAddresses.observe(viewLifecycleOwner) { addresses ->
+            setupHomeNameClick(addresses)
+        }
+
+        homeViewModel.categories.observe(viewLifecycleOwner) { categories ->
+            val formatted = categories.map { CategoriesItemModel(R.drawable.menu, it) }
+            categoriesRecyclerAdapter.updateList(formatted)
+        }
+
+        homeViewModel.restaurants.observe(viewLifecycleOwner) { restaurants ->
+            val mappedList = restaurants.map { mapRestaurantResponseToModel(it) }
+            openRestaurantsRecyclerAdapter.updateList(mappedList)
+        }
+    }
+
+    private fun fetchData() {
+        lifecycleScope.launch {
+            homeViewModel.fetchCategories()
+            homeViewModel.fetchRestaurants()
+        }
+    }
+
+    private fun mapRestaurantResponseToModel(restaurant: RestaurantResponse): RestaurantsItemModel {
+        return RestaurantsItemModel(
+            R.drawable.ic_launcher_background,
+            restaurant.name,
+            restaurant.food.joinToString(", "),
+            restaurant.rating.toString(),
+            restaurant.delivery,
+            restaurant.deliveryTime
+        )
     }
 
     override fun onDestroyView() {
