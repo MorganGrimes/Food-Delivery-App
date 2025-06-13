@@ -1,6 +1,7 @@
 package com.example.fooddeliveryapp.ui.login
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -109,8 +111,7 @@ class LoginFragment : Fragment() {
                     } else {
                         setLoggedIn(context, false)
                     }
-
-                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    locationPermission()
                 } else {
                     Toast.makeText(requireContext(), WRONG_EMAIL_PSW, Toast.LENGTH_SHORT).show()
                 }
@@ -186,8 +187,7 @@ class LoginFragment : Fragment() {
                             val context = requireContext()
                             email?.let { saveEmail(context, it) }
                             setLoggedIn(context, true)
-
-                            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                            locationPermission()
                         } catch (e: JSONException) {
                             Log.e(FB_LOGIN, ERROR_FACEBOOK, e)
                         }
@@ -251,9 +251,23 @@ class LoginFragment : Fragment() {
 
         saveEmail(context, email)
         setLoggedIn(context, true)
+        locationPermission()
+    }
 
+    private fun locationPermission() {
+        val context = requireContext()
+        val permission = android.Manifest.permission.ACCESS_FINE_LOCATION
+        val permissionGranted = ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
 
-        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+        if (permissionGranted) {
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+        } else {
+            if (shouldShowRequestPermissionRationale(permission)) {
+                findNavController().navigate(R.id.action_loginFragment_to_locationAccessFragment)
+            } else {
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            }
+        }
     }
 
     @Deprecated("Deprecated in Java")

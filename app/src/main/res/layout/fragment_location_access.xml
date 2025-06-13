@@ -9,14 +9,14 @@
     tools:context=".ui.locationaccess.LocationAccessFragment">
 
     <ImageView
-        android:id="@+id/rectangle_iv"
+        android:id="@+id/access_location_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/oval"
         tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/your_orders_btn"
+        android:id="@+id/access_location_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
@@ -31,7 +31,7 @@
         app:cornerRadius="12dp"/>
 
     <TextView
-        android:id="@+id/onboarding_description_tv"
+        android:id="@+id/access_location_description_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

@@ -53,6 +53,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_loginFragment_to_locationAccessFragment"
+            app:destination="@id/locationAccessFragment" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
@@ -262,5 +265,14 @@
             android:id="@+id/action_addNewAddressFragment_to_addressFragment"
             app:destination="@id/addressFragment">
         </action>
+    </fragment>
+    <fragment
+        android:id="@+id/locationAccessFragment"
+        android:name="com.example.fooddeliveryapp.ui.locationaccess.LocationAccessFragment"
+        android:label="fragment_location_access"
+        tools:layout="@layout/fragment_location_access" >
+        <action
+            android:id="@+id/action_locationAccessFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
