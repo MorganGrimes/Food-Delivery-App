@@ -103,6 +103,10 @@
         android:name="com.example.fooddeliveryapp.ui.food.FoodFragment"
         android:label="fragment_food"
         tools:layout="@layout/fragment_food" >
+        <argument
+            android:name="selectedCategory"
+            app:argType="string"
+            android:defaultValue="" />
         <action
             android:id="@+id/action_foodFragment_to_foodDetailsFragment"
             app:destination="@id/foodDetailsFragment" />
@@ -136,9 +140,6 @@
         android:name="com.example.fooddeliveryapp.ui.filter.FilterDialogFragment"
         android:label="fragment_filter_dialog"
         tools:layout="@layout/fragment_filter_dialog" >
-        <action
-            android:id="@+id/action_filterDialogFragment_to_foodFragment"
-            app:destination="@id/foodFragment" />
     </fragment>
     <fragment
         android:id="@+id/myCartFragment"

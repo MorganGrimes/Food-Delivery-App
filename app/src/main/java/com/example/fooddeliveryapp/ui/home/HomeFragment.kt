@@ -2,19 +2,20 @@ package com.example.fooddeliveryapp.ui.home
 
 import android.os.Bundle
 import android.view.ContextThemeWrapper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.local.entity.AddressEntity
 import com.example.fooddeliveryapp.data.model.CategoriesItemModel
 import com.example.fooddeliveryapp.data.model.RestaurantsItemModel
+import com.example.fooddeliveryapp.data.remote.dto.restaurant.Restaurants
 import com.example.fooddeliveryapp.databinding.FragmentHomeBinding
 import com.example.fooddeliveryapp.ui.adapters.CategoriesRecyclerAdapter
 import com.example.fooddeliveryapp.ui.adapters.OpenRestaurantsRecyclerAdapter
@@ -23,8 +24,6 @@ import com.example.fooddeliveryapp.ui.coupon.CouponDialogFragment
 import com.example.fooddeliveryapp.utils.COUPON_DIALOG
 import com.example.fooddeliveryapp.utils.NO_ADDRESS_INSERTED
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
-import androidx.lifecycle.lifecycleScope
-import com.example.fooddeliveryapp.data.remote.dto.RestaurantResponse
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
@@ -32,7 +31,7 @@ class HomeFragment : Fragment() {
     private lateinit var categoriesRecyclerAdapter: CategoriesRecyclerAdapter
     private lateinit var openRestaurantsRecyclerAdapter: OpenRestaurantsRecyclerAdapter
     private val addressViewModel: AddressViewModel by activityViewModels()
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by activityViewModels()
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -114,8 +113,11 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
 
-        categoriesRecyclerAdapter = CategoriesRecyclerAdapter(emptyList()) {
-            findNavController().navigate(R.id.action_homeFragment_to_foodFragment)
+        categoriesRecyclerAdapter = CategoriesRecyclerAdapter(emptyList()) { category ->
+            val bundle = Bundle().apply {
+                putString("selectedCategory", category.foodName)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_foodFragment, bundle)
         }
 
         openRestaurantsRecyclerAdapter = OpenRestaurantsRecyclerAdapter(emptyList()) {
@@ -162,11 +164,11 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun mapRestaurantResponseToModel(restaurant: RestaurantResponse): RestaurantsItemModel {
+    private fun mapRestaurantResponseToModel(restaurant: Restaurants): RestaurantsItemModel {
         return RestaurantsItemModel(
             R.drawable.ic_launcher_background,
             restaurant.name,
-            restaurant.food.joinToString(", "),
+            restaurant.food.keys.joinToString(", "),
             restaurant.rating.toString(),
             restaurant.delivery,
             restaurant.deliveryTime

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="200dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,11 +19,13 @@
             android:id="@+id/ll2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingVertical="12dp"
+            android:layout_alignParentStart="true"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ll3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -42,13 +44,13 @@
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
-                android:layout_width="122dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/recycler_popular_food_name_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/sen_bold"
@@ -58,9 +60,11 @@
 
                 <TextView
                     android:id="@+id/recycler_popular_food_restaurant_name_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:fontFamily="@font/sen_regular"
+                    android:maxLines="1"
                     android:text="@string/rose_garden"
                     android:textColor="@color/grey"
                     android:textSize="13sp" />
@@ -100,12 +104,13 @@
             android:id="@+id/ll3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingVertical="12dp"
-            app:layout_constraintStart_toEndOf="@+id/ll"
+            android:layout_marginStart="52dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ll2"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
@@ -129,7 +134,7 @@
 
                 <TextView
                     android:id="@+id/recycler_popular_food_second_name_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/sen_bold"
@@ -139,9 +144,11 @@
 
                 <TextView
                     android:id="@+id/recycler_popular_food_second_restaurant_name_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:fontFamily="@font/sen_regular"
+                    android:maxLines="1"
                     android:text="@string/cafenio_restaurant"
                     android:textColor="@color/grey"
                     android:textSize="13sp" />
@@ -177,6 +184,6 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

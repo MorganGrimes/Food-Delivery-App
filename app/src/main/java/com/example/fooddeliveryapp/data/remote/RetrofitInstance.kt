@@ -25,5 +25,4 @@ object RetrofitInstance {
     val restaurantApi: RestaurantApi by lazy {
         retrofit.create(RestaurantApi::class.java)
     }
-
 }

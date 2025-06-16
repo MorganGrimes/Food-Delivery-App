@@ -37,7 +37,7 @@ class FilterDialogFragment : DialogFragment() {
     private fun setupListener() {
         binding.apply {
             filterBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_filterDialogFragment_to_foodFragment)
+                dismiss()
             }
             filterCloseIv.setOnClickListener {
                 dismiss()
