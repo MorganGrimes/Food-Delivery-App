@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.local.entity.AddressEntity
@@ -16,11 +17,15 @@ import com.example.fooddeliveryapp.ui.address.AddressViewModel
 import com.example.fooddeliveryapp.utils.ADDRESS_ID
 import com.example.fooddeliveryapp.utils.FILL_FIELDS
 import com.example.fooddeliveryapp.utils.HOME
+import com.example.fooddeliveryapp.utils.INITIAL_POSITION
 import com.example.fooddeliveryapp.utils.OTHER
 import com.example.fooddeliveryapp.utils.SELECT_LABEL
 import com.example.fooddeliveryapp.utils.UiUtils
 import com.example.fooddeliveryapp.utils.WORK
-import androidx.navigation.NavOptions
+import org.osmdroid.config.Configuration
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.overlay.Marker
 
 class AddNewAddressFragment : Fragment() {
 
@@ -41,8 +46,29 @@ class AddNewAddressFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupAddresses()
         setupListener()
+        setupMap()
+    }
+
+    private fun setupMap() {
+        Configuration.getInstance().load(requireContext(),
+            androidx.preference.PreferenceManager.getDefaultSharedPreferences(requireContext()))
+
+        val map = binding.map
+        map.setTileSource(TileSourceFactory.MAPNIK)
+        map.setMultiTouchControls(true)
+
+        val startPoint = GeoPoint(41.9028, 12.4964)
+        map.controller.setZoom(15.0)
+        map.controller.setCenter(startPoint)
+
+        val marker = Marker(map)
+        marker.position = startPoint
+        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker.title = INITIAL_POSITION
+        map.overlays.add(marker)
     }
 
     private fun setupAddresses() {
@@ -167,6 +193,16 @@ class AddNewAddressFragment : Fragment() {
                 if (valid) resources.getColor(R.color.orange, null) else UiUtils.brownColor
             )
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.map.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.map.onPause()
     }
 
     override fun onDestroyView() {

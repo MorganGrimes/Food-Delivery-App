@@ -68,6 +68,8 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation (libs.osmdroid.android)
+    implementation(libs.androidx.preference)
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

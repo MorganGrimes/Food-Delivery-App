@@ -49,6 +49,7 @@ const val PAYMENT_SUCCESS = "payment_success"
 const val PAYMENT_CANCEL = "payment_cancel"
 const val TWITTER_COM = "twitter.com"
 const val URL = "url"
+const val INITIAL_POSITION = "Initial Position"
 
 
 
