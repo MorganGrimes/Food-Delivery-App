@@ -109,7 +109,8 @@
             android:defaultValue="" />
         <action
             android:id="@+id/action_foodFragment_to_foodDetailsFragment"
-            app:destination="@id/foodDetailsFragment" />
+            app:destination="@id/foodDetailsFragment">
+        </action>
         <action
             android:id="@+id/action_foodFragment_to_restaurantViewFragment"
             app:destination="@id/restaurantViewFragment" />
@@ -122,6 +123,12 @@
         android:name="com.example.fooddeliveryapp.ui.fooddetails.FoodDetailsFragment"
         android:label="fragment_food_details"
         tools:layout="@layout/fragment_food_details" >
+        <argument
+            android:name="foodName"
+            app:argType="string" />
+        <argument
+            android:name="restaurantId"
+            app:argType="integer" />
         <action
             android:id="@+id/action_foodDetailsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />

@@ -16,10 +16,16 @@ class PopularFoodRecyclerAdapter(
     inner class PopularFoodViewHolder(private val binding: RecyclerPopularFoodLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(leftItem: PopularFoodItemModel, rightItem: PopularFoodItemModel?) {
+
             binding.recyclerPopularFoodIv.setImageResource(leftItem.popularFoodImage)
             binding.recyclerPopularFoodNameTv.text = leftItem.popularFoodName
             binding.recyclerPopularFoodRestaurantNameTv.text = leftItem.popularFoodRestaurantName
             binding.recyclerPopularFoodPriceTv.text = leftItem.popularFoodPrice
+
+            binding.ll2.setOnClickListener {
+                onItemClick(leftItem)
+            }
+
             binding.recyclerPopularFoodAddIv.setOnClickListener {
                 onItemClick(leftItem)
             }
@@ -31,20 +37,21 @@ class PopularFoodRecyclerAdapter(
                 binding.recyclerPopularFoodSecondNameTv.text = rightItem.popularFoodName
                 binding.recyclerPopularFoodSecondRestaurantNameTv.text = rightItem.popularFoodRestaurantName
                 binding.recyclerPopularFoodSecondPriceTv.text = rightItem.popularFoodPrice
+
+                binding.ll3.setOnClickListener {
+                    onItemClick(rightItem)
+                }
+
                 binding.recyclerPopularFoodSecondAddIv.setOnClickListener {
                     onItemClick(rightItem)
                 }
+
             } else {
                 binding.ll3.visibility = View.INVISIBLE
-
-                binding.recyclerPopularFoodSecondIv.setImageDrawable(null)
-                binding.recyclerPopularFoodSecondNameTv.text = ""
-                binding.recyclerPopularFoodSecondRestaurantNameTv.text = ""
-                binding.recyclerPopularFoodSecondPriceTv.text = ""
+                binding.ll3.setOnClickListener(null)
                 binding.recyclerPopularFoodSecondAddIv.setOnClickListener(null)
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularFoodViewHolder {

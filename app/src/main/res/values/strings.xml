@@ -188,5 +188,10 @@ you just place the order we do the rest</string>
     <string name="facebook_client_token">8cc05fcf9fa84233ec511856270beff9</string>
     <string name="twitter_consumer_key">D8RLo8Kf5OgUrzozVoK9y6hXf</string>
     <string name="twitter_consumer_secret">qSUCY9ffGMsJaiiwOp5MO8ytEMy5UmPIy7AaNOS90iNihoeluq</string>
+    <string name="ginger">ginger</string>
+    <string name="broccoli">broccoli</string>
+    <string name="orange">orange</string>
+    <string name="walnut">walnut</string>
+    <string name="food_price">$%1$.2f</string>
 
 </resources>

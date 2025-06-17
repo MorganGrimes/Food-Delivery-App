@@ -46,43 +46,13 @@ class RestaurantViewFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.apply {
-            val food = listOf(
-                FoodItemModel(
-                    getString(R.string.burger)
-                ), FoodItemModel(
-                    getString(R.string.burger)
-                ), FoodItemModel(
-                    getString(R.string.burger)
-                ), FoodItemModel(
-                    getString(R.string.burger)
-                )
-            )
 
-            val popularFood = listOf(
-                PopularFoodItemModel(
-                    R.drawable.ic_launcher_background,
-                    getString(R.string.burger_bistro),
-                    getString(R.string.rose_garden),
-                    getString(R.string._40)
-                ), PopularFoodItemModel(
-                    R.drawable.ic_launcher_background,
-                    getString(R.string.burger_bistro),
-                    getString(R.string.rose_garden),
-                    getString(R.string._40)
-                ), PopularFoodItemModel(
-                    R.drawable.ic_launcher_background,
-                    getString(R.string.burger_bistro),
-                    getString(R.string.rose_garden),
-                    getString(R.string._40)
-                )
-            )
-
-            foodRecyclerAdapter = FoodRecyclerAdapter(food) {
+           /* foodRecyclerAdapter = FoodRecyclerAdapter(food) {
             }
             popularFoodRecyclerAdapter = PopularFoodRecyclerAdapter(popularFood) {
                 findNavController().navigate(R.id.action_restaurantViewFragment_to_foodDetailsFragment)
             }
-
+*/
             recyclerFood.apply {
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

@@ -62,8 +62,12 @@ class FoodFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        popularFoodRecyclerAdapter = PopularFoodRecyclerAdapter(emptyList()) {
-            findNavController().navigate(R.id.action_foodFragment_to_foodDetailsFragment)
+        popularFoodRecyclerAdapter = PopularFoodRecyclerAdapter(emptyList()) { foodItem ->
+            val action = FoodFragmentDirections.actionFoodFragmentToFoodDetailsFragment(
+                foodItem.popularFoodName,
+                foodItem.popularFoodRestaurantId
+            )
+            findNavController().navigate(action)
         }
 
         openRestaurantsRecyclerAdapter = OpenRestaurantsRecyclerAdapter(emptyList()) {
@@ -112,18 +116,19 @@ class FoodFragment : Fragment() {
 
         val filteredFoodWithRestaurant = restaurants.flatMap { restaurant ->
             restaurant.food[category].orEmpty().map { foodItem ->
-                Pair(foodItem, restaurant.name)
+                Pair(foodItem, restaurant)
             }
         }.sortedByDescending { (foodItem, _) ->
             foodItem.eatenLastMonth
         }
 
-        val foodModels = filteredFoodWithRestaurant.map { (foodItem, restaurantName) ->
+        val foodModels = filteredFoodWithRestaurant.map { (foodItem, restaurant) ->
             PopularFoodItemModel(
                 popularFoodImage = R.drawable.ic_launcher_background,
                 popularFoodName = foodItem.name,
-                popularFoodRestaurantName = restaurantName,
-                popularFoodPrice = "$${foodItem.price}"
+                popularFoodRestaurantName = restaurant.name,
+                popularFoodPrice = "$${foodItem.price}",
+                popularFoodRestaurantId = restaurant.id
             )
         }
 

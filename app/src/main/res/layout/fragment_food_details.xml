@@ -93,6 +93,7 @@
                     android:fontFamily="@font/sen_regular"
                     android:gravity="center"
                     android:text="@string/uttora_coffe_house"
+                    android:textColor="@color/black_light"
                     android:textSize="14sp"
                     app:drawableStartCompat="@drawable/house"
                     app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +109,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/sen_bold"
                 android:text="@string/pizza_calzone_european"
-                android:textColor="@color/black"
+                android:textColor="@color/black_light"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -146,6 +147,7 @@
                     android:fontFamily="@font/sen_bold"
                     android:gravity="bottom"
                     android:text="@string/rating"
+                    android:textColor="@color/black_light"
                     android:textSize="16sp"
                     app:drawableStartCompat="@drawable/star"
                     app:drawableTint="@color/orange" />
@@ -159,6 +161,7 @@
                     android:fontFamily="@font/sen_regular"
                     android:gravity="bottom"
                     android:text="@string/delivery_type"
+                    android:textColor="@color/black_light"
                     android:textSize="14sp"
                     app:drawableStartCompat="@drawable/delivery"
                     app:drawableTint="@color/orange" />
@@ -172,6 +175,7 @@
                     android:fontFamily="@font/sen_regular"
                     android:gravity="bottom"
                     android:text="@string/delivery_time"
+                    android:textColor="@color/black_light"
                     android:textSize="14sp"
                     app:drawableStartCompat="@drawable/clock"
                     app:drawableTint="@color/orange" />
@@ -201,9 +205,9 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/food_details_first_size_btn"
-                    android:layout_width="64dp"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:backgroundTint="@color/edit_text_white"
                     android:fontFamily="@font/sen_regular"
                     android:text="@string/ten"
@@ -212,9 +216,9 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/food_details_second_size_btn"
-                    android:layout_width="64dp"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:backgroundTint="@color/edit_text_white"
                     android:fontFamily="@font/sen_regular"
                     android:text="@string/fourteen"
@@ -223,9 +227,9 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/food_details_third_size_btn"
-                    android:layout_width="64dp"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:backgroundTint="@color/edit_text_white"
                     android:fontFamily="@font/sen_regular"
                     android:text="@string/sixteen"
@@ -248,71 +252,135 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/size_ll" />
 
-            <LinearLayout
-                android:id="@+id/ingredients_ll"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ingredients_tv">
 
-                <TextView
-                    android:id="@+id/salt_tv"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/ingredients_ll"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/sen_regular"
-                    android:text="@string/salt"
-                    android:textAlignment="center"
-                    app:drawableTopCompat="@drawable/salt" />
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/chicken_tv"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/salt_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/sen_regular"
+                        android:text="@string/salt"
+                        android:textAlignment="center"
+                        app:drawableTopCompat="@drawable/salt" />
+
+                    <TextView
+                        android:id="@+id/chicken_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/sen_regular"
+                        android:text="@string/chicken"
+                        android:textAlignment="center"
+                        app:drawableTopCompat="@drawable/chicken" />
+
+                    <TextView
+                        android:id="@+id/onion_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/sen_regular"
+                        android:text="@string/onion"
+                        android:textAlignment="center"
+                        app:drawableTopCompat="@drawable/onion" />
+
+                    <TextView
+                        android:id="@+id/garlic_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/sen_regular"
+                        android:text="@string/garlic"
+                        android:textAlignment="center"
+                        app:drawableTopCompat="@drawable/garlic" />
+
+                    <TextView
+                        android:id="@+id/pappers_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/sen_regular"
+                        android:text="@string/pappers"
+                        android:textAlignment="center"
+                        app:drawableTopCompat="@drawable/pappers" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ingredients_ll2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="19dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/sen_regular"
-                    android:text="@string/chicken"
-                    android:textAlignment="center"
-                    app:drawableTopCompat="@drawable/chicken" />
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ingredients_ll">
 
-                <TextView
-                    android:id="@+id/onion_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="19dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/sen_regular"
-                    android:text="@string/onion"
-                    android:textAlignment="center"
-                    app:drawableTopCompat="@drawable/onion" />
+                    <TextView
+                        android:id="@+id/ginger_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/sen_regular"
+                        android:text="@string/ginger"
+                        android:textAlignment="center"
+                        app:drawableTopCompat="@drawable/ginger" />
 
-                <TextView
-                    android:id="@+id/garlic_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="19dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/sen_regular"
-                    android:text="@string/garlic"
-                    android:textAlignment="center"
-                    app:drawableTopCompat="@drawable/garlic" />
+                    <TextView
+                        android:id="@+id/broccoli_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/sen_regular"
+                        android:text="@string/broccoli"
+                        android:textAlignment="center"
+                        app:drawableTopCompat="@drawable/broccoli" />
 
-                <TextView
-                    android:id="@+id/pappers_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="19dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/sen_regular"
-                    android:text="@string/pappers"
-                    android:textAlignment="center"
-                    app:drawableTopCompat="@drawable/pappers" />
+                    <TextView
+                        android:id="@+id/orange_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/sen_regular"
+                        android:text="@string/orange"
+                        android:textAlignment="center"
+                        app:drawableTopCompat="@drawable/orange" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/walnut_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/sen_regular"
+                        android:text="@string/walnut"
+                        android:textAlignment="center"
+                        app:drawableTopCompat="@drawable/walnut" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -323,11 +391,11 @@
         style="@style/CustomCardViewStyle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:strokeColor="@color/edit_text_white"
         android:backgroundTint="@color/edit_text_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/edit_text_white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
