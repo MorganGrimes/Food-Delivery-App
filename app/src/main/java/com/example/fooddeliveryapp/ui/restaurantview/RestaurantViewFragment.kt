@@ -1,7 +1,6 @@
 package com.example.fooddeliveryapp.ui.restaurantview
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +26,7 @@ class RestaurantViewFragment : Fragment() {
     private val homeViewModel: HomeViewModel by activityViewModels()
     private val args: RestaurantViewFragmentArgs by navArgs()
     private var selectedCategory: String = ""
+    private var currentRestaurant: Restaurants? = null
 
     private var _binding: FragmentRestaurantViewBinding? = null
     private val binding get() = _binding!!
@@ -42,74 +42,103 @@ class RestaurantViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        selectedCategory = savedInstanceState?.getString("selectedCategory") ?: ""
+
+        val restaurantId = args.restaurantId
+        currentRestaurant = homeViewModel.getAllRestaurants().firstOrNull { it.id == restaurantId }
+
+        if (homeViewModel.selectedRestaurantId != restaurantId) {
+            homeViewModel.selectedRestaurantId = restaurantId
+            selectedCategory = ""
+            homeViewModel.selectedCategory.value = ""
+        } else {
+            selectedCategory = homeViewModel.selectedCategory.value ?: ""
+        }
+
         setupRestaurantView()
-        setupRecyclerView()
         setupListener()
+        setupCategoryRecycler()
+        setupFoodRecycler()
+        updateInitialCategoryAndFood()
+    }
+
+    private fun updateInitialCategoryAndFood() {
+        val categories = currentRestaurant?.food?.keys?.toList() ?: emptyList()
+
+        if (selectedCategory.isEmpty() && categories.isNotEmpty()) {
+            selectedCategory = categories.first()
+            homeViewModel.selectedCategory.value = selectedCategory
+        }
+
+        if (selectedCategory.isNotEmpty()) {
+            currentRestaurant?.let {
+                updatePopularFoodList(it, selectedCategory)
+                binding.restaurantViewFoodNameAndNumberTv.text = getString(
+                    R.string.category_food_count,
+                    selectedCategory,
+                    it.food[selectedCategory]?.size ?: 0
+                )
+            }
+        }
     }
 
     private fun setupRestaurantView() {
-        val restaurantId = args.restaurantId
-        val restaurant = homeViewModel.getAllRestaurants().firstOrNull { it.id == restaurantId }
-
-        binding.apply {
-            restaurant?.let {
-                restaurantViewRestaurantNameTv.text = it.name
-                restaurantViewRestaurantDescriptionTv.text = it.description
-                restaurantViewRatingTv.text = String.format(Locale.getDefault(), "%.1f", it.rating)
-                restaurantViewDeliveryTv.text = it.delivery
-                restaurantViewDeliveryTimeTv.text = it.deliveryTime
-            }
+        currentRestaurant?.let { restaurant ->
+            binding.restaurantViewRestaurantNameTv.text = restaurant.name
+            binding.restaurantViewRestaurantDescriptionTv.text = restaurant.description
+            binding.restaurantViewRatingTv.text = String.format(Locale.getDefault(), "%.1f", restaurant.rating)
+            binding.restaurantViewDeliveryTv.text = restaurant.delivery
+            binding.restaurantViewDeliveryTimeTv.text = restaurant.deliveryTime
         }
     }
 
     private fun setupListener() {
-        binding.apply {
-            restaurantViewBackIconIv.setOnClickListener {
-                findNavController().popBackStack()
-            }
+        binding.restaurantViewBackIconIv.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
-    private fun setupRecyclerView() {
-        val restaurantId = args.restaurantId
-        val restaurant = homeViewModel.getAllRestaurants().firstOrNull { it.id == restaurantId }
+    private fun setupCategoryRecycler() {
+        val categories = currentRestaurant?.food?.keys?.map { FoodItemModel(it) } ?: emptyList()
 
-        val categories = restaurant?.food?.keys?.map { categoryName ->
-            FoodItemModel(categoryName)
-        } ?: emptyList()
+        foodRecyclerAdapter = FoodRecyclerAdapter(categories) { item ->
+            selectedCategory = item.foodName
+            homeViewModel.selectedCategory.value = selectedCategory
 
-        foodRecyclerAdapter = FoodRecyclerAdapter(categories) { selectedCategory ->
-            val newlySelectedCategory = selectedCategory.foodName
-            Log.d("RestaurantView", "Category clicked: $newlySelectedCategory")
-
-            this.selectedCategory = newlySelectedCategory
-            updatePopularFoodList(restaurant, newlySelectedCategory)
-            binding.restaurantViewFoodNameAndNumberTv.text = getString(
-                R.string.category_food_count,
-                newlySelectedCategory,
-                restaurant?.food?.get(newlySelectedCategory)?.size ?: 0
-            )
+            currentRestaurant?.let {
+                updatePopularFoodList(it, selectedCategory)
+                binding.restaurantViewFoodNameAndNumberTv.text = getString(
+                    R.string.category_food_count,
+                    selectedCategory,
+                    it.food[selectedCategory]?.size ?: 0
+                )
+            }
         }
 
         binding.recyclerRestaurantCategoryFood.apply {
             adapter = foodRecyclerAdapter
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        }
-
-        if (categories.isNotEmpty()) {
-            selectedCategory = categories[0].foodName
-            updatePopularFoodList(restaurant, selectedCategory)
-            binding.restaurantViewFoodNameAndNumberTv.text = getString(
-                R.string.category_food_count,
-                selectedCategory,
-                restaurant?.food?.get(selectedCategory)?.size ?: 0
-            )
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
     }
 
-    private fun updatePopularFoodList(restaurant: Restaurants?, category: String) {
-        val foodItems = restaurant?.food?.get(category)?.map { foodItem ->
+    private fun setupFoodRecycler() {
+        popularFoodRecyclerAdapter = PopularFoodRecyclerAdapter(emptyList()) { selectedFood ->
+            findNavController().navigate(
+                RestaurantViewFragmentDirections.actionRestaurantViewFragmentToFoodDetailsFragment(
+                    selectedFood.popularFoodName,
+                    selectedFood.popularFoodRestaurantId
+                )
+            )
+        }
+
+        binding.recyclerRestaurantFoodSelected.apply {
+            adapter = popularFoodRecyclerAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+    }
+
+    private fun updatePopularFoodList(restaurant: Restaurants, category: String) {
+        val foodItems = restaurant.food[category]?.map { foodItem ->
             PopularFoodItemModel(
                 popularFoodImage = R.drawable.ic_launcher_background,
                 popularFoodName = foodItem.name,
@@ -118,17 +147,13 @@ class RestaurantViewFragment : Fragment() {
                 popularFoodRestaurantId = restaurant.id
             )
         } ?: emptyList()
-        if (::popularFoodRecyclerAdapter.isInitialized) {
-            popularFoodRecyclerAdapter.updateList(foodItems)
-        } else {
-            popularFoodRecyclerAdapter = PopularFoodRecyclerAdapter(foodItems) { selectedFood ->
 
-            }
-            binding.recyclerRestaurantFoodSelected.apply {
-                adapter = popularFoodRecyclerAdapter
-                layoutManager = LinearLayoutManager(requireContext())
-            }
-        }
+        popularFoodRecyclerAdapter.updateList(foodItems)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("selectedCategory", selectedCategory)
     }
 
     override fun onDestroyView() {

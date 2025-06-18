@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
@@ -29,8 +30,6 @@ class FoodFragment : Fragment() {
     private var _binding: FragmentFoodBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var selectedCategory: String
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,12 +41,30 @@ class FoodFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        selectedCategory = arguments?.getString("selectedCategory") ?: ""
-
         setupRecyclerView()
         setupDialog()
         setupPopupMenu()
-        filterByCategory(selectedCategory)
+        setupObserver()
+    }
+
+    private fun setupObserver(){
+        setFragmentResultListener("categoryRequestKey") { _, bundle ->
+            val category = bundle.getString("selectedCategory") ?: return@setFragmentResultListener
+            if (homeViewModel.selectedFoodCategory.value != category) {
+                homeViewModel.selectedFoodCategory.value = category
+            }
+        }
+
+        if (homeViewModel.selectedFoodCategory.value.isNullOrEmpty()) {
+            homeViewModel.selectedFoodCategory.value = homeViewModel.categories.value?.firstOrNull() ?: ""
+        }
+
+        homeViewModel.selectedFoodCategory.observe(viewLifecycleOwner) { category ->
+            if (category.isNotEmpty()) {
+                filterByCategory(category)
+                binding.foodPopupMenuBtn.text = category
+            }
+        }
     }
 
     private fun setupDialog() {
@@ -96,8 +113,6 @@ class FoodFragment : Fragment() {
     }
 
     private fun setupPopupMenu() {
-        binding.foodPopupMenuBtn.text = selectedCategory
-
         popup = PopupMenu(requireContext(), binding.foodPopupMenuBtn)
 
         binding.foodPopupMenuBtn.setOnClickListener {
@@ -112,8 +127,7 @@ class FoodFragment : Fragment() {
 
             popup.setOnMenuItemClickListener { item ->
                 val selected = item.title.toString()
-                binding.foodPopupMenuBtn.text = selected
-                filterByCategory(selected)
+                homeViewModel.selectedFoodCategory.value = selected
                 true
             }
         }

@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -114,10 +116,11 @@ class HomeFragment : Fragment() {
     private fun setupRecyclerView() {
 
         categoriesRecyclerAdapter = CategoriesRecyclerAdapter(emptyList()) { category ->
-            val bundle = Bundle().apply {
-                putString("selectedCategory", category.foodName)
-            }
-            findNavController().navigate(R.id.action_homeFragment_to_foodFragment, bundle)
+            setFragmentResult(
+                "categoryRequestKey",
+                bundleOf("selectedCategory" to category.foodName)
+            )
+            findNavController().navigate(R.id.action_homeFragment_to_foodFragment)
         }
 
         openRestaurantsRecyclerAdapter =

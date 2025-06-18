@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.fooddeliveryapp.data.remote.RetrofitInstance
 import com.example.fooddeliveryapp.data.remote.dto.restaurant.Restaurants
-import com.example.fooddeliveryapp.data.remote.dto.restaurant.FoodItem
 import com.example.fooddeliveryapp.utils.ERROR
 import com.example.fooddeliveryapp.utils.TRY_AGAIN
 import kotlinx.coroutines.CoroutineScope
@@ -13,6 +12,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
+
+    var selectedRestaurantId: Int? = null
+    val selectedCategory = MutableLiveData<String>()
+    val selectedFoodCategory = MutableLiveData<String>()
 
     private val _categories = MutableLiveData<List<String>>()
     val categories: LiveData<List<String>> = _categories
@@ -41,12 +44,6 @@ class HomeViewModel : ViewModel() {
             } catch (e: Exception) {
                 _restaurants.postValue(emptyList())
             }
-        }
-    }
-
-    fun getAllFoodItems(): List<FoodItem> {
-        return _restaurants.value.orEmpty().flatMap { restaurant ->
-            restaurant.food.values.flatten()
         }
     }
 
