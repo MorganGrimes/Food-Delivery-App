@@ -47,22 +47,27 @@ class FoodFragment : Fragment() {
         setupObserver()
     }
 
-    private fun setupObserver(){
-        setFragmentResultListener("categoryRequestKey") { _, bundle ->
-            val category = bundle.getString("selectedCategory") ?: return@setFragmentResultListener
-            if (homeViewModel.selectedFoodCategory.value != category) {
-                homeViewModel.selectedFoodCategory.value = category
+    private fun setupObserver() {
+        binding.apply {
+            setFragmentResultListener("categoryRequestKey") { _, bundle ->
+                val category =
+                    bundle.getString("selectedCategory") ?: return@setFragmentResultListener
+                if (homeViewModel.selectedFoodCategory.value != category) {
+                    homeViewModel.selectedFoodCategory.value = category
+                }
             }
-        }
 
-        if (homeViewModel.selectedFoodCategory.value.isNullOrEmpty()) {
-            homeViewModel.selectedFoodCategory.value = homeViewModel.categories.value?.firstOrNull() ?: ""
-        }
+            if (homeViewModel.selectedFoodCategory.value.isNullOrEmpty()) {
+                homeViewModel.selectedFoodCategory.value =
+                    homeViewModel.categories.value?.firstOrNull() ?: ""
+            }
 
-        homeViewModel.selectedFoodCategory.observe(viewLifecycleOwner) { category ->
-            if (category.isNotEmpty()) {
-                filterByCategory(category)
-                binding.foodPopupMenuBtn.text = category
+            homeViewModel.selectedFoodCategory.observe(viewLifecycleOwner) { category ->
+                if (category.isNotEmpty()) {
+                    filterByCategory(category)
+                    foodPopupMenuBtn.text = category
+                    popularFoodTv.text = getString(R.string.popular_with_category, category)
+                }
             }
         }
     }
@@ -113,22 +118,24 @@ class FoodFragment : Fragment() {
     }
 
     private fun setupPopupMenu() {
-        popup = PopupMenu(requireContext(), binding.foodPopupMenuBtn)
+        binding.apply {
+            popup = PopupMenu(requireContext(), foodPopupMenuBtn)
 
-        binding.foodPopupMenuBtn.setOnClickListener {
-            popup.show()
-        }
-
-        homeViewModel.categories.observe(viewLifecycleOwner) { categories ->
-            popup.menu.clear()
-            categories.forEach { category ->
-                popup.menu.add(category)
+            foodPopupMenuBtn.setOnClickListener {
+                popup.show()
             }
 
-            popup.setOnMenuItemClickListener { item ->
-                val selected = item.title.toString()
-                homeViewModel.selectedFoodCategory.value = selected
-                true
+            homeViewModel.categories.observe(viewLifecycleOwner) { categories ->
+                popup.menu.clear()
+                categories.forEach { category ->
+                    popup.menu.add(category)
+                }
+
+                popup.setOnMenuItemClickListener { item ->
+                    val selected = item.title.toString()
+                    homeViewModel.selectedFoodCategory.value = selected
+                    true
+                }
             }
         }
     }
