@@ -103,6 +103,34 @@ class AddNewAddressFragment : Fragment() {
 
             inputs.forEach { it.addTextChangedListener { checkFormValidity() } }
 
+            addNewAddressAddressEt.addTextChangedListener { editable ->
+                val addressText = editable?.toString() ?: return@addTextChangedListener
+
+                if (addressText.length > 5) {
+                    val geocoder = android.location.Geocoder(requireContext())
+                    val addresses = geocoder.getFromLocationName(addressText, 1)
+
+                    if (!addresses.isNullOrEmpty()) {
+                        val location = addresses[0]
+                        val point = GeoPoint(location.latitude, location.longitude)
+
+                        val map = map
+                        map.controller.animateTo(point)
+                        map.controller.setZoom(16.0)
+
+                        map.overlays.removeIf { it is Marker && it.title == "UserSelected" }
+
+                        val marker = Marker(map).apply {
+                            position = point
+                            setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                            title = "UserSelected"
+                        }
+                        map.overlays.add(marker)
+                        map.invalidate()
+                    }
+                }
+            }
+
             addNewAddressHomeBtn.setOnClickListener { selectLabelButton(HOME) }
             addNewAddressWorkBtn.setOnClickListener { selectLabelButton(WORK) }
             addNewAddressOtherBtn.setOnClickListener { selectLabelButton(OTHER) }
