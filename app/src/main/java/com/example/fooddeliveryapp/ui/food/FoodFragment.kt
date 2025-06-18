@@ -63,25 +63,33 @@ class FoodFragment : Fragment() {
 
     private fun setupRecyclerView() {
         popularFoodRecyclerAdapter = PopularFoodRecyclerAdapter(emptyList()) { foodItem ->
-            val action = FoodFragmentDirections.actionFoodFragmentToFoodDetailsFragment(
-                foodItem.popularFoodName,
-                foodItem.popularFoodRestaurantId
+            findNavController().navigate(
+                FoodFragmentDirections.actionFoodFragmentToFoodDetailsFragment(
+                    foodItem.popularFoodName,
+                    foodItem.popularFoodRestaurantId
+                )
             )
-            findNavController().navigate(action)
         }
 
-        openRestaurantsRecyclerAdapter = OpenRestaurantsRecyclerAdapter(emptyList()) {
-            findNavController().navigate(R.id.action_foodFragment_to_restaurantViewFragment)
-        }
+        openRestaurantsRecyclerAdapter =
+            OpenRestaurantsRecyclerAdapter(emptyList()) { selectedRestaurant ->
+                findNavController().navigate(
+                    FoodFragmentDirections.actionFoodFragmentToRestaurantViewFragment(
+                        selectedRestaurant.restaurantId
+                    )
+                )
+            }
 
         binding.recyclerPopularFood.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = popularFoodRecyclerAdapter
             isNestedScrollingEnabled = false
         }
 
         binding.restaurantsRecycler.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = openRestaurantsRecyclerAdapter
             isNestedScrollingEnabled = false
         }
@@ -139,7 +147,9 @@ class FoodFragment : Fragment() {
         val restaurantModels = filteredRestaurants.map {
             RestaurantsItemModel(
                 R.drawable.ic_launcher_background,
+                it.id,
                 it.name,
+                it.description,
                 it.food.keys.joinToString(", "),
                 it.rating.toString(),
                 it.delivery,

@@ -35,7 +35,7 @@
             android:fontFamily="@font/sen_regular"
             android:paddingStart="16dp"
             android:text="@string/restaurant_view"
-            android:textColor="@color/black"
+            android:textColor="@color/black_light"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/restaurant_view_back_icon_iv"
             app:layout_constraintStart_toEndOf="@+id/restaurant_view_back_icon_iv"
@@ -71,7 +71,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/sen_regular"
         android:text="@string/restaurants_name_example"
-        android:textColor="@color/black"
+        android:textColor="@color/black_light"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/restaurants_cw"
@@ -110,6 +110,7 @@
             android:fontFamily="@font/sen_bold"
             android:gravity="bottom"
             android:text="@string/rating"
+            android:textColor="@color/black_light"
             android:textSize="16sp"
             app:drawableStartCompat="@drawable/star"
             app:drawableTint="@color/orange" />
@@ -123,6 +124,7 @@
             android:fontFamily="@font/sen_regular"
             android:gravity="bottom"
             android:text="@string/delivery_type"
+            android:textColor="@color/black_light"
             android:textSize="14sp"
             app:drawableStartCompat="@drawable/delivery"
             app:drawableTint="@color/orange" />
@@ -136,6 +138,7 @@
             android:fontFamily="@font/sen_regular"
             android:gravity="bottom"
             android:text="@string/delivery_time"
+            android:textColor="@color/black_light"
             android:textSize="14sp"
             app:drawableStartCompat="@drawable/clock"
             app:drawableTint="@color/orange" />
@@ -143,7 +146,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_food"
+        android:id="@+id/recycler_restaurant_category_food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -166,7 +169,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_food" />
+        app:layout_constraintTop_toBottomOf="@+id/recycler_restaurant_category_food" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_container"

@@ -120,9 +120,14 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_foodFragment, bundle)
         }
 
-        openRestaurantsRecyclerAdapter = OpenRestaurantsRecyclerAdapter(emptyList()) {
-            findNavController().navigate(R.id.action_homeFragment_to_restaurantViewFragment)
-        }
+        openRestaurantsRecyclerAdapter =
+            OpenRestaurantsRecyclerAdapter(emptyList()) { selectedRestaurant ->
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToRestaurantViewFragment(
+                        selectedRestaurant.restaurantId
+                    )
+                )
+            }
 
         binding.apply {
             categoriesRecycler.apply {
@@ -130,7 +135,6 @@ class HomeFragment : Fragment() {
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 adapter = categoriesRecyclerAdapter
             }
-
 
             restaurantsRecycler.apply {
                 layoutManager =
@@ -167,7 +171,9 @@ class HomeFragment : Fragment() {
     private fun mapRestaurantResponseToModel(restaurant: Restaurants): RestaurantsItemModel {
         return RestaurantsItemModel(
             R.drawable.ic_launcher_background,
+            restaurant.id,
             restaurant.name,
+            restaurant.description,
             restaurant.food.keys.joinToString(", "),
             restaurant.rating.toString(),
             restaurant.delivery,

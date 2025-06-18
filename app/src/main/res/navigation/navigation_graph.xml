@@ -138,9 +138,13 @@
         android:name="com.example.fooddeliveryapp.ui.restaurantview.RestaurantViewFragment"
         android:label="fragment_restaurant_view"
         tools:layout="@layout/fragment_restaurant_view" >
+         <argument
+             android:name="restaurantId"
+             app:argType="integer" />
         <action
             android:id="@+id/action_restaurantViewFragment_to_foodDetailsFragment"
             app:destination="@id/foodDetailsFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/filterDialogFragment"

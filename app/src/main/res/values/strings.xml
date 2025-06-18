@@ -193,5 +193,6 @@ you just place the order we do the rest</string>
     <string name="orange">orange</string>
     <string name="walnut">walnut</string>
     <string name="food_price">$%1$.2f</string>
+    <string name="category_food_count">%1$s (%2$d)</string>
 
 </resources>
