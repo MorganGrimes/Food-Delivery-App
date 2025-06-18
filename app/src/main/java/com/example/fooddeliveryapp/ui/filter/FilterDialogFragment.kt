@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentFilterDialogBinding
@@ -36,11 +35,16 @@ class FilterDialogFragment : DialogFragment() {
 
         binding.filterBtn.setOnClickListener {
             val bundle = Bundle().apply {
-                putIntArray("deliveryTimeRange", selectedDeliveryTimeRange?.toList()?.toIntArray() ?: intArrayOf())
-                putDoubleArray("pricingRange", doubleArrayOf(
-                    selectedPricingRange?.start ?: -1.0,
-                    selectedPricingRange?.endInclusive ?: -1.0
-                ))
+                putIntArray(
+                    "deliveryTimeRange",
+                    selectedDeliveryTimeRange?.toList()?.toIntArray() ?: intArrayOf()
+                )
+                putDoubleArray(
+                    "pricingRange", doubleArrayOf(
+                        selectedPricingRange?.start ?: -1.0,
+                        selectedPricingRange?.endInclusive ?: -1.0
+                    )
+                )
                 putInt("minRating", selectedMinRating ?: -1)
             }
             parentFragmentManager.setFragmentResult("filterRequestKey", bundle)
@@ -74,7 +78,10 @@ class FilterDialogFragment : DialogFragment() {
         }
     }
 
-    private fun updateDeliveryTimeButtonUI(button: com.google.android.material.button.MaterialButton, isSelected: Boolean) {
+    private fun updateDeliveryTimeButtonUI(
+        button: com.google.android.material.button.MaterialButton,
+        isSelected: Boolean
+    ) {
         if (isSelected) {
             button.setBackgroundColor(resources.getColor(R.color.orange, null))
             button.setTextColor(resources.getColor(android.R.color.white, null))
@@ -103,18 +110,22 @@ class FilterDialogFragment : DialogFragment() {
         binding.apply {
             updatePricingUI(filterFirstPricingBtn, selectedPricingRange == (0.0..5.0), 1)
             updatePricingUI(filterSecondPricingBtn, selectedPricingRange == (5.0..10.0), 2)
-            updatePricingUI(filterThirdPricingBtn, selectedPricingRange == (10.0..Double.MAX_VALUE), 3)
+            updatePricingUI(
+                filterThirdPricingBtn,
+                selectedPricingRange == (10.0..Double.MAX_VALUE),
+                3
+            )
         }
     }
 
     private fun updatePricingUI(view: ImageView, isSelected: Boolean, pricingIndex: Int) {
-        val defaultRes = when(pricingIndex) {
+        val defaultRes = when (pricingIndex) {
             1 -> R.drawable.dollar_1
             2 -> R.drawable.dollar_2
             3 -> R.drawable.dollar_3
             else -> R.drawable.dollar_1
         }
-        val selectedRes = when(pricingIndex) {
+        val selectedRes = when (pricingIndex) {
             1 -> R.drawable.dollar_1_orange
             2 -> R.drawable.dollar_2_orange
             3 -> R.drawable.dollar_3_orange

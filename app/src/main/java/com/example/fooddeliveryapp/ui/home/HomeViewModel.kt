@@ -56,7 +56,8 @@ class HomeViewModel : ViewModel() {
             val times = timeString.split("-").mapNotNull { it.toIntOrNull() }
             val minTime = times.minOrNull() ?: 0
             val maxTime = times.maxOrNull() ?: 0
-            val deliveryOk = deliveryTimeRange?.let { minTime >= it.first && maxTime <= it.last } ?: true
+            val deliveryOk =
+                deliveryTimeRange?.let { minTime >= it.first && maxTime <= it.last } ?: true
 
             val prices = restaurant.food.values.flatten().map { it.price }
             val avgPrice = if (prices.isNotEmpty()) prices.average() else 0.0
@@ -87,5 +88,4 @@ class HomeViewModel : ViewModel() {
             }
         }
     }
-
 }
