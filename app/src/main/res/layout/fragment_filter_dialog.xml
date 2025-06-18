@@ -147,9 +147,10 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/ten_fifteen_min_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/sen_regular"
             android:text="@string/_10_15_min"
@@ -160,10 +161,11 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/twenty_min_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_weight="1"
+            android:layout_gravity="center"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/sen_regular"
             android:text="@string/_20_min"
@@ -174,9 +176,10 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/thirty_min_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/sen_regular"
             android:text="@string/_30_min"
@@ -264,12 +267,14 @@
             <ImageView
                 android:id="@+id/filter_first_star_rating_iv"
                 android:layout_width="wrap_content"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:src="@drawable/rating_star" />
 
             <ImageView
                 android:id="@+id/filter_second_star_rating_iv"
                 android:layout_width="wrap_content"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="11dp"
                 android:src="@drawable/rating_star" />
@@ -277,6 +282,7 @@
             <ImageView
                 android:id="@+id/filter_third_star_rating_iv"
                 android:layout_width="wrap_content"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="11dp"
                 android:src="@drawable/rating_star" />
@@ -285,6 +291,7 @@
                 android:id="@+id/filter_fourth_star_rating_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginStart="11dp"
                 android:src="@drawable/rating_star" />
 
@@ -292,6 +299,7 @@
                 android:id="@+id/filter_fifth_star_rating_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginStart="11dp"
                 android:src="@drawable/rating_star" />
 

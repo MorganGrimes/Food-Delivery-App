@@ -45,6 +45,8 @@ class FoodFragment : Fragment() {
         setupDialog()
         setupPopupMenu()
         setupObserver()
+        setupFilterResultListener()
+        observeFilteredRestaurants()
     }
 
     private fun setupObserver() {
@@ -69,6 +71,69 @@ class FoodFragment : Fragment() {
                     popularFoodTv.text = getString(R.string.popular_with_category, category)
                 }
             }
+        }
+    }
+
+    private fun setupFilterResultListener() {
+        setFragmentResultListener("filterRequestKey") { _, bundle ->
+            val deliveryRangeArr = bundle.getIntArray("deliveryTimeRange")
+            val deliveryTimeRange = if (deliveryRangeArr != null && deliveryRangeArr.isNotEmpty()) {
+                deliveryRangeArr[0]..deliveryRangeArr.getOrElse(1) { deliveryRangeArr[0] }
+            } else null
+
+            val pricingRangeArr = bundle.getDoubleArray("pricingRange")
+            val pricingRange = if (pricingRangeArr != null && pricingRangeArr.size == 2 &&
+                pricingRangeArr[0] >= 0 && pricingRangeArr[1] >= 0
+            ) {
+                pricingRangeArr[0]..pricingRangeArr[1]
+            } else null
+
+            val minRating = bundle.getInt("minRating").takeIf { it >= 0 }
+
+            homeViewModel.filterRestaurants(deliveryTimeRange, pricingRange, minRating)
+        }
+    }
+
+    private fun observeFilteredRestaurants() {
+        homeViewModel.filteredRestaurantsLiveData.observe(viewLifecycleOwner) { filteredRestaurants ->
+
+            val category = homeViewModel.selectedFoodCategory.value ?: return@observe
+
+            // Aggiorna lista ristoranti filtrati
+            val restaurantModels = filteredRestaurants.map {
+                RestaurantsItemModel(
+                    R.drawable.ic_launcher_background,
+                    it.id,
+                    it.name,
+                    it.description,
+                    it.food.keys.joinToString(", "),
+                    it.rating.toString(),
+                    it.delivery,
+                    it.deliveryTime
+                )
+            }
+            openRestaurantsRecyclerAdapter.updateList(restaurantModels)
+
+            // Aggiorna lista cibi filtrati in base alla categoria attuale
+            val filteredFoodWithRestaurant = filteredRestaurants.flatMap { restaurant ->
+                restaurant.food[category].orEmpty().map { foodItem ->
+                    Pair(foodItem, restaurant)
+                }
+            }.sortedByDescending { (foodItem, _) ->
+                foodItem.eatenLastMonth
+            }
+
+            val foodModels = filteredFoodWithRestaurant.map { (foodItem, restaurant) ->
+                PopularFoodItemModel(
+                    popularFoodImage = R.drawable.ic_launcher_background,
+                    popularFoodName = foodItem.name,
+                    popularFoodRestaurantName = restaurant.name,
+                    popularFoodPrice = "$${foodItem.price}",
+                    popularFoodRestaurantId = restaurant.id
+                )
+            }
+
+            popularFoodRecyclerAdapter.updateList(foodModels)
         }
     }
 
