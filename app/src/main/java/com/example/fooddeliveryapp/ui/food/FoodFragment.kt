@@ -11,7 +11,6 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
-import com.example.fooddeliveryapp.data.model.PopularFoodItemModel
 import com.example.fooddeliveryapp.data.model.RestaurantsItemModel
 import com.example.fooddeliveryapp.databinding.FragmentFoodBinding
 import com.example.fooddeliveryapp.ui.adapters.OpenRestaurantsRecyclerAdapter
@@ -47,29 +46,26 @@ class FoodFragment : Fragment() {
         setupObserver()
         setupFilterResultListener()
         observeFilteredRestaurants()
+        observePopularFood()
     }
 
     private fun setupObserver() {
-        binding.apply {
-            setFragmentResultListener("categoryRequestKey") { _, bundle ->
-                val category =
-                    bundle.getString("selectedCategory") ?: return@setFragmentResultListener
-                if (homeViewModel.selectedFoodCategory.value != category) {
-                    homeViewModel.selectedFoodCategory.value = category
-                }
+        setFragmentResultListener("categoryRequestKey") { _, bundle ->
+            val category = bundle.getString("selectedCategory") ?: return@setFragmentResultListener
+            if (homeViewModel.selectedFoodCategory.value != category) {
+                homeViewModel.selectedFoodCategory.value = category
             }
+        }
 
-            if (homeViewModel.selectedFoodCategory.value.isNullOrEmpty()) {
-                homeViewModel.selectedFoodCategory.value =
-                    homeViewModel.categories.value?.firstOrNull() ?: ""
-            }
+        if (homeViewModel.selectedFoodCategory.value.isNullOrEmpty()) {
+            homeViewModel.selectedFoodCategory.value = homeViewModel.categories.value?.firstOrNull() ?: ""
+        }
 
-            homeViewModel.selectedFoodCategory.observe(viewLifecycleOwner) { category ->
-                if (category.isNotEmpty()) {
-                    filterByCategory(category)
-                    foodPopupMenuBtn.text = category
-                    popularFoodTv.text = getString(R.string.popular_with_category, category)
-                }
+        homeViewModel.selectedFoodCategory.observe(viewLifecycleOwner) { category ->
+            if (category.isNotEmpty()) {
+                homeViewModel.filterRestaurantsByCategory(category)
+                binding.foodPopupMenuBtn.text = category
+                binding.popularFoodTv.text = getString(R.string.popular_with_category, category)
             }
         }
     }
@@ -85,7 +81,7 @@ class FoodFragment : Fragment() {
             val pricingRange = if (pricingRangeArr != null && pricingRangeArr.size == 2 &&
                 pricingRangeArr[0] >= 0 && pricingRangeArr[1] >= 0
             ) {
-                pricingRangeArr[0]..pricingRangeArr[1]
+                pricingRangeArr[0]..pricingRangeArr [1]
             } else null
 
             val minRating = bundle.getInt("minRating").takeIf { it >= 0 }
@@ -95,11 +91,8 @@ class FoodFragment : Fragment() {
     }
 
     private fun observeFilteredRestaurants() {
-        homeViewModel.filteredRestaurantsLiveData.observe(viewLifecycleOwner) { filteredRestaurants ->
-
-            val category = homeViewModel.selectedFoodCategory.value ?: return@observe
-
-            val restaurantModels = filteredRestaurants.map {
+        homeViewModel.filteredRestaurantsLiveData.observe(viewLifecycleOwner) { restaurants ->
+            val restaurantModels = restaurants.map {
                 RestaurantsItemModel(
                     R.drawable.ic_launcher_background,
                     it.id,
@@ -112,26 +105,12 @@ class FoodFragment : Fragment() {
                 )
             }
             openRestaurantsRecyclerAdapter.updateList(restaurantModels)
+        }
+    }
 
-            val filteredFoodWithRestaurant = filteredRestaurants.flatMap { restaurant ->
-                restaurant.food[category].orEmpty().map { foodItem ->
-                    Pair(foodItem, restaurant)
-                }
-            }.sortedByDescending { (foodItem, _) ->
-                foodItem.eatenLastMonth
-            }
-
-            val foodModels = filteredFoodWithRestaurant.map { (foodItem, restaurant) ->
-                PopularFoodItemModel(
-                    popularFoodImage = R.drawable.ic_launcher_background,
-                    popularFoodName = foodItem.name,
-                    popularFoodRestaurantName = restaurant.name,
-                    popularFoodPrice = "$${foodItem.price}",
-                    popularFoodRestaurantId = restaurant.id
-                )
-            }
-
-            popularFoodRecyclerAdapter.updateList(foodModels)
+    private fun observePopularFood() {
+        homeViewModel.popularFoodItemsLiveData.observe(viewLifecycleOwner) { foodList ->
+            popularFoodRecyclerAdapter.updateList(foodList)
         }
     }
 
@@ -147,36 +126,38 @@ class FoodFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        popularFoodRecyclerAdapter = PopularFoodRecyclerAdapter(emptyList()) { foodItem ->
-            findNavController().navigate(
-                FoodFragmentDirections.actionFoodFragmentToFoodDetailsFragment(
-                    foodItem.popularFoodName,
-                    foodItem.popularFoodRestaurantId
-                )
-            )
-        }
-
-        openRestaurantsRecyclerAdapter =
-            OpenRestaurantsRecyclerAdapter(emptyList()) { selectedRestaurant ->
+        binding.apply {
+            popularFoodRecyclerAdapter = PopularFoodRecyclerAdapter(emptyList()) { foodItem ->
                 findNavController().navigate(
-                    FoodFragmentDirections.actionFoodFragmentToRestaurantViewFragment(
-                        selectedRestaurant.restaurantId
+                    FoodFragmentDirections.actionFoodFragmentToFoodDetailsFragment(
+                        foodItem.popularFoodName,
+                        foodItem.popularFoodRestaurantId
                     )
                 )
             }
 
-        binding.recyclerPopularFood.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            adapter = popularFoodRecyclerAdapter
-            isNestedScrollingEnabled = false
-        }
+            openRestaurantsRecyclerAdapter =
+                OpenRestaurantsRecyclerAdapter(emptyList()) { selectedRestaurant ->
+                    findNavController().navigate(
+                        FoodFragmentDirections.actionFoodFragmentToRestaurantViewFragment(
+                            selectedRestaurant.restaurantId
+                        )
+                    )
+                }
 
-        binding.restaurantsRecycler.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            adapter = openRestaurantsRecyclerAdapter
-            isNestedScrollingEnabled = false
+            recyclerPopularFood.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                adapter = popularFoodRecyclerAdapter
+                isNestedScrollingEnabled = false
+            }
+
+            restaurantsRecycler.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                adapter = openRestaurantsRecyclerAdapter
+                isNestedScrollingEnabled = false
+            }
         }
     }
 
@@ -201,48 +182,6 @@ class FoodFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun filterByCategory(category: String) {
-        val restaurants = homeViewModel.getAllRestaurants()
-
-        val filteredFoodWithRestaurant = restaurants.flatMap { restaurant ->
-            restaurant.food[category].orEmpty().map { foodItem ->
-                Pair(foodItem, restaurant)
-            }
-        }.sortedByDescending { (foodItem, _) ->
-            foodItem.eatenLastMonth
-        }
-
-        val foodModels = filteredFoodWithRestaurant.map { (foodItem, restaurant) ->
-            PopularFoodItemModel(
-                popularFoodImage = R.drawable.ic_launcher_background,
-                popularFoodName = foodItem.name,
-                popularFoodRestaurantName = restaurant.name,
-                popularFoodPrice = "$${foodItem.price}",
-                popularFoodRestaurantId = restaurant.id
-            )
-        }
-
-        val filteredRestaurants = restaurants.filter {
-            it.food.containsKey(category)
-        }
-
-        val restaurantModels = filteredRestaurants.map {
-            RestaurantsItemModel(
-                R.drawable.ic_launcher_background,
-                it.id,
-                it.name,
-                it.description,
-                it.food.keys.joinToString(", "),
-                it.rating.toString(),
-                it.delivery,
-                it.deliveryTime
-            )
-        }
-
-        popularFoodRecyclerAdapter.updateList(foodModels)
-        openRestaurantsRecyclerAdapter.updateList(restaurantModels)
     }
 
     override fun onDestroyView() {

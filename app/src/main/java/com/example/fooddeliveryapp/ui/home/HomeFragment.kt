@@ -1,6 +1,7 @@
 package com.example.fooddeliveryapp.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
@@ -66,7 +67,8 @@ class HomeFragment : Fragment() {
             categoriesRecyclerAdapter.updateList(formatted)
         }
 
-        homeViewModel.restaurants.observe(viewLifecycleOwner) { restaurants ->
+        homeViewModel.filteredRestaurantsLiveData.observe(viewLifecycleOwner) { restaurants ->
+            Log.d("HomeFragment", "Observed ${restaurants.size} restaurants")
             val mappedList = restaurants.map { mapRestaurantResponseToModel(it) }
             openRestaurantsRecyclerAdapter.updateList(mappedList)
         }
@@ -137,7 +139,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-
         categoriesRecyclerAdapter = CategoriesRecyclerAdapter(emptyList()) { category ->
             setFragmentResult(
                 "categoryRequestKey",
@@ -182,6 +183,17 @@ class HomeFragment : Fragment() {
             restaurant.delivery,
             restaurant.deliveryTime
         )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.selectedFoodCategory.value = null
+        homeViewModel.refreshRestaurants()
+
+        val restaurants = homeViewModel.getAllRestaurants().map {
+            mapRestaurantResponseToModel(it)
+        }
+        openRestaurantsRecyclerAdapter.updateList(restaurants)
     }
 
     override fun onDestroyView() {

@@ -3,6 +3,7 @@ package com.example.fooddeliveryapp.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.fooddeliveryapp.data.model.PopularFoodItemModel
 import com.example.fooddeliveryapp.data.remote.RetrofitInstance
 import com.example.fooddeliveryapp.data.remote.dto.restaurant.Restaurants
 import com.example.fooddeliveryapp.utils.ERROR
@@ -27,6 +28,9 @@ class HomeViewModel : ViewModel() {
     private val _filteredRestaurants = MutableLiveData<List<Restaurants>>()
     val filteredRestaurantsLiveData: LiveData<List<Restaurants>> = _filteredRestaurants
 
+    private val _popularFoodItems = MutableLiveData<List<PopularFoodItemModel>>()
+    val popularFoodItemsLiveData: LiveData<List<PopularFoodItemModel>> = _popularFoodItems
+
     suspend fun fetchCategories() {
         try {
             val response = RetrofitInstance.categoryApi.getCategories()
@@ -40,10 +44,15 @@ class HomeViewModel : ViewModel() {
         fullRestaurantList = restaurants
         _restaurants.postValue(restaurants)
         _filteredRestaurants.postValue(restaurants)
+        updatePopularFood()
     }
 
-    fun getAllRestaurants(): List<Restaurants> {
-        return fullRestaurantList
+    fun getAllRestaurants(): List<Restaurants> = fullRestaurantList
+
+    fun filterRestaurantsByCategory(category: String) {
+        val filtered = fullRestaurantList.filter { it.food.containsKey(category) }
+        _filteredRestaurants.value = filtered
+        updatePopularFood()
     }
 
     fun filterRestaurants(
@@ -56,8 +65,7 @@ class HomeViewModel : ViewModel() {
             val times = timeString.split("-").mapNotNull { it.toIntOrNull() }
             val minTime = times.minOrNull() ?: 0
             val maxTime = times.maxOrNull() ?: 0
-            val deliveryOk =
-                deliveryTimeRange?.let { minTime >= it.first && maxTime <= it.last } ?: true
+            val deliveryOk = deliveryTimeRange?.let { minTime >= it.first && maxTime <= it.last } ?: true
 
             val prices = restaurant.food.values.flatten().map { it.price }
             val avgPrice = if (prices.isNotEmpty()) prices.average() else 0.0
@@ -68,7 +76,9 @@ class HomeViewModel : ViewModel() {
 
             deliveryOk && pricingOk && ratingOk
         }
+
         _filteredRestaurants.value = filtered
+        updatePopularFood()
     }
 
     fun fetchRestaurants() {
@@ -87,5 +97,33 @@ class HomeViewModel : ViewModel() {
                 _filteredRestaurants.postValue(emptyList())
             }
         }
+    }
+
+    private fun updatePopularFood() {
+        val category = selectedFoodCategory.value ?: return
+        val restaurants = _filteredRestaurants.value ?: return
+
+        val foodWithRestaurant = restaurants.flatMap { restaurant ->
+            restaurant.food[category].orEmpty().map { foodItem ->
+                Pair(foodItem, restaurant)
+            }
+        }.sortedByDescending { (foodItem, _) -> foodItem.eatenLastMonth }
+
+        val foodModels = foodWithRestaurant.map { (foodItem, restaurant) ->
+            PopularFoodItemModel(
+                popularFoodImage = com.example.fooddeliveryapp.R.drawable.ic_launcher_background,
+                popularFoodName = foodItem.name,
+                popularFoodRestaurantName = restaurant.name,
+                popularFoodPrice = "$${foodItem.price}",
+                popularFoodRestaurantId = restaurant.id
+            )
+        }
+
+        _popularFoodItems.value = foodModels
+    }
+
+    fun refreshRestaurants() {
+        _restaurants.value = fullRestaurantList
+        _filteredRestaurants.value = fullRestaurantList
     }
 }
