@@ -36,7 +36,7 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    fun setFullRestaurantList(restaurants: List<Restaurants>) {
+    private fun setFullRestaurantList(restaurants: List<Restaurants>) {
         fullRestaurantList = restaurants
         _restaurants.postValue(restaurants)
         _filteredRestaurants.postValue(restaurants)

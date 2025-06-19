@@ -80,7 +80,8 @@ class FoodDetailsFragment : Fragment() {
             }
 
             foodDetailsTotalFoodPriceTv.text = getString(R.string.food_price, foodItem.price)
-            foodDetailsNumberSelectedFoodTv.text = String.format(Locale.getDefault(), "%d", quantity)
+            foodDetailsNumberSelectedFoodTv.text =
+                String.format(Locale.getDefault(), "%d", quantity)
             updateTotalPrice(foodItem.price)
 
             val sizeButtons =
@@ -93,11 +94,31 @@ class FoodDetailsFragment : Fragment() {
                     button.text = sizes[index]
 
                     button.setOnClickListener {
-                        (selectedSizeButton as? TextView)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-                        selectedSizeButton?.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.edit_text_white))
+                        (selectedSizeButton as? TextView)?.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.black
+                            )
+                        )
+                        selectedSizeButton?.setBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.edit_text_white
+                            )
+                        )
 
-                        button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.orange))
-                        (button as? TextView)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                        button.setBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.orange
+                            )
+                        )
+                        (button as? TextView)?.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.white
+                            )
+                        )
                         selectedSizeButton = button
                     }
 
@@ -132,7 +153,8 @@ class FoodDetailsFragment : Fragment() {
             binding.apply {
                 foodDetailsPlusIconIv.setOnClickListener {
                     quantity++
-                    foodDetailsNumberSelectedFoodTv.text = String.format(Locale.getDefault(), "%d", quantity)
+                    foodDetailsNumberSelectedFoodTv.text =
+                        String.format(Locale.getDefault(), "%d", quantity)
                     val pricePerItem = getCurrentFoodItemPrice()
                     updateTotalPrice(pricePerItem)
                 }
@@ -140,12 +162,18 @@ class FoodDetailsFragment : Fragment() {
                 foodDetailsMinusIconIv.setOnClickListener {
                     if (quantity > 1) {
                         quantity--
-                        foodDetailsNumberSelectedFoodTv.text = String.format(Locale.getDefault(), "%d", quantity)
+                        foodDetailsNumberSelectedFoodTv.text =
+                            String.format(Locale.getDefault(), "%d", quantity)
                         val pricePerItem = getCurrentFoodItemPrice()
                         updateTotalPrice(pricePerItem)
                     }
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

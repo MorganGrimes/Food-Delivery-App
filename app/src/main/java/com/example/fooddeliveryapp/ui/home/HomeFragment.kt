@@ -56,6 +56,29 @@ class HomeFragment : Fragment() {
         fetchData()
     }
 
+    private fun setupObservers() {
+        addressViewModel.allAddresses.observe(viewLifecycleOwner) { addresses ->
+            setupHomeNameClick(addresses)
+        }
+
+        homeViewModel.categories.observe(viewLifecycleOwner) { categories ->
+            val formatted = categories.map { CategoriesItemModel(R.drawable.menu, it) }
+            categoriesRecyclerAdapter.updateList(formatted)
+        }
+
+        homeViewModel.restaurants.observe(viewLifecycleOwner) { restaurants ->
+            val mappedList = restaurants.map { mapRestaurantResponseToModel(it) }
+            openRestaurantsRecyclerAdapter.updateList(mappedList)
+        }
+    }
+
+    private fun fetchData() {
+        lifecycleScope.launch {
+            homeViewModel.fetchCategories()
+            homeViewModel.fetchRestaurants()
+        }
+    }
+
     private fun setupHomeNameClick(addresses: List<AddressEntity>) {
         binding.apply {
             val homeAddressTv = homeAddressTv
@@ -145,29 +168,6 @@ class HomeFragment : Fragment() {
                 adapter = openRestaurantsRecyclerAdapter
                 isNestedScrollingEnabled = false
             }
-        }
-    }
-
-    private fun setupObservers() {
-        addressViewModel.allAddresses.observe(viewLifecycleOwner) { addresses ->
-            setupHomeNameClick(addresses)
-        }
-
-        homeViewModel.categories.observe(viewLifecycleOwner) { categories ->
-            val formatted = categories.map { CategoriesItemModel(R.drawable.menu, it) }
-            categoriesRecyclerAdapter.updateList(formatted)
-        }
-
-        homeViewModel.restaurants.observe(viewLifecycleOwner) { restaurants ->
-            val mappedList = restaurants.map { mapRestaurantResponseToModel(it) }
-            openRestaurantsRecyclerAdapter.updateList(mappedList)
-        }
-    }
-
-    private fun fetchData() {
-        lifecycleScope.launch {
-            homeViewModel.fetchCategories()
-            homeViewModel.fetchRestaurants()
         }
     }
 

@@ -99,7 +99,6 @@ class FoodFragment : Fragment() {
 
             val category = homeViewModel.selectedFoodCategory.value ?: return@observe
 
-            // Aggiorna lista ristoranti filtrati
             val restaurantModels = filteredRestaurants.map {
                 RestaurantsItemModel(
                     R.drawable.ic_launcher_background,
@@ -114,7 +113,6 @@ class FoodFragment : Fragment() {
             }
             openRestaurantsRecyclerAdapter.updateList(restaurantModels)
 
-            // Aggiorna lista cibi filtrati in base alla categoria attuale
             val filteredFoodWithRestaurant = filteredRestaurants.flatMap { restaurant ->
                 restaurant.food[category].orEmpty().map { foodItem ->
                     Pair(foodItem, restaurant)
