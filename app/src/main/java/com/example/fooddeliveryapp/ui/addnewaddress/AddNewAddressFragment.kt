@@ -20,6 +20,7 @@ import com.example.fooddeliveryapp.utils.HOME
 import com.example.fooddeliveryapp.utils.INITIAL_POSITION
 import com.example.fooddeliveryapp.utils.OTHER
 import com.example.fooddeliveryapp.utils.SELECT_LABEL
+import com.example.fooddeliveryapp.utils.USER_SELECTED
 import com.example.fooddeliveryapp.utils.UiUtils
 import com.example.fooddeliveryapp.utils.WORK
 import org.osmdroid.config.Configuration
@@ -118,12 +119,12 @@ class AddNewAddressFragment : Fragment() {
                         map.controller.animateTo(point)
                         map.controller.setZoom(16.0)
 
-                        map.overlays.removeIf { it is Marker && it.title == "UserSelected" }
+                        map.overlays.removeIf { it is Marker && it.title == USER_SELECTED }
 
                         val marker = Marker(map).apply {
                             position = point
                             setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-                            title = "UserSelected"
+                            title = USER_SELECTED
                         }
                         map.overlays.add(marker)
                         map.invalidate()

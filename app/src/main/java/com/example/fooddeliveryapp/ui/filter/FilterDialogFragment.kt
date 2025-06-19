@@ -8,6 +8,10 @@ import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentFilterDialogBinding
+import com.example.fooddeliveryapp.utils.DELIVERY_TIME_RANGE
+import com.example.fooddeliveryapp.utils.FILTER_REQUEST_KEY
+import com.example.fooddeliveryapp.utils.MIN_RATING
+import com.example.fooddeliveryapp.utils.PRICING_RANGE
 
 class FilterDialogFragment : DialogFragment() {
 
@@ -36,18 +40,18 @@ class FilterDialogFragment : DialogFragment() {
         binding.filterBtn.setOnClickListener {
             val bundle = Bundle().apply {
                 putIntArray(
-                    "deliveryTimeRange",
+                    DELIVERY_TIME_RANGE,
                     selectedDeliveryTimeRange?.toList()?.toIntArray() ?: intArrayOf()
                 )
                 putDoubleArray(
-                    "pricingRange", doubleArrayOf(
+                    PRICING_RANGE, doubleArrayOf(
                         selectedPricingRange?.start ?: -1.0,
                         selectedPricingRange?.endInclusive ?: -1.0
                     )
                 )
-                putInt("minRating", selectedMinRating ?: -1)
+                putInt(MIN_RATING, selectedMinRating ?: -1)
             }
-            parentFragmentManager.setFragmentResult("filterRequestKey", bundle)
+            parentFragmentManager.setFragmentResult(FILTER_REQUEST_KEY, bundle)
             dismiss()
         }
 

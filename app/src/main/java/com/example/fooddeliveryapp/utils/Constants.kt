@@ -56,6 +56,7 @@ const val FILTER_REQUEST_KEY = "filterRequestKey"
 const val DELIVERY_TIME_RANGE = "deliveryTimeRange"
 const val PRICING_RANGE = "pricingRange"
 const val MIN_RATING = "minRating"
+const val USER_SELECTED = "UserSelected"
 
 
 
