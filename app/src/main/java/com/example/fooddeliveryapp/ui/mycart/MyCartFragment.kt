@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
+import com.example.fooddeliveryapp.data.model.CartItemModel
 import com.example.fooddeliveryapp.databinding.FragmentMyCartBinding
 import com.example.fooddeliveryapp.ui.adapters.CartItemRecyclerAdapter
 import com.example.fooddeliveryapp.ui.home.HomeViewModel
@@ -38,6 +39,7 @@ class MyCartFragment : Fragment() {
 
         viewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
             cartItemRecyclerAdapter.updateData(cartItems, isEditMode)
+            updateCartTotal(cartItems)
         }
     }
 
@@ -67,6 +69,11 @@ class MyCartFragment : Fragment() {
                 adapter = cartItemRecyclerAdapter
             }
         }
+    }
+
+    private fun updateCartTotal(cartItems: List<CartItemModel>) {
+        val total = cartItems.sumOf { it.cartFoodPrice }
+        binding.myCartCartTotalPriceTv.text = String.format("$%.2f", total)
     }
 
     override fun onDestroyView() {
