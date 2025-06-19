@@ -3,6 +3,7 @@ package com.example.fooddeliveryapp.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.fooddeliveryapp.data.model.CartItemModel
 import com.example.fooddeliveryapp.data.model.PopularFoodItemModel
 import com.example.fooddeliveryapp.data.remote.RetrofitInstance
 import com.example.fooddeliveryapp.data.remote.dto.restaurant.Restaurants
@@ -11,6 +12,7 @@ import com.example.fooddeliveryapp.utils.TRY_AGAIN
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class HomeViewModel : ViewModel() {
 
@@ -30,6 +32,9 @@ class HomeViewModel : ViewModel() {
 
     private val _popularFoodItems = MutableLiveData<List<PopularFoodItemModel>>()
     val popularFoodItemsLiveData: LiveData<List<PopularFoodItemModel>> = _popularFoodItems
+
+    private val _cartItems = MutableLiveData<MutableList<CartItemModel>>(mutableListOf())
+    val cartItems: MutableLiveData<MutableList<CartItemModel>> get() = _cartItems
 
     suspend fun fetchCategories() {
         try {
@@ -126,4 +131,34 @@ class HomeViewModel : ViewModel() {
         _restaurants.value = fullRestaurantList
         _filteredRestaurants.value = fullRestaurantList
     }
+
+    fun addToCart(
+        imageRes: Int,
+        foodName: String,
+        price: Double,
+        size: String,
+        quantity: Int,
+        restaurantId: Int
+    ) {
+        val item = CartItemModel(
+            cartImage = imageRes,
+            cartFoodName = foodName,
+            cartFoodPrice = price * quantity,
+            cartFoodSize = size,
+            cartFoodQuantity = quantity,
+            restaurantId = restaurantId
+        )
+        _cartItems.value?.add(item)
+        _cartItems.value = _cartItems.value
+    }
+
+    fun clearCart() {
+        _cartItems.value = mutableListOf()
+    }
+
+    fun removeItem(position: Int) {
+        _cartItems.value?.removeAt(position)
+        _cartItems.value = _cartItems.value
+    }
 }
+

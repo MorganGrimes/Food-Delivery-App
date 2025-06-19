@@ -144,13 +144,21 @@ class FoodDetailsFragment : Fragment() {
     private fun setupListener() {
         binding.apply {
             addToCartBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_foodDetailsFragment_to_homeFragment)
+                homeViewModel.addToCart(
+                    imageRes = R.drawable.ic_launcher_background,
+                    foodName = foodDetailsTitleTv.text.toString(),
+                    price = getCurrentFoodItemPrice(),
+                    size = selectedSizeButton?.let { (it as TextView).text.toString() } ?: "",
+                    quantity = quantity,
+                    restaurantId = FoodDetailsFragmentArgs.fromBundle(requireArguments()).restaurantId
+                )
+                findNavController().navigate(R.id.action_foodDetailsFragment_to_myCartFragment)
             }
+
             foodDetailsBackIconIv.setOnClickListener {
                 findNavController().popBackStack()
             }
 
-            binding.apply {
                 foodDetailsPlusIconIv.setOnClickListener {
                     quantity++
                     foodDetailsNumberSelectedFoodTv.text =
@@ -168,7 +176,6 @@ class FoodDetailsFragment : Fragment() {
                         updateTotalPrice(pricePerItem)
                     }
                 }
-            }
         }
     }
 

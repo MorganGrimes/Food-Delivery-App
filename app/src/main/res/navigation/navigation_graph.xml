@@ -130,8 +130,9 @@
             android:name="restaurantId"
             app:argType="integer" />
         <action
-            android:id="@+id/action_foodDetailsFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_foodDetailsFragment_to_myCartFragment"
+            app:destination="@id/myCartFragment" />
+
     </fragment>
      <fragment
         android:id="@+id/restaurantViewFragment"
