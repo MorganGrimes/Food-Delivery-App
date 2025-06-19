@@ -13,6 +13,8 @@ import com.example.fooddeliveryapp.data.model.CartItemModel
 import com.example.fooddeliveryapp.databinding.FragmentMyCartBinding
 import com.example.fooddeliveryapp.ui.adapters.CartItemRecyclerAdapter
 import com.example.fooddeliveryapp.ui.home.HomeViewModel
+import com.example.fooddeliveryapp.utils.UiUtils
+import java.util.Locale
 
 class MyCartFragment : Fragment() {
 
@@ -57,6 +59,14 @@ class MyCartFragment : Fragment() {
             myCartEditItemsTv.setOnClickListener {
                 isEditMode = !isEditMode
                 cartItemRecyclerAdapter.setEditMode(isEditMode)
+
+                if (isEditMode) {
+                    myCartEditItemsTv.text = getString(R.string.done)
+                    myCartEditItemsTv.setTextColor(requireContext().getColor(R.color.green))
+                } else {
+                    myCartEditItemsTv.text = getString(R.string.edit_items)
+                    myCartEditItemsTv.setTextColor(requireContext().getColor(R.color.red))
+                }
             }
         }
     }
@@ -73,7 +83,15 @@ class MyCartFragment : Fragment() {
 
     private fun updateCartTotal(cartItems: List<CartItemModel>) {
         val total = cartItems.sumOf { it.cartFoodPrice }
-        binding.myCartCartTotalPriceTv.text = String.format("$%.2f", total)
+        binding.myCartCartTotalPriceTv.text = String.format(Locale.getDefault(), "$%.2f", total)
+
+        if (total == 0.0) {
+            binding.placeOrderBtn.isEnabled = false
+            binding.placeOrderBtn.setBackgroundColor(UiUtils.brownColor)
+        } else {
+            binding.placeOrderBtn.isEnabled = true
+            binding.placeOrderBtn.setBackgroundColor(requireContext().getColor(R.color.orange))
+        }
     }
 
     override fun onDestroyView() {
