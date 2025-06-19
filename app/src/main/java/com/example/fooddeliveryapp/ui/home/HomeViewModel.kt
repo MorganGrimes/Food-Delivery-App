@@ -151,14 +151,5 @@ class HomeViewModel : ViewModel() {
         _cartItems.value?.add(item)
         _cartItems.value = _cartItems.value
     }
-
-    fun clearCart() {
-        _cartItems.value = mutableListOf()
-    }
-
-    fun removeItem(position: Int) {
-        _cartItems.value?.removeAt(position)
-        _cartItems.value = _cartItems.value
-    }
 }
 
