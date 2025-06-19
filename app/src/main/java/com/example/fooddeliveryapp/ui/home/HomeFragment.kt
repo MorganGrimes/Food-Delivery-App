@@ -24,9 +24,11 @@ import com.example.fooddeliveryapp.ui.adapters.CategoriesRecyclerAdapter
 import com.example.fooddeliveryapp.ui.adapters.OpenRestaurantsRecyclerAdapter
 import com.example.fooddeliveryapp.ui.address.AddressViewModel
 import com.example.fooddeliveryapp.ui.coupon.CouponDialogFragment
+import com.example.fooddeliveryapp.utils.CATEGORY_REQUEST_KEY
 import com.example.fooddeliveryapp.utils.COUPON_DIALOG
 import com.example.fooddeliveryapp.utils.NO_ADDRESS_INSERTED
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
+import com.example.fooddeliveryapp.utils.SELECTED_CATEGORY
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
@@ -68,7 +70,6 @@ class HomeFragment : Fragment() {
         }
 
         homeViewModel.filteredRestaurantsLiveData.observe(viewLifecycleOwner) { restaurants ->
-            Log.d("HomeFragment", "Observed ${restaurants.size} restaurants")
             val mappedList = restaurants.map { mapRestaurantResponseToModel(it) }
             openRestaurantsRecyclerAdapter.updateList(mappedList)
         }
@@ -141,8 +142,8 @@ class HomeFragment : Fragment() {
     private fun setupRecyclerView() {
         categoriesRecyclerAdapter = CategoriesRecyclerAdapter(emptyList()) { category ->
             setFragmentResult(
-                "categoryRequestKey",
-                bundleOf("selectedCategory" to category.foodName)
+                CATEGORY_REQUEST_KEY,
+                bundleOf(SELECTED_CATEGORY to category.foodName)
             )
             findNavController().navigate(R.id.action_homeFragment_to_foodFragment)
         }

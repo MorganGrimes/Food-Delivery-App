@@ -50,6 +50,12 @@ const val PAYMENT_CANCEL = "payment_cancel"
 const val TWITTER_COM = "twitter.com"
 const val URL = "url"
 const val INITIAL_POSITION = "Initial Position"
+const val CATEGORY_REQUEST_KEY = "categoryRequestKey"
+const val SELECTED_CATEGORY = "selectedCategory"
+const val FILTER_REQUEST_KEY = "filterRequestKey"
+const val DELIVERY_TIME_RANGE = "deliveryTimeRange"
+const val PRICING_RANGE = "pricingRange"
+const val MIN_RATING = "minRating"
 
 
 

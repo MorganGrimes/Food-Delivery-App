@@ -17,7 +17,13 @@ import com.example.fooddeliveryapp.ui.adapters.OpenRestaurantsRecyclerAdapter
 import com.example.fooddeliveryapp.ui.adapters.PopularFoodRecyclerAdapter
 import com.example.fooddeliveryapp.ui.filter.FilterDialogFragment
 import com.example.fooddeliveryapp.ui.home.HomeViewModel
+import com.example.fooddeliveryapp.utils.CATEGORY_REQUEST_KEY
+import com.example.fooddeliveryapp.utils.DELIVERY_TIME_RANGE
 import com.example.fooddeliveryapp.utils.FILTER_DIALOG
+import com.example.fooddeliveryapp.utils.FILTER_REQUEST_KEY
+import com.example.fooddeliveryapp.utils.MIN_RATING
+import com.example.fooddeliveryapp.utils.PRICING_RANGE
+import com.example.fooddeliveryapp.utils.SELECTED_CATEGORY
 
 class FoodFragment : Fragment() {
 
@@ -50,15 +56,16 @@ class FoodFragment : Fragment() {
     }
 
     private fun setupObserver() {
-        setFragmentResultListener("categoryRequestKey") { _, bundle ->
-            val category = bundle.getString("selectedCategory") ?: return@setFragmentResultListener
+        setFragmentResultListener(CATEGORY_REQUEST_KEY) { _, bundle ->
+            val category = bundle.getString(SELECTED_CATEGORY) ?: return@setFragmentResultListener
             if (homeViewModel.selectedFoodCategory.value != category) {
                 homeViewModel.selectedFoodCategory.value = category
             }
         }
 
         if (homeViewModel.selectedFoodCategory.value.isNullOrEmpty()) {
-            homeViewModel.selectedFoodCategory.value = homeViewModel.categories.value?.firstOrNull() ?: ""
+            homeViewModel.selectedFoodCategory.value =
+                homeViewModel.categories.value?.firstOrNull() ?: ""
         }
 
         homeViewModel.selectedFoodCategory.observe(viewLifecycleOwner) { category ->
@@ -71,20 +78,20 @@ class FoodFragment : Fragment() {
     }
 
     private fun setupFilterResultListener() {
-        setFragmentResultListener("filterRequestKey") { _, bundle ->
-            val deliveryRangeArr = bundle.getIntArray("deliveryTimeRange")
+        setFragmentResultListener(FILTER_REQUEST_KEY) { _, bundle ->
+            val deliveryRangeArr = bundle.getIntArray(DELIVERY_TIME_RANGE)
             val deliveryTimeRange = if (deliveryRangeArr != null && deliveryRangeArr.isNotEmpty()) {
                 deliveryRangeArr[0]..deliveryRangeArr.getOrElse(1) { deliveryRangeArr[0] }
             } else null
 
-            val pricingRangeArr = bundle.getDoubleArray("pricingRange")
+            val pricingRangeArr = bundle.getDoubleArray(PRICING_RANGE)
             val pricingRange = if (pricingRangeArr != null && pricingRangeArr.size == 2 &&
                 pricingRangeArr[0] >= 0 && pricingRangeArr[1] >= 0
             ) {
-                pricingRangeArr[0]..pricingRangeArr [1]
+                pricingRangeArr[0]..pricingRangeArr[1]
             } else null
 
-            val minRating = bundle.getInt("minRating").takeIf { it >= 0 }
+            val minRating = bundle.getInt(MIN_RATING).takeIf { it >= 0 }
 
             homeViewModel.filterRestaurants(deliveryTimeRange, pricingRange, minRating)
         }
