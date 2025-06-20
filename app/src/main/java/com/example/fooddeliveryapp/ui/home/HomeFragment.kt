@@ -1,7 +1,6 @@
 package com.example.fooddeliveryapp.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +29,7 @@ import com.example.fooddeliveryapp.utils.NO_ADDRESS_INSERTED
 import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
 import com.example.fooddeliveryapp.utils.SELECTED_CATEGORY
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class HomeFragment : Fragment() {
 
@@ -72,6 +72,18 @@ class HomeFragment : Fragment() {
         homeViewModel.filteredRestaurantsLiveData.observe(viewLifecycleOwner) { restaurants ->
             val mappedList = restaurants.map { mapRestaurantResponseToModel(it) }
             openRestaurantsRecyclerAdapter.updateList(mappedList)
+        }
+
+        homeViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
+            val cartSize = cartItems.size
+            if (cartSize > 0) {
+                binding.cartBadgeTv.apply {
+                    visibility = View.VISIBLE
+                    text = String.format(Locale.getDefault(), "%d", cartSize)
+                }
+            } else {
+                binding.cartBadgeTv.visibility = View.GONE
+            }
         }
     }
 

@@ -1,7 +1,6 @@
 package com.example.fooddeliveryapp.ui.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -13,17 +12,9 @@ import java.util.Locale
 class CartItemRecyclerAdapter(
     private val homeViewModel: HomeViewModel,
     private var items: List<CartItemModel>,
-    private var isEditMode: Boolean = false
 ) : RecyclerView.Adapter<CartItemRecyclerAdapter.CartViewHolder>() {
 
-    companion object {
-        private const val PAYLOAD_EDIT_MODE = "PAYLOAD_EDIT_MODE"
-    }
-
-    fun updateData(newItems: List<CartItemModel>, isEditMode: Boolean = false) {
-        val oldEditMode = this.isEditMode
-        this.isEditMode = isEditMode
-
+    fun updateData(newItems: List<CartItemModel>) {
         val diffCallback = object : DiffUtil.Callback() {
             override fun getOldListSize(): Int = items.size
             override fun getNewListSize(): Int = newItems.size
@@ -38,16 +29,6 @@ class CartItemRecyclerAdapter(
 
             override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
                 return items[oldItemPosition] == newItems[newItemPosition]
-            }
-
-            override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
-                val oldItem = items[oldItemPosition]
-                val newItem = newItems[newItemPosition]
-                return if (oldItem == newItem && oldEditMode != this@CartItemRecyclerAdapter.isEditMode) {
-                    PAYLOAD_EDIT_MODE
-                } else {
-                    null
-                }
             }
         }
 
@@ -92,7 +73,7 @@ class CartItemRecyclerAdapter(
                         )
                         updatedList[position] = updatedItem
                         homeViewModel.cartItems.value = updatedList
-                        updateData(updatedList, isEditMode)
+                        updateData(updatedList)
                     }
                 }
 
@@ -109,16 +90,11 @@ class CartItemRecyclerAdapter(
                             )
                             updatedList[position] = updatedItem
                             homeViewModel.cartItems.value = updatedList
-                            updateData(updatedList, isEditMode)
+                            updateData(updatedList)
                         }
                     }
                 }
             }
-        }
-
-        fun bindEditMode(editMode: Boolean) {
-            binding.recyclerCartItemRemoveItem.visibility =
-                if (editMode) View.VISIBLE else View.GONE
         }
     }
 
@@ -133,22 +109,6 @@ class CartItemRecyclerAdapter(
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         holder.bind(items[position])
-    }
-
-    override fun onBindViewHolder(
-        holder: CartViewHolder,
-        position: Int,
-        payloads: MutableList<Any>
-    ) {
-        if (payloads.isEmpty()) {
-            holder.bind(items[position])
-        } else {
-            for (payload in payloads) {
-                if (payload == PAYLOAD_EDIT_MODE) {
-                    holder.bindEditMode(isEditMode)
-                }
-            }
-        }
     }
 
     override fun getItemCount(): Int = items.size

@@ -37,16 +37,6 @@
             android:textColor="@color/white"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/my_cart_edit_items_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/edit_items"
-            android:textColor="@color/orange"
-            android:textSize="14sp" />
-
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -57,17 +47,17 @@
         app:layout_constraintBottom_toTopOf="@id/my_cart_bottom_cw"
         app:layout_constraintTop_toBottomOf="@id/my_cart_top_bar_ll">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_cart_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_cart_top_bar_ll"
-        tools:itemCount="2"
-        tools:listitem="@layout/recycler_cart_item_layout" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_cart_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_cart_top_bar_ll"
+            tools:itemCount="2"
+            tools:listitem="@layout/recycler_cart_item_layout" />
 
     </androidx.core.widget.NestedScrollView>
 
@@ -76,11 +66,11 @@
         style="@style/CustomCardViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:strokeColor="@color/white"
         android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
