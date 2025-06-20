@@ -20,7 +20,6 @@ class MyCartFragment : Fragment() {
 
     private lateinit var cartItemRecyclerAdapter: CartItemRecyclerAdapter
     private val viewModel: HomeViewModel by activityViewModels()
-    private var isEditMode: Boolean = false
 
     private var _binding: FragmentMyCartBinding? = null
     private val binding get() = _binding!!
@@ -40,7 +39,7 @@ class MyCartFragment : Fragment() {
         setupRecyclerView()
 
         viewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
-            cartItemRecyclerAdapter.updateData(cartItems, isEditMode)
+            cartItemRecyclerAdapter.updateData(cartItems)
             updateCartTotal(cartItems)
         }
     }
@@ -56,18 +55,6 @@ class MyCartFragment : Fragment() {
             myCartEditAddressTv.setOnClickListener {
                 findNavController().navigate(R.id.action_myCartFragment_to_addressFragment)
             }
-            myCartEditItemsTv.setOnClickListener {
-                isEditMode = !isEditMode
-                cartItemRecyclerAdapter.setEditMode(isEditMode)
-
-                if (isEditMode) {
-                    myCartEditItemsTv.text = getString(R.string.done)
-                    myCartEditItemsTv.setTextColor(requireContext().getColor(R.color.green))
-                } else {
-                    myCartEditItemsTv.text = getString(R.string.edit_items)
-                    myCartEditItemsTv.setTextColor(requireContext().getColor(R.color.red))
-                }
-            }
         }
     }
 
@@ -82,15 +69,17 @@ class MyCartFragment : Fragment() {
     }
 
     private fun updateCartTotal(cartItems: List<CartItemModel>) {
-        val total = cartItems.sumOf { it.cartFoodPrice }
-        binding.myCartCartTotalPriceTv.text = String.format(Locale.getDefault(), "$%.2f", total)
+        binding.apply {
+            val total = cartItems.sumOf { it.cartFoodPrice }
+            myCartCartTotalPriceTv.text = String.format(Locale.getDefault(), "$%.2f", total)
 
-        if (total == 0.0) {
-            binding.placeOrderBtn.isEnabled = false
-            binding.placeOrderBtn.setBackgroundColor(UiUtils.brownColor)
-        } else {
-            binding.placeOrderBtn.isEnabled = true
-            binding.placeOrderBtn.setBackgroundColor(requireContext().getColor(R.color.orange))
+            if (total == 0.0) {
+                placeOrderBtn.isEnabled = false
+                placeOrderBtn.setBackgroundColor(UiUtils.brownColor)
+            } else {
+                placeOrderBtn.isEnabled = true
+                placeOrderBtn.setBackgroundColor(requireContext().getColor(R.color.orange))
+            }
         }
     }
 

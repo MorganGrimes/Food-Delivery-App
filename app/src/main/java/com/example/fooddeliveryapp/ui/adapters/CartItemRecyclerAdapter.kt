@@ -56,21 +56,11 @@ class CartItemRecyclerAdapter(
         diffResult.dispatchUpdatesTo(this)
     }
 
-    fun setEditMode(editMode: Boolean) {
-        if (this.isEditMode != editMode) {
-            this.isEditMode = editMode
-            for (i in items.indices) {
-                notifyItemChanged(i, PAYLOAD_EDIT_MODE)
-            }
-        }
-    }
-
     inner class CartViewHolder(private val binding: RecyclerCartItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: CartItemModel) {
             binding.apply {
-                recyclerCartItemRemoveItem.visibility = if (isEditMode) View.VISIBLE else View.GONE
 
                 recyclerCartItemIv.setImageResource(item.cartImage)
                 recyclerCartItemFoodTitleTv.text = item.cartFoodName
@@ -86,7 +76,7 @@ class CartItemRecyclerAdapter(
                         val updatedList = items.toMutableList()
                         updatedList.removeAt(position)
                         homeViewModel.cartItems.value = updatedList
-                        updateData(updatedList, isEditMode)
+                        updateData(updatedList)
                     }
                 }
 
@@ -127,7 +117,8 @@ class CartItemRecyclerAdapter(
         }
 
         fun bindEditMode(editMode: Boolean) {
-            binding.recyclerCartItemRemoveItem.visibility = if (editMode) View.VISIBLE else View.GONE
+            binding.recyclerCartItemRemoveItem.visibility =
+                if (editMode) View.VISIBLE else View.GONE
         }
     }
 
@@ -144,7 +135,11 @@ class CartItemRecyclerAdapter(
         holder.bind(items[position])
     }
 
-    override fun onBindViewHolder(holder: CartViewHolder, position: Int, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(
+        holder: CartViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
         if (payloads.isEmpty()) {
             holder.bind(items[position])
         } else {
