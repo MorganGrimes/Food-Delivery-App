@@ -29,6 +29,7 @@ class PaymentFragment : Fragment() {
     private lateinit var creditCardRecyclerAdapter: CreditCardRecyclerAdapter
     private val viewModel: PaymentViewModel by activityViewModels()
     private val homeViewModel: HomeViewModel by activityViewModels()
+    private var selectedPaymentMethod: String? = null
 
     private var _binding: FragmentPaymentBinding? = null
     private val binding get() = _binding!!
@@ -52,13 +53,23 @@ class PaymentFragment : Fragment() {
         setupRecyclerView()
     }
 
-    private fun setupObserver(){
-        homeViewModel.cartTotalPrice.observe(viewLifecycleOwner) { total ->
-            binding.paymentTotalPriceTv.text = String.format(Locale.getDefault(), "$%.2f", total)
-        }
+    private fun setupObserver() {
+        binding.apply {
+            homeViewModel.cartTotalPrice.observe(viewLifecycleOwner) { total ->
+                paymentTotalPriceTv.text =
+                    String.format(Locale.getDefault(), "$%.2f", total)
+            }
 
-        viewModel.allCreditCards.observe(viewLifecycleOwner) { cards ->
-            creditCardRecyclerAdapter.updateData(cards)
+            viewModel.allCreditCards.observe(viewLifecycleOwner) {
+                selectedPaymentMethod?.let { type ->
+                    if (type.equals(VISA_CAMELCASE, true) || type.equals(MASTERCARD_CAMELCASE, true)) {
+                        filterCardsByType(type)
+                        binding.recyclerCreditCard.visibility = View.VISIBLE
+                    } else {
+                        binding.recyclerCreditCard.visibility = View.GONE
+                    }
+                }
+            }
         }
     }
 
@@ -79,6 +90,7 @@ class PaymentFragment : Fragment() {
             }
 
             paymentVisaTv.setOnClickListener {
+                selectedPaymentMethod = VISA_CAMELCASE
                 recyclerCreditCard.visibility = View.VISIBLE
                 filterCardsByType(VISA_CAMELCASE)
                 paymentVisaTv.setCompoundDrawablesWithIntrinsicBounds(
@@ -98,6 +110,7 @@ class PaymentFragment : Fragment() {
             }
 
             paymentMastercardTv.setOnClickListener {
+                selectedPaymentMethod = MASTERCARD_CAMELCASE
                 recyclerCreditCard.visibility = View.VISIBLE
                 filterCardsByType(MASTERCARD_CAMELCASE)
                 paymentMastercardTv.setCompoundDrawablesWithIntrinsicBounds(
@@ -112,7 +125,9 @@ class PaymentFragment : Fragment() {
             }
 
             paymentCashTv.setOnClickListener {
+                selectedPaymentMethod = "cash"
                 recyclerCreditCard.visibility = View.GONE
+                noCreditCardCw.visibility = View.GONE
                 paymentMastercardTv.setCompoundDrawablesWithIntrinsicBounds(
                     0,
                     R.drawable.mastercard,
@@ -163,7 +178,9 @@ class PaymentFragment : Fragment() {
     private fun paypalPayment() {
         binding.apply {
             paymentPaypalTv.setOnClickListener {
+                selectedPaymentMethod = "paypal"
                 recyclerCreditCard.visibility = View.GONE
+                noCreditCardCw.visibility = View.GONE
                 paymentMastercardTv.setCompoundDrawablesWithIntrinsicBounds(
                     0,
                     R.drawable.mastercard,
@@ -177,7 +194,12 @@ class PaymentFragment : Fragment() {
                     0,
                     0
                 )
-                paymentPaypalTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.paypal_selected, 0, 0)
+                paymentPaypalTv.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    R.drawable.paypal_selected,
+                    0,
+                    0
+                )
                 val paypalPaymentUrl =
                     "https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=YOUR_TOKEN_HERE"
 
@@ -204,6 +226,7 @@ class PaymentFragment : Fragment() {
         viewModel.allCreditCards.value?.let { cards ->
             val filtered = cards.filter { it.creditCardName.equals(type, ignoreCase = true) }
             creditCardRecyclerAdapter.updateData(filtered)
+            binding.noCreditCardCw.visibility = if (filtered.isEmpty()) View.VISIBLE else View.GONE
         }
     }
 

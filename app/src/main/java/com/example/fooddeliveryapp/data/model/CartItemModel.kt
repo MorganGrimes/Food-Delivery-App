@@ -6,5 +6,6 @@ data class CartItemModel(
     val cartFoodPrice: Double,
     val cartFoodSize: String,
     val cartFoodQuantity: Int,
-    val restaurantId: Int
+    val restaurantId: Int,
+    val cartId: String? = null
 )

@@ -12,13 +12,19 @@ import com.example.fooddeliveryapp.utils.TRY_AGAIN
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 class HomeViewModel : ViewModel() {
 
     var selectedRestaurantId: Int? = null
     val selectedCategory = MutableLiveData<String>()
     val selectedFoodCategory = MutableLiveData<String>()
+    val cartId = MutableLiveData<String>()
     private var fullRestaurantList: List<Restaurants> = emptyList()
+
+    init {
+        generateNewCartId()
+    }
 
     private val _categories = MutableLiveData<List<String>>()
     val categories: LiveData<List<String>> = _categories
@@ -35,7 +41,7 @@ class HomeViewModel : ViewModel() {
     private val _cartItems = MutableLiveData<MutableList<CartItemModel>>(mutableListOf())
     val cartItems: MutableLiveData<MutableList<CartItemModel>> get() = _cartItems
 
-    private val _cartTotalPrice = MutableLiveData<Double>(0.0)
+    private val _cartTotalPrice = MutableLiveData(0.0)
     val cartTotalPrice: LiveData<Double> = _cartTotalPrice
 
     suspend fun fetchCategories() {
@@ -156,15 +162,25 @@ class HomeViewModel : ViewModel() {
             cartFoodPrice = price * quantity,
             cartFoodSize = size,
             cartFoodQuantity = quantity,
-            restaurantId = restaurantId
+            restaurantId = restaurantId,
+            cartId = cartId.value
         )
         _cartItems.value?.add(item)
         _cartItems.value = _cartItems.value
+        updateCartTotalPrice()
     }
 
     fun updateCartTotalPrice() {
         val total = _cartItems.value?.sumOf { it.cartFoodPrice } ?: 0.0
         _cartTotalPrice.value = total
+    }
+
+    private fun generateNewCartId() {
+        cartId.value = UUID.randomUUID().toString()
+    }
+
+    fun setCartId(id: String) {
+        cartId.value = id
     }
 }
 

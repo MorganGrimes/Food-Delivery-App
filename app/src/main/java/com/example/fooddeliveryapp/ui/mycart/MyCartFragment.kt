@@ -38,9 +38,10 @@ class MyCartFragment : Fragment() {
         setupListener()
         setupRecyclerView()
 
-        viewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
-            cartItemRecyclerAdapter.updateData(cartItems)
-            updateCartTotal(cartItems)
+        viewModel.cartItems.observe(viewLifecycleOwner) { allCartItems ->
+            val currentItems = allCartItems.filter { it.cartId == viewModel.cartId.value }
+            cartItemRecyclerAdapter.updateData(currentItems)
+            updateCartTotal(currentItems)
         }
     }
 
