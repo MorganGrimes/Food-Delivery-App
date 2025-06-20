@@ -14,6 +14,7 @@ import com.example.fooddeliveryapp.data.remote.dto.restaurant.FoodItem
 import com.example.fooddeliveryapp.data.remote.dto.restaurant.Restaurants
 import com.example.fooddeliveryapp.databinding.FragmentFoodDetailsBinding
 import com.example.fooddeliveryapp.ui.home.HomeViewModel
+import com.example.fooddeliveryapp.utils.UiUtils
 import java.util.Locale
 
 class FoodDetailsFragment : Fragment() {
@@ -56,6 +57,10 @@ class FoodDetailsFragment : Fragment() {
 
     private fun bindFoodDetails(restaurant: Restaurants, foodItem: FoodItem) {
         binding.apply {
+
+            addToCartBtn.isEnabled = false
+            addToCartBtn.setBackgroundColor(UiUtils.brownColor)
+
             foodDetailsRestaurantNameTv.text = restaurant.name
             foodDetailsTitleTv.text = foodItem.name
             foodDetailsDescriptionTv.text = foodItem.description
@@ -120,6 +125,14 @@ class FoodDetailsFragment : Fragment() {
                             )
                         )
                         selectedSizeButton = button
+
+                        addToCartBtn.isEnabled = true
+                        addToCartBtn.setBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.orange
+                            )
+                        )
                     }
 
                 } else {
