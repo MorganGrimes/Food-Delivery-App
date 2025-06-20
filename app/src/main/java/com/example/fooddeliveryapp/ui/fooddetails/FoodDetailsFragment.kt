@@ -159,23 +159,23 @@ class FoodDetailsFragment : Fragment() {
                 findNavController().popBackStack()
             }
 
-                foodDetailsPlusIconIv.setOnClickListener {
-                    quantity++
+            foodDetailsPlusIconIv.setOnClickListener {
+                quantity++
+                foodDetailsNumberSelectedFoodTv.text =
+                    String.format(Locale.getDefault(), "%d", quantity)
+                val pricePerItem = getCurrentFoodItemPrice()
+                updateTotalPrice(pricePerItem)
+            }
+
+            foodDetailsMinusIconIv.setOnClickListener {
+                if (quantity > 1) {
+                    quantity--
                     foodDetailsNumberSelectedFoodTv.text =
                         String.format(Locale.getDefault(), "%d", quantity)
                     val pricePerItem = getCurrentFoodItemPrice()
                     updateTotalPrice(pricePerItem)
                 }
-
-                foodDetailsMinusIconIv.setOnClickListener {
-                    if (quantity > 1) {
-                        quantity--
-                        foodDetailsNumberSelectedFoodTv.text =
-                            String.format(Locale.getDefault(), "%d", quantity)
-                        val pricePerItem = getCurrentFoodItemPrice()
-                        updateTotalPrice(pricePerItem)
-                    }
-                }
+            }
         }
     }
 

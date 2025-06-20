@@ -147,7 +147,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/ten_fifteen_min_btn"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="center"
@@ -161,7 +161,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/twenty_min_btn"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_weight="1"
@@ -176,10 +176,10 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/thirty_min_btn"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/sen_regular"
             android:text="@string/_30_min"

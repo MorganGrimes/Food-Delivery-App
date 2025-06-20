@@ -60,24 +60,31 @@ class HomeViewModel : ViewModel() {
     }
 
     fun filterRestaurants(
+        category: String? = null,
         deliveryTimeRange: IntRange? = null,
         pricingRange: ClosedFloatingPointRange<Double>? = null,
         minRating: Int? = null
     ) {
         val filtered = fullRestaurantList.filter { restaurant ->
+
+            val hasSelectedCategory = category?.let {
+                restaurant.food.containsKey(it)
+            } ?: true
+            if (!hasSelectedCategory) return@filter false
+
             val timeString = restaurant.deliveryTime.replace("[^0-9\\-]".toRegex(), "")
             val times = timeString.split("-").mapNotNull { it.toIntOrNull() }
             val minTime = times.minOrNull() ?: 0
             val maxTime = times.maxOrNull() ?: 0
-            val deliveryOk =
-                deliveryTimeRange?.let { minTime >= it.first && maxTime <= it.last } ?: true
+            val deliveryOk = deliveryTimeRange?.let {
+                maxTime >= it.first && minTime <= it.last
+            } ?: true
 
             val prices = restaurant.food.values.flatten().map { it.price }
             val avgPrice = if (prices.isNotEmpty()) prices.average() else 0.0
             val pricingOk = pricingRange?.let { avgPrice in it } ?: true
 
-            val ratingFloor = restaurant.rating.toInt()
-            val ratingOk = minRating?.let { ratingFloor >= it } ?: true
+            val ratingOk = minRating?.let { restaurant.rating.toInt() >= it } ?: true
 
             deliveryOk && pricingOk && ratingOk
         }

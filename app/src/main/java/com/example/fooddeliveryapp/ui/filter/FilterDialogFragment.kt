@@ -1,9 +1,11 @@
 package com.example.fooddeliveryapp.ui.filter
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
 import com.example.fooddeliveryapp.R
@@ -12,6 +14,8 @@ import com.example.fooddeliveryapp.utils.DELIVERY_TIME_RANGE
 import com.example.fooddeliveryapp.utils.FILTER_REQUEST_KEY
 import com.example.fooddeliveryapp.utils.MIN_RATING
 import com.example.fooddeliveryapp.utils.PRICING_RANGE
+import com.example.fooddeliveryapp.utils.setupDialogMargins
+import com.google.android.material.button.MaterialButton
 
 class FilterDialogFragment : DialogFragment() {
 
@@ -33,28 +37,37 @@ class FilterDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupDialogMargins(view)
         setupDeliveryTimeButtons()
         setupPricingButtons()
         setupRatingButtons()
+        setupListener()
+    }
 
-        binding.filterBtn.setOnClickListener {
-            val bundle = Bundle().apply {
-                putIntArray(
-                    DELIVERY_TIME_RANGE,
-                    selectedDeliveryTimeRange?.toList()?.toIntArray() ?: intArrayOf()
-                )
-                putDoubleArray(
-                    PRICING_RANGE, doubleArrayOf(
-                        selectedPricingRange?.start ?: -1.0,
-                        selectedPricingRange?.endInclusive ?: -1.0
+    private fun setupListener() {
+        binding.apply {
+            filterBtn.setOnClickListener {
+                val bundle = Bundle().apply {
+                    putIntArray(
+                        DELIVERY_TIME_RANGE,
+                        selectedDeliveryTimeRange?.toList()?.toIntArray() ?: intArrayOf()
                     )
-                )
-                putInt(MIN_RATING, selectedMinRating ?: -1)
+                    putDoubleArray(
+                        PRICING_RANGE, doubleArrayOf(
+                            selectedPricingRange?.start ?: -1.0,
+                            selectedPricingRange?.endInclusive ?: -1.0
+                        )
+                    )
+                    putInt(MIN_RATING, selectedMinRating ?: -1)
+                }
+                parentFragmentManager.setFragmentResult(FILTER_REQUEST_KEY, bundle)
+                dismiss()
             }
-            parentFragmentManager.setFragmentResult(FILTER_REQUEST_KEY, bundle)
-            dismiss()
-        }
 
+            filterCloseIv.setOnClickListener {
+                dismiss()
+            }
+        }
     }
 
     private fun setupDeliveryTimeButtons() {
@@ -83,7 +96,7 @@ class FilterDialogFragment : DialogFragment() {
     }
 
     private fun updateDeliveryTimeButtonUI(
-        button: com.google.android.material.button.MaterialButton,
+        button: MaterialButton,
         isSelected: Boolean
     ) {
         if (isSelected) {
@@ -174,6 +187,16 @@ class FilterDialogFragment : DialogFragment() {
         } else {
             star.setImageResource(R.drawable.rating_star)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setDimAmount(0.1F)
+        dialog?.window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        dialog?.window?.decorView?.setBackgroundColor(Color.TRANSPARENT)
     }
 
     override fun onDestroyView() {

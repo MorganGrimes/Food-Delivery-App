@@ -93,7 +93,13 @@ class FoodFragment : Fragment() {
 
             val minRating = bundle.getInt(MIN_RATING).takeIf { it >= 0 }
 
-            homeViewModel.filterRestaurants(deliveryTimeRange, pricingRange, minRating)
+            val selectedCategory = homeViewModel.selectedFoodCategory.value
+            homeViewModel.filterRestaurants(
+                category = selectedCategory,
+                deliveryTimeRange = deliveryTimeRange,
+                pricingRange = pricingRange,
+                minRating = minRating
+            )
         }
     }
 
