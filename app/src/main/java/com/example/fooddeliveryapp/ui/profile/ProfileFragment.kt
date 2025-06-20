@@ -47,7 +47,10 @@ class ProfileFragment : Fragment() {
                 findNavController().navigate(R.id.action_profileFragment_to_myCartFragment)
             }
             profilePaymentMethodLl.setOnClickListener {
-                findNavController().navigate(R.id.action_profileFragment_to_paymentFragment)
+                val bundle = Bundle().apply {
+                    putBoolean("showBottomBar", false)
+                }
+                findNavController().navigate(R.id.action_profileFragment_to_paymentFragment, bundle)
             }
             profileMyOrdersLl.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_myOrdersTabsFragment)

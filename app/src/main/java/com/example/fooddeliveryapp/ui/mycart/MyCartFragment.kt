@@ -50,7 +50,10 @@ class MyCartFragment : Fragment() {
                 findNavController().popBackStack()
             }
             placeOrderBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_myCartFragment_to_paymentFragment)
+                val bundle = Bundle().apply {
+                    putBoolean("showBottomBar", true)
+                }
+                findNavController().navigate(R.id.action_myCartFragment_to_paymentFragment, bundle)
             }
             myCartEditAddressTv.setOnClickListener {
                 findNavController().navigate(R.id.action_myCartFragment_to_addressFragment)
@@ -72,6 +75,7 @@ class MyCartFragment : Fragment() {
         binding.apply {
             val total = cartItems.sumOf { it.cartFoodPrice }
             myCartCartTotalPriceTv.text = String.format(Locale.getDefault(), "$%.2f", total)
+            viewModel.updateCartTotalPrice()
 
             if (total == 0.0) {
                 placeOrderBtn.isEnabled = false

@@ -35,12 +35,33 @@ class HomeViewModel : ViewModel() {
     private val _cartItems = MutableLiveData<MutableList<CartItemModel>>(mutableListOf())
     val cartItems: MutableLiveData<MutableList<CartItemModel>> get() = _cartItems
 
+    private val _cartTotalPrice = MutableLiveData<Double>(0.0)
+    val cartTotalPrice: LiveData<Double> = _cartTotalPrice
+
     suspend fun fetchCategories() {
         try {
             val response = RetrofitInstance.categoryApi.getCategories()
             _categories.value = response.categories
         } catch (e: Exception) {
             _categories.value = listOf(ERROR, TRY_AGAIN)
+        }
+    }
+
+    fun fetchRestaurants() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = RetrofitInstance.restaurantApi.getRestaurants()
+                if (response.isSuccessful) {
+                    val list = response.body()?.restaurants ?: emptyList()
+                    setFullRestaurantList(list)
+                } else {
+                    _restaurants.postValue(emptyList())
+                    _filteredRestaurants.postValue(emptyList())
+                }
+            } catch (e: Exception) {
+                _restaurants.postValue(emptyList())
+                _filteredRestaurants.postValue(emptyList())
+            }
         }
     }
 
@@ -93,24 +114,6 @@ class HomeViewModel : ViewModel() {
         updatePopularFood()
     }
 
-    fun fetchRestaurants() {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = RetrofitInstance.restaurantApi.getRestaurants()
-                if (response.isSuccessful) {
-                    val list = response.body()?.restaurants ?: emptyList()
-                    setFullRestaurantList(list)
-                } else {
-                    _restaurants.postValue(emptyList())
-                    _filteredRestaurants.postValue(emptyList())
-                }
-            } catch (e: Exception) {
-                _restaurants.postValue(emptyList())
-                _filteredRestaurants.postValue(emptyList())
-            }
-        }
-    }
-
     private fun updatePopularFood() {
         val category = selectedFoodCategory.value ?: return
         val restaurants = _filteredRestaurants.value ?: return
@@ -157,6 +160,11 @@ class HomeViewModel : ViewModel() {
         )
         _cartItems.value?.add(item)
         _cartItems.value = _cartItems.value
+    }
+
+    fun updateCartTotalPrice() {
+        val total = _cartItems.value?.sumOf { it.cartFoodPrice } ?: 0.0
+        _cartTotalPrice.value = total
     }
 }
 

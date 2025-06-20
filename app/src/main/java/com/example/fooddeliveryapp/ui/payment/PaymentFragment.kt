@@ -15,17 +15,20 @@ import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentPaymentBinding
 import com.example.fooddeliveryapp.PaypalWebViewActivity
 import com.example.fooddeliveryapp.ui.adapters.CreditCardRecyclerAdapter
+import com.example.fooddeliveryapp.ui.home.HomeViewModel
 import com.example.fooddeliveryapp.utils.CREDIT_CARD_ID
 import com.example.fooddeliveryapp.utils.MASTERCARD_CAMELCASE
 import com.example.fooddeliveryapp.utils.PAYMENT_FAILED
 import com.example.fooddeliveryapp.utils.PAYMENT_SUCCESS
 import com.example.fooddeliveryapp.utils.URL
 import com.example.fooddeliveryapp.utils.VISA_CAMELCASE
+import java.util.Locale
 
 class PaymentFragment : Fragment() {
 
     private lateinit var creditCardRecyclerAdapter: CreditCardRecyclerAdapter
     private val viewModel: PaymentViewModel by activityViewModels()
+    private val homeViewModel: HomeViewModel by activityViewModels()
 
     private var _binding: FragmentPaymentBinding? = null
     private val binding get() = _binding!!
@@ -40,9 +43,23 @@ class PaymentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val showBottomBar = arguments?.getBoolean("showBottomBar", false) ?: false
+        binding.paymentBottomCl.visibility = if (showBottomBar) View.VISIBLE else View.GONE
+
+        setupObserver()
         setupListener()
         setupRecyclerView()
-        observeCreditCards()
+    }
+
+    private fun setupObserver(){
+        homeViewModel.cartTotalPrice.observe(viewLifecycleOwner) { total ->
+            binding.paymentTotalPriceTv.text = String.format(Locale.getDefault(), "$%.2f", total)
+        }
+
+        viewModel.allCreditCards.observe(viewLifecycleOwner) { cards ->
+            creditCardRecyclerAdapter.updateData(cards)
+        }
     }
 
     private fun setupListener() {
@@ -180,12 +197,6 @@ class PaymentFragment : Fragment() {
             } else {
                 Toast.makeText(requireContext(), PAYMENT_FAILED, Toast.LENGTH_SHORT).show()
             }
-        }
-    }
-
-    private fun observeCreditCards() {
-        viewModel.allCreditCards.observe(viewLifecycleOwner) { cards ->
-            creditCardRecyclerAdapter.updateData(cards)
         }
     }
 

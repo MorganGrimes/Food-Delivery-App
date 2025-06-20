@@ -170,6 +170,10 @@
         android:name="com.example.fooddeliveryapp.ui.payment.PaymentFragment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_payment" >
+        <argument
+            android:name="showBottomBar"
+            app:argType="boolean"
+            android:defaultValue="false" />
         <action
             android:id="@+id/action_paymentFragment_to_addCardFragment"
             app:destination="@id/addCardFragment" />
