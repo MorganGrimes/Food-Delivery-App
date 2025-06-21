@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.fooddeliveryapp.data.model.CartItemModel
+import com.example.fooddeliveryapp.data.model.OrderItemModel
 import com.example.fooddeliveryapp.data.model.PopularFoodItemModel
 import com.example.fooddeliveryapp.data.remote.RetrofitInstance
 import com.example.fooddeliveryapp.data.remote.dto.restaurant.Restaurants
@@ -43,6 +44,9 @@ class HomeViewModel : ViewModel() {
 
     private val _cartTotalPrice = MutableLiveData(0.0)
     val cartTotalPrice: LiveData<Double> = _cartTotalPrice
+
+    private val _orderItems = MutableLiveData<List<OrderItemModel>>(emptyList())
+    val orderItems: LiveData<List<OrderItemModel>> = _orderItems
 
     suspend fun fetchCategories() {
         try {
@@ -179,8 +183,16 @@ class HomeViewModel : ViewModel() {
         cartId.value = UUID.randomUUID().toString()
     }
 
-    fun setCartId(id: String) {
-        cartId.value = id
+    fun addOrder(order: OrderItemModel) {
+        val currentOrders = _orderItems.value?.toMutableList() ?: mutableListOf()
+        currentOrders.add(0, order)
+        _orderItems.value = currentOrders
+    }
+
+    fun clearCart() {
+        _cartItems.value?.clear()
+        _cartItems.value = mutableListOf()
+        updateCartTotalPrice()
     }
 }
 

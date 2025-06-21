@@ -2,13 +2,33 @@ package com.example.fooddeliveryapp.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fooddeliveryapp.data.model.OrderItemModel
 import com.example.fooddeliveryapp.databinding.RecyclerOrderLayoutBinding
 
 class OrderRecyclerAdapter(
-    private val items: List<OrderItemModel>,
+    private var items: List<OrderItemModel>,
 ) : RecyclerView.Adapter<OrderRecyclerAdapter.OrderViewHolder>() {
+
+    fun updateData(newItems: List<OrderItemModel>) {
+        val diffCallback = object : DiffUtil.Callback() {
+            override fun getOldListSize() = items.size
+            override fun getNewListSize() = newItems.size
+
+            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return items[oldItemPosition].orderId == newItems[newItemPosition].orderId
+            }
+
+            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return items[oldItemPosition] == newItems[newItemPosition]
+            }
+        }
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
+        items = newItems
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     inner class OrderViewHolder(private val binding: RecyclerOrderLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {

@@ -5,15 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.model.OrderItemModel
 import com.example.fooddeliveryapp.databinding.FragmentOngoingBinding
 import com.example.fooddeliveryapp.ui.adapters.OrderRecyclerAdapter
+import com.example.fooddeliveryapp.ui.home.HomeViewModel
 
 class OngoingFragment : Fragment() {
 
     private lateinit var orderRecyclerAdapter: OrderRecyclerAdapter
+    private val viewModel: HomeViewModel by activityViewModels()
 
     private var _binding: FragmentOngoingBinding? = null
     private val binding get() = _binding!!
@@ -29,40 +32,17 @@ class OngoingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+
+        viewModel.orderItems.observe(viewLifecycleOwner) { orders ->
+            orderRecyclerAdapter.updateData(orders)
+        }
     }
 
     private fun setupRecyclerView() {
-        binding.apply {
-            val orders = listOf(
-                OrderItemModel(
-                    getString(R.string.food),
-                    getString(R.string.completed),
-                    R.drawable.ic_launcher_background,
-                    getString(R.string.mcdonald),
-                    getString(R.string._35_25),
-                    getString(R.string._30_jan_12_30),
-                    getString(R.string._01_items),
-                    getString(R.string._162432)
-                ),
-                OrderItemModel(
-                    getString(R.string.food),
-                    getString(R.string.completed),
-                    R.drawable.ic_launcher_background,
-                    getString(R.string.mcdonald),
-                    getString(R.string._35_25),
-                    getString(R.string._30_jan_12_30),
-                    getString(R.string._01_items),
-                    getString(R.string._162432)
-                )
-            )
-
-            orderRecyclerAdapter = OrderRecyclerAdapter(orders)
-
-            recyclerOngoing.apply {
-                layoutManager =
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                adapter = orderRecyclerAdapter
-            }
+        binding.recyclerOngoing.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            orderRecyclerAdapter = OrderRecyclerAdapter(emptyList())
+            adapter = orderRecyclerAdapter
         }
     }
 

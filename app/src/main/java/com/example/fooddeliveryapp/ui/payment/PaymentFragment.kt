@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentPaymentBinding
 import com.example.fooddeliveryapp.PaypalWebViewActivity
+import com.example.fooddeliveryapp.data.model.OrderItemModel
 import com.example.fooddeliveryapp.ui.adapters.CreditCardRecyclerAdapter
 import com.example.fooddeliveryapp.ui.home.HomeViewModel
 import com.example.fooddeliveryapp.utils.CREDIT_CARD_ID
@@ -85,7 +86,7 @@ class PaymentFragment : Fragment() {
                 val navOptions = NavOptions.Builder()
                     .setPopUpTo(R.id.paymentFragment, true)
                     .build()
-
+                onPaymentSuccess()
                 findNavController().navigate(R.id.paymentSuccessfullFragment, null, navOptions)
             }
 
@@ -228,6 +229,42 @@ class PaymentFragment : Fragment() {
             creditCardRecyclerAdapter.updateData(filtered)
             binding.noCreditCardCw.visibility = if (filtered.isEmpty()) View.VISIBLE else View.GONE
         }
+    }
+
+    private fun onPaymentSuccess() {
+        val cartItems = homeViewModel.cartItems.value?.filter {
+            it.cartId == homeViewModel.cartId.value
+        } ?: emptyList()
+
+        if (cartItems.isEmpty()) {
+            Toast.makeText(requireContext(), "Cart is empty!", Toast.LENGTH_SHORT).show()
+            return
+        }
+        
+        val restaurantId = cartItems.first().restaurantId
+        val itemCount = "${cartItems.size} item${if (cartItems.size > 1) "s" else ""}"
+        val totalPrice = homeViewModel.cartTotalPrice.value ?: 0.0
+
+        val restaurantName = homeViewModel.getAllRestaurants()
+            .firstOrNull { it.id == restaurantId }
+            ?.name ?: "Unknown Restaurant"
+
+        val currentDate = java.text.SimpleDateFormat("dd MMM, HH:mm", Locale.getDefault()).format(java.util.Date())
+        val orderId = (100000..999999).random().toString()
+
+        val newOrder = OrderItemModel(
+            orderCategoryTypeName = "Food",
+            orderStatus = "Ongoing",
+            orderImage = R.drawable.ic_launcher_background,
+            orderSellerName = restaurantName,
+            orderPrice = String.format(Locale.getDefault(), "$%.2f", totalPrice),
+            orderDate = currentDate,
+            orderItemNumber = itemCount,
+            orderId = orderId
+        )
+
+        homeViewModel.addOrder(newOrder)
+        homeViewModel.clearCart()
     }
 
     override fun onDestroyView() {
