@@ -1,7 +1,9 @@
 package com.example.fooddeliveryapp.ui.profile
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentProfileBinding
 import com.example.fooddeliveryapp.utils.FOOD_PREFS
-import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
+import com.example.fooddeliveryapp.utils.SharedPreferences
 import com.example.fooddeliveryapp.utils.REMEMBER_ME
 
 class ProfileFragment : Fragment() {
@@ -57,7 +59,7 @@ class ProfileFragment : Fragment() {
             }
 
             profileLogoutLl.setOnClickListener {
-                ProfileSharedPreferences.clearUserData(requireContext())
+                SharedPreferences.clearUserData(requireContext())
 
                 val sharedPref =
                     requireActivity().getSharedPreferences(FOOD_PREFS, Context.MODE_PRIVATE)
@@ -74,11 +76,17 @@ class ProfileFragment : Fragment() {
     private fun loadUserProfile() {
         val context = requireContext()
         binding.apply {
-            val name = ProfileSharedPreferences.getUserName(context)
-            val bio = ProfileSharedPreferences.getUserBio(context)
+            val name = SharedPreferences.getUserName(context)
+            val bio = SharedPreferences.getUserBio(context)
+            val image = SharedPreferences.getProfileImage(context)
 
             profileNameTv.text = name ?: ""
             profileBioTv.text = bio ?: ""
+            if (!image.isNullOrEmpty()) {
+                val imageBytes = Base64.decode(image, Base64.DEFAULT)
+                val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                profileImageIv.setImageBitmap(bitmap)
+            }
         }
     }
 

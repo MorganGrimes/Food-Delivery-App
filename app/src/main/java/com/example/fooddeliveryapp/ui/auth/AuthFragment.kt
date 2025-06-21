@@ -17,7 +17,7 @@ import com.example.fooddeliveryapp.utils.CODE_SENT_TO
 import com.example.fooddeliveryapp.utils.CORRECT_CODE
 import com.example.fooddeliveryapp.utils.ENTER_A_VALID_EMAIL
 import com.example.fooddeliveryapp.utils.NEW_CODE_SENT_TO
-import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
+import com.example.fooddeliveryapp.utils.SharedPreferences
 import com.example.fooddeliveryapp.utils.UiUtils
 import com.example.fooddeliveryapp.utils.WRONG_CODE
 import kotlinx.coroutines.Job
@@ -90,12 +90,12 @@ class AuthFragment : Fragment() {
                 if (!isCodeSent) {
                     val inputEmail = authEmailEt.text.toString().trim()
 
-                    if (inputEmail.isNotEmpty() && inputEmail == ProfileSharedPreferences.getUserEmail(
+                    if (inputEmail.isNotEmpty() && inputEmail == SharedPreferences.getUserEmail(
                             requireContext()
                         )
                     ) {
                         val otp = generateOTP()
-                        ProfileSharedPreferences.saveOTP(requireContext(), otp)
+                        SharedPreferences.saveOTP(requireContext(), otp)
                         isCodeSent = true
                         showCodeInput()
                         setupPinInputListeners()
@@ -115,7 +115,7 @@ class AuthFragment : Fragment() {
 
                 } else {
                     val inputCode = getInputOTP()
-                    val savedCode = ProfileSharedPreferences.getSavedOTP(requireContext())
+                    val savedCode = SharedPreferences.getSavedOTP(requireContext())
 
                     if (inputCode == savedCode) {
                         Toast.makeText(requireContext(), CORRECT_CODE, Toast.LENGTH_SHORT).show()
@@ -129,10 +129,10 @@ class AuthFragment : Fragment() {
             resendTv.setOnClickListener {
                 startResendTimer()
                 val email =
-                    ProfileSharedPreferences.getUserEmail(requireContext())
+                    SharedPreferences.getUserEmail(requireContext())
                         ?: return@setOnClickListener
                 val otp = generateOTP()
-                ProfileSharedPreferences.saveOTP(requireContext(), otp)
+                SharedPreferences.saveOTP(requireContext(), otp)
 
                 Toast.makeText(requireContext(), "$NEW_CODE_SENT_TO $email", Toast.LENGTH_SHORT)
                     .show()

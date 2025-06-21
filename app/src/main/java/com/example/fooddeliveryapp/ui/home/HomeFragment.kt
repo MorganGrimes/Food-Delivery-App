@@ -26,7 +26,7 @@ import com.example.fooddeliveryapp.ui.coupon.CouponDialogFragment
 import com.example.fooddeliveryapp.utils.CATEGORY_REQUEST_KEY
 import com.example.fooddeliveryapp.utils.COUPON_DIALOG
 import com.example.fooddeliveryapp.utils.NO_ADDRESS_INSERTED
-import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
+import com.example.fooddeliveryapp.utils.SharedPreferences
 import com.example.fooddeliveryapp.utils.SELECTED_CATEGORY
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -98,7 +98,7 @@ class HomeFragment : Fragment() {
         binding.apply {
             val homeAddressTv = homeAddressTv
             val greetingTv = homeGreetingTv
-            val name = ProfileSharedPreferences.getUserName(requireContext())
+            val name = SharedPreferences.getUserName(requireContext())
 
             if (addresses.isEmpty()) {
                 homeAddressTv.text = NO_ADDRESS_INSERTED
@@ -134,8 +134,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun checkAndShowCouponDialog() {
-        ProfileSharedPreferences.incrementAppLaunchCount(requireContext())
-        if (ProfileSharedPreferences.shouldShowCouponDialog(requireContext())) {
+        SharedPreferences.incrementAppLaunchCount(requireContext())
+        if (SharedPreferences.shouldShowCouponDialog(requireContext())) {
             CouponDialogFragment().show(parentFragmentManager, COUPON_DIALOG)
         }
     }

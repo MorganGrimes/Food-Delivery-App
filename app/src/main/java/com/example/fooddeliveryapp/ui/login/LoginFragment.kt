@@ -31,9 +31,9 @@ import com.example.fooddeliveryapp.utils.LOGIN_ERROR
 import com.example.fooddeliveryapp.utils.LOGIN_SUCCESS
 import com.example.fooddeliveryapp.utils.NO_EMAIL
 import com.example.fooddeliveryapp.utils.PUBLIC_PROFILE
-import com.example.fooddeliveryapp.utils.ProfileSharedPreferences.getIsLoggedIn
-import com.example.fooddeliveryapp.utils.ProfileSharedPreferences.saveEmail
-import com.example.fooddeliveryapp.utils.ProfileSharedPreferences.setLoggedIn
+import com.example.fooddeliveryapp.utils.SharedPreferences.getIsLoggedIn
+import com.example.fooddeliveryapp.utils.SharedPreferences.saveEmail
+import com.example.fooddeliveryapp.utils.SharedPreferences.setLoggedIn
 import com.example.fooddeliveryapp.utils.TWITTER_COM
 import com.example.fooddeliveryapp.utils.UiUtils
 import com.example.fooddeliveryapp.utils.WRONG_EMAIL_PSW

@@ -11,7 +11,7 @@ import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.model.OnboardingItemModel
 import com.example.fooddeliveryapp.databinding.FragmentOnBoardingBinding
 import com.example.fooddeliveryapp.ui.adapters.OnboardingAdapter
-import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
+import com.example.fooddeliveryapp.utils.SharedPreferences
 
 class OnboardingFragment : Fragment() {
 
@@ -104,7 +104,7 @@ class OnboardingFragment : Fragment() {
     }
 
     private fun completeOnboarding() {
-        ProfileSharedPreferences.setOnboardingCompleted(requireContext(), true)
+        SharedPreferences.setOnboardingCompleted(requireContext(), true)
     }
 
     override fun onDestroyView() {

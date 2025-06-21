@@ -3,7 +3,7 @@ package com.example.fooddeliveryapp.utils
 import android.content.Context
 import android.content.SharedPreferences
 
-object ProfileSharedPreferences {
+object SharedPreferences {
 
     private const val PREF_NAME = "food_prefs"
     private const val KEY_ONBOARDING_COMPLETED = "completed"
@@ -14,6 +14,7 @@ object ProfileSharedPreferences {
     private const val KEY_OTP = "user_otp"
     private const val KEY_LAUNCH_COUNT = "launch_count"
     private const val KEY_IS_LOGGED_IN = "is_logged_in"
+    private const val KEY_PROFILE_IMAGE = "profile_image"
 
     private fun getPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -78,5 +79,13 @@ object ProfileSharedPreferences {
     fun shouldShowCouponDialog(context: Context): Boolean {
         val launchCount = getPreferences(context).getInt(KEY_LAUNCH_COUNT, 0)
         return (launchCount - 1) % 6 == 0
+    }
+
+    fun saveProfileImage(context: Context, base64Image: String) {
+        getPreferences(context).edit().putString(KEY_PROFILE_IMAGE, base64Image).apply()
+    }
+
+    fun getProfileImage(context: Context): String? {
+        return getPreferences(context).getString(KEY_PROFILE_IMAGE, null)
     }
 }

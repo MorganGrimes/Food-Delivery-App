@@ -2,9 +2,11 @@ package com.example.fooddeliveryapp.ui.editprofile
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +17,10 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentEditProfileBinding
-import com.example.fooddeliveryapp.utils.ProfileSharedPreferences
+import com.example.fooddeliveryapp.utils.SharedPreferences
 import com.example.fooddeliveryapp.utils.UiUtils
+import java.io.ByteArrayOutputStream
+import android.graphics.BitmapFactory
 
 class EditProfileFragment : Fragment() {
 
@@ -49,7 +53,7 @@ class EditProfileFragment : Fragment() {
                 val phone = editProfilePhoneNumberEt.text.toString()
                 val bio = editProfileBioEt.text.toString()
 
-                ProfileSharedPreferences.saveUserProfile(requireContext(), name, email, phone, bio)
+                SharedPreferences.saveUserProfile(requireContext(), name, email, phone, bio)
 
                 val navOptions = NavOptions.Builder()
                     .setPopUpTo(R.id.editProfileFragment, true)
@@ -68,11 +72,21 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-    private fun imageLauncher(){
+    private fun imageLauncher() {
         pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK && result.data != null) {
                 val imageUri = result.data?.data
                 binding.editProfileImageIv.setImageURI(imageUri)
+
+                val inputStream = requireContext().contentResolver.openInputStream(imageUri!!)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+
+                val outputStream = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+                val imageBytes = outputStream.toByteArray()
+                val base64Image = Base64.encodeToString(imageBytes, Base64.DEFAULT)
+
+                SharedPreferences.saveProfileImage(requireContext(), base64Image)
             }
         }
     }
@@ -111,11 +125,18 @@ class EditProfileFragment : Fragment() {
 
     private fun loadUserData() {
         val context = requireContext()
+        val base64Image = SharedPreferences.getProfileImage(context)
         binding.apply {
-            editProfileFullNameEt.setText(ProfileSharedPreferences.getUserName(context))
-            editProfileEmailEt.setText(ProfileSharedPreferences.getUserEmail(context))
-            editProfilePhoneNumberEt.setText(ProfileSharedPreferences.getUserPhone(context))
-            editProfileBioEt.setText(ProfileSharedPreferences.getUserBio(context))
+            editProfileFullNameEt.setText(SharedPreferences.getUserName(context))
+            editProfileEmailEt.setText(SharedPreferences.getUserEmail(context))
+            editProfilePhoneNumberEt.setText(SharedPreferences.getUserPhone(context))
+            editProfileBioEt.setText(SharedPreferences.getUserBio(context))
+
+            if (!base64Image.isNullOrEmpty()) {
+                val imageBytes = Base64.decode(base64Image, Base64.DEFAULT)
+                val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                editProfileImageIv.setImageBitmap(bitmap)
+            }
         }
     }
 
