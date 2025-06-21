@@ -6,9 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddeliveryapp.R
+import com.example.fooddeliveryapp.data.local.database.AppDatabase
 import com.example.fooddeliveryapp.data.model.OrderItemModel
+import com.example.fooddeliveryapp.data.repository.OrderRepository
 import com.example.fooddeliveryapp.databinding.FragmentOngoingBinding
 import com.example.fooddeliveryapp.ui.adapters.OrderRecyclerAdapter
 import com.example.fooddeliveryapp.ui.home.HomeViewModel
@@ -16,7 +20,11 @@ import com.example.fooddeliveryapp.ui.home.HomeViewModel
 class OngoingFragment : Fragment() {
 
     private lateinit var orderRecyclerAdapter: OrderRecyclerAdapter
-    private val viewModel: HomeViewModel by activityViewModels()
+    private val viewModel: OngoingViewModel by viewModels {
+        OngoingViewModelFactory(
+            OrderRepository(AppDatabase.getDatabase(requireContext()).orderDao())
+        )
+    }
 
     private var _binding: FragmentOngoingBinding? = null
     private val binding get() = _binding!!
@@ -33,7 +41,7 @@ class OngoingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
 
-        viewModel.orderItems.observe(viewLifecycleOwner) { orders ->
+        viewModel.allOrders.observe(viewLifecycleOwner) { orders ->
             orderRecyclerAdapter.updateData(orders)
         }
     }

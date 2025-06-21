@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fooddeliveryapp.data.model.OrderItemModel
+import com.example.fooddeliveryapp.data.local.entity.OrderEntity
 import com.example.fooddeliveryapp.databinding.RecyclerOrderLayoutBinding
 
 class OrderRecyclerAdapter(
-    private var items: List<OrderItemModel>,
+    private var items: List<OrderEntity>,
 ) : RecyclerView.Adapter<OrderRecyclerAdapter.OrderViewHolder>() {
 
-    fun updateData(newItems: List<OrderItemModel>) {
+    fun updateData(newItems: List<OrderEntity>) {
         val diffCallback = object : DiffUtil.Callback() {
             override fun getOldListSize() = items.size
             override fun getNewListSize() = newItems.size
@@ -32,7 +32,7 @@ class OrderRecyclerAdapter(
 
     inner class OrderViewHolder(private val binding: RecyclerOrderLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: OrderItemModel) {
+        fun bind(item: OrderEntity) {
             binding.apply {
                 recyclerOrderCategoryTypeNameTv.text = item.orderCategoryTypeName
                 recyclerOrderStatusOrderTv.text = item.orderStatus

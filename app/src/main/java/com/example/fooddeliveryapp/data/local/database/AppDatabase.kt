@@ -6,19 +6,22 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.fooddeliveryapp.data.local.dao.AddressDao
 import com.example.fooddeliveryapp.data.local.dao.CreditCardDao
+import com.example.fooddeliveryapp.data.local.dao.OrderDao
 import com.example.fooddeliveryapp.data.local.entity.AddressEntity
 import com.example.fooddeliveryapp.data.local.entity.CreditCardEntity
+import com.example.fooddeliveryapp.data.local.entity.OrderEntity
 import com.example.fooddeliveryapp.utils.FOOD_DELIVERY_DB
 
 @Database(
-    entities = [AddressEntity::class, CreditCardEntity::class],
-    version = 2,
+    entities = [AddressEntity::class, CreditCardEntity::class, OrderEntity::class],
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun addressDao(): AddressDao
     abstract fun creditCardDao(): CreditCardDao
+    abstract fun orderDao(): OrderDao
 
     companion object {
         @Volatile

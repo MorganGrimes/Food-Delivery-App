@@ -8,15 +8,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fooddeliveryapp.R
-import com.example.fooddeliveryapp.databinding.FragmentPaymentBinding
 import com.example.fooddeliveryapp.PaypalWebViewActivity
-import com.example.fooddeliveryapp.data.model.OrderItemModel
+import com.example.fooddeliveryapp.R
+import com.example.fooddeliveryapp.data.local.database.AppDatabase
+import com.example.fooddeliveryapp.data.local.entity.OrderEntity
+import com.example.fooddeliveryapp.data.repository.OrderRepository
+import com.example.fooddeliveryapp.databinding.FragmentPaymentBinding
 import com.example.fooddeliveryapp.ui.adapters.CreditCardRecyclerAdapter
 import com.example.fooddeliveryapp.ui.home.HomeViewModel
+import com.example.fooddeliveryapp.ui.ongoing.OngoingViewModel
+import com.example.fooddeliveryapp.ui.ongoing.OngoingViewModelFactory
 import com.example.fooddeliveryapp.utils.CREDIT_CARD_ID
 import com.example.fooddeliveryapp.utils.MASTERCARD_CAMELCASE
 import com.example.fooddeliveryapp.utils.PAYMENT_FAILED
@@ -30,6 +35,7 @@ class PaymentFragment : Fragment() {
     private lateinit var creditCardRecyclerAdapter: CreditCardRecyclerAdapter
     private val viewModel: PaymentViewModel by activityViewModels()
     private val homeViewModel: HomeViewModel by activityViewModels()
+    private lateinit var ongoingViewModel: OngoingViewModel
     private var selectedPaymentMethod: String? = null
 
     private var _binding: FragmentPaymentBinding? = null
@@ -49,9 +55,17 @@ class PaymentFragment : Fragment() {
         val showBottomBar = arguments?.getBoolean("showBottomBar", false) ?: false
         binding.paymentBottomCl.visibility = if (showBottomBar) View.VISIBLE else View.GONE
 
+        setupInitializeOrder()
         setupObserver()
         setupListener()
         setupRecyclerView()
+    }
+
+    private fun setupInitializeOrder(){
+        val orderDao = AppDatabase.getDatabase(requireContext()).orderDao()
+        val orderRepository = OrderRepository(orderDao)
+        val factory = OngoingViewModelFactory(orderRepository)
+        ongoingViewModel = ViewModelProvider(this, factory)[OngoingViewModel::class.java]
     }
 
     private fun setupObserver() {
@@ -240,7 +254,7 @@ class PaymentFragment : Fragment() {
             Toast.makeText(requireContext(), "Cart is empty!", Toast.LENGTH_SHORT).show()
             return
         }
-        
+
         val restaurantId = cartItems.first().restaurantId
         val itemCount = "${cartItems.size} item${if (cartItems.size > 1) "s" else ""}"
         val totalPrice = homeViewModel.cartTotalPrice.value ?: 0.0
@@ -249,10 +263,11 @@ class PaymentFragment : Fragment() {
             .firstOrNull { it.id == restaurantId }
             ?.name ?: "Unknown Restaurant"
 
-        val currentDate = java.text.SimpleDateFormat("dd MMM, HH:mm", Locale.getDefault()).format(java.util.Date())
+        val currentDate = java.text.SimpleDateFormat("dd MMM, HH:mm", Locale.getDefault())
+            .format(java.util.Date())
         val orderId = (100000..999999).random().toString()
 
-        val newOrder = OrderItemModel(
+        val newOrder = OrderEntity(
             orderCategoryTypeName = "Food",
             orderStatus = "Ongoing",
             orderImage = R.drawable.ic_launcher_background,
@@ -263,8 +278,10 @@ class PaymentFragment : Fragment() {
             orderId = orderId
         )
 
-        homeViewModel.addOrder(newOrder)
-        homeViewModel.clearCart()
+        ongoingViewModel.insertOrder(newOrder)
+
+        homeViewModel.cartItems.value = mutableListOf()
+        homeViewModel.updateCartTotalPrice()
     }
 
     override fun onDestroyView() {
