@@ -173,6 +173,7 @@
                         android:layout_gravity="center"
                         android:layout_marginHorizontal="30dp"
                         android:layout_marginTop="24dp"
+                        android:layout_marginBottom="24dp"
                         android:fontFamily="@font/sen_regular"
                         android:text="@string/you_can_add"
                         android:textAlignment="center"

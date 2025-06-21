@@ -89,9 +89,9 @@ class AddCardFragment : Fragment() {
                     else -> getString(R.string.master_card)
                 }
                 if (number.length in 1..15) {
-                    binding.addCardCardNumberEt.error = getString(R.string.number_must_be_16)
+                    addCardCardNumberEt.error = getString(R.string.number_must_be_16)
                 } else {
-                    binding.addCardCardNumberEt.error = null
+                    addCardCardNumberEt.error = null
                 }
             }
             creditCardExpireDateValidation()
@@ -118,7 +118,8 @@ class AddCardFragment : Fragment() {
                     creditCardExpireDate = expireDate,
                     creditCardCvc = cvc,
                     creditCardImage = cardImage,
-                    isExpanded = false
+                    isExpanded = false,
+                    balance = 100.5
                 )
 
                 if (currentCardId != -1) {

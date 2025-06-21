@@ -14,5 +14,6 @@ data class CreditCardEntity(
     val creditCardHolderName: String,
     val creditCardExpireDate: String,
     val creditCardCvc: String,
-    var isExpanded: Boolean = false
+    var isExpanded: Boolean = false,
+    var balance: Double
 )
