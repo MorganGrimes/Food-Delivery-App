@@ -32,4 +32,10 @@ class PaymentViewModel(application: Application) : AndroidViewModel(application)
     fun delete(creditCard: CreditCardEntity) = viewModelScope.launch {
         repository.deleteCard(creditCard)
     }
+
+    fun updateCreditCard(card: CreditCardEntity) {
+        viewModelScope.launch {
+            repository.updateCard(card)
+        }
+    }
 }

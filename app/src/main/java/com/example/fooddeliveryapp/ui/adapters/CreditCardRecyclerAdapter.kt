@@ -11,7 +11,9 @@ import com.example.fooddeliveryapp.databinding.RecyclerCreditCardLayoutBinding
 class CreditCardRecyclerAdapter(
     private var items: List<CreditCardEntity>,
     private val onEditClicked: (CreditCardEntity) -> Unit,
-    private val onDeleteClicked: (CreditCardEntity) -> Unit
+    private val onDeleteClicked: (CreditCardEntity) -> Unit,
+    private val onCardSelected: (CreditCardEntity) -> Unit,
+    private var selectedCardId: Int? = null
 ) : RecyclerView.Adapter<CreditCardRecyclerAdapter.CreditCardViewHolder>() {
 
     fun updateData(newItems: List<CreditCardEntity>) {
@@ -33,6 +35,14 @@ class CreditCardRecyclerAdapter(
 
         items = resetItems
         diffResult.dispatchUpdatesTo(this)
+    }
+
+    fun setSelectedCard(id: Int?) {
+        val previousSelected = selectedCardId
+        selectedCardId = id
+
+        notifyItemChanged(items.indexOfFirst { it.id == previousSelected })
+        notifyItemChanged(items.indexOfFirst { it.id == selectedCardId })
     }
 
     inner class CreditCardViewHolder(private val binding: RecyclerCreditCardLayoutBinding) :
@@ -72,6 +82,11 @@ class CreditCardRecyclerAdapter(
                         notifyItemChanged(position)
                     }
                 }
+
+                root.setOnClickListener {
+                    onCardSelected(item)
+                }
+                root.isSelected = item.id == selectedCardId
             }
         }
     }

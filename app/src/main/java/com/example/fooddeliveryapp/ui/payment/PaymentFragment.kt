@@ -23,7 +23,9 @@ import com.example.fooddeliveryapp.ui.home.HomeViewModel
 import com.example.fooddeliveryapp.ui.ongoing.OngoingViewModel
 import com.example.fooddeliveryapp.ui.ongoing.OngoingViewModelFactory
 import com.example.fooddeliveryapp.utils.CREDIT_CARD_ID
+import com.example.fooddeliveryapp.utils.FOOD
 import com.example.fooddeliveryapp.utils.MASTERCARD_CAMELCASE
+import com.example.fooddeliveryapp.utils.ONGOING
 import com.example.fooddeliveryapp.utils.PAYMENT_FAILED
 import com.example.fooddeliveryapp.utils.PAYMENT_SUCCESS
 import com.example.fooddeliveryapp.utils.URL
@@ -37,6 +39,7 @@ class PaymentFragment : Fragment() {
     private val homeViewModel: HomeViewModel by activityViewModels()
     private lateinit var ongoingViewModel: OngoingViewModel
     private var selectedPaymentMethod: String? = null
+    private var selectedCreditCardId: Int? = null
 
     private var _binding: FragmentPaymentBinding? = null
     private val binding get() = _binding!!
@@ -61,7 +64,7 @@ class PaymentFragment : Fragment() {
         setupRecyclerView()
     }
 
-    private fun setupInitializeOrder(){
+    private fun setupInitializeOrder() {
         val orderDao = AppDatabase.getDatabase(requireContext()).orderDao()
         val orderRepository = OrderRepository(orderDao)
         val factory = OngoingViewModelFactory(orderRepository)
@@ -77,7 +80,11 @@ class PaymentFragment : Fragment() {
 
             viewModel.allCreditCards.observe(viewLifecycleOwner) {
                 selectedPaymentMethod?.let { type ->
-                    if (type.equals(VISA_CAMELCASE, true) || type.equals(MASTERCARD_CAMELCASE, true)) {
+                    if (type.equals(VISA_CAMELCASE, true) || type.equals(
+                            MASTERCARD_CAMELCASE,
+                            true
+                        )
+                    ) {
                         filterCardsByType(type)
                         binding.recyclerCreditCard.visibility = View.VISIBLE
                     } else {
@@ -97,11 +104,7 @@ class PaymentFragment : Fragment() {
                 findNavController().navigate(R.id.action_paymentFragment_to_addCardFragment)
             }
             placeOrderBtn.setOnClickListener {
-                val navOptions = NavOptions.Builder()
-                    .setPopUpTo(R.id.paymentFragment, true)
-                    .build()
                 onPaymentSuccess()
-                findNavController().navigate(R.id.paymentSuccessfullFragment, null, navOptions)
             }
 
             paymentVisaTv.setOnClickListener {
@@ -179,6 +182,15 @@ class PaymentFragment : Fragment() {
                 },
                 onDeleteClicked = { card ->
                     viewModel.delete(card)
+                },
+                onCardSelected = { card ->
+                    selectedCreditCardId = card.id
+                    creditCardRecyclerAdapter.setSelectedCard(card.id)
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.selected_card, card.creditCardNumbers.takeLast(3)),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             )
 
@@ -246,18 +258,44 @@ class PaymentFragment : Fragment() {
     }
 
     private fun onPaymentSuccess() {
+        val totalPrice = homeViewModel.cartTotalPrice.value ?: 0.0
         val cartItems = homeViewModel.cartItems.value?.filter {
             it.cartId == homeViewModel.cartId.value
         } ?: emptyList()
 
         if (cartItems.isEmpty()) {
-            Toast.makeText(requireContext(), "Cart is empty!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.cart_is_empty, Toast.LENGTH_SHORT).show()
             return
         }
 
+        if (selectedPaymentMethod == VISA_CAMELCASE || selectedPaymentMethod == MASTERCARD_CAMELCASE) {
+            val selectedCard = viewModel.allCreditCards.value?.find { it.id == selectedCreditCardId }
+
+            if (selectedCard == null) {
+                Toast.makeText(requireContext(), R.string.select_a_credit_card, Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            if (selectedCard.balance < totalPrice) {
+                Toast.makeText(requireContext(), R.string.insufficient_balance, Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            val updatedCard = selectedCard.copy(balance = selectedCard.balance - totalPrice)
+            viewModel.updateCreditCard(updatedCard)
+
+        } else if (selectedPaymentMethod != "cash" && selectedPaymentMethod != "paypal") {
+            Toast.makeText(requireContext(), R.string.select_a_valid_payment_method, Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.paymentFragment, true)
+            .build()
+        findNavController().navigate(R.id.paymentSuccessfullFragment, null, navOptions)
+
         val restaurantId = cartItems.first().restaurantId
         val itemCount = "${cartItems.size} item${if (cartItems.size > 1) "s" else ""}"
-        val totalPrice = homeViewModel.cartTotalPrice.value ?: 0.0
 
         val restaurantName = homeViewModel.getAllRestaurants()
             .firstOrNull { it.id == restaurantId }
@@ -268,8 +306,8 @@ class PaymentFragment : Fragment() {
         val orderId = (100000..999999).random().toString()
 
         val newOrder = OrderEntity(
-            orderCategoryTypeName = "Food",
-            orderStatus = "Ongoing",
+            orderCategoryTypeName = FOOD,
+            orderStatus = ONGOING,
             orderImage = R.drawable.ic_launcher_background,
             orderSellerName = restaurantName,
             orderPrice = String.format(Locale.getDefault(), "$%.2f", totalPrice),

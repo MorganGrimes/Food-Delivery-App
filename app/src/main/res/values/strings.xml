@@ -196,5 +196,11 @@ you just place the order we do the rest</string>
     <string name="food_price">$%1$.2f</string>
     <string name="category_food_count">%1$s (%2$d)</string>
     <string name="popular_with_category">Popular %1$s</string>
+    <string name="cart_is_empty">"Cart is empty!"</string>
+    <string name="select_a_credit_card">"Select a credit card"</string>
+    <string name="insufficient_balance">"Insufficient balance"</string>
+    <string name="select_a_valid_payment_method">"Select a valid payment method"</string>
+    <string name="selected_card">Selected card ending with %1$s</string>
+
 
 </resources>
