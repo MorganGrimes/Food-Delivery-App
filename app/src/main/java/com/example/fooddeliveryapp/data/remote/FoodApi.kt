@@ -3,6 +3,7 @@ package com.example.fooddeliveryapp.data.remote
 import com.example.fooddeliveryapp.data.remote.dto.AuthRequest
 import com.example.fooddeliveryapp.data.remote.dto.AuthResponse
 import com.example.fooddeliveryapp.data.remote.dto.CategoriesResponse
+import com.example.fooddeliveryapp.data.remote.dto.restaurant.CouponResponse
 import com.example.fooddeliveryapp.data.remote.dto.restaurant.RestaurantsResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -25,6 +26,11 @@ interface CategoryApi {
 interface RestaurantApi {
     @GET("api/restaurants")
     suspend fun getRestaurants(): Response<RestaurantsResponse>
+}
+
+interface CouponApi {
+    @GET("api/coupons")
+    suspend fun getCoupons(): Response<CouponResponse>
 }
 
 data class PaymentVerificationRequest(

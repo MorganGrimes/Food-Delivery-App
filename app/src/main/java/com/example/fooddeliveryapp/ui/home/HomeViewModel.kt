@@ -1,11 +1,14 @@
 package com.example.fooddeliveryapp.ui.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.fooddeliveryapp.data.model.CartItemModel
 import com.example.fooddeliveryapp.data.model.PopularFoodItemModel
 import com.example.fooddeliveryapp.data.remote.RetrofitInstance
+import com.example.fooddeliveryapp.data.remote.dto.restaurant.Coupon
 import com.example.fooddeliveryapp.data.remote.dto.restaurant.Restaurants
 import com.example.fooddeliveryapp.utils.ERROR
 import com.example.fooddeliveryapp.utils.TRY_AGAIN
@@ -45,6 +48,9 @@ class HomeViewModel : ViewModel() {
     private val _cartTotalPrice = MutableLiveData(0.0)
     val cartTotalPrice: LiveData<Double> = _cartTotalPrice
 
+    private val _coupons = MutableLiveData<List<Coupon>>()
+    val coupons: LiveData<List<Coupon>> = _coupons
+
     suspend fun fetchCategories() {
         try {
             val response = RetrofitInstance.categoryApi.getCategories()
@@ -68,6 +74,22 @@ class HomeViewModel : ViewModel() {
             } catch (e: Exception) {
                 _restaurants.postValue(emptyList())
                 _filteredRestaurants.postValue(emptyList())
+            }
+        }
+    }
+
+    fun fetchCoupons() {
+        viewModelScope.launch {
+            try {
+                val response = RetrofitInstance.couponApi.getCoupons()
+                if (response.isSuccessful) {
+                    _coupons.value = response.body()?.coupons ?: emptyList()
+                }
+                 else {
+                    Log.d("HomeViewModel", "Response not successful: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                Log.e("HomeViewModel", "Error fetching coupons", e)
             }
         }
     }

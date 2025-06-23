@@ -91,6 +91,7 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             homeViewModel.fetchCategories()
             homeViewModel.fetchRestaurants()
+            homeViewModel.fetchCoupons()
         }
     }
 

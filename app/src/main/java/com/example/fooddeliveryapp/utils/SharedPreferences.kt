@@ -15,6 +15,7 @@ object SharedPreferences {
     private const val KEY_LAUNCH_COUNT = "launch_count"
     private const val KEY_IS_LOGGED_IN = "is_logged_in"
     private const val KEY_PROFILE_IMAGE = "profile_image"
+    private const val KEY_COUPON_CLOSE_COUNT = "coupon_close_count"
 
     private fun getPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -87,5 +88,19 @@ object SharedPreferences {
 
     fun getProfileImage(context: Context): String? {
         return getPreferences(context).getString(KEY_PROFILE_IMAGE, null)
+    }
+
+    fun getCouponCloseCount(context: Context): Int {
+        return getPreferences(context).getInt(KEY_COUPON_CLOSE_COUNT, 0)
+    }
+
+    fun incrementCouponCloseCount(context: Context) {
+        val prefs = getPreferences(context)
+        val count = prefs.getInt(KEY_COUPON_CLOSE_COUNT, 0) + 1
+        prefs.edit().putInt(KEY_COUPON_CLOSE_COUNT, count).apply()
+    }
+
+    fun resetCouponCloseCount(context: Context) {
+        getPreferences(context).edit().putInt(KEY_COUPON_CLOSE_COUNT, 0).apply()
     }
 }

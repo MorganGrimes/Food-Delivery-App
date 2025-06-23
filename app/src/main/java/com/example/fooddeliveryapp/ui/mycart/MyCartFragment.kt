@@ -14,6 +14,8 @@ import com.example.fooddeliveryapp.databinding.FragmentMyCartBinding
 import com.example.fooddeliveryapp.ui.adapters.CartItemRecyclerAdapter
 import com.example.fooddeliveryapp.ui.home.HomeViewModel
 import com.example.fooddeliveryapp.utils.UiUtils
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 class MyCartFragment : Fragment() {
@@ -42,6 +44,7 @@ class MyCartFragment : Fragment() {
             val currentItems = allCartItems.filter { it.cartId == viewModel.cartId.value }
             cartItemRecyclerAdapter.updateData(currentItems)
             updateCartTotal(currentItems)
+            applyCouponIfAvailable(currentItems)
         }
     }
 
@@ -84,6 +87,49 @@ class MyCartFragment : Fragment() {
             } else {
                 placeOrderBtn.isEnabled = true
                 placeOrderBtn.setBackgroundColor(requireContext().getColor(R.color.orange))
+            }
+        }
+    }
+
+    private fun applyCouponIfAvailable(cartItems: List<CartItemModel>) {
+        binding.apply {
+            val now = Date()
+
+            val validCoupon = viewModel.coupons.value?.firstOrNull { coupon ->
+                val start =
+                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault()).parse(
+                        coupon.startDate
+                    )
+                val end =
+                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault()).parse(
+                        coupon.endDate
+                    )
+                val isInDateRange =
+                    start != null && end != null && now.after(start) && now.before(end)
+
+                val selectedCategory = viewModel.selectedFoodCategory.value
+                val hasProductInCart = selectedCategory != null &&
+                        cartItems.any { cartItem ->
+                            coupon.products.any { productName ->
+                                productName.equals(cartItem.cartFoodName, ignoreCase = true)
+                            }
+                        }
+                isInDateRange && hasProductInCart
+            }
+
+            if (validCoupon != null) {
+                cartCouponCode.text = validCoupon.code
+
+                val total = cartItems.sumOf { it.cartFoodPrice }
+                val discount = total * validCoupon.discountPercentage / 100
+                val discountedTotal = total - discount
+
+                myCartCartTotalPriceTv.text =
+                    String.format(Locale.getDefault(), "$%.2f", discountedTotal)
+            } else {
+                cartCouponCode.text = ""
+                val total = cartItems.sumOf { it.cartFoodPrice }
+                myCartCartTotalPriceTv.text = String.format(Locale.getDefault(), "$%.2f", total)
             }
         }
     }

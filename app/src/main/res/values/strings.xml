@@ -48,7 +48,7 @@ you just place the order we do the rest</string>
     <string name="popular_fast_food">Popular Fast Food</string>
     <string name="hurry_offers">Hurry Offers!</string>
     <string name="coupon_code">#1243CD2</string>
-    <string name="coupon_description">Use the cupon get 25% discount</string>
+    <string name="coupon_description_template">Use the coupon to get %1$d%% discount</string>
     <string name="got_it">GOT IT</string>
     <string name="popular_burgers">Popular Burgers</string>
     <string name="burger_bistro">Burger Bistro</string>

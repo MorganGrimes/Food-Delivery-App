@@ -29,4 +29,8 @@ object RetrofitInstance {
     val paymentApi: PaymentApi by lazy {
         retrofit.create(PaymentApi::class.java)
     }
+
+    val couponApi: CouponApi by lazy {
+        retrofit.create(CouponApi::class.java)
+    }
 }

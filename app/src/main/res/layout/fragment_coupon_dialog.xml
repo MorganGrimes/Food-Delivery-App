@@ -66,7 +66,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="35dp"
                 android:fontFamily="@font/sen_bold"
-                android:text="@string/coupon_description"
+                android:text="@string/coupon_description_template"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 tools:ignore="TextContrastCheck" />
