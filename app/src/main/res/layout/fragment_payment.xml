@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.payment.PaymentFragment">
 
+    <ProgressBar
+        android:id="@+id/paymentProgressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        android:indeterminate="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     <LinearLayout
         android:id="@+id/payment_top_bar_ll"
         android:layout_width="match_parent"

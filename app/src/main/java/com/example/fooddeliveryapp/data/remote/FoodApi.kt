@@ -26,3 +26,21 @@ interface RestaurantApi {
     @GET("api/restaurants")
     suspend fun getRestaurants(): Response<RestaurantsResponse>
 }
+
+data class PaymentVerificationRequest(
+    val paymentMethod: String,
+    val amount: Double,
+    val cardId: Int?
+)
+
+data class PaymentVerificationResponse(
+    val success: Boolean,
+    val message: String
+)
+
+interface PaymentApi {
+    @POST("api/payment/verify")
+    suspend fun verifyPayment(
+        @Body request: PaymentVerificationRequest
+    ): Response<PaymentVerificationResponse>
+}

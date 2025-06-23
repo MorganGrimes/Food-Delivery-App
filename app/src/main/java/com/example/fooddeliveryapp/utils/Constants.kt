@@ -58,6 +58,8 @@ const val PRICING_RANGE = "pricingRange"
 const val MIN_RATING = "minRating"
 const val USER_SELECTED = "UserSelected"
 const val FOOD = "Food"
+const val PAYMENT_VERIFICATION_FAILED = "Payment verification failed: "
+const val UNKNOWN_ERROR = "Unknown error"
 
 
 

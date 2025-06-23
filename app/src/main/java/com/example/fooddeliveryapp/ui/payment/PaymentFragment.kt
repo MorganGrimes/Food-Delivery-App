@@ -31,6 +31,13 @@ import com.example.fooddeliveryapp.utils.PAYMENT_SUCCESS
 import com.example.fooddeliveryapp.utils.URL
 import com.example.fooddeliveryapp.utils.VISA_CAMELCASE
 import java.util.Locale
+import androidx.lifecycle.lifecycleScope
+import com.example.fooddeliveryapp.data.model.CartItemModel
+import com.example.fooddeliveryapp.data.remote.PaymentVerificationRequest
+import com.example.fooddeliveryapp.data.remote.RetrofitInstance
+import com.example.fooddeliveryapp.utils.PAYMENT_VERIFICATION_FAILED
+import com.example.fooddeliveryapp.utils.UNKNOWN_ERROR
+import kotlinx.coroutines.launch
 
 class PaymentFragment : Fragment() {
 
@@ -268,25 +275,42 @@ class PaymentFragment : Fragment() {
             return
         }
 
+        binding.paymentProgressBar.visibility = View.VISIBLE
+
+        lifecycleScope.launch {
+            val response = RetrofitInstance.paymentApi.verifyPayment(
+                PaymentVerificationRequest(
+                    paymentMethod = selectedPaymentMethod ?: "unknown",
+                    amount = totalPrice,
+                    cardId = selectedCreditCardId
+                )
+            )
+            kotlinx.coroutines.delay(1500)
+            binding.paymentProgressBar.visibility = View.GONE
+
+            if (response.isSuccessful && response.body()?.success == true) {
+                proceedWithOrder(totalPrice, cartItems)
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    PAYMENT_VERIFICATION_FAILED + (response.body()?.message ?: UNKNOWN_ERROR),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun proceedWithOrder(totalPrice: Double, cartItems: List<CartItemModel>) {
         if (selectedPaymentMethod == VISA_CAMELCASE || selectedPaymentMethod == MASTERCARD_CAMELCASE) {
             val selectedCard = viewModel.allCreditCards.value?.find { it.id == selectedCreditCardId }
 
-            if (selectedCard == null) {
-                Toast.makeText(requireContext(), R.string.select_a_credit_card, Toast.LENGTH_SHORT).show()
-                return
-            }
-
-            if (selectedCard.balance < totalPrice) {
+            if (selectedCard == null || selectedCard.balance < totalPrice) {
                 Toast.makeText(requireContext(), R.string.insufficient_balance, Toast.LENGTH_SHORT).show()
                 return
             }
 
             val updatedCard = selectedCard.copy(balance = selectedCard.balance - totalPrice)
             viewModel.updateCreditCard(updatedCard)
-
-        } else if (selectedPaymentMethod != "cash" && selectedPaymentMethod != "paypal") {
-            Toast.makeText(requireContext(), R.string.select_a_valid_payment_method, Toast.LENGTH_SHORT).show()
-            return
         }
 
         val navOptions = NavOptions.Builder()
