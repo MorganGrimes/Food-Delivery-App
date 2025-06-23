@@ -201,6 +201,9 @@ you just place the order we do the rest</string>
     <string name="insufficient_balance">"Insufficient balance"</string>
     <string name="select_a_valid_payment_method">"Select a valid payment method"</string>
     <string name="selected_card">Selected card ending with %1$s</string>
+    <string name="are_you_sure_you_want_to_delete_the_address">Are you sure you want to delete the address?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 
 </resources>
