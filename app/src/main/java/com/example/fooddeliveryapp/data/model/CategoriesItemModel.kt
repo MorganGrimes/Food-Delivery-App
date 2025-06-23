@@ -1,6 +1,6 @@
 package com.example.fooddeliveryapp.data.model
 
 data class CategoriesItemModel(
-    val foodImage: Int,
+    val foodImage: String,
     val foodName: String
 )

@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
         }
 
         homeViewModel.categories.observe(viewLifecycleOwner) { categories ->
-            val formatted = categories.map { CategoriesItemModel(R.drawable.menu, it) }
+            val formatted = categories.map { CategoriesItemModel(it.image, it.name) }
             categoriesRecyclerAdapter.updateList(formatted)
         }
 

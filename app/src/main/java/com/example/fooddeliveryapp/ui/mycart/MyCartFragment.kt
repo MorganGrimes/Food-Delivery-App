@@ -62,6 +62,18 @@ class MyCartFragment : Fragment() {
             myCartEditAddressTv.setOnClickListener {
                 findNavController().navigate(R.id.action_myCartFragment_to_addressFragment)
             }
+
+            cartCouponRemoveIv.setOnClickListener {
+                cartCouponCode.text = ""
+
+                val currentItems = viewModel.cartItems.value?.filter {
+                    it.cartId == viewModel.cartId.value
+                } ?: emptyList()
+
+                val total = currentItems.sumOf { it.cartFoodPrice }
+                myCartCartTotalPriceTv.text =
+                    String.format(Locale.getDefault(), "$%.2f", total)
+            }
         }
     }
 

@@ -65,7 +65,7 @@ class FoodFragment : Fragment() {
 
         if (homeViewModel.selectedFoodCategory.value.isNullOrEmpty()) {
             homeViewModel.selectedFoodCategory.value =
-                homeViewModel.categories.value?.firstOrNull() ?: ""
+                homeViewModel.categories.value?.firstOrNull()?.name ?: ""
         }
 
         homeViewModel.selectedFoodCategory.observe(viewLifecycleOwner) { category ->
@@ -185,7 +185,7 @@ class FoodFragment : Fragment() {
             homeViewModel.categories.observe(viewLifecycleOwner) { categories ->
                 popup.menu.clear()
                 categories.forEach { category ->
-                    popup.menu.add(category)
+                    popup.menu.add(category.name)
                 }
 
                 popup.setOnMenuItemClickListener { item ->

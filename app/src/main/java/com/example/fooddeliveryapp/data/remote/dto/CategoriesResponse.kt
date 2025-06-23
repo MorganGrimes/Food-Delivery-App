@@ -1,5 +1,10 @@
 package com.example.fooddeliveryapp.data.remote.dto
 
 data class CategoriesResponse(
-    val categories: List<String>
+    val categories: List<CategoryDto>
+)
+
+data class CategoryDto(
+    val name: String,
+    val image: String
 )

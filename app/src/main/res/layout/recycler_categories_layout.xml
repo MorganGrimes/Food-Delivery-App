@@ -18,8 +18,7 @@
             android:id="@+id/recycler_categories_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/menu"
-            app:tint="@color/grey"
+            android:scaleType="centerCrop"
             tools:ignore="ContentDescription,ImageContrastCheck" />
 
     </LinearLayout>

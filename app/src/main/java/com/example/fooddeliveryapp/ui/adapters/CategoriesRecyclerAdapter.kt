@@ -2,10 +2,13 @@ package com.example.fooddeliveryapp.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.decode.SvgDecoder
+import coil.load
+import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.model.CategoriesItemModel
 import com.example.fooddeliveryapp.databinding.RecyclerCategoriesLayoutBinding
-import androidx.recyclerview.widget.DiffUtil
 
 class CategoriesRecyclerAdapter(
     private var categoriesList: List<CategoriesItemModel>,
@@ -14,10 +17,16 @@ class CategoriesRecyclerAdapter(
 
     inner class CategoriesViewHolder(private val binding: RecyclerCategoriesLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(item: CategoriesItemModel) {
             binding.apply {
-                recyclerCategoriesIv.setImageResource(item.foodImage)
                 recyclerCategoriesName.text = item.foodName
+                val imageUrl = item.foodImage.replace("localhost", "192.168.178.102")
+                recyclerCategoriesIv.load(imageUrl) {
+                    decoderFactory(SvgDecoder.Factory())
+                    placeholder(R.drawable.ic_launcher_foreground)
+                    error(R.drawable.ic_launcher_background)
+                }
                 root.setOnClickListener { onItemClick(item) }
             }
         }

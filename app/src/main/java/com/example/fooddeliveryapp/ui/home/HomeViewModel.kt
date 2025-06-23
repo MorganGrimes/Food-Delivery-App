@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.fooddeliveryapp.data.model.CartItemModel
 import com.example.fooddeliveryapp.data.model.PopularFoodItemModel
 import com.example.fooddeliveryapp.data.remote.RetrofitInstance
+import com.example.fooddeliveryapp.data.remote.dto.CategoryDto
 import com.example.fooddeliveryapp.data.remote.dto.restaurant.Coupon
 import com.example.fooddeliveryapp.data.remote.dto.restaurant.Restaurants
 import com.example.fooddeliveryapp.utils.ERROR
@@ -30,8 +31,8 @@ class HomeViewModel : ViewModel() {
         generateNewCartId()
     }
 
-    private val _categories = MutableLiveData<List<String>>()
-    val categories: LiveData<List<String>> = _categories
+    private val _categories = MutableLiveData<List<CategoryDto>>()
+    val categories: LiveData<List<CategoryDto>> = _categories
 
     private val _restaurants = MutableLiveData<List<Restaurants>>()
     val restaurants: LiveData<List<Restaurants>> = _restaurants
@@ -56,7 +57,8 @@ class HomeViewModel : ViewModel() {
             val response = RetrofitInstance.categoryApi.getCategories()
             _categories.value = response.categories
         } catch (e: Exception) {
-            _categories.value = listOf(ERROR, TRY_AGAIN)
+            _categories.value = listOf(CategoryDto(name = ERROR, image = ""),
+            CategoryDto(name = TRY_AGAIN, image = ""))
         }
     }
 
