@@ -5,17 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.local.database.AppDatabase
-import com.example.fooddeliveryapp.data.model.OrderItemModel
 import com.example.fooddeliveryapp.data.repository.OrderRepository
 import com.example.fooddeliveryapp.databinding.FragmentOngoingBinding
 import com.example.fooddeliveryapp.ui.adapters.OrderRecyclerAdapter
-import com.example.fooddeliveryapp.ui.home.HomeViewModel
 
 class OngoingFragment : Fragment() {
 
