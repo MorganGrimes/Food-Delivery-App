@@ -13,6 +13,7 @@ import com.example.fooddeliveryapp.databinding.FragmentAddressBinding
 import com.example.fooddeliveryapp.ui.adapters.AddressRecyclerAdapter
 import com.example.fooddeliveryapp.ui.addressdelete.AddressDeleteDialogFragment
 import com.example.fooddeliveryapp.utils.ADDRESS_ID
+import com.example.fooddeliveryapp.utils.DELETE_DIALOG
 
 class AddressFragment : Fragment() {
 
@@ -58,14 +59,17 @@ class AddressFragment : Fragment() {
                 val bundle = Bundle().apply {
                     putInt(ADDRESS_ID, address.id)
                 }
-                findNavController().navigate(R.id.action_addressFragment_to_addNewAddressFragment, bundle)
+                findNavController().navigate(
+                    R.id.action_addressFragment_to_addNewAddressFragment,
+                    bundle
+                )
             },
             onDeleteClicked = { address ->
                 AddressDeleteDialogFragment(
                     onConfirmDelete = {
                         viewModel.delete(address)
                     }
-                ).show(parentFragmentManager, "DeleteDialog")
+                ).show(parentFragmentManager, DELETE_DIALOG)
             }
         )
 

@@ -31,7 +31,7 @@ class PersonalProfilesFragment : Fragment() {
         setupListener()
     }
 
-    private fun setupListener(){
+    private fun setupListener() {
         binding.apply {
             personalProfilesEditTv.setOnClickListener {
                 findNavController().navigate(R.id.action_personalProfilesFragment_to_editProfileFragment)

@@ -56,7 +56,7 @@ class MyOrdersTabsFragment : Fragment() {
         }
     }
 
-    private fun setupListeners(){
+    private fun setupListeners() {
         binding.myOrdersBackIconIv.setOnClickListener {
             findNavController().popBackStack()
         }

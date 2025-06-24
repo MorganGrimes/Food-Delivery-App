@@ -168,7 +168,12 @@ class AddCardFragment : Fragment() {
                 private var previousText = ""
                 private var isFormatting = false
 
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
                     previousText = s?.toString() ?: ""
                 }
 
@@ -206,8 +211,12 @@ class AddCardFragment : Fragment() {
                                 (yyyy > currentYear || (yyyy == currentYear && mm!! >= currentMonth))
 
                         when {
-                            !validMonth -> addCardExpireDateCardEt.error = getString(R.string.month_not_valid)
-                            !validDate -> addCardExpireDateCardEt.error = getString(R.string.year_not_valid)
+                            !validMonth -> addCardExpireDateCardEt.error =
+                                getString(R.string.month_not_valid)
+
+                            !validDate -> addCardExpireDateCardEt.error =
+                                getString(R.string.year_not_valid)
+
                             else -> addCardExpireDateCardEt.error = null
                         }
                     } else {

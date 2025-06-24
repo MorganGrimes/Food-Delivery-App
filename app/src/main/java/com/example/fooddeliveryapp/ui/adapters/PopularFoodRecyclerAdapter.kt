@@ -35,7 +35,8 @@ class PopularFoodRecyclerAdapter(
 
                 binding.recyclerPopularFoodSecondIv.setImageResource(rightItem.popularFoodImage)
                 binding.recyclerPopularFoodSecondNameTv.text = rightItem.popularFoodName
-                binding.recyclerPopularFoodSecondRestaurantNameTv.text = rightItem.popularFoodRestaurantName
+                binding.recyclerPopularFoodSecondRestaurantNameTv.text =
+                    rightItem.popularFoodRestaurantName
                 binding.recyclerPopularFoodSecondPriceTv.text = rightItem.popularFoodPrice
 
                 binding.ll3.setOnClickListener {

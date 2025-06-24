@@ -50,10 +50,18 @@ class SignupFragment : Fragment() {
                 viewModel.signupResult.collect { response ->
                     response?.let {
                         if (it.isSuccessful) {
-                            Toast.makeText(requireContext(), REGISTRATION_COMPLETE, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                REGISTRATION_COMPLETE,
+                                Toast.LENGTH_SHORT
+                            ).show()
                             findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
                         } else {
-                            Toast.makeText(requireContext(), REGISTER_FAILED + {it.message()}, Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                requireContext(),
+                                REGISTER_FAILED + { it.message() },
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
                 }
@@ -121,7 +129,14 @@ class SignupFragment : Fragment() {
                     )
                 }
 
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             }
 

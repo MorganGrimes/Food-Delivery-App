@@ -73,22 +73,23 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun imageLauncher() {
-        pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
-                val imageUri = result.data?.data
-                binding.editProfileImageIv.setImageURI(imageUri)
+        pickImageLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                    val imageUri = result.data?.data
+                    binding.editProfileImageIv.setImageURI(imageUri)
 
-                val inputStream = requireContext().contentResolver.openInputStream(imageUri!!)
-                val bitmap = BitmapFactory.decodeStream(inputStream)
+                    val inputStream = requireContext().contentResolver.openInputStream(imageUri!!)
+                    val bitmap = BitmapFactory.decodeStream(inputStream)
 
-                val outputStream = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-                val imageBytes = outputStream.toByteArray()
-                val base64Image = Base64.encodeToString(imageBytes, Base64.DEFAULT)
+                    val outputStream = ByteArrayOutputStream()
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+                    val imageBytes = outputStream.toByteArray()
+                    val base64Image = Base64.encodeToString(imageBytes, Base64.DEFAULT)
 
-                SharedPreferences.saveProfileImage(requireContext(), base64Image)
+                    SharedPreferences.saveProfileImage(requireContext(), base64Image)
+                }
             }
-        }
     }
 
     private fun setupTextWatchers() {

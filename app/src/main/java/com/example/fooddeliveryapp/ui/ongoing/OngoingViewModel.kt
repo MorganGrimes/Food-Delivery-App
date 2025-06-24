@@ -6,7 +6,7 @@ import com.example.fooddeliveryapp.data.local.entity.OrderEntity
 import com.example.fooddeliveryapp.data.repository.OrderRepository
 import kotlinx.coroutines.launch
 
-class OngoingViewModel(private val repository: OrderRepository): ViewModel() {
+class OngoingViewModel(private val repository: OrderRepository) : ViewModel() {
 
     val allOrders = repository.allOrders
 

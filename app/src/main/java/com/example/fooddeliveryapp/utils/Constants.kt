@@ -60,6 +60,8 @@ const val USER_SELECTED = "UserSelected"
 const val FOOD = "Food"
 const val PAYMENT_VERIFICATION_FAILED = "Payment verification failed: "
 const val UNKNOWN_ERROR = "Unknown error"
+const val DELETE_DIALOG = "DeleteDialog"
+const val LOCATION_NEGATED = "Location Negated"
 
 
 

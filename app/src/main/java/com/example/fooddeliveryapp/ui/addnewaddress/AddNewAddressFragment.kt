@@ -54,8 +54,10 @@ class AddNewAddressFragment : Fragment() {
     }
 
     private fun setupMap() {
-        Configuration.getInstance().load(requireContext(),
-            androidx.preference.PreferenceManager.getDefaultSharedPreferences(requireContext()))
+        Configuration.getInstance().load(
+            requireContext(),
+            androidx.preference.PreferenceManager.getDefaultSharedPreferences(requireContext())
+        )
 
         val map = binding.map
         map.setTileSource(TileSourceFactory.MAPNIK)

@@ -119,7 +119,10 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun <T> StateFlow<T>.collectInLifecycle(lifecycleOwner: LifecycleOwner, collector: suspend (T) -> Unit) {
+    private fun <T> StateFlow<T>.collectInLifecycle(
+        lifecycleOwner: LifecycleOwner,
+        collector: suspend (T) -> Unit
+    ) {
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 collect { collector(it) }
@@ -257,7 +260,10 @@ class LoginFragment : Fragment() {
     private fun locationPermission() {
         val context = requireContext()
         val permission = android.Manifest.permission.ACCESS_FINE_LOCATION
-        val permissionGranted = ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
+        val permissionGranted = ContextCompat.checkSelfPermission(
+            context,
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
 
         if (permissionGranted) {
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)

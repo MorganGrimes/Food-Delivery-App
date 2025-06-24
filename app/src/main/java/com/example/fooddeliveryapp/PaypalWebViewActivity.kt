@@ -20,7 +20,10 @@ class PaypalWebViewActivity : AppCompatActivity() {
         val url = intent.getStringExtra(URL) ?: ""
 
         webView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): Boolean {
                 val requestUrl = request?.url.toString()
 
                 if (requestUrl.contains(PAYMENT_SUCCESS)) {

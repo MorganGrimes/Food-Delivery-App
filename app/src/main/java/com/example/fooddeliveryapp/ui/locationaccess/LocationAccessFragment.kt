@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.databinding.FragmentLocationAccessBinding
+import com.example.fooddeliveryapp.utils.LOCATION_NEGATED
 
 class LocationAccessFragment : Fragment() {
     private var _binding: FragmentLocationAccessBinding? = null
@@ -24,7 +25,7 @@ class LocationAccessFragment : Fragment() {
         if (isGranted) {
             navigate()
         } else {
-            Toast.makeText(requireContext(), "Location Negated", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), LOCATION_NEGATED, Toast.LENGTH_SHORT).show()
             navigate()
         }
     }

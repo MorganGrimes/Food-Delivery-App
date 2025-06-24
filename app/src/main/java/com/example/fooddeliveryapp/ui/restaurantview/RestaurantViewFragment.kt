@@ -86,7 +86,8 @@ class RestaurantViewFragment : Fragment() {
         currentRestaurant?.let { restaurant ->
             binding.restaurantViewRestaurantNameTv.text = restaurant.name
             binding.restaurantViewRestaurantDescriptionTv.text = restaurant.description
-            binding.restaurantViewRatingTv.text = String.format(Locale.getDefault(), "%.1f", restaurant.rating)
+            binding.restaurantViewRatingTv.text =
+                String.format(Locale.getDefault(), "%.1f", restaurant.rating)
             binding.restaurantViewDeliveryTv.text = restaurant.delivery
             binding.restaurantViewDeliveryTimeTv.text = restaurant.deliveryTime
         }
@@ -117,7 +118,8 @@ class RestaurantViewFragment : Fragment() {
 
         binding.recyclerRestaurantCategoryFood.apply {
             adapter = foodRecyclerAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
     }
 

@@ -302,10 +302,12 @@ class PaymentFragment : Fragment() {
 
     private fun proceedWithOrder(totalPrice: Double, cartItems: List<CartItemModel>) {
         if (selectedPaymentMethod == VISA_CAMELCASE || selectedPaymentMethod == MASTERCARD_CAMELCASE) {
-            val selectedCard = viewModel.allCreditCards.value?.find { it.id == selectedCreditCardId }
+            val selectedCard =
+                viewModel.allCreditCards.value?.find { it.id == selectedCreditCardId }
 
             if (selectedCard == null || selectedCard.balance < totalPrice) {
-                Toast.makeText(requireContext(), R.string.insufficient_balance, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.insufficient_balance, Toast.LENGTH_SHORT)
+                    .show()
                 return
             }
 
