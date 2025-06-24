@@ -188,7 +188,7 @@ class HomeFragment : Fragment() {
 
     private fun mapRestaurantResponseToModel(restaurant: Restaurants): RestaurantsItemModel {
         return RestaurantsItemModel(
-            R.drawable.ic_launcher_background,
+            R.drawable.restaurant,
             restaurant.id,
             restaurant.name,
             restaurant.description,

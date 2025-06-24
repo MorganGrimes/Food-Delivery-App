@@ -131,6 +131,7 @@ class MyCartFragment : Fragment() {
 
             if (validCoupon != null) {
                 cartCouponCode.text = validCoupon.code
+                cartCouponRemoveIv.visibility = View.VISIBLE
 
                 val total = cartItems.sumOf { it.cartFoodPrice }
                 val discount = total * validCoupon.discountPercentage / 100
@@ -140,6 +141,7 @@ class MyCartFragment : Fragment() {
                     String.format(Locale.getDefault(), "$%.2f", discountedTotal)
             } else {
                 cartCouponCode.text = ""
+                cartCouponRemoveIv.visibility = View.GONE
                 val total = cartItems.sumOf { it.cartFoodPrice }
                 myCartCartTotalPriceTv.text = String.format(Locale.getDefault(), "$%.2f", total)
             }
