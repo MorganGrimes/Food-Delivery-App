@@ -7,9 +7,9 @@ Food Delivery App is a mobile application that allows users to order food from r
 
 ## Main Features
 
-- User registration and login
+- User registration and login (Facebook, X, standard login)
 - Navigation through food categories or direct restaurant selection
-- Detailed restaurant view (rating, delivery type, delivery time,) with category selection of available food
+- Detailed restaurant view (rating, delivery type, delivery time) with category selection of available food
 - Selection and customization of food (sizes, ingredients, quantity)
 - Cart management with shipping address selection and ability to modify quantity or remove items
 - User profile with options to update personal information, addresses, and payment methods
@@ -17,20 +17,25 @@ Food Delivery App is a mobile application that allows users to order food from r
 
 ## Technologies Used
 
-- **Frontend (Android App):** Kotlin(MVVM, Room Database, Retrofit, Coroutines, Ui)  
+- **Frontend (Android App):** Kotlin (MVVM, Room Database, Retrofit, Coroutines, Ui)  
 - **Backend (API server):** Node.js with SQLite3  
-- **Development Environment:** Visual Studio Code(backend), Android Studio (app)
+- **IDE:** Visual Studio Code (backend), Android Studio (app)
+
+## Requirements
+
+- **Android Studio**
+- **Visual Studio Code**
+- **Install [Node.js](https://nodejs.org/)**
+- **Install [SQLite3](https://www.sqlite.org/index.html)**
 
 ## Installation and Usage
 
-1. Clone this repository through this command `git clone https://github.com/MorganGrimes/Food-Delivery-App.git`
-2. Install [Node.js](https://nodejs.org/) and [SQLite3](https://www.sqlite.org/index.html) in Visual Studio Code 
-3. Clone this backend repository through this command `git clone https://github.com/MorganGrimes/FoodDeliveryAppBackEnd.git`
-4. Run the Api server with this command node index.js
-5. Open android studio, and select File->New->import from version control(github)
-6. Paste the git clone link
-7. Wait for all the files to get synced
-8. Run the app
+1. Clone this repository through the following command `git clone https://github.com/MorganGrimes/Food-Delivery-App.git`
+2. Clone the backend repository through the following command `git clone https://github.com/MorganGrimes/FoodDeliveryAppBackEnd.git`
+3. Run the Api server with this command `node index.js` in Visual Studio Code from the `API` folder
+4. Open android studio, and select File -> New -> import from version control -> paste the github link
+5. Wait for all the files to get synced
+6. Run the app
 
 ## Screenshots of the app
 
