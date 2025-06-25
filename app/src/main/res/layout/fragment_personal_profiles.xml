@@ -63,6 +63,7 @@
             android:id="@+id/personal_profiles_image_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
             android:background="@color/grey" />
 
     </androidx.cardview.widget.CardView>

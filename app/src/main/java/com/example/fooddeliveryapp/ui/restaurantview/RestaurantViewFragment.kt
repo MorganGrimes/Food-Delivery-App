@@ -132,7 +132,8 @@ class RestaurantViewFragment : Fragment() {
             findNavController().navigate(
                 RestaurantViewFragmentDirections.actionRestaurantViewFragmentToFoodDetailsFragment(
                     selectedFood.popularFoodName,
-                    selectedFood.popularFoodRestaurantId
+                    selectedFood.popularFoodRestaurantId,
+                    selectedFood.category
                 )
             )
         }
@@ -150,7 +151,8 @@ class RestaurantViewFragment : Fragment() {
                 popularFoodName = foodItem.name,
                 popularFoodRestaurantName = restaurant.name,
                 popularFoodPrice = "$${foodItem.price}",
-                popularFoodRestaurantId = restaurant.id
+                popularFoodRestaurantId = restaurant.id,
+                category = category
             )
         } ?: emptyList()
 

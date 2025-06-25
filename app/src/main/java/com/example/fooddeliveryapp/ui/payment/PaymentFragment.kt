@@ -93,9 +93,9 @@ class PaymentFragment : Fragment() {
                         )
                     ) {
                         filterCardsByType(type)
-                        binding.recyclerCreditCard.visibility = View.VISIBLE
+                        recyclerCreditCard.visibility = View.VISIBLE
                     } else {
-                        binding.recyclerCreditCard.visibility = View.GONE
+                        recyclerCreditCard.visibility = View.GONE
                     }
                 }
             }
@@ -265,6 +265,7 @@ class PaymentFragment : Fragment() {
     }
 
     private fun onPaymentSuccess() {
+        binding.apply {
         val totalPrice = homeViewModel.cartTotalPrice.value ?: 0.0
         val cartItems = homeViewModel.cartItems.value?.filter {
             it.cartId == homeViewModel.cartId.value
@@ -275,7 +276,7 @@ class PaymentFragment : Fragment() {
             return
         }
 
-        binding.paymentProgressBar.visibility = View.VISIBLE
+        paymentProgressBar.visibility = View.VISIBLE
 
         lifecycleScope.launch {
             val response = RetrofitInstance.paymentApi.verifyPayment(
@@ -286,7 +287,7 @@ class PaymentFragment : Fragment() {
                 )
             )
             kotlinx.coroutines.delay(1500)
-            binding.paymentProgressBar.visibility = View.GONE
+            paymentProgressBar.visibility = View.GONE
 
             if (response.isSuccessful && response.body()?.success == true) {
                 proceedWithOrder(totalPrice, cartItems)
@@ -297,6 +298,7 @@ class PaymentFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+        }
         }
     }
 

@@ -55,6 +55,7 @@
 
         <ImageView
             android:id="@+id/edit_profile_image_iv"
+            android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/grey" />

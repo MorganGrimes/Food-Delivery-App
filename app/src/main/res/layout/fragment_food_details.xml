@@ -69,7 +69,6 @@
                     android:id="@+id/food_details_restaurants_iv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/grey"
                     tools:ignore="ContentDescription,ImageContrastCheck" />
 
             </androidx.cardview.widget.CardView>

@@ -162,7 +162,8 @@ class HomeViewModel : ViewModel() {
                 popularFoodName = foodItem.name,
                 popularFoodRestaurantName = restaurant.name,
                 popularFoodPrice = "$${foodItem.price}",
-                popularFoodRestaurantId = restaurant.id
+                popularFoodRestaurantId = restaurant.id,
+                category = category
             )
         }
 

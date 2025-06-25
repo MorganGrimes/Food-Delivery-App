@@ -15,6 +15,7 @@ import com.example.fooddeliveryapp.data.remote.dto.restaurant.Restaurants
 import com.example.fooddeliveryapp.databinding.FragmentFoodDetailsBinding
 import com.example.fooddeliveryapp.ui.home.HomeViewModel
 import com.example.fooddeliveryapp.utils.UiUtils
+import com.example.fooddeliveryapp.utils.getDrawableForCategory
 import java.util.Locale
 
 class FoodDetailsFragment : Fragment() {
@@ -60,7 +61,9 @@ class FoodDetailsFragment : Fragment() {
 
             addToCartBtn.isEnabled = false
             addToCartBtn.setBackgroundColor(UiUtils.brownColor)
-
+            foodDetailsRestaurantsIv.setImageResource(
+                getDrawableForCategory(FoodDetailsFragmentArgs.fromBundle(requireArguments()).category)
+            )
             foodDetailsRestaurantNameTv.text = restaurant.name
             foodDetailsTitleTv.text = foodItem.name
             foodDetailsDescriptionTv.text = foodItem.description
@@ -158,7 +161,7 @@ class FoodDetailsFragment : Fragment() {
         binding.apply {
             addToCartBtn.setOnClickListener {
                 homeViewModel.addToCart(
-                    imageRes = R.drawable.ic_launcher_background,
+                    imageRes = getDrawableForCategory(FoodDetailsFragmentArgs.fromBundle(requireArguments()).category),
                     foodName = foodDetailsTitleTv.text.toString(),
                     price = getCurrentFoodItemPrice(),
                     size = selectedSizeButton?.let { (it as TextView).text.toString() } ?: "",

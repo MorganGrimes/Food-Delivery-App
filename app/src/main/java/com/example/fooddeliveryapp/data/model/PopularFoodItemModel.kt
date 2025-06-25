@@ -5,5 +5,6 @@ data class PopularFoodItemModel(
     val popularFoodName: String,
     val popularFoodRestaurantName: String,
     val popularFoodPrice: String,
-    val popularFoodRestaurantId: Int
+    val popularFoodRestaurantId: Int,
+    val category: String
 )

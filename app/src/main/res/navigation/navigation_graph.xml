@@ -129,6 +129,9 @@
         <argument
             android:name="restaurantId"
             app:argType="integer" />
+        <argument
+            android:name="category"
+            app:argType="string" />
         <action
             android:id="@+id/action_foodDetailsFragment_to_myCartFragment"
             app:destination="@id/myCartFragment" />

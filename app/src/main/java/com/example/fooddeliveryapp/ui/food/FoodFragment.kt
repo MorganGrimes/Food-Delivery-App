@@ -147,7 +147,8 @@ class FoodFragment : Fragment() {
                 findNavController().navigate(
                     FoodFragmentDirections.actionFoodFragmentToFoodDetailsFragment(
                         foodItem.popularFoodName,
-                        foodItem.popularFoodRestaurantId
+                        foodItem.popularFoodRestaurantId,
+                        foodItem.category
                     )
                 )
             }
