@@ -23,7 +23,7 @@ Food Delivery App is a mobile application that allows users to order food from r
 
 ## Installation and Usage
 
-1. Clone this repository trough this command https://github.com/MorganGrimes/Food-Delivery-App.git
+1. Clone this repository trough this command `git clone https://github.com/MorganGrimes/Food-Delivery-App.git`
 2. Install [Node.js](https://nodejs.org/) and [SQLite3](https://www.sqlite.org/index.html)  
 3. Start the API server:  
    node index.js
