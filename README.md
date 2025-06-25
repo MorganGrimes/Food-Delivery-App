@@ -17,7 +17,7 @@ Food Delivery App is a mobile application that allows users to order food from r
 
 ## Technologies Used
 
-- **Frontend (Android App):** Kotlin(MVVM, Room Database, Retrofit, RecyclerView)  
+- **Frontend (Android App):** Kotlin(MVVM, Room Database, Retrofit, Coroutines, Ui)  
 - **Backend (API server):** Node.js with SQLite3  
 - **Development Environment:** Visual Studio (backend), Android Studio (app)
 
