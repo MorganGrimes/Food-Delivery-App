@@ -14,7 +14,7 @@ import com.example.fooddeliveryapp.utils.FOOD_DELIVERY_DB
 
 @Database(
     entities = [AddressEntity::class, CreditCardEntity::class, OrderEntity::class],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

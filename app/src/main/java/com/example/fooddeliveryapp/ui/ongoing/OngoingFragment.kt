@@ -34,9 +34,17 @@ class OngoingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
 
-        viewModel.allOrders.observe(viewLifecycleOwner) { orders ->
+        observer()
+        setupRecyclerView()
+    }
+
+    private fun observer(){
+        orderRecyclerAdapter = OrderRecyclerAdapter(
+            emptyList(),
+            isOngoing = true
+        )
+        viewModel.ongoingOrders.observe(viewLifecycleOwner) { orders ->
             orderRecyclerAdapter.updateData(orders)
         }
     }
@@ -44,7 +52,6 @@ class OngoingFragment : Fragment() {
     private fun setupRecyclerView() {
         binding.recyclerOngoing.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            orderRecyclerAdapter = OrderRecyclerAdapter(emptyList())
             adapter = orderRecyclerAdapter
         }
     }

@@ -10,6 +10,12 @@ import com.example.fooddeliveryapp.data.local.entity.OrderEntity
 @Dao
 interface OrderDao {
 
+    @Query("SELECT * FROM orders WHERE createdAt >= :cutoffTime")
+    fun getOngoingOrders(cutoffTime: Long): LiveData<List<OrderEntity>>
+
+    @Query("SELECT * FROM orders WHERE createdAt < :cutoffTime")
+    fun getHistoryOrders(cutoffTime: Long): LiveData<List<OrderEntity>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertOrder(order: OrderEntity)
 
@@ -18,4 +24,5 @@ interface OrderDao {
 
     @Query("DELETE FROM orders")
     suspend fun deleteAllOrders()
+
 }

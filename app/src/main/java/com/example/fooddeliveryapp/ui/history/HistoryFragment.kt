@@ -41,7 +41,7 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.allOrders.observe(viewLifecycleOwner) { orders ->
+        viewModel.historyOrders.observe(viewLifecycleOwner) { orders ->
             orderRecyclerAdapter.updateData(orders)
         }
 

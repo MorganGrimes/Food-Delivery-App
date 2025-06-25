@@ -13,5 +13,6 @@ data class OrderEntity(
     val orderPrice: String,
     val orderDate: String,
     val orderItemNumber: String,
-    val orderId: String
+    val orderId: String,
+    val createdAt: Long = System.currentTimeMillis()
 )

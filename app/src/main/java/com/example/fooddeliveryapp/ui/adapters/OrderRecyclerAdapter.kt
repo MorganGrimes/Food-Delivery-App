@@ -1,14 +1,17 @@
 package com.example.fooddeliveryapp.ui.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fooddeliveryapp.R
 import com.example.fooddeliveryapp.data.local.entity.OrderEntity
 import com.example.fooddeliveryapp.databinding.RecyclerOrderLayoutBinding
 
 class OrderRecyclerAdapter(
     private var items: List<OrderEntity>,
+    private val isOngoing: Boolean = false
 ) : RecyclerView.Adapter<OrderRecyclerAdapter.OrderViewHolder>() {
 
     fun updateData(newItems: List<OrderEntity>) {
@@ -42,6 +45,27 @@ class OrderRecyclerAdapter(
                 recyclerOrderDateOrderTv.text = item.orderDate
                 recyclerOrderItemNumberTv.text = item.orderItemNumber
                 recyclerOrderIdOrderTv.text = item.orderId
+
+                if (isOngoing) {
+                    recyclerOrderStatusOrderTv.visibility = View.GONE
+                    recyclerOrderDateOrderTv.visibility = View.GONE
+
+                    trackOrderRateOrBtn.setBackgroundColor(root.context.getColor(R.color.orange))
+                    trackOrderRateOrBtn.setTextColor(root.context.getColor(R.color.white))
+                    trackOrderRateOrBtn.text = root.context.getString(R.string.track_order)
+
+                    cancelOrReOrderBtn.setBackgroundColor(root.context.getColor(R.color.white))
+                    cancelOrReOrderBtn.setTextColor(root.context.getColor(R.color.orange))
+                    cancelOrReOrderBtn.text = root.context.getString(R.string.cancel)
+                    cancelOrReOrderBtn.strokeColor = android.content.res.ColorStateList.valueOf(
+                        root.context.getColor(R.color.orange)
+                    )
+                    cancelOrReOrderBtn.strokeWidth = 1
+                }else {
+                    recyclerOrderStatusOrderTv.visibility = View.VISIBLE
+                    recyclerOrderDateOrderTv.visibility = View.VISIBLE
+                    recyclerOrderStatusOrderTv.text = root.context.getString(R.string.completed)
+                }
             }
         }
     }
