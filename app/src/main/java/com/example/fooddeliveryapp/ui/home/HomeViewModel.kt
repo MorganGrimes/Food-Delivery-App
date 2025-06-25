@@ -13,6 +13,7 @@ import com.example.fooddeliveryapp.data.remote.dto.restaurant.Coupon
 import com.example.fooddeliveryapp.data.remote.dto.restaurant.Restaurants
 import com.example.fooddeliveryapp.utils.ERROR
 import com.example.fooddeliveryapp.utils.TRY_AGAIN
+import com.example.fooddeliveryapp.utils.getDrawableForCategory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -157,7 +158,7 @@ class HomeViewModel : ViewModel() {
 
         val foodModels = foodWithRestaurant.map { (foodItem, restaurant) ->
             PopularFoodItemModel(
-                popularFoodImage = com.example.fooddeliveryapp.R.drawable.ic_launcher_background,
+                popularFoodImage = getDrawableForCategory(category),
                 popularFoodName = foodItem.name,
                 popularFoodRestaurantName = restaurant.name,
                 popularFoodPrice = "$${foodItem.price}",

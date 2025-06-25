@@ -17,6 +17,7 @@ import com.example.fooddeliveryapp.databinding.FragmentRestaurantViewBinding
 import com.example.fooddeliveryapp.ui.adapters.FoodRecyclerAdapter
 import com.example.fooddeliveryapp.ui.adapters.PopularFoodRecyclerAdapter
 import com.example.fooddeliveryapp.ui.home.HomeViewModel
+import com.example.fooddeliveryapp.utils.getDrawableForCategory
 import java.util.Locale
 
 class RestaurantViewFragment : Fragment() {
@@ -83,13 +84,16 @@ class RestaurantViewFragment : Fragment() {
     }
 
     private fun setupRestaurantView() {
+        binding.apply {
         currentRestaurant?.let { restaurant ->
-            binding.restaurantViewRestaurantNameTv.text = restaurant.name
-            binding.restaurantViewRestaurantDescriptionTv.text = restaurant.description
-            binding.restaurantViewRatingTv.text =
+            restaurantViewRestaurantNameTv.text = restaurant.name
+            restaurantViewRestaurantDescriptionTv.text = restaurant.description
+            restaurantsIv.setImageResource(R.drawable.restaurant)
+            restaurantViewRatingTv.text =
                 String.format(Locale.getDefault(), "%.1f", restaurant.rating)
-            binding.restaurantViewDeliveryTv.text = restaurant.delivery
-            binding.restaurantViewDeliveryTimeTv.text = restaurant.deliveryTime
+            restaurantViewDeliveryTv.text = restaurant.delivery
+            restaurantViewDeliveryTimeTv.text = restaurant.deliveryTime
+        }
         }
     }
 
@@ -142,7 +146,7 @@ class RestaurantViewFragment : Fragment() {
     private fun updatePopularFoodList(restaurant: Restaurants, category: String) {
         val foodItems = restaurant.food[category]?.map { foodItem ->
             PopularFoodItemModel(
-                popularFoodImage = R.drawable.ic_launcher_background,
+                popularFoodImage = getDrawableForCategory(category),
                 popularFoodName = foodItem.name,
                 popularFoodRestaurantName = restaurant.name,
                 popularFoodPrice = "$${foodItem.price}",

@@ -16,41 +16,43 @@ class PopularFoodRecyclerAdapter(
     inner class PopularFoodViewHolder(private val binding: RecyclerPopularFoodLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(leftItem: PopularFoodItemModel, rightItem: PopularFoodItemModel?) {
+            binding.apply {
+                recyclerPopularFoodIv.setImageResource(leftItem.popularFoodImage)
+                recyclerPopularFoodNameTv.text = leftItem.popularFoodName
+                recyclerPopularFoodRestaurantNameTv.text =
+                    leftItem.popularFoodRestaurantName
+                recyclerPopularFoodPriceTv.text = leftItem.popularFoodPrice
 
-            binding.recyclerPopularFoodIv.setImageResource(leftItem.popularFoodImage)
-            binding.recyclerPopularFoodNameTv.text = leftItem.popularFoodName
-            binding.recyclerPopularFoodRestaurantNameTv.text = leftItem.popularFoodRestaurantName
-            binding.recyclerPopularFoodPriceTv.text = leftItem.popularFoodPrice
-
-            binding.ll2.setOnClickListener {
-                onItemClick(leftItem)
-            }
-
-            binding.recyclerPopularFoodAddIv.setOnClickListener {
-                onItemClick(leftItem)
-            }
-
-            if (rightItem != null) {
-                binding.ll3.visibility = View.VISIBLE
-
-                binding.recyclerPopularFoodSecondIv.setImageResource(rightItem.popularFoodImage)
-                binding.recyclerPopularFoodSecondNameTv.text = rightItem.popularFoodName
-                binding.recyclerPopularFoodSecondRestaurantNameTv.text =
-                    rightItem.popularFoodRestaurantName
-                binding.recyclerPopularFoodSecondPriceTv.text = rightItem.popularFoodPrice
-
-                binding.ll3.setOnClickListener {
-                    onItemClick(rightItem)
+                ll2.setOnClickListener {
+                    onItemClick(leftItem)
                 }
 
-                binding.recyclerPopularFoodSecondAddIv.setOnClickListener {
-                    onItemClick(rightItem)
+                recyclerPopularFoodAddIv.setOnClickListener {
+                    onItemClick(leftItem)
                 }
 
-            } else {
-                binding.ll3.visibility = View.INVISIBLE
-                binding.ll3.setOnClickListener(null)
-                binding.recyclerPopularFoodSecondAddIv.setOnClickListener(null)
+                if (rightItem != null) {
+                    ll3.visibility = View.VISIBLE
+
+                    recyclerPopularFoodSecondIv.setImageResource(rightItem.popularFoodImage)
+                    recyclerPopularFoodSecondNameTv.text = rightItem.popularFoodName
+                    recyclerPopularFoodSecondRestaurantNameTv.text =
+                        rightItem.popularFoodRestaurantName
+                    recyclerPopularFoodSecondPriceTv.text = rightItem.popularFoodPrice
+
+                    ll3.setOnClickListener {
+                        onItemClick(rightItem)
+                    }
+
+                    recyclerPopularFoodSecondAddIv.setOnClickListener {
+                        onItemClick(rightItem)
+                    }
+
+                } else {
+                    ll3.visibility = View.INVISIBLE
+                    ll3.setOnClickListener(null)
+                    recyclerPopularFoodSecondAddIv.setOnClickListener(null)
+                }
             }
         }
     }

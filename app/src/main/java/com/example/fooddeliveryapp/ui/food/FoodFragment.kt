@@ -56,23 +56,26 @@ class FoodFragment : Fragment() {
     }
 
     private fun setupObserver() {
-        setFragmentResultListener(CATEGORY_REQUEST_KEY) { _, bundle ->
-            val category = bundle.getString(SELECTED_CATEGORY) ?: return@setFragmentResultListener
-            if (homeViewModel.selectedFoodCategory.value != category) {
-                homeViewModel.selectedFoodCategory.value = category
+        binding.apply {
+            setFragmentResultListener(CATEGORY_REQUEST_KEY) { _, bundle ->
+                val category =
+                    bundle.getString(SELECTED_CATEGORY) ?: return@setFragmentResultListener
+                if (homeViewModel.selectedFoodCategory.value != category) {
+                    homeViewModel.selectedFoodCategory.value = category
+                }
             }
-        }
 
-        if (homeViewModel.selectedFoodCategory.value.isNullOrEmpty()) {
-            homeViewModel.selectedFoodCategory.value =
-                homeViewModel.categories.value?.firstOrNull()?.name ?: ""
-        }
+            if (homeViewModel.selectedFoodCategory.value.isNullOrEmpty()) {
+                homeViewModel.selectedFoodCategory.value =
+                    homeViewModel.categories.value?.firstOrNull()?.name ?: ""
+            }
 
-        homeViewModel.selectedFoodCategory.observe(viewLifecycleOwner) { category ->
-            if (category.isNotEmpty()) {
-                homeViewModel.filterRestaurantsByCategory(category)
-                binding.foodPopupMenuBtn.text = category
-                binding.popularFoodTv.text = getString(R.string.popular_with_category, category)
+            homeViewModel.selectedFoodCategory.observe(viewLifecycleOwner) { category ->
+                if (category.isNotEmpty()) {
+                    homeViewModel.filterRestaurantsByCategory(category)
+                    foodPopupMenuBtn.text = category
+                    popularFoodTv.text = getString(R.string.popular_with_category, category)
+                }
             }
         }
     }
@@ -107,7 +110,7 @@ class FoodFragment : Fragment() {
         homeViewModel.filteredRestaurantsLiveData.observe(viewLifecycleOwner) { restaurants ->
             val restaurantModels = restaurants.map {
                 RestaurantsItemModel(
-                    R.drawable.ic_launcher_background,
+                    R.drawable.restaurant,
                     it.id,
                     it.name,
                     it.description,
