@@ -39,3 +39,16 @@ Food Delivery App is a mobile application that allows users to order food from r
 
 ## Screenshots of the app
 
+![splash](https://github.com/user-attachments/assets/259ff366-9a1f-41e3-862a-38a158910435)
+![login](https://github.com/user-attachments/assets/6cc814f6-ba57-4472-a2bf-ef9564292d54)
+![home](https://github.com/user-attachments/assets/42ef4d92-1d59-4501-b95a-bf6a3855417f)
+![profile](https://github.com/user-attachments/assets/0da35c44-e31d-4e00-9136-43405723d6c6)
+![coupon](https://github.com/user-attachments/assets/72197798-a120-4096-a327-6c964f4d5b83)
+![cart](https://github.com/user-attachments/assets/703af19f-f1ac-4616-bdbe-dd9d9f932d0c)
+
+
+
+
+
+
+
