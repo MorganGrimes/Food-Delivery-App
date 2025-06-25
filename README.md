@@ -29,5 +29,5 @@ Food Delivery App is a mobile application that allows users to order food from r
 6. Wait for all the files to get synced
 7. Run the app
 
-## Screenshot of the app
+## Screenshots of the app
 
