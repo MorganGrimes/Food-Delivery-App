@@ -1,46 +1,41 @@
-Food Delivery App
-Food Delivery App è un'applicazione mobile che permette di ordinare cibo dai ristoranti in modo semplice e veloce.
 
-Funzionalità principali
-Registrazione e login per gli utenti
+![Logo](https://github.com/user-attachments/assets/431933dc-c31e-4b61-b521-7946885c9bab)
 
-Navigazione tramite categorie di cibo o selezione diretta del ristorante
+# Food Delivery App
 
-Visualizzazione dettagliata dei ristoranti (rating, tipo di consegna, tempo di spedizione)
+Food Delivery App is a mobile application that allows users to order food from restaurants easily and quickly.
 
-Scelta e personalizzazione dei piatti (dimensioni, ingredienti, quantità)
+## Main Features
 
-Gestione del carrello con selezione dell’indirizzo di spedizione e possibilità di modificare la quantita o cancellare i piatti 
+- User registration and login (Facebook, X, standard login)
+- Navigation through food categories or direct restaurant selection
+- Detailed restaurant view (rating, delivery type, delivery time) with category selection of available food
+- Selection and customization of food (sizes, ingredients, quantity)
+- Cart management with shipping address selection and ability to modify quantity or remove items
+- User profile with options to update personal information, addresses, and payment methods
+- Order history with the option to leave ratings or reorder
 
-Profilo utente con possibilità di modificare informazioni personali, indirizzi, metodi di pagamento
+## Technologies Used
 
-Storico ordini con possibilità di lasciare rating o riordinare
+- **Frontend (Android App):** Kotlin (MVVM, Room Database, Retrofit, Coroutines, Ui)  
+- **Backend (API server):** Node.js with SQLite3  
+- **IDE:** Visual Studio Code (backend), Android Studio (app)
 
-Tecnologie utilizzate
-Frontend (App Android): Kotlin
+## Requirements
 
-Backend (API server): Node.js con SQLite3
+- **Android Studio**
+- **Visual Studio Code**
+- **Install [Node.js](https://nodejs.org/)**
+- **Install [SQLite3](https://www.sqlite.org/index.html)**
 
-Ambiente di sviluppo: Visual Studio (backend), Android Studio (app)
+## Installation and Usage
 
-Installazione e uso
-Clona questo repository
+1. Clone this repository through the following command `git clone https://github.com/MorganGrimes/Food-Delivery-App.git`
+2. Clone the backend repository through the following command `git clone https://github.com/MorganGrimes/FoodDeliveryAppBackEnd.git`
+3. Run the Api server with this command `node index.js` in Visual Studio Code from the `API` folder
+4. Open android studio, and select File -> New -> import from version control -> paste the github link
+5. Wait for all the files to get synced
+6. Run the app
 
-Installa Node.js e SQLite3
+## Screenshots of the app
 
-Avvia il server API:
-
-bash
-Copia
-Modifica
-cd backend
-npm install
-npm start
-Apri il progetto Android in Android Studio e avvia l’app su un emulatore o dispositivo reale
-
-Assicurati che il server API sia in esecuzione per poter usare tutte le funzionalità dell’app
-
-Struttura del progetto
-/backend — codice del server API (Node.js + SQLite3)
-
-/app — codice dell’app Android (Kotlin)
