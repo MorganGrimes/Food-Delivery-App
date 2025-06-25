@@ -6,5 +6,4 @@ data class CategoriesResponse(
 
 data class CategoryDto(
     val name: String,
-    val image: String
 )

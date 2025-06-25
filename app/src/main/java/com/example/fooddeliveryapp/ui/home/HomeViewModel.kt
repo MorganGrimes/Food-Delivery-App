@@ -58,8 +58,8 @@ class HomeViewModel : ViewModel() {
             val response = RetrofitInstance.categoryApi.getCategories()
             _categories.value = response.categories
         } catch (e: Exception) {
-            _categories.value = listOf(CategoryDto(name = ERROR, image = ""),
-            CategoryDto(name = TRY_AGAIN, image = ""))
+            _categories.value = listOf(CategoryDto(name = ERROR),
+            CategoryDto(name = TRY_AGAIN))
         }
     }
 
