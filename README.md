@@ -9,8 +9,8 @@ Food Delivery App is a mobile application that allows users to order food from r
 
 - User registration and login
 - Navigation through food categories or direct restaurant selection
-- Detailed restaurant view (rating, delivery type, delivery time)
-- Selection and customization of dishes (sizes, ingredients, quantity)
+- Detailed restaurant view (rating, delivery type, delivery time,) with category selection of available food
+- Selection and customization of food (sizes, ingredients, quantity)
 - Cart management with shipping address selection and ability to modify quantity or remove items
 - User profile with options to update personal information, addresses, and payment methods
 - Order history with the option to leave ratings or reorder
