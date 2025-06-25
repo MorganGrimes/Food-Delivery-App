@@ -24,7 +24,7 @@ Food Delivery App is a mobile application that allows users to order food from r
 ## Installation and Usage
 
 1. Clone this repository through this command `git clone https://github.com/MorganGrimes/Food-Delivery-App.git`
-2. Install [Node.js](https://nodejs.org/) and [SQLite3](https://www.sqlite.org/index.html)  
+2. Install [Node.js](https://nodejs.org/) and [SQLite3](https://www.sqlite.org/index.html) in Visual Studio Code 
 3. Clone this backend repository through this command `git clone https://github.com/MorganGrimes/FoodDeliveryAppBackEnd.git`
 4. Run the Api server with this command node index.js
 5. Open android studio, and select File->New->import from version control(github)
